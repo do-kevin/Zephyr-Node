@@ -11,7 +11,8 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <nav className="navbar justify-content-end">
+        <nav className="navbar justify-content-between">
+        <h1>App Name</h1>
           <Login />
         </nav>
         <div className="jumbotron banner-image">

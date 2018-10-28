@@ -41,11 +41,31 @@ class Login extends React.Component {
                   placeholder="mysteryperson123"
                 />
                 <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" />
+              </div>
+            </form>
+          </ModalBody>
+          <ModalBody>
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
                 <input
-                  type="password"
+                  type="text"
                   class="form-control"
-                  id="password"
+                  id="name"
+                  placeholder="Alex Doe"
                 />
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  placeholder="mysteryperson123"
+                />
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" />
+                <label for="password">Re-enter Password</label>
+                <input type="password" class="form-control" id="password" />
               </div>
             </form>
           </ModalBody>
