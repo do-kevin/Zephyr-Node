@@ -76,16 +76,16 @@ class Login extends React.Component {
           </div>
           <ModalBody selectLogin={this.selectLogin}>
             <form>
-              <div class="form-group">
-                <label for="username">Username</label>
+              <div className="form-group">
+                <label htmlFor="username">Username</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="username"
                   placeholder="alex-doe1234"
                 />
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" />
+                <label htmlFor="password">Password</label>
+                <input type="password" className="form-control" id="password" />
                 <br />
                 <Button color="primary" onClick={this.toggle}>
                   Login
@@ -95,25 +95,25 @@ class Login extends React.Component {
           </ModalBody>
           <ModalBody selectCreate={this.selectCreate}>
             <form>
-              <div class="form-group">
-                <label for="name">Name</label>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="name"
                   placeholder="Alex Doe"
                 />
-                <label for="username">Username</label>
+                <label htmlFor="username">Username</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="username"
                   placeholder="alex-doe1234"
                 />
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" />
-                <label for="password">Re-enter Password</label>
-                <input type="password" class="form-control" id="password" />
+                <label htmlFor="password">Password</label>
+                <input type="password" className="form-control" id="password" />
+                <label htmlFor="password">Re-enter Password</label>
+                <input type="password" className="form-control" id="password" />
                 <br />
                 <Button color="primary" onClick={this.toggle}>
                   Create

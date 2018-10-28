@@ -47,7 +47,7 @@ class Home extends React.Component {
               <div className="card animated zoomIn">
                 <div className="card-body feature-cards">
                   <h1>
-                    <i class="fas fa-feather" />
+                    <i className="fas fa-feather" />
                   </h1>
                   <h5 className="card-title">Notes</h5>
                   <p className="card-text text-left">
@@ -64,7 +64,7 @@ class Home extends React.Component {
               <div className="card animated slideInRight">
                 <div className="card-body feature-cards">
                   <h1>
-                    <i class="fas fa-list" />
+                    <i className="fas fa-list" />
                   </h1>
                   <h5 className="card-title">Lists</h5>
                   <p className="card-text text-left">
@@ -86,7 +86,7 @@ class Home extends React.Component {
               <div className="card animated slideInLeft">
                 <div className="card-body feature-cards">
                   <h1>
-                    <i class="far fa-calendar-alt" />
+                    <i className="far fa-calendar-alt" />
                   </h1>
                   <h5 className="card-title">Reminders</h5>
                   <p className="card-text text-left">
@@ -105,7 +105,7 @@ class Home extends React.Component {
               <div className="card animated slideInUp">
                 <div className="card-body feature-cards">
                   <h1>
-                    <i class="fas fa-stopwatch" />
+                    <i className="fas fa-stopwatch" />
                   </h1>
                   <h5 className="card-title">Pomodoro Timer</h5>
                   <p className="card-text text-left">
@@ -127,7 +127,7 @@ class Home extends React.Component {
               <div className="card animated slideInRight">
                 <div className="card-body feature-cards">
                   <h1>
-                    <i class="far fa-comment" />
+                    <i className="far fa-comment" />
                   </h1>
                   <h5 className="card-title">SMS</h5>
                   <p className="card-text text-left">
