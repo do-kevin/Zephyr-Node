@@ -1,3 +1,12 @@
 #search-bar {
     margin: auto;
 }
+
+.form-control {
+    width: 93% !important;
+}
+
+.feature-cards {
+    padding-left: 40px;
+    padding-right: 40px;
+}

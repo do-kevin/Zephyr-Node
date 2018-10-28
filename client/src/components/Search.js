@@ -3,17 +3,17 @@ import "../css/Search.css"
 
 const Search = () => {
   return (
-    <div class="form-group md-form form-sm form-2 pl-0 content-align" id="search-bar">
-      <form class="form-inline">
+    <div id="search-bar">
+      <form className="form-inline">
         <input
-          class="form-control"
+          className="form-control"
           type="search"
-          placeholder="Search #lorem-ipsom"
+          placeholder="Search #lorem-ipsum"
           aria-label="Search"
         />
-        <div class="input-group-append">
+        <div className="input-group-append">
           <button type="submit" className="btn btn-primary">
-            <i class="fa fa-search text-grey" aria-hidden="true" />
+            <i className="fa fa-search text-grey" aria-hidden="true" />
           </button>
         </div>
       </form>

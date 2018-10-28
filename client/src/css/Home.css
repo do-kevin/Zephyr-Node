@@ -1,10 +1,15 @@
+.navbar {
+    background-color: black !important;
+    height: 70px !important;
+}
+
 .navbar-header{
     margin-left: auto !important;
     width:100%;
 }
 
 .jumbotron {
-    height: 800px !important;
+    height: 500px !important;
     border-radius: 0 !important;
 }
 
@@ -14,7 +19,8 @@
         rgba(0, 0, 0, 0.5)), 
         url("http://www.itaniumsolutions.org/pics/max/95/954235_studying-wallpapers-student.jpg");
     height: 100%;
-    background-position: center;
+    background-position-y: 90%;
+    background-position-x: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
