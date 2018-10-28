@@ -5,9 +5,10 @@
   "private": true,
   "proxy": "http://127.0.0.1:3001/",
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-scripts": "1.0.14",
+    "reactstrap": "^6.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
