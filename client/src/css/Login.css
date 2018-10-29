@@ -1,5 +1,6 @@
-label {
-    /* color: #016ee2; */
+#login-modal {
+    margin-top: 13%;
+    position: relative;
 }
 
 .login-or-create-btn {
