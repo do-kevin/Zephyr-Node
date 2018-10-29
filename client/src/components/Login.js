@@ -131,6 +131,7 @@ class Login extends React.Component {
                 size="lg"
                 block
                 onClick={this.selectLogin}
+                active={this.state.login}
               >
                 Sign In
               </Button>
@@ -142,6 +143,7 @@ class Login extends React.Component {
                 size="lg"
                 block
                 onClick={this.selectCreate}
+                active={this.state.create}
               >
                 Sign Up
               </Button>
