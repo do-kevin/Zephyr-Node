@@ -1,0 +1,12 @@
+#login-modal {
+    margin-top: 13%;
+    position: relative;
+}
+
+.modal-body {
+    background-color:#dbe1e6
+}
+
+.login-or-create-btn {
+    border-radius: 0 !important;
+}

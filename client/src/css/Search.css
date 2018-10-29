@@ -1,0 +1,22 @@
+#search-bar {
+    margin: auto;
+}
+
+#search-input {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+#search-btn {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.form-control {
+    width: 93% !important;
+}
+
+.feature-cards {
+    padding-left: 40px;
+    padding-right: 40px;
+}
