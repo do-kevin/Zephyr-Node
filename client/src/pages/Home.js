@@ -15,7 +15,7 @@ class Home extends React.Component {
         <h1>App Name</h1>
           <Login />
         </nav>
-        <div className="jumbotron banner-image">
+        <div className="jumbotron banner-image animated fadeIn">
           <div className="banner-text">
             <h1>Wholesome and Inspirational Quote</h1>
             <p>Current date and time or quotist</p>

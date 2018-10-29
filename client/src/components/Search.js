@@ -10,9 +10,10 @@ const Search = () => {
           type="search"
           placeholder="Search #lorem-ipsum"
           aria-label="Search"
+          id="search-input"
         />
         <div className="input-group-append">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" id="search-btn">
             <i className="fa fa-search text-grey" aria-hidden="true" />
           </button>
         </div>
