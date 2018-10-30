@@ -14,6 +14,10 @@ require("./user")(router);
 require("./todo")(router);
 // Reminder routes
 require("./reminder")(router);
+// Note routes
+require("./note")(router);
+// Appointment routes
+require("./appointment")(router);
 
 // Export Router ---------------------------------------- /
 

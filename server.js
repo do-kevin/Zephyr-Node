@@ -7,7 +7,8 @@
 const express = require("express"),
   path = require("path");
 
-const db = require("./models");
+const db = require("./models"),
+  router = require("./routes");
 
 // Setup ---------------------------------------- /
 
@@ -25,9 +26,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Routes ---------------------------------------- /
+// Mount Router ---------------------------------------- /
 
-
+app.use(router);
 
 // Send every other request to the React app
 // Define any API routes before this runs
