@@ -21,5 +21,3 @@ const Quote = () => {
 };
 
 export default Quote;
-
-// "Motivational/Pure/Wholesome Quote." - Anonymous
