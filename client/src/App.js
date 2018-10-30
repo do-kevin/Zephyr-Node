@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
 // Pages
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 
 // Components
+import Sidebar from "./components/Sidebar";
 
 // CSS
 import "./css/App.css";
@@ -11,7 +12,10 @@ import "./css/App.css";
 class App extends Component {
   render() {
     return (
-      <Home />
+      <div>
+        <Sidebar />
+        <Home />
+      </div>
     );
   }
 }
