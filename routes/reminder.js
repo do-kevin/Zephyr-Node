@@ -39,14 +39,24 @@ module.exports = (router) => {
                 res.status(404).json(err);
             });
     });
-    // Update reminder on reminder id
-    router.put("/reminders", (req, res) => {
-        const {item, date, id} = req.body;
+    // Create reminder with user id
+    router.post("/reminders/:userId", (req, res) => {
         db.Reminder
-            .update({
-                item,
-                date
-            }, {
+            .create({
+                ...req.body,
+                UserId: req.params.userId
+            })
+            .then((reminder) => {
+                res.status(200).json(reminder);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+    // Update reminder on reminder id
+    router.put("/reminders/:id", (req, res) => {
+        db.Reminder
+            .update(req.body, {
                 where: {
                     id
                 }
@@ -59,11 +69,11 @@ module.exports = (router) => {
             });
     });
     // Delete reminder on reminder id
-    router.delete("/reminders", (req, res) => {
+    router.delete("/reminders/:id", (req, res) => {
         db.Reminder
             .destroy({
                 where: {
-                    id: req.body.id
+                    id: req.params.id
                 }
             })
             .then((reminder) => {

@@ -51,15 +51,11 @@ module.exports = (router) => {
             });
     });
     // Create deck with user id
-    router.post("/decks", (req, res) => {
-        const {subject, private, dailyQuiz, time, userId} = req.body;
+    router.post("/decks/:userId", (req, res) => {
         db.Deck
             .create({
-                subject,
-                private,
-                dailyQuiz,
-                time,
-                UserId: userId
+                ...req.body,
+                UserId: req.params.userId
             })
             .then((deck) => {
                 res.status(200).json(deck);

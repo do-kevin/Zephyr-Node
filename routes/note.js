@@ -40,12 +40,11 @@ module.exports = (router) => {
             });
     });
     // Create new note on user id
-    router.post("/notes", (req, res) => {
-        const {note, userId} = req.body;
+    router.post("/notes/:userId", (req, res) => {
         db.Note
             .create({
-                note, 
-                userId
+                ...req.body,
+                UserId: req.params.userId
             })
             .then((note) => {
                 res.status(200).json(note);
@@ -54,15 +53,12 @@ module.exports = (router) => {
                 res.status(404).json(err);
             });
     });
-    // Update note on note id & user id
-    router.put("/notes", (req, res) => {
-        const {note, id} = req.body;
+    // Update note on note id
+    router.put("/notes/:id", (req, res) => {
         db.Note
-            .update({
-                note
-            }, {
+            .update(req.body, {
                 where: {
-                    id
+                    id: req.params.id
                 }
             })
             .then((note) => {
@@ -73,12 +69,11 @@ module.exports = (router) => {
             });
     });
     // Delete note on note id
-    router.delete("/notes", (req, res) => {
-        const {id} = req.body;
+    router.delete("/notes/:id", (req, res) => {
         db.Note
             .destroy({
                 where: {
-                    id
+                    id: req.params.id
                 }
             })
             .then((note) => {

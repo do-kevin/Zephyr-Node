@@ -10,7 +10,7 @@ const db = require("../models");
 
 module.exports = (router) => {
     // Retrieve specific user at login
-    router.get("/users", (req, res) => {
+    router.post("/users/login", (req, res) => {
         db.User
             .findOne({
                 where: {
@@ -26,12 +26,9 @@ module.exports = (router) => {
             });
     });
     // Create user for sign up
-    router.post("/users", (req, res) => {
-        const {name, username, password, phoneNumber} = req.body,
-            user = {name, username, password};
-        if (phoneNumber) user.phoneNumber = phoneNumber;
+    router.post("/users/signUp", (req, res) => {
         db.User
-            .create(user)
+            .create(req.body)
             .then((user) => {
                 res.status(200).json(user);
             })
@@ -41,11 +38,8 @@ module.exports = (router) => {
     });
     // Update user on user id
     router.put("/users/:id", (req, res) => {
-        const {name, username, password, phoneNumber} = req.body;
         db.User
-            .update({
-                name, username, password, phoneNumber: phoneNumber || ""
-            }, {
+            .update(req.body, {
                 where: {
                     id: req.params.id
                 }
@@ -74,7 +68,7 @@ module.exports = (router) => {
                 res.status(404).json(err);
             });
     });
-    // Delete user name on user id
+    // Delete user on user id
     router.delete("/users/:id", (req, res) => {
         db.User
             .destroy({

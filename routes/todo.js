@@ -39,17 +39,26 @@ module.exports = (router) => {
                 res.status(404).json(err);
             });
     });
-    // Update todo on todo id
-    router.put("/todos", (req, res) => {
-        const {item, date, done, id} = req.body;
+    // Create todo with user id
+    router.post("/todos/:userId", (req, res) => {
         db.ToDo
-            .update({
-                item,
-                date,
-                done
-            }, {
+            .create({
+                ...req.body,
+                UserId: req.params.userId
+            })
+            .then((todo) => {
+                res.status(200).json(todo);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+    // Update todo on todo id
+    router.put("/todos/:id", (req, res) => {
+        db.ToDo
+            .update(req.body, {
                 where: {
-                    id
+                    id: req.params.id
                 }
             })
             .then((todo) => {
@@ -60,11 +69,11 @@ module.exports = (router) => {
             });
     });
     // Delete todo on todo id
-    router.delete("/todos", (req, res) => {
+    router.delete("/todos/:id", (req, res) => {
         db.ToDo
             .destroy({
                 where: {
-                    id: req.body.id
+                    id: req.params.id
                 }
             })
             .then((todo) => {

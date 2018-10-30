@@ -39,20 +39,27 @@ module.exports = (router) => {
                 res.status(404).json(err);
             });
     });
-    //  Update appointment by appointment id
-    router.put("/appointments", (req, res) => {
-        const {name, phoneNumber, notification, timeZone, time, id} = req.body;
+    // Create appointment
+    router.post("/appointments/:userId", (req, res) => {
         db.Appointment
-            .update({
-                    name, 
-                    phoneNumber, 
-                    notification, 
-                    timeZone, 
-                    time
-                }, {
-                    where: {
-                        id
-                    }
+            .create({
+                ...req.body,
+                UserId: req.params.userId
+            })
+            .then((appointment) => {
+                res.status(200).json(appointment);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+    //  Update appointment by appointment id
+    router.put("/appointments/:id", (req, res) => {
+        db.Appointment
+            .update(req.body, {
+                where: {
+                    id
+                }
             })
             .then((appointment) => {
                 res.status(200).json(appointment);
@@ -62,11 +69,11 @@ module.exports = (router) => {
             });
     });
     // Delete appointment on appointment id
-    router.delete("/appointments", (req, res) => {
+    router.delete("/appointments/:id", (req, res) => {
         db.Appointment
             .destroy({
                 where: {
-                    id: req.body.id
+                    id: req.params.id
                 }
             })
             .then((appointment) => {
