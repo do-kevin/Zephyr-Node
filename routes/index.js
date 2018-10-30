@@ -10,6 +10,10 @@ const router = require("express").Router();
 
 // User routes
 require("./user")(router);
+// Todo routes
+require("./todo")(router);
+// Reminder routes
+require("./reminder")(router);
 
 // Export Router ---------------------------------------- /
 
