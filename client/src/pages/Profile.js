@@ -5,6 +5,7 @@ import {
 
 // Components
 import Quote from "../components/Quote";
+import Time_date from "../components/Time_date";
 
 // CSS
 import "../css/Profile.css";
@@ -20,10 +21,9 @@ class Profile extends React.Component {
                                 <Container>
                                     <h1 className="display-4">Hello, [insert username here]!</h1>
                                     <br />
-                                    <p className="lead">"Motivational/Pure/Wholesome Quote." - Anonymous</p>
-                                    <hr className="my-2" />
-                                    <p>Time | Date</p>
                                     <Quote />
+                                    <hr className="my-2" />
+                                    <p><Time_date /></p>
                                 </Container>
                             </Jumbotron>
                         </div>
