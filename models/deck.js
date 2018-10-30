@@ -25,8 +25,12 @@ module.exports = function (sequelize, DataTypes) {
 
         Deck.associate = function (models) {
             Deck.hasMany(models.Flashcard, {
+                foreignKey: "deckId",
                 onDelete: 'cascade' 
-            })
+            });
+            Deck.belongsTo(models.User, {
+                foreignKey: "userId",
+            });
     };
     return Deck;
 }

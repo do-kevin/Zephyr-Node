@@ -12,5 +12,11 @@ module.exports = function (sequelize, DataTypes) {
             timestamps: false
         });
 
+        Note.associate = function (models) {
+            Note.belongsTo(models.User, {
+                foreignKey: "userId",
+            });
+        };
+
     return Note;
 }

@@ -16,5 +16,10 @@ module.exports = function (sequelize, DataTypes) {
             timestamps: false
         });
 
+        Reminder.associate = function (models) {
+            Reminder.belongsTo(models.User, {
+                foreignKey: "userId",
+            });
+        };
     return Reminder;
 }

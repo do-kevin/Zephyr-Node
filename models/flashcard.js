@@ -18,6 +18,11 @@ module.exports = function (sequelize, DataTypes) {
         {
             timestamps: false
         });
+        Flashcard.associate = function (models) {
+            Flashcard.belongsTo(models.Deck, {
+                foreignKey: "deckId",
+            });
+        };
 
     return Flashcard;
 }

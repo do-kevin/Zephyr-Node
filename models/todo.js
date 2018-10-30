@@ -20,5 +20,11 @@ module.exports = function (sequelize, DataTypes) {
             timestamps: false
         });
 
+        ToDo.associate = function (models) {
+            ToDo.belongsTo(models.User, {
+                foreignKey: "userId",
+            });
+        };
+
     return ToDo;
 }
