@@ -20,25 +20,39 @@ class Decks extends React.Component {
     }
 
     componentDidMount() {
+        // let flashcard = document.querySelectorAll(".flashcard"); 
+
         console.dir(this.refs.cardList);
         let test = this.refs.cardList.getElementsByTagName("li").length;
+        let lastCard = this.refs.cardList.getElementsByTagName("li").length - 1; 
         console.log(test);
+        console.log(`Last card position: ${lastCard}`);
+
+        document.querySelector(".previous-btn").addEventListener("click", function() {
+            console.log("hit");
+
+            var appendToList = () => {
+                if( document.querySelector(".flashcard").classList.contains("activeNow") ) {
+
+                    let slicedCard = document.querySelector(".flashcard").slice(0, 1).classList.add("transformPrev");
+
+                    document.querySelector(".flashcard").slice(lastCard).classList.remove("activeNow");
+                    this.refs.cardList.append(slicedCard);
+
+                }
+
+                
+            }
+
+            this.refs.cardList.getElementsByTagName("li").classList.remove("transformPrev").lastChild.innerHTML.classList.add("activeNow");
+            setTimeout(function() {
+                appendToList();
+            }, 150);
+            
+        })
     }
 
   render() {
-
-    // let card = document.querySelector(".flashcard");
-    // let lastCard = document.querySelector(".card-list .flashcard")
-    //                 .getElementsByTagName("li").length - 1;
-
-    // let lastCard = document.querySelector("ul.card-list > li").length;
-    // let lastCard = document.querySelector("ul.card-list");
-
-    // console.log(lastCard);
-
-    // console.log(card);
-    // console.log(lastCard);
-    
 
     return (
       <div>
@@ -46,7 +60,7 @@ class Decks extends React.Component {
         <Search />
 
         <div className="deck">
-            <a href="#" className="previous"><i className="fas fa-angle-double-left"></i></a>
+            <a href="#" type="button" className="previous-btn"><i className="fas fa-angle-double-left"></i></a>
           <ul className="card-list list-unstyled"
                 ref="cardList">
             <li className="flashcard">
@@ -84,7 +98,7 @@ class Decks extends React.Component {
               </Flippy>
             </li>
           </ul>
-          <a href="#" className="next"><i className="fas fa-angle-double-right"></i></a>
+          <a href="#" className="next-btn"><i className="fas fa-angle-double-right"></i></a>
         </div>
       </div>
     );
