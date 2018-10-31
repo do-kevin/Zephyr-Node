@@ -15,6 +15,7 @@ module.exports = function (sequelize, DataTypes) {
         Note.associate = function (models) {
             Note.belongsTo(models.User, {
                 foreignKey: "userId",
+                onDelete: 'cascade' 
             });
         };
 

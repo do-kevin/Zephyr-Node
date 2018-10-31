@@ -46,9 +46,9 @@ db.sequelize.sync({ force: false }).then(function() {
 
 //runs cron to check for notifications to be sent
 const scheduler = require('./scheduler');
+scheduler.start();
 
 // var moment = require('moment-timezone');
 // moment.tz.setDefault("America/Los_Angeles");
 
-scheduler.start();
 
