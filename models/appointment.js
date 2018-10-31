@@ -1,16 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
     var Appointment = sequelize.define("Appointment", {
-        // name: {
-        //     type: DataTypes.STRING(30),
-        //     allowNull: false,
-        //     validate: {
-        //         len: [1]
-        //     }
-        // },
-        // phoneNumber: {
-        //     type: DataTypes.STRING(15),
-        //     allowNull: false,
-        // },
         date: {                     //actual day and time of event
             type: DataTypes.STRING,
             allowNull: false
@@ -23,6 +12,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        type: {                        //defines if it's an event or deck notification
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     },
         {
             timestamps: false
@@ -31,6 +24,7 @@ module.exports = function (sequelize, DataTypes) {
         Appointment.associate = function (models) {
             Appointment.belongsTo(models.User, {
                 foreignKey: "userId",
+                onDelete: 'cascade' 
             });
         };
 

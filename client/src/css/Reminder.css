@@ -15,3 +15,7 @@ p {
 .checkbox-format {
     margin-top: 8px;
 }
+
+.validation {
+    color: red;
+}

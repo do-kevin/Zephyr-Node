@@ -9,12 +9,24 @@ const db = require("../models");
 // Export Reminder Router ---------------------------------------- /
 
 module.exports = (router) => {
+    //Create reminder
+    router.post("/reminder", (req, res) => {
+        db.Reminder
+            .create(req.body)
+            .then((reminders) => {
+                res.status(200).json(reminders);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+
     // Retrieve all reminders on user id
     router.get("/reminders/:id", (req, res) => {
         db.Reminder
             .findAll({
                 where: {
-                    id: req.params.id
+                    userId: req.params.id
                 }
             })
             .then((reminders) => {
@@ -41,11 +53,14 @@ module.exports = (router) => {
     });
     // Update reminder on reminder id
     router.put("/reminders", (req, res) => {
-        const {item, date, id} = req.body;
+        const {item, date, id, note, sendAlert, alertTime} = req.body;
         db.Reminder
             .update({
                 item,
-                date
+                note,
+                date, 
+                sendAlert,
+                alertTime
             }, {
                 where: {
                     id
@@ -59,11 +74,11 @@ module.exports = (router) => {
             });
     });
     // Delete reminder on reminder id
-    router.delete("/reminders", (req, res) => {
+    router.delete("/reminders/:id", (req, res) => {
         db.Reminder
             .destroy({
                 where: {
-                    id: req.body.id
+                    id: req.params.id
                 }
             })
             .then((reminder) => {

@@ -18,6 +18,9 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
             allowNull: false
+        },
+        alertTime: {
+            type: DataTypes.INTEGER
         }
 
     },
@@ -28,7 +31,12 @@ module.exports = function (sequelize, DataTypes) {
         Reminder.associate = function (models) {
             Reminder.belongsTo(models.User, {
                 foreignKey: "userId",
+                allowNull: false
             });
+            Reminder.hasMany(models.Appointment, {
+                foreignKey: "reminderId",
+                allowNull: true
+            })
         };
     return Reminder;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 
 // Pages
@@ -9,7 +9,7 @@ import Profile from "./pages/Profile";
 import Decks from "./pages/Decks";
 
 // Components
-import Sidebar from "./components/Sidebar";
+// import Sidebar from "./components/Sidebar";
 
 // CSS
 import "./css/App.css";
