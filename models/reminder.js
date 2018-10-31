@@ -10,7 +10,16 @@ module.exports = function (sequelize, DataTypes) {
         date: {
             type: DataTypes.DATE,
             allowNull: false,
+        },
+        note: {
+            type: DataTypes.STRING,
+        },
+        sendAlert: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
         }
+
     },
         {
             timestamps: false

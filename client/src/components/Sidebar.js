@@ -9,14 +9,16 @@ class Sidebar extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: true
     };
-  }
+  };
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
+  
   render() {
     let showMenu;
 
@@ -39,24 +41,24 @@ class Sidebar extends React.Component {
                 </a>
                 <ul className="collapse list-unstyled" id="flashcards-submenu">
                   <li>
-                    <a href="#">Decks</a>
+                    <a href="/decks">Decks</a>
                   </li>
                   <li>
-                    <a href="#">Cards</a>
+                    <a href="">Cards</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="#">Notes</a>
+                <a href="">Notes</a>
               </li>
               <li>
-                <a href="#">Reminders</a>
+                <a href="/reminder">Reminders</a>
               </li>
               <li>
-                <a href="#">To-Do</a>
+                <a href="">To-Do</a>
               </li>
               <li>
-                <a href="#">Pomodoro Timer</a>
+                <a href="">Pomodoro Timer</a>
               </li>
               <li>
                 <a

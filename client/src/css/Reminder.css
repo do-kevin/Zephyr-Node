@@ -1,0 +1,17 @@
+.modal-body {
+    background-color: white;
+}
+
+.react-datetime-picker__wrapper {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: 5px;
+}
+
+p {
+    margin-bottom: 8px;
+}
+
+.checkbox-format {
+    margin-top: 8px;
+}

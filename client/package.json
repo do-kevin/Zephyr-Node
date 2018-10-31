@@ -6,7 +6,9 @@
   "proxy": "http://127.0.0.1:3001/",
   "dependencies": {
     "react": "^16.6.0",
+    "react-datetime-picker": "^2.0.0",
     "react-dom": "^16.6.0",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.0.14",
     "reactstrap": "^6.5.0"
   },
