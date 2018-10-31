@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 // Pages
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import Todo from "./pages/Todo";
 
 // Components
 import Sidebar from "./components/Sidebar";
@@ -17,6 +18,7 @@ const App = () => (
       <Sidebar />
       <Route exact path="/" component={Home} />
       <Route exact path="/profile" component={Profile} />
+      <Route exact path="/todo" component={Todo} />
     </div>
   </Router>
 );

@@ -19,7 +19,7 @@ class Profile extends React.Component {
                         <div className="col">
                             <Jumbotron>
                                 <Container>
-                                    <h1 className="display-4">Hello, [insert username here]!</h1>
+                                    <h1 className="display-4">Hello, <span id="username">[insert username here]</span>!</h1>
                                     <br />
                                     <Quote />
                                     <hr className="my-2" />
@@ -34,15 +34,13 @@ class Profile extends React.Component {
                                 <CardBody>
                                     <CardTitle>Important Dates</CardTitle>
                                     <CardText>
-                                        <ListGroup>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
+                                        <ListGroup className="scroll">
+                                            <ListGroupItem>Exam 11/21/18 2:00pm</ListGroupItem>
+                                            <ListGroupItem>Quiz 11/21/18 2:00pm</ListGroupItem>
+                                            <ListGroupItem>Homework 2 11/21/18 2:00pm</ListGroupItem>                                            <ListGroupItem>Midterm 11/21/18 2:00pm</ListGroupItem>
                                         </ListGroup>
                                     </CardText>
-                                    <Button>Add</Button>
+                                    <Button outline color="info" id="reminder">Add</Button>
                                 </CardBody>
                             </Card>
                         </div>
@@ -51,15 +49,16 @@ class Profile extends React.Component {
                                 <CardBody>
                                     <CardTitle>To-dos</CardTitle>
                                     <CardText>
-                                        <ListGroup>
+                                        <ListGroup className="scroll">
                                             <ListGroupItem>Study for exam</ListGroupItem>
                                             <ListGroupItem>Turn in homework</ListGroupItem>
                                             <ListGroupItem>Go to office hours</ListGroupItem>
                                             <ListGroupItem>Study some more</ListGroupItem>
                                             <ListGroupItem>Get enough rest</ListGroupItem>
+                                            <ListGroupItem>Get enough rest</ListGroupItem>
                                         </ListGroup>
                                     </CardText>
-                                    <Button>Add</Button>
+                                    <Button outline color="info" id="todo" href="/todo">See more</Button>
                                 </CardBody>
                             </Card>
                         </div>
@@ -104,13 +103,20 @@ class Profile extends React.Component {
                                             <CardSubtitle>Card subtitle</CardSubtitle>
                                         </CardBody>
                                     </Card>
+                                    <Card>
+                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                        <CardBody>
+                                            <CardTitle>Deck 5</CardTitle>
+                                            <CardSubtitle>Card subtitle</CardSubtitle>
+                                        </CardBody>
+                                    </Card>
                                 </CardGroup>
                             </Card>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <Card className="group">
+                            <Card className="group notes">
                                 <h3>Recent Notes</h3>
                                 <CardGroup>
                                     <Card>
@@ -118,7 +124,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 1</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
@@ -126,7 +131,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 2</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
@@ -134,7 +138,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 3</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
@@ -142,7 +145,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 4</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
@@ -150,7 +152,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 5</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                 </CardGroup>

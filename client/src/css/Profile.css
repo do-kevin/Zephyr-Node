@@ -9,9 +9,19 @@ li {
 .jumbotron {
     height: 300px !important;
     border-radius: 0 !important;
+    margin-bottom: 50px;
 }
 
 .group {
-    margin-top: 30px;
+    margin-top: 50px;
     padding-top: 20px;
+}
+
+.notes {
+    margin-bottom: 50px;
+}
+
+.scroll {
+    overflow-y: scroll;
+    height: 250px;
 }

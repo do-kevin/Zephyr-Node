@@ -4,20 +4,20 @@ import "../css/Quote.css"
 
 const Quote = () => {
 
-  let quote = "";
-  let author = "";
+  let quote = "Something wholesome and motivational.";
+  let author = "Anonymous";
 
-  // axios.get(
-  //   // `/api/...`
-  // ).then((res) => {
-  //   var random = Math.floor(Math.random() * 30) + 1;
-  //   quote = res.quote[random];
-  //   author = res.author[random];
+  axios.get(
+    // `/api/...`
+  ).then((res) => {
+    var random = Math.floor(Math.random() * 30) + 1;
+    quote = res.quote[random];
+    author = res.author[random];
+  });
 
-    return (
-      <p className="lead"> "{quote}" - {author} </p>
-    )
-  // })
+  return (
+    <p className="lead"> "{quote}" - {author} </p>
+  )
 };
 
 export default Quote;
