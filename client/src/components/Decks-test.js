@@ -20,8 +20,7 @@ class DecksTest extends React.Component {
   componentDidMount() {
     // let flashcard = document.querySelectorAll(".flashcard");
 
-    console.dir(this.refs.cardList);
-    console.log(this.refs.cardList);
+    var ul = this.refs.cardList;
     let test = this.refs.cardList.getElementsByTagName("li").length;
     let lastCard = this.refs.cardList.getElementsByTagName("li").length - 1;
     console.log(test);
@@ -32,22 +31,27 @@ class DecksTest extends React.Component {
     console.log(document.querySelectorAll(".flashcard"))
     console.log("-=========")
 
-    document.querySelector(".previous-btn")
+    document.querySelector(".next-btn")
       .addEventListener("click", function() {
         console.log("hit");
 
         var prependList = function() {
           if (document.querySelector(".flashcard").classList.contains("activeNow")) {
-            console.log("yerp");
-            console.log(lastCard);
-            var slicedCard = document.querySelectorAll(".flashcard")
-            // slicedCard.slice(lastCard)
-              // .classList.remove("activeNow"); 
-            // this.refs.cardList.prepend(slicedCard);
-            slicedCard = Array.from(slicedCard)
-              .slice(lastCard);
+            var slicedCard = document.querySelectorAll(".flashcard");
+            slicedCard = Array.from(slicedCard).slice(lastCard);
+              console.log("Part 1")
+              console.log(slicedCard);
+              console.log(typeof slicedCard);
+            slicedCard = Object.entries(slicedCard)[0][1];
+            console.log("Part 2")
             console.log(slicedCard);
-            // console.log(typeof slicedCard);
+            console.log(typeof slicedCard);
+            slicedCard = slicedCard.classList[1].replace("activeNow", "");
+            console.log("Part 3")
+            console.dir(slicedCard);
+            console.log(typeof slicedCard);
+
+            ul.prepend(slicedCard);
           }
         };
 
@@ -68,7 +72,7 @@ class DecksTest extends React.Component {
             <i className="fas fa-angle-double-left" />
           </a>
           <ul className="card-list list-unstyled" ref="cardList">
-            <li className="flashcard activeNow">
+            <li className="flashcard">
               <Flippy
                 flipOnHover={false}
                 flipOnClick={true}

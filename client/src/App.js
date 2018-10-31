@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 // Pages
-import Home from "./pages/Home";
-import DecksTest from "./pages/Decks-test";
+// import Home from "./pages/Home";
+import PlayCards from "./pages/PlayCards";
 
 // Components
 // import Sidebar from "./components/Sidebar";
@@ -16,7 +16,7 @@ class App extends Component {
       <div>
         {/* <Sidebar />
         <Home /> */}
-        <DecksTest />
+        <PlayCards />
       </div>
     );
   }

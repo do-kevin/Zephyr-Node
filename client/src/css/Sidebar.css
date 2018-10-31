@@ -3,6 +3,10 @@ body {
     transition: all 0.3s ease;
 }
 
+#menu-toggle {
+    margin-right: 15%;
+}
+
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;

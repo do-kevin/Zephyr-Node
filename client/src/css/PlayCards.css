@@ -1,0 +1,57 @@
+.flippy-front {
+  margin-top: 25%;
+  margin-left: 76%;
+  margin-right: 76%;
+  overflow-y: scroll;
+}
+
+.flippy-back {
+    margin-left: 74%;
+    margin-right: 74%;
+    overflow-y: scroll;
+}
+
+div.slider {
+    height: 450px !important;
+    width: 1000px !important;
+    margin: auto;
+}
+
+div.slider-frame {
+    height: 450px !important;
+    margin: auto;
+}
+
+#search-bar {
+    width: 800px;
+}
+
+#flashcard-grid {
+    height: 500px;
+    width: 70%;
+    margin: 50px auto 50px auto;
+    overflow-y: scroll;
+}
+
+#edit-btns {
+    border: 1px solid border;
+    margin-left: 45%;
+    margin-right: 45%;
+}
+
+#edit-deck-btn {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#settings-btn {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    width: 50px;
+}
+
+.flashcard {
+    margin: 10px auto 10px auto;
+    height: 300px;
+    width: 200px;
+}
