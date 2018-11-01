@@ -62,7 +62,7 @@ class ChooseDeck extends React.Component {
               <Button 
                 color="danger"
                 className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
-                <h1>Deck Name</h1>
+                <h1 className="deck-title">Deck Name</h1>
                 <hr />
                 <div className="tags-box">
                   <p>
@@ -77,7 +77,7 @@ class ChooseDeck extends React.Component {
               <Button 
                 color="danger"
                 className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
-                <h1>Deck Name</h1>
+                <h1 className="deck-title">Deck Name</h1>
                 <hr />
                 <div className="tags-box">
                   <p>
@@ -92,7 +92,54 @@ class ChooseDeck extends React.Component {
               <Button 
                 color="danger"
                 className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
-                <h1>Deck Name</h1>
+                <h1 className="deck-title">Deck Name</h1>
+                <hr />
+                <div className="tags-box">
+                  <p>
+                    #test #test1 #test2 #test3 #test4 #test5 #test #test1 #test2
+                    #test3 #test4 #test5
+                  </p>
+                </div>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+          <Col>
+              <div className="decks decks-primary animated bounceIn">
+              <Button 
+                color="danger"
+                className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
+                <h1 className="deck-title">Deck Name</h1>
+                <hr />
+                <div className="tags-box">
+                  <p>
+                    #test #test1 #test2 #test3 #test4 #test5 #test #test1 #test2
+                    #test3 #test4 #test5
+                  </p>
+                </div>
+              </div>
+            </Col>
+            <Col>
+              <div className="decks decks-primary animated bounceIn">
+              <Button 
+                color="danger"
+                className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
+                <h1 className="deck-title">Deck Name</h1>
+                <hr />
+                <div className="tags-box">
+                  <p>
+                    #test #test1 #test2 #test3 #test4 #test5 #test #test1 #test2
+                    #test3 #test4 #test5
+                  </p>
+                </div>
+              </div>
+            </Col>
+            <Col>
+              <div className="decks decks-primary animated bounceIn">
+              <Button 
+                color="danger"
+                className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
+                <h1 className="deck-title">Deck Name</h1>
                 <hr />
                 <div className="tags-box">
                   <p>
@@ -124,7 +171,7 @@ class ChooseDeck extends React.Component {
               <Button 
                 color="danger"
                 className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
-                <h1>Deck Name</h1>
+                <h1 className="deck-title">Deck Name</h1>
                 <hr />
                 <div className="tags-box">
                   <p>
@@ -139,54 +186,7 @@ class ChooseDeck extends React.Component {
               <Button 
                 color="danger"
                 className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
-                <h1>Deck Name</h1>
-                <hr />
-                <div className="tags-box">
-                  <p>
-                    #test #test1 #test2 #test3 #test4 #test5 #test #test1 #test2
-                    #test3 #test4 #test5
-                  </p>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-          <Col>
-              <div className="decks decks-primary animated bounceIn">
-              <Button 
-                color="danger"
-                className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
-                <h1>Deck Name</h1>
-                <hr />
-                <div className="tags-box">
-                  <p>
-                    #test #test1 #test2 #test3 #test4 #test5 #test #test1 #test2
-                    #test3 #test4 #test5
-                  </p>
-                </div>
-              </div>
-            </Col>
-            <Col>
-              <div className="decks decks-primary animated bounceIn">
-              <Button 
-                color="danger"
-                className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
-                <h1>Deck Name</h1>
-                <hr />
-                <div className="tags-box">
-                  <p>
-                    #test #test1 #test2 #test3 #test4 #test5 #test #test1 #test2
-                    #test3 #test4 #test5
-                  </p>
-                </div>
-              </div>
-            </Col>
-            <Col>
-              <div className="decks decks-primary animated bounceIn">
-              <Button 
-                color="danger"
-                className="trash-btn"><i className="fas fa-trash-alt"></i></Button>
-                <h1>Deck Name</h1>
+                <h1 className="deck-title">Deck Name</h1>
                 <hr />
                 <div className="tags-box">
                   <p>
