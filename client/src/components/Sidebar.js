@@ -30,6 +30,9 @@ class Sidebar extends React.Component {
               <li className="sidebar-brand">
                 <a href="/">Home</a>
               </li>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
               <li className="active">
                 <a
                   href="#flashcards-submenu"

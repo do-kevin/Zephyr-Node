@@ -17,7 +17,8 @@ class Todo extends React.Component {
         this.state = {
             modal: false,
             backdrop: "static",
-            newtask: ""
+            item: "",
+            
         };
         this.toggle = this.toggle.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -77,7 +78,7 @@ class Todo extends React.Component {
                         <CardText>
                             <ListGroup>
                                 <ListGroupItem className="task">Study for exam</ListGroupItem>
-                                <ListGroupItem>Turn in homework</ListGroupItem>
+                                <ListGroupItem><button class="checkbox"></button>Turn in homework</ListGroupItem>
                                 <ListGroupItem>Go to office hours</ListGroupItem>
                                 <ListGroupItem>Study some more</ListGroupItem>
                                 <ListGroupItem>Get enough rest</ListGroupItem>
@@ -86,18 +87,6 @@ class Todo extends React.Component {
                         <Button outline color="info" onClick={this.toggle} name='create'><i class="material-icons">note_add</i></Button><Button outline color="info" id="todo" href="/profile"><i class="material-icons">chevron_left</i></Button>
                     </CardBody>
                 </Card>
-                {/* <Card>
-                    <CardBody>
-                        <CardTitle>Completed</CardTitle>
-                        <CardText>
-                            <ListGroup>
-                                <ListGroupItem>Complete</ListGroupItem>
-                                <ListGroupItem>Complete</ListGroupItem>
-                                <ListGroupItem>Complete</ListGroupItem>
-                            </ListGroup>
-                        </CardText>
-                    </CardBody>
-                </Card> */}
             </div>
         )
     }
