@@ -10,7 +10,8 @@ const express = require("express"),
   path = require("path");
 
 const db = require("./models"),
-  router = require("./routes");
+  router = require("./routes"),
+  {handleCookieSessionCheck, sessionCheckerHome, sessionCheckerAway} = require("./helpers/middleware");
 
 // Setup ---------------------------------------- /
 
@@ -19,6 +20,11 @@ const PORT = process.env.PORT || 3001,
   // Express app
   app = express();
 
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 // User parsers
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,7 +32,7 @@ app.use(cookieParser());
 
 // Create user session
 app.use(session({
-  key: "user_id",
+  key: "user_sid",
   secret: "flashknowledge",
   resave: false,
   saveUninitialized: true,
@@ -35,14 +41,14 @@ app.use(session({
   }
 }));
 
-// Serve up static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// Check cookie, handle session for all routes
+app.use(handleCookieSessionCheck);
+// For all routes, if user isn't logged in, redirect to homepage
+app.use(sessionCheckerAway);
 
 // Root Route ---------------------------------------- /
 
-app.get("/", (req, res) => {
+app.get("/", sessionCheckerHome, (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 

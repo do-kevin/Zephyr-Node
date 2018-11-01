@@ -9,6 +9,13 @@ const db = require("../models");
 // Export User Router ---------------------------------------- /
 
 module.exports = (router) => {
+    // Log user out on user id
+    router.get("/users/logout", (req, res) => {
+        if (req.session.user && req.cookies.user_sid) {
+            res.clearCookie('user_sid');
+        }
+        res.redirect('/');
+    });
     // Retrieve specific user at login
     router.post("/users/login", (req, res) => {
         db.User
@@ -19,7 +26,10 @@ module.exports = (router) => {
                 }
             })
             .then((user) => {
-                res.status(200).json(user);
+                req.session.user = user;
+                // TEST:
+                console.log(req.session.user);
+                res.status(301).redirect("/profile");
             })
             .catch((err) => {
                 res.status(404).json(err);
