@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import axios from "axios";
 
 // CSS
 import "../css/Login.css";
@@ -10,12 +11,19 @@ class Login extends React.Component {
     this.state = {
       modal: false,
       login: true,
-      create: false
+      create: false,
+      name: "",
+      username: "",
+      password: "",
+      passwordCheck: ""
     };
 
     this.toggle = this.toggle.bind(this);
     this.selectLogin = this.selectLogin.bind(this);
     this.selectCreate = this.selectCreate.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   toggle() {
@@ -38,6 +46,54 @@ class Login extends React.Component {
     });
   }
 
+  handleInputChange(e) {
+    const {name, value} = e.target;
+    this.setState(() => ({
+      [name]: value
+    }));
+  }
+
+  handleSignUp(e) {
+    e.preventDefault();
+    // TODO: add sign up functionality for new users
+    const user = {
+      name: this.state.name,
+      username: this.state.username,
+      password: this.state.password
+    };
+    axios({
+      url: "/users/signUp",
+      method: "POST",
+      data: user
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  handleLogin(e) {
+    e.preventDefault();
+    // TODO: add login functionality for existing users
+    const user = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    axios({
+      url: "/users/login",
+      method: "POST",
+      data: user
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   render() {
     const login = this.state.login;
     const create = this.state.create;
@@ -46,7 +102,7 @@ class Login extends React.Component {
     if (login === true && create === false) {
       inputBody = (
         <ModalBody selectLogin={this.selectLogin}>
-          <form>
+          <form onSubmit={this.handleLogin}>
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <input
@@ -54,15 +110,23 @@ class Login extends React.Component {
                 className="form-control animated fadeIn"
                 id="username"
                 placeholder="alex-doe1234"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleInputChange}
+                required
               />
               <label htmlFor="password">Password</label>
               <input
                 type="password"
                 className="form-control animated fadeIn"
                 id="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                required
               />
               <br />
-              <Button color="primary" onClick={this.toggle}>
+              <Button type="submit" color="primary" onClick={this.toggle}>
                 Login
               </Button>
             </div>
@@ -72,7 +136,7 @@ class Login extends React.Component {
     } else if (login === false && create === true) {
       inputBody = (
         <ModalBody selectCreate={this.selectCreate}>
-          <form>
+          <form onSubmit={this.handleSignUp}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input
@@ -80,6 +144,10 @@ class Login extends React.Component {
                 className="form-control animated flipInX"
                 id="name"
                 placeholder="Alex Doe"
+                name="name"
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                required
               />
               <label htmlFor="username">Username</label>
               <input
@@ -87,21 +155,33 @@ class Login extends React.Component {
                 className="form-control animated flipInX"
                 id="username"
                 placeholder="alex-doe1234"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleInputChange}
+                required
               />
               <label htmlFor="password">Password</label>
               <input
                 type="password"
                 className="form-control animated flipInX"
                 id="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                required
               />
               <label htmlFor="password">Re-enter Password</label>
               <input
                 type="password"
                 className="form-control animated flipInX"
-                id="password"
+                id="passwordCheck"
+                name="passwordCheck"
+                value={this.state.passwordCheck}
+                onChange={this.handleInputChange}
+                required
               />
               <br />
-              <Button color="primary" onClick={this.toggle}>
+              <Button type="submit" color="primary" onClick={this.toggle}>
                 Create
               </Button>
             </div>

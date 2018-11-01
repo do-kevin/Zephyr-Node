@@ -40,6 +40,9 @@ module.exports = (router) => {
         db.User
             .create(req.body)
             .then((user) => {
+                req.session.user = user;
+                // TEST:
+                console.log(req.session.user);
                 res.status(200).json(user);
             })
             .catch((err) => {
