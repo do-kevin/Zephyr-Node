@@ -34,7 +34,7 @@ class Reminder extends React.Component {
     }
     
     getReminders = () => {
-        //get userId
+        //--------------------------get userId
         axios.get("/reminders/1")
             .then (data => {
                 console.log(data.data);

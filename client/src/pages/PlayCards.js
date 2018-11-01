@@ -3,6 +3,7 @@
 // Flashcards --> Decks --> Cards
 
 import React from "react";
+import axios from "axios";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import Carousel from "nuka-carousel";
 import {
@@ -31,7 +32,11 @@ class PlayCards extends React.Component {
     super(props);
     this.state = {
       edit: false,
-      openSettings: false
+      openSettings: false,
+      deckName: "",
+      flashcards: [],
+      front: "",
+      back: ""
     };
 
     // this.refs.cardList;
@@ -39,7 +44,93 @@ class PlayCards extends React.Component {
     this.toggleSettings = this.toggleSettings.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.getFlashcards();
+    this.getDeckInfo();
+  }
+
+  getFlashcards = () => {
+    axios.get("/flashcard/1")     //**********get deckId********* */
+      .then(data => {
+        console.log(data.data);
+        this.setState({
+          flashcards: [...data.data]
+        })
+      })
+  }
+
+  getDeckInfo() {
+    axios.get("/decks/1")       //**********get deckId********* */
+      .then(data => {
+        console.log(data.data)
+        this.setState({
+          deckName: data.data.subject
+        })
+      })
+  }
+
+  deleteFlashcard = (id) => {
+    axios.delete("/flashcards/" + id)
+      .then(data => {
+        console.log(data);
+        this.getFlashcards();
+      })
+  }
+
+  createFlashcard = () => {
+    //--------------get deckId-------------
+    let obj = {
+      front: this.state.front,
+      back: this.state.back,
+      deckId: 1
+    }
+
+    axios.post("/flashcard", obj)
+      .then(data => {
+        console.log(data)
+        this.setState({
+          front: "", 
+          back: ""
+        })
+        this.getFlashcards()
+      })
+  };
+    
+  saveFlashcardChanges = (id, index) => {
+    let obj = {
+      front: this.state.flashcards[index].front,
+      back: this.state.flashcards[index].back,
+    }
+    axios.put("/flashcard/" + id, obj)
+      .then(data => {
+        console.log(data);
+        this.getFlashcards();
+      })
+  };
+
+  handleFrontInputChange = (event) => {
+    this.setState({
+      front: event.target.value
+    })
+  }
+
+  handleBackInputChange = (event) => {
+    this.setState({
+      back: event.target.value
+    })
+  }
+
+  handleFrontEdit = (index, event) => {
+    let flashcards = [...this.state.flashcards];
+    flashcards[index].front = event.target.value
+    this.setState({flashcards})
+  };
+
+  handleBackEdit = (index, event) => {
+    let flashcards = [...this.state.flashcards];
+    flashcards[index].back = event.target.value
+    this.setState({flashcards})
+  }
 
   toggle() {
     this.setState({
@@ -62,96 +153,48 @@ class PlayCards extends React.Component {
       showCardStack = (
         <div className="animated slideInUp" id="flashcard-grid" isOpen="">
           <Row>
-            <Col>
-              <Card className="flashcard animated flipInX">
-              <Button
-                    color="danger"
-                    type="button"
-                    style={{
-                      margin: "20px 10% 0 70%",
-                      borderRadius: "25px"
-                    }}
-                  >
-                    <i className="fas fa-trash-alt"></i>
-                  </Button>
-                <CardBody>
-                  <CardTitle>Example Question (Front)</CardTitle>
-                  <CardText>Example Answer (Back) </CardText>
-                  <hr />
-                  <CardSubtitle>#tags</CardSubtitle>
-                  <hr />
-                  <Button
-                    type="button"
-                    style={{
-                      margin: "20px 41% 0 41%",
-                      borderRadius: "25px"
-                    }}
-                  >
-                    <i className="fas fa-save"></i>
-                  </Button>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card className="flashcard animated flipInX">
-              <Button
-                    color="danger"
-                    type="button"
-                    style={{
-                      margin: "20px 10% 0 70%",
-                      borderRadius: "25px"
-                    }}
-                  >
-                    <i className="fas fa-trash-alt"></i>
-                  </Button>
-                <CardBody>
-                  <CardTitle>Example Question (Front)</CardTitle>
-                  <CardText>Example Answer (Back) </CardText>
-                  <hr />
-                  <CardSubtitle>#tags</CardSubtitle>
-                  <hr />
-                  <Button
-                    type="button"
-                    style={{
-                      margin: "20px 41% 0 41%",
-                      borderRadius: "25px"
-                    }}
-                  >
-                    <i className="fas fa-save"></i>
-                  </Button>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card className="flashcard animated flipInX">
-              <Button
-                    color="danger"
-                    type="button"
-                    style={{
-                      margin: "20px 10% 0 70%",
-                      borderRadius: "25px"
-                    }}
-                  >
-                    <i className="fas fa-trash-alt"></i>
-                  </Button>
-                <CardBody>
-                  <CardTitle>Example Question (Front)</CardTitle>
-                  <CardText>Example Answer (Back) </CardText>
-                  <hr />
-                  <CardSubtitle>#tags</CardSubtitle>
-                  <hr />
-                  <Button
-                    type="button"
-                    style={{
-                      margin: "20px 41% 0 41%",
-                      borderRadius: "25px"
-                    }}
-                  >
-                    <i className="fas fa-save"></i>
-                  </Button>
-                </CardBody>
-              </Card>
-            </Col>
+            {this.state.flashcards.map((item, index) => {
+              return (
+                <Col key={item.id}>
+                  <Card className="flashcard animated flipInX">
+                    <Button
+                      color="danger"
+                      type="button"
+                      style={{
+                        margin: "20px 10% 0 70%",
+                        borderRadius: "25px"
+                      }}
+                      onClick={() => this.deleteFlashcard(item.id)}
+                    >
+                      <i className="fas fa-trash-alt"></i>
+                    </Button>
+                    <CardBody>
+                      <CardTitle>
+                        Front
+                        <Input value={this.state.flashcards[index].front} onChange={(event) => this.handleFrontEdit(index, event)} />
+                      </CardTitle>
+                      <CardText>
+                        Back
+                        <Input value={this.state.flashcards[index].back} onChange={(event) => this.handleBackEdit(index, event)} />
+                      </CardText>
+                      <hr />
+                      <CardSubtitle>#tags</CardSubtitle>
+                      <hr />
+                      <Button
+                        onClick={() => this.saveFlashcardChanges(item.id, index)}
+                        type="button"
+                        style={{
+                          margin: "20px 41% 0 41%",
+                          borderRadius: "25px"
+                        }}
+                      >
+                        <i className="fas fa-save"></i>
+                      </Button>
+                    </CardBody>
+                  </Card>
+                </Col>
+              )
+            })}
           </Row>
           <Row>
             <Col>
@@ -160,6 +203,8 @@ class PlayCards extends React.Component {
                   <CardTitle>
                     <label htmlFor="front">Question (front)</label>
                     <Input 
+                      value={this.state.front}
+                      onChange={this.handleFrontInputChange}
                       type="textarea" 
                       name="text" 
                       id="front" />
@@ -167,6 +212,8 @@ class PlayCards extends React.Component {
                   <CardText>
                     <label htmlFor="back">Answer (back)</label>
                     <Input 
+                      value={this.state.back}
+                      onChange={this.handleBackInputChange}
                       type="textarea" 
                       name="text" 
                       id="back" />
@@ -187,6 +234,7 @@ class PlayCards extends React.Component {
                       marginRight: "41%",
                       borderRadius: "25px"
                     }}
+                    onClick={this.createFlashcard}
                   >
                     <i className="fas fa-plus" />
                   </Button>
@@ -288,13 +336,16 @@ class PlayCards extends React.Component {
       <div>
         <Sidebar />
 
-        <h1 className="text-center">Deck Name</h1>
+        <h1 className="text-center">{this.state.deckName}</h1>
         <hr />
         <Carousel
           // ref="cardList"
           id="carousel"
         >
+        {this.state.flashcards.map(item => {
+          return (
           <Flippy
+            key={item.id}
             flipOnHover={false}
             flipOnClick={true}
             flipDirection="horizontal"
@@ -302,14 +353,16 @@ class PlayCards extends React.Component {
             style={{ width: "400px", height: "200px" }}
           >
             <FrontSide style={{ backgroundColor: "#93bbde" }}>
-              Front: Question
+              {item.front}
             </FrontSide>
 
             <BackSide style={{ backgroundColor: "#66b361" }}>
-              Back: Answer
+              {item.back}
             </BackSide>
           </Flippy>
-          <Flippy
+          )
+        })}
+          {/* <Flippy
             flipOnHover={false}
             flipOnClick={true}
             flipDirection="horizontal"
@@ -353,14 +406,14 @@ class PlayCards extends React.Component {
                 Back: Answer Back: Answer Back: Answer Back: Answer
               </div>
             </BackSide>
-          </Flippy>
+          </Flippy> */}
         </Carousel>
         <div id="edit-btns">
           <Button color="primary" id="edit-deck-btn" onClick={this.toggle}>
             Edit
           </Button>
           <Button id="settings-btn" color="dark" onClick={this.toggleSettings}>
-            <i class="fas fa-cogs" />
+            <i className="fas fa-cogs" />
           </Button>
         </div>
         {showCardStack}
