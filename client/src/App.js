@@ -7,6 +7,7 @@ import Reminder from "./pages/Reminder";
 import Profile from "./pages/Profile";
 import Decks from "./pages/Decks";
 import Todo from "./pages/Todo";
+import ChooseDeck from "./pages/ChooseDeck";
 
 // Components
 // import Sidebar from "./components/Sidebar";
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/todo" component={Todo} />
           <Route exact path="/decks" component={Decks} />
+          <Route exact path="/choose" component={ChooseDeck} />
         </div>
       </Router>
     );
