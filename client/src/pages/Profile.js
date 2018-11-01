@@ -6,6 +6,7 @@ import {
 // Components
 import Quote from "../components/Quote";
 import TimeDate from "../components/TimeDate";
+import Sidebar from "../components/Sidebar";
 
 // CSS
 import "../css/Profile.css";
@@ -14,6 +15,7 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
+                <Sidebar />
                 <Container className="text-center">
                     <Row>
                         <Col>
