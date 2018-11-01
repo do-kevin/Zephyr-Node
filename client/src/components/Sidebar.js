@@ -92,7 +92,7 @@ class Sidebar extends React.Component {
               id="menu-toggle"
               onClick={this.toggle}
             >
-              Toggle Menu
+              <i className="fas fa-bars"></i>
             </a>
           </div>
         </div>

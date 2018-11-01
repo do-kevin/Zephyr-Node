@@ -12,11 +12,16 @@ body {
     margin-left: -250px;
     overflow-y: auto;
     background: #000;
+    box-shadow: 4px 0 5px -2px #888;
 }
 
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
     transition: width 5s;
+}
+
+#menu-toggle {
+    margin-right: 15%;
 }
 
 .sidebar-nav {
