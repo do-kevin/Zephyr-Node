@@ -1,7 +1,8 @@
 import React from "react";
 import {
-    Card, CardBody, CardTitle, CardText, Button, ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, ModalFooter, Form, Input, Label
+    Card, CardBody, CardTitle, CardText, Button, ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Form, Input
 } from 'reactstrap';
+import axios from "axios";
 
 // Components
 import TimeDate from "../components/TimeDate";
@@ -15,52 +16,112 @@ class Todo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            item: "",
+            todos: [],
             modal: false,
-            backdrop: "static",
-            newtask: ""
+            modalMode: "",
+            backdrop: "static"
         };
         this.toggle = this.toggle.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    toggle() {
+    componentDidMount() {
+        console.log("To-do component mounted.")
+        this.getTodos();
+    }
+
+    toggle(event) {
         this.setState({
             modal: !this.state.modal,
-            newtask: ""
+            modalMode: event.target.name
         });
     }
 
-    handleChange(event) {
+    // get to-do's from database to display onto the page
+    getTodos = () => {
+        axios.get("/todos/users/1")
+            .then(res => {
+                this.setState({
+                    todos: res.data
+                })
+            });
+    }
+
+    // delete task from db when task is completed
+    completeTodo = (id) => {
+        axios.delete("/todos/" + id)
+            .then(res => {
+                console.log(res)
+                this.getTodos();
+            });
+    }
+
+    // 
+    createToDo = (event) => {
+        this.toggle(event);
+    }
+
+    editToDo = () => {
+        this.toggle();
+    }
+
+    // change item state to edit existing task or add a new task
+    handleChange = (event) => {
         this.setState({
-            newtask: event.target.value
+            item: event.target.value
         });
     }
 
-    handleSubmit(event) {
-        alert('Task submitted!');
-        event.preventDefault();
-    }
+    // submitToDo = (event) => {
+    //     event.preventDefault();
+    //     this.setState({
+    //         modal: !this.state.modal,
+    //         modalMode: event.target.name
+    //     });
+    //     console.log('Task submitted!');
+    //     axios.post("/todos/:userId")
+    //         .then(res => {
+    //             this.setState({
+    //                 item: res.data.item
+    //             })
+    //         });
+    // }
 
     render() {
 
         const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
         let modal;
 
-        if (this.state.modal === true) {
+        // depending on whether a task is being created or editted, different modals will appear
+        if (this.state.modal === true && this.state.modalMode === "create") {
             modal = (
                 <div>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} centered={true} backdrop={this.state.backdrop}>
                         <ModalHeader toggle={this.toggle} close={closeBtn}>New Task</ModalHeader>
                         <ModalBody>
-                            <Form onSubmit={this.handleSubmit}>
-                                <Input type="textarea" name="text" value={this.state.newtask} onChange={this.handleChange} />
+                            <Form onSubmit={this.submitToDo}>
+                                <Input type="textarea" name="text" value={this.state.item} onChange={this.handleChange} />
+                                <hr />
+                                <Button outline color="info" type="submit" value="Submit" className="pull-right" onClick={this.submitToDo}>Add</Button>{' '}
                             </Form>
                         </ModalBody>
-                        <ModalFooter>
-                            <Button color="primary" type="submit" value="Submit" onClick={this.toggle}>Add</Button>{' '}
-                            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                        </ModalFooter>
+                    </Modal>
+                </div>
+            )
+        }
+
+        if (this.state.modal === true && this.state.modalMode === "edit") {
+            modal = (
+                <div>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} centered={true} backdrop={this.state.backdrop}>
+                        <ModalHeader toggle={this.toggle} close={closeBtn}>Edit Task</ModalHeader>
+                        <ModalBody>
+                            <Form>
+                                <Input type="textarea" name="text" value={this.state.item} onChange={this.handleChange} />
+                                <hr />
+                                <Button outline color="info" type="submit" value="Submit" className="pull-right" onClick={this.submitToDo}>Add</Button>{' '}
+                            </Form>
+                        </ModalBody>
                     </Modal>
                 </div>
             )
@@ -76,28 +137,44 @@ class Todo extends React.Component {
                         <CardTitle>To-do List</CardTitle>
                         <CardText>
                             <ListGroup>
-                                <ListGroupItem className="task">Study for exam</ListGroupItem>
-                                <ListGroupItem>Turn in homework</ListGroupItem>
-                                <ListGroupItem>Go to office hours</ListGroupItem>
-                                <ListGroupItem>Study some more</ListGroupItem>
-                                <ListGroupItem>Get enough rest</ListGroupItem>
+                                <ListGroupItem>
+                                    <span className="task">Example</span>
+                                    <span className="pull-right">
+                                        <Button outline color="info" onClick={this.toggle} name="edit">
+                                            <i className="material-icons">edit</i>
+                                        </Button>
+                                        <Button outline color="info" onClick={() => this.toggle} name="complete">
+                                            <i className="material-icons">done</i>
+                                        </Button>
+                                    </span>
+                                </ListGroupItem>
                             </ListGroup>
+                            <div>
+                                {/************* Display Existing Tasks *************/}
+                                {this.state.todos.map((item, index) => {
+                                    return (
+                                        <ListGroup>
+                                            <ListGroupItem>
+                                                <span className="task">{item.item}</span>
+                                                <span className="pull-right">
+                                                    <Button outline color="info" onClick={() => this.toggle} name="edit">
+                                                        <i className="material-icons">edit</i>
+                                                    </Button>
+                                                    <Button outline color="info" onClick={() => this.completeToDo(item.id)} name="complete">
+                                                        <i className="material-icons">done</i>
+                                                    </Button>
+                                                </span>
+                                            </ListGroupItem>
+                                        </ListGroup>
+                                    )
+                                })}
+                            </div>
                         </CardText>
-                        <Button outline color="info" onClick={this.toggle} name='create'><i class="material-icons">note_add</i></Button><Button outline color="info" id="todo" href="/profile"><i class="material-icons">chevron_left</i></Button>
+                        {/************* Create Task/Profile Buttons *************/}
+                        <Button outline color="info" onClick={this.createToDo} name="create">New Task</Button>
+                        <Button outline color="info" href="/profile">Back</Button>
                     </CardBody>
                 </Card>
-                {/* <Card>
-                    <CardBody>
-                        <CardTitle>Completed</CardTitle>
-                        <CardText>
-                            <ListGroup>
-                                <ListGroupItem>Complete</ListGroupItem>
-                                <ListGroupItem>Complete</ListGroupItem>
-                                <ListGroupItem>Complete</ListGroupItem>
-                            </ListGroup>
-                        </CardText>
-                    </CardBody>
-                </Card> */}
             </div>
         )
     }

@@ -30,6 +30,9 @@ class Sidebar extends React.Component {
               <li className="sidebar-brand">
                 <a href="/">Home</a>
               </li>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
               <li className="active">
                 <a
                   href="#flashcards-submenu"
@@ -55,7 +58,7 @@ class Sidebar extends React.Component {
                 <a href="/reminder">Reminders</a>
               </li>
               <li>
-                <a href="">To-Do</a>
+                <a href="/todo">To-Do</a>
               </li>
               <li>
                 <a href="">Pomodoro Timer</a>

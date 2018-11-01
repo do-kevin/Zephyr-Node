@@ -6,11 +6,11 @@ li {
     text-align: left;
 }
 
-.jumbotron {
+.profile {
     height: 300px !important;
     border-radius: 0 !important;
     margin-bottom: 50px;
-    background-image: url(../img/book.jpg);
+    background-image: url(../img/coffee.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     color: white;
