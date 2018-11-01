@@ -22,15 +22,23 @@ h1 {
 
 .tags-box {
     width: 220px;
-    height: 50px;
-    overflow-y: auto;
+    height: 23%;
+    overflow-y: scroll;
+}
+
+.tags-box::-webkit-scrollbar {
+    background: rgba(135, 207, 235, 0.911); 
+}
+
+.tags-box::-webkit-scrollbar-thumb{
+    background: rgba(135, 207, 235, 0.911);
+    border-radius: 20px;
 }
 
 #deck-list {
     width: 90%;
     padding: 4%;
-    border: 2px solid red;
-    margin: 40px auto 0 auto;
+    margin: 20px auto 0 auto;
 }
 
 .decks {
@@ -49,7 +57,7 @@ h1 {
 
 .decks.decks-primary {
     width: 250px;
-    height: 300px;
+    height: 400px;
     background-color: skyblue;
     text-shadow: 0 0.0625em 0 rgba(0, 0, 0, 0.25);
     box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 0.5em 0 -0.25em rgba(135, 207, 235, 0.911), 0 0.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1em 0 -0.5em rgba(135, 207, 235, 0.911), 0 1em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
@@ -58,4 +66,13 @@ h1 {
 
 .decks> :last-child {
     margin-bottom: 0;
+}
+
+.trash-btn {
+    margin-left: 80%;
+    border-radius: 50%;
+}
+
+.deck-create {
+    margin-top: 15%;
 }
