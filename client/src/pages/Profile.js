@@ -1,11 +1,11 @@
 import React from "react";
 import {
-    Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardGroup, Jumbotron, Container, Button, ListGroup, ListGroupItem
+    Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardGroup, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
 } from 'reactstrap';
 
 // Components
 import Quote from "../components/Quote";
-import Time_date from "../components/Time_date";
+import TimeDate from "../components/TimeDate";
 
 // CSS
 import "../css/Profile.css";
@@ -14,103 +14,115 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
-                <div className="container text-center">
-                    <div className="row">
-                        <div className="col">
-                            <Jumbotron>
+                <Container className="text-center">
+                    <Row>
+                        <Col>
+                            <Jumbotron className="animated fadeIn">
                                 <Container>
-                                    <h1 className="display-4">Hello, [insert username here]!</h1>
+                                    <h1 className="display-4">Hello, <span id="username">[insert username here]</span>!</h1>
                                     <br />
                                     <Quote />
                                     <hr className="my-2" />
-                                    <p><Time_date /></p>
+                                    <p><TimeDate /></p>
                                 </Container>
                             </Jumbotron>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col">
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
                             <Card>
                                 <CardBody>
                                     <CardTitle>Important Dates</CardTitle>
                                     <CardText>
-                                        <ListGroup>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
-                                            <ListGroupItem>Exam: 11/21/18 2:00pm</ListGroupItem>
+                                        <ListGroup className="scroll">
+                                            <ListGroupItem>Exam 11/21/18 2:00pm</ListGroupItem>
+                                            <ListGroupItem>Quiz 11/21/18 2:00pm</ListGroupItem>
+                                            <ListGroupItem>Homework 2 11/21/18 2:00pm</ListGroupItem>                                            <ListGroupItem>Midterm 11/21/18 2:00pm</ListGroupItem>
                                         </ListGroup>
                                     </CardText>
-                                    <Button>Add</Button>
+                                    <Button outline color="info" id="reminder">Add</Button>
                                 </CardBody>
                             </Card>
-                        </div>
-                        <div className="col">
+                        </Col>
+                        <Col>
                             <Card>
                                 <CardBody>
                                     <CardTitle>To-dos</CardTitle>
                                     <CardText>
-                                        <ListGroup>
+                                        <ListGroup className="scroll">
                                             <ListGroupItem>Study for exam</ListGroupItem>
                                             <ListGroupItem>Turn in homework</ListGroupItem>
                                             <ListGroupItem>Go to office hours</ListGroupItem>
                                             <ListGroupItem>Study some more</ListGroupItem>
                                             <ListGroupItem>Get enough rest</ListGroupItem>
+                                            <ListGroupItem>Get enough rest</ListGroupItem>
                                         </ListGroup>
                                     </CardText>
-                                    <Button>Add</Button>
+                                    <Button outline color="info" id="todo" href="/todo">See more</Button>
                                 </CardBody>
                             </Card>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col">
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
                             <Card className="group">
                                 <h3>Recent Decks</h3>
-                                <CardGroup>
-                                    <Card>
-                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Deck 1</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Deck 2</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Deck 3</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Deck 4</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Deck 5</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                </CardGroup>
+                                <Row>
+                                    <CardGroup>
+                                        <Col>
+                                            <Card>
+                                                <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                                <CardBody>
+                                                    <CardTitle>Deck 1</CardTitle>
+                                                    <CardSubtitle>Card subtitle</CardSubtitle>
+                                                </CardBody>
+                                            </Card>
+                                        </Col>
+                                        <Col>
+                                            <Card>
+                                                <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                                <CardBody>
+                                                    <CardTitle>Deck 2</CardTitle>
+                                                    <CardSubtitle>Card subtitle</CardSubtitle>
+                                                </CardBody>
+                                            </Card>
+                                        </Col>
+                                        <Card>
+                                            <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                            <CardBody>
+                                                <CardTitle>Deck 3</CardTitle>
+                                                <CardSubtitle>Card subtitle</CardSubtitle>
+                                            </CardBody>
+                                        </Card>
+                                        <Card>
+                                            <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                            <CardBody>
+                                                <CardTitle>Deck 4</CardTitle>
+                                                <CardSubtitle>Card subtitle</CardSubtitle>
+                                            </CardBody>
+                                        </Card>
+                                        <Card>
+                                            <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                            <CardBody>
+                                                <CardTitle>Deck 5</CardTitle>
+                                                <CardSubtitle>Card subtitle</CardSubtitle>
+                                            </CardBody>
+                                        </Card>
+                                        <Card>
+                                            <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                            <CardBody>
+                                                <CardTitle>Deck 6</CardTitle>
+                                                <CardSubtitle>Card subtitle</CardSubtitle>
+                                            </CardBody>
+                                        </Card>
+                                    </CardGroup>
+                                </Row>
                             </Card>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col">
-                            <Card className="group">
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Card className="group notes">
                                 <h3>Recent Notes</h3>
                                 <CardGroup>
                                     <Card>
@@ -118,7 +130,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 1</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
@@ -126,7 +137,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 2</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
@@ -134,7 +144,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 3</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
@@ -142,7 +151,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 4</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
@@ -150,14 +158,13 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <CardTitle>Notes 5</CardTitle>
                                             <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                 </CardGroup>
                             </Card>
-                        </div>
-                    </div>
-                </div>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         );
     }
