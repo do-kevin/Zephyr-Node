@@ -4,6 +4,7 @@
 
 import React from "react";
 import axios from "axios";
+import moment from "moment";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import Carousel from "nuka-carousel";
 import {
@@ -36,7 +37,11 @@ class PlayCards extends React.Component {
       deckName: "",
       flashcards: [],
       front: "",
-      back: ""
+      back: "",
+      privacy: false,
+      sendAlert: false,
+      alertTime: "",
+      timeInterval: 1
     };
 
     // this.refs.cardList;
@@ -108,6 +113,67 @@ class PlayCards extends React.Component {
       })
   };
 
+  //deck settings
+  saveSettings = () => {
+    let obj = {
+      private: this.state.privacy,
+      dailyQuiz: this.state.sendAlert,
+      time: this.state.alertTime,
+      alertInterval: this.state.timeInterval
+    }
+    //-----------------deck id----------------
+    axios.put("/decks/1", obj)
+      .then(data => {
+        // console.log(data);
+        this.toggleSettings()
+
+        //create appointment if user chooses to get daily questions
+        if(this.state.sendAlert) {
+          this.createAppointments();
+        }
+      })
+  };
+  
+  getDeckSettings = () => {
+    this.toggleSettings()
+    //-----------------deckId----------------
+    axios.get("/decks/1")
+    .then(data => {
+      this.setState({
+        privacy: data.data.private,
+        sendAlert: data.data.dailyQuiz,
+        alertTime: data.data.time,
+        timeInterval: data.data.alertInterval
+      })
+    })
+  };
+
+  createAppointments = () => {
+    //-----------------------userid---------------------
+    //----------------------deckId------------------------
+    this.state.flashcards.map((item, index) => {
+      let eventDate = moment(this.state.alertTime,"HH:mm").add(index, "days").format("YYYY-MM-DD HH:mm")
+      let obj = {
+        date: eventDate,
+        notification: 0,
+        message: item.front,
+        userId: 1,
+        type: "deck",
+        deckId: 1
+      }
+      axios.post("/appointment", obj)
+        .then(data => {
+          console.log(data);
+          obj.date = moment(this.state.alertTime,"HH:mm").add(index, "days").add(this.state.timeInterval,"minutes").format("YYYY-MM-DD HH:mm")
+          obj.message = item.back;
+          axios.post("/appointment", obj)
+            .then(data => {
+              console.log(data);
+            })
+        })
+    })
+  }
+
   handleFrontInputChange = (event) => {
     this.setState({
       front: event.target.value
@@ -132,6 +198,33 @@ class PlayCards extends React.Component {
     this.setState({flashcards})
   }
 
+  handlePrivacyChange = () => {
+    // console.log(!this.state.privacy);
+    this.setState({
+      privacy: !this.state.privacy
+    })
+  }
+
+  handleAlertChange = () => {
+    // console.log(!this.state.sendAlert);
+    this.setState({
+      sendAlert: !this.state.sendAlert
+    })
+  };
+
+  handleAlertTimeChange = (event) => {
+    // console.log(moment(event.target.value, "HH:mm").format("YYYY-MM-DD HH:mm"))
+    this.setState({
+      alertTime: event.target.value
+    })
+  };
+
+  handleSelectChange = (event) => {
+    this.setState({
+      timeInterval: event.target.value
+    })
+  }
+
   toggle() {
     this.setState({
       edit: !this.state.edit
@@ -151,7 +244,8 @@ class PlayCards extends React.Component {
 
     if (edit === true) {
       showCardStack = (
-        <div className="animated slideInUp" id="flashcard-grid" isOpen="">
+        // isOpen=""
+        <div className="animated slideInUp" id="flashcard-grid" >
           <Row>
             {this.state.flashcards.map((item, index) => {
               return (
@@ -177,9 +271,6 @@ class PlayCards extends React.Component {
                         Back
                         <Input value={this.state.flashcards[index].back} onChange={(event) => this.handleBackEdit(index, event)} />
                       </CardText>
-                      <hr />
-                      <CardSubtitle>#tags</CardSubtitle>
-                      <hr />
                       <Button
                         onClick={() => this.saveFlashcardChanges(item.id, index)}
                         type="button"
@@ -218,14 +309,6 @@ class PlayCards extends React.Component {
                       name="text" 
                       id="back" />
                   </CardText>
-                  <hr />
-                  <CardSubtitle>
-                    <label htmlFor="tags">Tags</label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      id="tags" />
-                  </CardSubtitle>
                   <br />
                   <Button
                     type="submit"
@@ -246,7 +329,8 @@ class PlayCards extends React.Component {
       );
     } else if (edit === false) {
       showCardStack = (
-        <div className="animated fadeOut" id="flashcard-grid" isOpen="" />
+        // isOpen=""
+        <div className="animated fadeOut" id="flashcard-grid"  />
       );
     }
 
@@ -281,10 +365,10 @@ class PlayCards extends React.Component {
                   <p>Make deck public</p>
                 </Col>
                 <Col>
-                  <label className="switch">
-                    <input type="checkbox" />
+                  <Label className="switch">
+                    <Input type="checkbox" onChange={this.handlePrivacyChange} checked={this.state.privacy ? "checked" : ""} />
                     <span className="toggle-slider round" />
-                  </label>
+                  </Label>
                 </Col>
               </Row>
               <Row style={{ margin: "auto" }}>
@@ -293,38 +377,43 @@ class PlayCards extends React.Component {
                 </Col>
                 <Col>
                   <label className="switch">
-                    <input type="checkbox" />
+                    <input type="checkbox" onChange={this.handleAlertChange} checked={this.state.sendAlert ? "checked" : ""} />
                     <span className="toggle-slider round" />
                   </label>
                 </Col>
               </Row>
               <Row style={{ margin: "auto" }}>
                 <Col>
-                  <p style={{ textAlign: "left" }}>Send questions every</p>
+                  <p style={{ textAlign: "left" }}>Send Daily Questions at </p>
                 </Col>
-                <select>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="45">45</option>
-                </select>
                 <Col>
-                  <p>minutes</p>
+                  <div className="control">
+                    <input type="time" id="appt-time" name="appt-time" 
+                    onChange={this.handleAlertTimeChange}
+                    value={this.state.alertTime}
+                    required={this.state.sendAlert ? "required" : ""} />
+                  </div>
                 </Col>
               </Row>
               <Row style={{ margin: "auto" }}>
                 <Col>
                   <p style={{ textAlign: "left" }}>Send the answers every</p>
                 </Col>
-                <select>
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="30">30</option>
+                <select defaultValue={this.state.timeInterval} onChange={this.handleSelectChange}>
+                  <option value="1" >1</option>
+                  <option value="5" >5</option>
+                  <option value="10" >10</option>
+                  <option value="15" >15</option>
+                  <option value="30" >30</option>
                 </select>
                 <Col>
                   <p>minutes.</p>
                 </Col>
+              </Row>
+              <hr></hr>
+              <Row>
+                <Button color="primary" onClick={this.saveSettings}>Save Changes</Button>{' '}
+                <Button color="secondary" onClick={this.toggleSettings}>Cancel</Button>
               </Row>
             </ModalBody>
           </Modal>
@@ -362,57 +451,13 @@ class PlayCards extends React.Component {
           </Flippy>
           )
         })}
-          {/* <Flippy
-            flipOnHover={false}
-            flipOnClick={true}
-            flipDirection="horizontal"
-            ref={r => (this.Flippy = r)}
-            style={{ width: "400px", height: "200px" }}
-          >
-            <FrontSide style={{ backgroundColor: "#93bbde" }}>
-              Front: Question
-            </FrontSide>
 
-            <BackSide style={{ backgroundColor: "#66b361" }}>
-              Back: Answer
-            </BackSide>
-          </Flippy>
-          <Flippy
-            flipOnHover={false}
-            flipOnClick={true}
-            flipDirection="horizontal"
-            ref={r => (this.Flippy = r)}
-            style={{ width: "400px", height: "200px" }}
-          >
-            <FrontSide style={{ backgroundColor: "#93bbde" }}>
-              <div>Front: Question</div>
-            </FrontSide>
-
-            <BackSide style={{ backgroundColor: "#66b361" }}>
-              <div>
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer Back: Answer
-                Back: Answer Back: Answer Back: Answer Back: Answer
-              </div>
-            </BackSide>
-          </Flippy> */}
         </Carousel>
         <div id="edit-btns">
           <Button color="primary" id="edit-deck-btn" onClick={this.toggle}>
             Edit
           </Button>
-          <Button id="settings-btn" color="dark" onClick={this.toggleSettings}>
+          <Button id="settings-btn" color="dark" onClick={this.getDeckSettings}>
             <i className="fas fa-cogs" />
           </Button>
         </div>

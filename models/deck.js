@@ -16,7 +16,10 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: false
         },
         time: {
-            type: DataTypes.DATE
+            type: DataTypes.STRING
+        },
+        alertInterval: {
+            type: DataTypes.INTEGER
         }
     },
         {

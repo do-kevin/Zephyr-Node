@@ -135,3 +135,7 @@ div.slider-frame {
     resize: none;
     overflow-y: scroll;
   }
+
+  .control {
+    margin: 1rem 0;
+}
