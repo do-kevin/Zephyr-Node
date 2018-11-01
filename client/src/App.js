@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Reminder from "./pages/Reminder";
 import Profile from "./pages/Profile";
-import Decks from "./pages/Decks";
+import PlayCards from "./pages/PlayCards";
 
 // Components
 // import Sidebar from "./components/Sidebar";
@@ -22,7 +22,7 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route exact path="/reminder" component={Reminder} />
             <Route exact path="/profile" component={Profile} />
-            <Route exact path="/decks" component={Decks} />
+            <Route exact path="/deck" component={PlayCards} />
         </div>
       </Router>
     );
