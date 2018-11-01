@@ -23,23 +23,47 @@ import DateTimePicker from "react-datetime-picker";
 import "../css/Reminder.css";
 
 class Reminder extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      item: "",
-      note: "",
-      date: new Date(),
-      modal: false,
-      sendReminder: false,
-      alertTime: 0,
-      saveClicked: false,
-      events: [],
-      currentModal: "",
-      editingObj: {}
-    };
-
-    this.toggle = this.toggle.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            item: "",
+            note: "",
+            date: new Date(),
+            modal: false,
+            sendReminder: false,
+            alertTime: 0,
+            saveClicked: false,
+            events: [],
+            currentModal: "", 
+            editingObj: {}
+        };
+    
+        this.toggle = this.toggle.bind(this);
+      }
+    
+    componentDidMount() {
+        console.log("start")
+        this.getReminders();
+    }
+    
+    getReminders = () => {
+        //--------------------------get userId
+        axios.get("/reminders/1")
+            .then (data => {
+                console.log(data.data);
+                this.setState({
+                    events: data.data
+                })
+            }
+        )
+    }
+    
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+        this.clearModal();
+    }
 
   componentDidMount() {
     console.log("start");
