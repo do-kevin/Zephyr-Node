@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+
 
 // Pages
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
+import Reminder from "./pages/Reminder";
+import Profile from "./pages/Profile";
 import PlayCards from "./pages/PlayCards";
 
 // Components
@@ -13,11 +17,14 @@ import "./css/App.css";
 class App extends Component {
   render() {
     return (
-      <div>
-        {/* <Sidebar />
-        <Home /> */}
-        <PlayCards />
-      </div>
+      <Router> 
+        <div>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/reminder" component={Reminder} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/flashcards" component={PlayCards} />
+        </div>
+      </Router>
     );
   }
 }

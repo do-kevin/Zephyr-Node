@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
-        dailyQuiz: {
+        dailyQuiz: {                //boolean send daily questions to user throgh text
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
@@ -25,8 +25,17 @@ module.exports = function (sequelize, DataTypes) {
 
         Deck.associate = function (models) {
             Deck.hasMany(models.Flashcard, {
+                foreignKey: "deckId",
                 onDelete: 'cascade' 
-            })
+            });
+            Deck.hasMany(models.Appointment, {
+                foreignKey: "deckId",
+                onDelete: 'cascade',
+                allowNull: true
+            });
+            Deck.belongsTo(models.User, {
+                foreignKey: "userId",
+            });
     };
     return Deck;
 }

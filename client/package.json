@@ -5,8 +5,12 @@
   "private": true,
   "proxy": "http://127.0.0.1:3001/",
   "dependencies": {
+    "axios": "^0.16.2",
+    "moment": "^2.22.2",
     "react": "^16.6.0",
+    "react-datetime-picker": "^2.0.0",
     "react-dom": "^16.6.0",
+    "react-router-dom": "^4.3.1",
     "react-flippy": "^0.1.2",
     "react-scripts": "1.0.14",
     "reactstrap": "^6.5.0"

@@ -1,83 +1,94 @@
 /**
- * Todo Router
+ * Deck Router
  */
 
 // Dependencies ---------------------------------------- /
 
 const db = require("../models");
 
-// Export Todo Router ---------------------------------------- /
+// Export Deck Router ---------------------------------------- /
 
 module.exports = (router) => {
-    // Retrieve all todos on user id
-    router.get("/todos/users/:userId", (req, res) => {
-        db.ToDo
+    // Get all public decks
+    router.get("/decks/public", (req, res) => {
+        db.Deck
+            .query("SELECT * FROM Decks WHERE private IS NOT false")
+            .then((decks) => {
+                res.status(200).json(decks);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+    // Get all decks on user id
+    router.get("/decks/users/:userId", (req, res) => {
+        db.Deck
             .findAll({
                 where: {
                     UserId: req.params.userId
                 }
             })
-            .then((todos) => {
-                res.status(200).json(todos);
+            .then((decks) => {
+                res.status(200).json(decks);
             })
             .catch((err) => {
                 res.status(404).json(err);
             });
     });
-    // Retrieve one todo on todo id
-    router.get("/todos/:id", (req, res) => {
-        db.ToDo
+    // Get deck on deck id
+    router.get("/decks/:id", (req, res) => {
+        db.Deck
             .findOne({
                 where: {
                     id: req.params.id
                 }
             })
-            .then((todo) => {
-                res.status(200).json(todo);
+            .then((deck) => {
+                res.status(200).json(deck);
             })
             .catch((err) => {
                 res.status(404).json(err);
             });
     });
-    // Create todo with user id
-    router.post("/todos/:userId", (req, res) => {
-        db.ToDo
+    // Create deck with user id
+    router.post("/decks/:userId", (req, res) => {
+        db.Deck
             .create({
                 ...req.body,
                 UserId: req.params.userId
             })
-            .then((todo) => {
-                res.status(200).json(todo);
+            .then((deck) => {
+                res.status(200).json(deck);
             })
             .catch((err) => {
                 res.status(404).json(err);
             });
     });
-    // Update todo on todo id
-    router.put("/todos/:id", (req, res) => {
-        db.ToDo
+    // Update deck on deck id
+    router.put("/decks/:id", (req, res) => {
+        db.Deck
             .update(req.body, {
                 where: {
                     id: req.params.id
                 }
             })
-            .then((todo) => {
-                res.status(200).json(todo);
+            .then((deck) => {
+                res.status(200).json(deck);
             })
             .catch((err) => {
                 res.status(404).json(err);
             });
     });
-    // Delete todo on todo id
-    router.delete("/todos/:id", (req, res) => {
-        db.ToDo
+    // Delete deck with deck id
+    router.delete("/decks/:id", (req, res) => {
+        db.Deck
             .destroy({
                 where: {
                     id: req.params.id
                 }
             })
-            .then((todo) => {
-                res.status(200).json(todo);
+            .then((deck) => {
+                res.status(200).json(deck);
             })
             .catch((err) => {
                 res.status(404).json(err);

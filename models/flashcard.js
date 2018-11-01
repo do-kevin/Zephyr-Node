@@ -18,6 +18,12 @@ module.exports = function (sequelize, DataTypes) {
         {
             timestamps: false
         });
+        Flashcard.associate = function (models) {
+            Flashcard.belongsTo(models.Deck, {
+                foreignKey: "deckId",
+                onDelete: 'cascade' 
+            });
+        };
 
     return Flashcard;
 }

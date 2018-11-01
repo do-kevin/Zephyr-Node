@@ -18,6 +18,8 @@ require("./reminder")(router);
 require("./note")(router);
 // Appointment routes
 require("./appointment")(router);
+// Deck routes
+require("./deck")(router);
 
 // Export Router ---------------------------------------- /
 

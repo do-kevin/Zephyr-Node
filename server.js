@@ -38,9 +38,17 @@ app.get("*", (req, res) => {
 
 // Listen ---------------------------------------- /
 
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, () => {
     console.log(`Flashcard application running on port ${PORT}...`);
   });
 });
+
+//runs cron to check for notifications to be sent
+const scheduler = require('./scheduler');
+scheduler.start();
+
+// var moment = require('moment-timezone');
+// moment.tz.setDefault("America/Los_Angeles");
+
 

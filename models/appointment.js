@@ -1,32 +1,32 @@
 module.exports = function (sequelize, DataTypes) {
     var Appointment = sequelize.define("Appointment", {
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        phoneNumber: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        notification: {
-            type: DataTypes.STRING,
-            defaultValue: false
-        },
-        timeZone: {
+        date: {                     //actual day and time of event
             type: DataTypes.STRING,
             allowNull: false
         },
-        time: {
-            type: DataTypes.DATE,
+        notification: {            //# of mins ahead of date that notification should be sent
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        message: {                     //true if reminder has been sent already
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        type: {                        //defines if it's an event or deck notification
+            type: DataTypes.STRING,
             allowNull: false
         }
     },
         {
             timestamps: false
         });
+
+        Appointment.associate = function (models) {
+            Appointment.belongsTo(models.User, {
+                foreignKey: "userId",
+                onDelete: 'cascade' 
+            });
+        };
 
     return Appointment;
 }
