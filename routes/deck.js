@@ -1,5 +1,5 @@
 /**
- * Deck Router
+ * Deck & Flashcard Router
  */
 
 // Dependencies ---------------------------------------- /
@@ -25,7 +25,7 @@ module.exports = (router) => {
         db.Deck
             .findAll({
                 where: {
-                    UserId: req.params.userId
+                    userId: req.params.userId
                 }
             })
             .then((decks) => {
@@ -55,7 +55,7 @@ module.exports = (router) => {
         db.Deck
             .create({
                 ...req.body,
-                UserId: req.params.userId
+                userId: req.params.userId
             })
             .then((deck) => {
                 res.status(200).json(deck);
@@ -89,6 +89,69 @@ module.exports = (router) => {
             })
             .then((deck) => {
                 res.status(200).json(deck);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+
+
+    //----------------flashcards---------------
+
+    //create flashcards, save with deckId
+    router.post("/flashcard", (req, res) => {
+        db.Flashcard
+            .create(req.body)
+            .then((data) => {
+                res.status(200).json(data);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+
+    //get all flashcards that belong to given deckId
+    router.get("/flashcard/:id", (req, res) => {
+        db.Flashcard
+            .findAll({
+                where: {
+                    deckId: req.params.id
+                }
+            })
+            .then((data) => {
+                res.status(200).json(data);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+
+    //update flashcard by id
+    router.put("/flashcard/:id", (req, res) => {
+        db.Flashcard
+            .update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((data) => {
+                res.status(200).json(data);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+
+    //delete flashcard by id
+    router.delete("/flashcards/:id", (req, res) => {
+        db.Flashcard
+            .destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((data) => {
+                res.status(200).json(data);
             })
             .catch((err) => {
                 res.status(404).json(err);
