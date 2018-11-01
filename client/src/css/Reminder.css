@@ -42,3 +42,7 @@ p {
     position: relative;
     width: 500px
 }
+
+.select-dropdown {
+    margin: auto;
+}

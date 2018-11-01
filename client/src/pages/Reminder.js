@@ -298,36 +298,41 @@ class Reminder extends React.Component {
           <Input
             type="select"
             name="select"
-            id="exampleSelect"
+            className="select-dropdown"
             onChange={this.handleSelectChange}
           >
             <option
               value="0"
               selected={this.state.alertTime === 0 ? "selected" : ""}
+              className="select-dropdown"
             >
               At time of the event
             </option>
             <option
               value="15"
               selected={this.state.alertTime === 15 ? "selected" : ""}
+              className="select-dropdown"
             >
               15 mins before event
             </option>
             <option
               value="30"
               selected={this.state.alertTime === 30 ? "selected" : ""}
+              className="select-dropdown"
             >
               30 mins before event
             </option>
             <option
               value="60"
               selected={this.state.alertTime === 60 ? "selected" : ""}
+              className="select-dropdown"
             >
               1 hour before event
             </option>
             <option
               value="120"
               selected={this.state.alertTime === 120 ? "selected" : ""}
+              className="select-dropdown"
             >
               2 hours before event
             </option>
@@ -452,6 +457,7 @@ class Reminder extends React.Component {
                 </Label>
               </FormGroup>
             </Form>
+            <br></br>
             {alertOpts}
             {validation}
           </ModalBody>
