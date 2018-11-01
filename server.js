@@ -43,14 +43,6 @@ app.use(session({
 
 // Check cookie, handle session for all routes
 app.use(handleCookieSessionCheck);
-// For all routes, if user isn't logged in, redirect to homepage
-app.use(sessionCheckerAway);
-
-// Root Route ---------------------------------------- /
-
-app.get("/", sessionCheckerHome, (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
 
 // Mount Router ---------------------------------------- /
 

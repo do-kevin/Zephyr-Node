@@ -13,23 +13,22 @@ module.exports = (router) => {
     router.get("/users/logout", (req, res) => {
         if (req.session.user && req.cookies.user_sid) {
             res.clearCookie('user_sid');
+            res.status(200);
+        } else {
+            res.status(404);
         }
-        res.redirect('/');
     });
     // Retrieve specific user at login
     router.post("/users/login", (req, res) => {
+        const {username, password} = req.body;
         db.User
             .findOne({
-                where: {
-                    username: req.body.username,
-                    password: req.body.password
-                }
+                where: {username, password}
             })
             .then((user) => {
-                req.session.user = user;
-                // TEST:
-                console.log(req.session.user);
-                res.status(301).redirect("/profile");
+                const {dataValues: userData} = user;
+                req.session.user = userData;
+                res.status(200).json(userData);
             })
             .catch((err) => {
                 res.status(404).json(err);
@@ -40,10 +39,9 @@ module.exports = (router) => {
         db.User
             .create(req.body)
             .then((user) => {
-                req.session.user = user;
-                // TEST:
-                console.log(req.session.user);
-                res.status(200).json(user);
+                const {dataValues: userData} = user;
+                req.session.user = userData;
+                res.status(200).json(userData);
             })
             .catch((err) => {
                 res.status(404).json(err);
@@ -51,11 +49,10 @@ module.exports = (router) => {
     });
     // Update user on user id
     router.put("/users/:id", (req, res) => {
+        const {id} = req.params;
         db.User
             .update(req.body, {
-                where: {
-                    id: req.params.id
-                }
+                where: {id}
             })
             .then((user) => {
                 res.status(200).json(user);
@@ -66,13 +63,12 @@ module.exports = (router) => {
     });
     // Delete user phoneNumber on user id
     router.delete("/users/phoneNumber/:id", (req, res) => {
+        const {id} = req.params;
         db.User
             .update({
                 phoneNumber: ""
             }, {
-                where: {
-                    id: req.params.id
-                }
+                where: {id}
             })
             .then((user) => {
                 res.status(200).json(user);
@@ -83,11 +79,10 @@ module.exports = (router) => {
     });
     // Delete user on user id
     router.delete("/users/:id", (req, res) => {
+        const {id} = req.params;
         db.User
             .destroy({
-                where: {
-                    id: req.params.id
-                }
+                where: {id}
             })
             .then((user) => {
                 res.status(200).json(user);

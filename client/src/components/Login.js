@@ -55,7 +55,6 @@ class Login extends React.Component {
 
   handleSignUp(e) {
     e.preventDefault();
-    // TODO: add sign up functionality for new users
     const user = {
       name: this.state.name,
       username: this.state.username,
@@ -67,7 +66,14 @@ class Login extends React.Component {
       data: user
     })
     .then((data) => {
-      console.log(data);
+      const {data: user} = data;
+      this.setState(() => ({
+        name: "",
+        username: "",
+        password: "",
+        passwordCheck: ""
+      }));
+      console.log(user);
     })
     .catch((err) => {
       console.log(err);
@@ -76,7 +82,6 @@ class Login extends React.Component {
 
   handleLogin(e) {
     e.preventDefault();
-    // TODO: add login functionality for existing users
     const user = {
       username: this.state.username,
       password: this.state.password
@@ -87,7 +92,12 @@ class Login extends React.Component {
       data: user
     })
     .then((data) => {
-      console.log(data);
+      const {data: user} = data;
+      this.setState(() => ({
+        username: "",
+        password: ""
+      }));
+      console.log(user);
     })
     .catch((err) => {
       console.log(err);
