@@ -5,6 +5,8 @@
 // Dependencies ---------------------------------------- /
 
 const express = require("express"),
+  session = require("express-session"),
+  cookieParser = require("cookie-parser"),
   path = require("path");
 
 const db = require("./models"),
@@ -20,11 +22,29 @@ const PORT = process.env.PORT || 3001,
 // User parsers
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
+
+// Create user session
+app.use(session({
+  key: "user_id",
+  secret: "flashknowledge",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: 600000
+  }
+}));
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+// Root Route ---------------------------------------- /
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 // Mount Router ---------------------------------------- /
 
@@ -40,9 +60,12 @@ app.get("*", (req, res) => {
 
 db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, () => {
+    console.log("------------------------------------------------------------");
     console.log(`Flashcard application running on port ${PORT}...`);
   });
 });
+
+// Scheduler Start ---------------------------------------- /
 
 //runs cron to check for notifications to be sent
 const scheduler = require('./scheduler');
