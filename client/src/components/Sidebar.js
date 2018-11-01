@@ -58,7 +58,7 @@ class Sidebar extends React.Component {
                 <a href="/reminder">Reminders</a>
               </li>
               <li>
-                <a href="">To-Do</a>
+                <a href="/todo">To-Do</a>
               </li>
               <li>
                 <a href="">Pomodoro Timer</a>

@@ -5,3 +5,12 @@
 .duedate {
     text-align: right;
 }
+
+.pull-right {
+    float:right;
+}
+
+.task {
+    float:left;
+    padding-top: 10px;
+}

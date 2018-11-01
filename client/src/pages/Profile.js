@@ -19,7 +19,7 @@ class Profile extends React.Component {
                 <Container className="text-center">
                     <Row>
                         <Col>
-                            <Jumbotron className="animated fadeIn">
+                            <Jumbotron className="profile animated fadeIn">
                                 <Container>
                                     <h1 className="display-4">Hello, <span id="username">[insert username here]</span>!</h1>
                                     <br />
