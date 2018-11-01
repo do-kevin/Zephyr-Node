@@ -1,0 +1,61 @@
+#search-bar {
+    width: 700px !important;
+    margin: 0 auto 20px auto;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+p {
+    margin: 0 0 1.4em;
+    color: black;
+}
+
+h1 {
+    margin: 40% 0 30% 0;
+    color: black;
+}
+
+.tags-box {
+    width: 220px;
+    height: 50px;
+    overflow-y: auto;
+}
+
+#deck-list {
+    width: 90%;
+    padding: 4%;
+    border: 2px solid red;
+    margin: 40px auto 0 auto;
+}
+
+.decks {
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    min-width: 10rem;
+    max-width: 20rem;
+    background-color: white;
+    word-wrap: break-word;
+    box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 0.5em 0 -0.25em #f2f2f2, 0 0.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1em 0 -0.5em #e5e5e5, 0 1em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
+}
+
+.decks.decks-primary {
+    color: white;
+}
+
+.decks.decks-primary {
+    width: 250px;
+    height: 300px;
+    background-color: skyblue;
+    text-shadow: 0 0.0625em 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 0.5em 0 -0.25em rgba(135, 207, 235, 0.911), 0 0.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1em 0 -0.5em rgba(135, 207, 235, 0.911), 0 1em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.decks> :last-child {
+    margin-bottom: 0;
+}
