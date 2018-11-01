@@ -35,6 +35,7 @@ class PlayCards extends React.Component {
       edit: false,
       openSettings: false,
       deckName: "",
+      deck: {},
       flashcards: [],
       front: "",
       back: "",
@@ -128,8 +129,20 @@ class PlayCards extends React.Component {
         this.toggleSettings()
 
         //create appointment if user chooses to get daily questions
-        if(this.state.sendAlert) {
+        if(obj.dailyQuiz === false && this.state.deck.sendAlert === true) {
           this.createAppointments();
+        }
+        //else delete appointments (if alerts were updated, they will be deleted and created again)
+        else {
+          let id = 1; //-------------------deckId
+          axios.delete("/appointments/decks/" + id)
+          .then(() => {
+            //if alerts are on, create appts.
+            if (this.state.deck.sendAlert === true && 
+              (this.state.deck.time !== obj.time || this.state.deck.alertInterval !== obj.alertInterval)) {
+              this.createAppointments();
+            }
+          });
         }
       })
   };
@@ -140,6 +153,7 @@ class PlayCards extends React.Component {
     axios.get("/decks/1")
     .then(data => {
       this.setState({
+        deck: {...data.data},
         privacy: data.data.private,
         sendAlert: data.data.dailyQuiz,
         alertTime: data.data.time,

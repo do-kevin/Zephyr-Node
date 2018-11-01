@@ -101,4 +101,21 @@ module.exports = (router) => {
                 res.status(404).json(err);
             });
     });
+
+    // Delete daily quiz appointment by id
+    router.delete("/appointments/decks/:id", (req, res) => {
+        console.log(req.body)
+        db.Appointment
+            .destroy({
+                where: {
+                    deckId: req.params.id
+                }
+            })
+            .then((appointment) => {
+                res.status(200).json(appointment);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
 };
