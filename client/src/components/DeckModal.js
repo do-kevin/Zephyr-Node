@@ -19,7 +19,7 @@ class DeckModal extends React.Component {
     this.state = {
       deckName: "",
       deckTags: "",
-      userId: 1
+      userId: JSON.parse(localStorage.getItem("user")).id
     };
   }
 
@@ -30,12 +30,6 @@ class DeckModal extends React.Component {
 
   handleTags = (event) => {
     this.setState({deckTags: event.target.value});
-  }
-
-  getDeckInfo() {
-    axios.get("/decks/1").then((response) => {
-      // console.log(response.data);
-    })
   }
   
   createTagsForDeck = () => {
@@ -68,7 +62,6 @@ class DeckModal extends React.Component {
   }
 
   componentDidMount() {
-    this.getDeckInfo();
     // console.log("====props====")
     // console.log(this.props)
     // console.log("====props====")

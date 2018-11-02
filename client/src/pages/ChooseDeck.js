@@ -94,9 +94,7 @@ class ChooseDeck extends React.Component {
             <hr />
             <div className="tags-box">
               <p>
-                {/* {item.tags.map(elem => {
-                  return(elem)
-                })} */}
+                {item.tags}
               </p>
             </div>
           </div>
