@@ -10,6 +10,7 @@ import Flippy, { FrontSide, BackSide } from "react-flippy";
 import Carousel from "nuka-carousel";
 import {
   Button,
+  ButtonGroup,
   Row,
   Col,
   Card,
@@ -20,7 +21,12 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Form, FormGroup, Label, Input, FormText
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Container
 } from "reactstrap";
 
 // Components
@@ -105,20 +111,19 @@ class PlayCards extends React.Component {
   getDeckAppts = () => {
     axios.get(`/appointments/decks/${this.state.deckId}/${this.state.userId}`)
       .then(data => {
-        console.log(data.data)
+        console.log(data.data);
         this.setState({
           appts: [...data.data]
         })
       })
   }
 
-  deleteFlashcard = (id) => {
-    axios.delete("/flashcards/" + id)
-      .then(data => {
-        console.log(data);
-        this.getFlashcards();
-      })
-  }
+  deleteFlashcard = id => {
+    axios.delete("/flashcards/" + id).then(data => {
+      console.log(data);
+      this.getFlashcards();
+    });
+  };
 
   createFlashcard = () => {
     let obj = {
@@ -167,7 +172,7 @@ class PlayCards extends React.Component {
         this.getFlashcards()
       })
   };
-    
+
   saveFlashcardChanges = (id, index) => {
     let obj = {};
     let findObj = {};
@@ -266,7 +271,9 @@ class PlayCards extends React.Component {
   createAppointments = () => {
     console.log("creating appts")
     this.state.flashcards.map((item, index) => {
-      let eventDate = moment(this.state.alertTime,"HH:mm").add(index, "days").format("YYYY-MM-DD HH:mm")
+      let eventDate = moment(this.state.alertTime, "HH:mm")
+        .add(index, "days")
+        .format("YYYY-MM-DD HH:mm");
       let obj = {
         date: eventDate,
         notification: 0,
@@ -289,52 +296,52 @@ class PlayCards extends React.Component {
     })
   }
 
-  handleFrontInputChange = (event) => {
+  handleFrontInputChange = event => {
     this.setState({
       front: event.target.value
-    })
-  }
+    });
+  };
 
-  handleBackInputChange = (event) => {
+  handleBackInputChange = event => {
     this.setState({
       back: event.target.value
-    })
-  }
+    });
+  };
 
   handleFrontEdit = (index, event) => {
     let flashcards = [...this.state.flashcards];
-    flashcards[index].front = event.target.value
-    this.setState({flashcards})
+    flashcards[index].front = event.target.value;
+    this.setState({ flashcards });
   };
 
   handleBackEdit = (index, event) => {
     let flashcards = [...this.state.flashcards];
-    flashcards[index].back = event.target.value
-    this.setState({flashcards})
-  }
+    flashcards[index].back = event.target.value;
+    this.setState({ flashcards });
+  };
 
   handlePrivacyChange = () => {
     // console.log(!this.state.privacy);
     this.setState({
       privacy: !this.state.privacy
-    })
-  }
+    });
+  };
 
   handleAlertChange = () => {
     // console.log(!this.state.sendAlert);
     this.setState({
       sendAlert: !this.state.sendAlert
-    })
+    });
   };
 
-  handleAlertTimeChange = (event) => {
+  handleAlertTimeChange = event => {
     // console.log(moment(event.target.value, "HH:mm").format("YYYY-MM-DD HH:mm"))
     this.setState({
       alertTime: event.target.value
-    })
+    });
   };
 
-  handleSelectChange = (event) => {
+  handleSelectChange = event => {
     this.setState({
       timeInterval: event.target.value
     })
@@ -372,12 +379,12 @@ class PlayCards extends React.Component {
     if (edit === true) {
       showCardStack = (
         // isOpen=""
-        <div className="animated slideInUp" id="flashcard-grid" >
+        <div className="animated slideInUp" id="flashcard-grid">
           <Row>
             {this.state.flashcards.map((item, index) => {
               return (
                 <Col key={item.id}>
-                  <Card className="flashcard animated flipInX">
+                  <Card className="flashcard animated flip">
                     <Button
                       color="danger"
                       type="button"
@@ -387,54 +394,64 @@ class PlayCards extends React.Component {
                       }}
                       onClick={() => this.deleteFlashcard(item.id)}
                     >
-                      <i className="fas fa-trash-alt"></i>
+                      <i className="fas fa-trash-alt" />
                     </Button>
                     <CardBody>
                       <CardTitle>
                         Front
-                        <Input value={this.state.flashcards[index].front} onChange={(event) => this.handleFrontEdit(index, event)} />
+                        <Input
+                          value={this.state.flashcards[index].front}
+                          onChange={event => this.handleFrontEdit(index, event)}
+                        />
                       </CardTitle>
                       <CardText>
                         Back
-                        <Input value={this.state.flashcards[index].back} onChange={(event) => this.handleBackEdit(index, event)} />
+                        <Input
+                          value={this.state.flashcards[index].back}
+                          onChange={event => this.handleBackEdit(index, event)}
+                        />
                       </CardText>
                       <Button
-                        onClick={() => this.saveFlashcardChanges(item.id, index)}
+                        onClick={() =>
+                          this.saveFlashcardChanges(item.id, index)
+                        }
                         type="button"
                         style={{
                           margin: "20px 41% 0 41%",
                           borderRadius: "25px"
                         }}
                       >
-                        <i className="fas fa-save"></i>
+                        <i className="fas fa-save" />
                       </Button>
                     </CardBody>
                   </Card>
                 </Col>
-              )
+              );
             })}
           </Row>
           <Row>
             <Col>
-              <Card className="flashcard">
+              <Card className="flashcard animated bounceInUp">
                 <CardBody>
                   <CardTitle>
                     <label htmlFor="front">Question (front)</label>
-                    <Input 
+                    <Input
                       value={this.state.front}
                       onChange={this.handleFrontInputChange}
-                      type="textarea" 
-                      name="text" 
-                      id="front" />
+                      type="textarea"
+                      name="text"
+                      id="front"
+                    />
                   </CardTitle>
                   <CardText>
                     <label htmlFor="back">Answer (back)</label>
-                    <Input 
+                    <Input
                       value={this.state.back}
                       onChange={this.handleBackInputChange}
-                      type="textarea" 
-                      name="text" 
-                      id="back" />
+                      type="textarea"
+                      name="text"
+                      id="back"
+                    />
                   </CardText>
                   <br />
                   <Button
@@ -457,7 +474,7 @@ class PlayCards extends React.Component {
     } else if (edit === false) {
       showCardStack = (
         // isOpen=""
-        <div className="animated fadeOut" id="flashcard-grid"  />
+        <div className="animated fadeOut" id="flashcard-grid" />
       );
     }
 
@@ -511,7 +528,11 @@ class PlayCards extends React.Component {
                 </Col>
                 <Col>
                   <Label className="switch">
-                    <Input type="checkbox" onChange={this.handlePrivacyChange} checked={this.state.privacy ? "checked" : ""} />
+                    <Input
+                      type="checkbox"
+                      onChange={this.handlePrivacyChange}
+                      checked={this.state.privacy ? "checked" : ""}
+                    />
                     <span className="toggle-slider round" />
                   </Label>
                 </Col>
@@ -522,7 +543,11 @@ class PlayCards extends React.Component {
                 </Col>
                 <Col>
                   <label className="switch">
-                    <input type="checkbox" onChange={this.handleAlertChange} checked={this.state.sendAlert ? "checked" : ""} />
+                    <input
+                      type="checkbox"
+                      onChange={this.handleAlertChange}
+                      checked={this.state.sendAlert ? "checked" : ""}
+                    />
                     <span className="toggle-slider round" />
                   </label>
                 </Col>
@@ -533,10 +558,14 @@ class PlayCards extends React.Component {
                 </Col>
                 <Col>
                   <div className="control">
-                    <input type="time" id="appt-time" name="appt-time" 
-                    onChange={this.handleAlertTimeChange}
-                    value={this.state.alertTime}
-                    required={this.state.sendAlert ? "required" : ""} />
+                    <input
+                      type="time"
+                      id="appt-time"
+                      name="appt-time"
+                      onChange={this.handleAlertTimeChange}
+                      value={this.state.alertTime}
+                      required={this.state.sendAlert ? "required" : ""}
+                    />
                   </div>
                 </Col>
               </Row>
@@ -544,12 +573,15 @@ class PlayCards extends React.Component {
                 <Col>
                   <p style={{ textAlign: "left" }}>Send the answers every</p>
                 </Col>
-                <select defaultValue={this.state.timeInterval} onChange={this.handleSelectChange}>
-                  <option value="1" >1</option>
-                  <option value="5" >5</option>
-                  <option value="10" >10</option>
-                  <option value="15" >15</option>
-                  <option value="30" >30</option>
+                <select
+                  defaultValue={this.state.timeInterval}
+                  onChange={this.handleSelectChange}
+                >
+                  <option value="1">1</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="30">30</option>
                 </select>
                 <Col>
                   <p>minutes.</p>
@@ -558,8 +590,12 @@ class PlayCards extends React.Component {
               {phoneRequest}
               <hr></hr>
               <Row>
-                <Button color="primary" onClick={this.saveSettings}>Save Changes</Button>{' '}
-                <Button color="secondary" onClick={this.toggleSettings}>Cancel</Button>
+                <Button color="primary" onClick={this.saveSettings}>
+                  Save Changes
+                </Button>{" "}
+                <Button color="secondary" onClick={this.toggleSettings}>
+                  Cancel
+                </Button>
               </Row>
             </ModalBody>
           </Modal>
@@ -578,27 +614,26 @@ class PlayCards extends React.Component {
           // ref="cardList"
           id="carousel"
         >
-        {this.state.flashcards.map(item => {
-          return (
-          <Flippy
-            key={item.id}
-            flipOnHover={false}
-            flipOnClick={true}
-            flipDirection="horizontal"
-            ref={r => (this.Flippy = r)}
-            style={{ width: "400px", height: "200px" }}
-          >
-            <FrontSide style={{ backgroundColor: "#93bbde" }}>
-              {item.front}
-            </FrontSide>
+          {this.state.flashcards.map(item => {
+            return (
+              <Flippy
+                key={item.id}
+                flipOnHover={false}
+                flipOnClick={true}
+                flipDirection="horizontal"
+                ref={r => (this.Flippy = r)}
+                style={{ width: "400px", height: "200px" }}
+              >
+                <FrontSide style={{ backgroundColor: "#93bbde" }}>
+                  <p>{item.front}</p>
+                </FrontSide>
 
-            <BackSide style={{ backgroundColor: "#66b361" }}>
-              {item.back}
-            </BackSide>
-          </Flippy>
-          )
-        })}
-
+                <BackSide style={{ backgroundColor: "#66b361" }}>
+                  <p>{item.back}</p>
+                </BackSide>
+              </Flippy>
+            );
+          })}
         </Carousel>
         <div id="edit-btns">
           <Button color="primary" id="edit-deck-btn" onClick={this.toggle}>

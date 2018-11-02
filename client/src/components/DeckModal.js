@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import {
   Button,
   Modal,
@@ -8,18 +9,70 @@ import {
   Form,
   FormGroup,
   Label,
-  Input,
-  FormText
+  Input
 } from "reactstrap";
-import { object } from "twilio/lib/base/serialize";
+
 
 class DeckModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      deckName: "",
+      deckTags: "",
+      userId: 1
+    };
+  }
+
+  // handleName & handleTags cannot read property of undefn.
+  handleName = (event) => {
+    this.setState({deckName: event.target.value});
+  } 
+
+  handleTags = (event) => {
+    this.setState({deckTags: event.target.value});
+  }
+
+  getDeckInfo() {
+    axios.get("/decks/1").then((response) => {
+      console.log(response.data);
+    })
+  }
+  
+  createTagsForDeck = () => {
+
+    let arr = [];
+
+
+    axios.post("/decks/" + this.state.userId, {subject: this.state.deckName}).then((response)=> {
+      console.log(response);
+
+      if (this.state.deckTags !== "") {
+        console.log("hithit")
+        arr = this.state.deckTags.split(" ");
+        arr.map((item) => {
+
+          let obj = { 
+            deckId: response.data.id,
+            tags: item
+          };
+
+          axios.post("/tags", obj).then((response) => {
+            console.log(response);
+          });
+          
+        })
+        this.props.toggle();
+        this.props.getDecks();
+      }
+    });
   }
 
   componentDidMount() {
+    this.getDeckInfo();
+    console.log("====props====")
+    console.log(this.props)
+    console.log("====props====")
+
     var { openCreate } = this.props;
 
     this.setState({
@@ -28,6 +81,7 @@ class DeckModal extends React.Component {
   }
 
   render() {
+    console.log(this.state.deckName)
     return (
       <div>
         <Modal
@@ -36,21 +90,23 @@ class DeckModal extends React.Component {
           className={this.props.className}
         >
           <ModalHeader toggle={this.props.toggle}>Create Deck</ModalHeader>
-          <ModalBody 
-            style={{margin: "0 2% 0 5%"}}>
+          <ModalBody style={{ margin: "0 2% 0 5%" }}>
             <Form>
               <FormGroup>
                 <Label for="deckname">Deck Name:</Label>
-                <Input
-                  type="text"
-                  name="deckname"
-                  id="deckname"
-                />
+                <Input type="text" name="deckname" id="deckname" value={this.state.deckName} onChange={this.handleName}/>
+              </FormGroup>
+              <FormGroup>
+                <Label for="decktags">Tags:</Label>
+                <Input type="text" name="decktags" id="decktags" value={this.state.deckTags} onChange={this.handleTags}/>
               </FormGroup>
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary">
+            <Button 
+              type="submit" 
+              color="primary"
+              onClick={this.createTagsForDeck}>
               <i className="fas fa-save" />
             </Button>
           </ModalFooter>
