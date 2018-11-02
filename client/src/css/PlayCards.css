@@ -2,13 +2,13 @@
   margin-top: 25%;
   margin-left: 76%;
   margin-right: 76%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .flippy-back {
     margin-left: 74%;
     margin-right: 74%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 div.slider {
@@ -48,8 +48,8 @@ div.slider-frame {
 
 #edit-btns {
     border: 1px solid border;
-    margin-left: 45%;
-    margin-right: 45%;
+    margin-left: 47%;
+    margin-right: 47%;
 }
 
 #edit-deck-btn {

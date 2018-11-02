@@ -44,9 +44,11 @@ module.exports = (router) => {
                 }
             })
             .then((deck) => {
+                console.log(`Deck: ${deck}`)
                 res.status(200).json(deck);
             })
             .catch((err) => {
+                console.log(`Err: ${err}`);
                 res.status(404).json(err);
             });
     });
@@ -64,6 +66,7 @@ module.exports = (router) => {
                 res.status(404).json(err);
             });
     });
+
     // Update deck on deck id
     router.put("/decks/:id", (req, res) => {
         db.Deck

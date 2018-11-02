@@ -37,6 +37,10 @@ module.exports = function (sequelize, DataTypes) {
                 onDelete: 'cascade',
                 allowNull: true
             });
+            Deck.hasMany(models.Tags, {
+                foreignKey: "deckId",
+                allowNull: true
+            });
             Deck.belongsTo(models.User, {
                 foreignKey: "userId",
                 allowNull: false
