@@ -2,10 +2,11 @@ import React from "react";
 import {
     Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardGroup, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
 } from 'reactstrap';
+import moment from "moment";
+import axios from "axios";
 
 // Components
 import Quote from "../components/Quote";
-import TimeDate from "../components/TimeDate";
 import Sidebar from "../components/Sidebar";
 
 // CSS
@@ -13,16 +14,80 @@ import "../css/Profile.css";
 
 class Profile extends React.Component {
 
-    // ************** edit with sessionStorage
     constructor(props) {
         super(props);
         this.state = {
-            username: "jiraiya",
-            userId: 0
+            name: "Jiraiya", // delete this later
+            time_date: moment().format("ddd, MMMM Do YYYY, h:mm:ss a"),
+            reminders: [], // arrays of objects
+            todos: [],
+            decks: [],
+            notes: []
         };
-    }
+        this.getReminders = this.getReminders.bind(this);
+        this.getToDos = this.getToDos.bind(this);
+        this.getDecks = this.getDecks.bind(this);
+        this.getNotes = this.getNotes.bind(this);    
+    };
+
+    componentDidMount() {
+        console.log("Profile component mounted.");
+        this.getReminders();
+        this.getToDos();
+        this.getDecks();
+        this.getNotes();
+    };
+
+    // request data from the database; save response as states
+
+    getReminders = () => {
+        let id = this.props.user.id;
+        axios.get("/reminders/users/" + id)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    reminders: res.data
+                });
+            });
+    };
+
+    getToDos = () => {
+        let id = this.props.user.id;
+        axios.get("/todos/users/" + id)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    todos: res.data
+                });
+            });
+    };
+
+    getDecks = () => {
+        let id = this.props.user.id;
+        axios.get("/decks/users/" + id)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    decks: res.data
+                });
+            });
+    };
+
+    getNotes = () => {
+        let id = this.props.user.id;
+        axios.get("/notes/users/" + id)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    notes: res.data
+                });
+            });
+    };
 
     render() {
+
+
+
         return (
             <div>
                 <Sidebar />
@@ -31,12 +96,12 @@ class Profile extends React.Component {
                         <Col>
                             <Jumbotron className="profile animated fadeIn">
                                 <Container>
-                                    {/* add username using session storage */}
-                                    <h1 className="display-4">Hello, <span id="username">{this.state.username}</span>!</h1>
+                                    {/* add username using this.props */}
+                                    <h1 className="display-4">Hello, <span id="username">{this.state.name}</span>!</h1>
                                     <br />
                                     <Quote />
                                     <hr className="my-2" />
-                                    <p><TimeDate /></p>
+                                    {this.state.time_date}
                                 </Container>
                             </Jumbotron>
                         </Col>
@@ -60,7 +125,7 @@ class Profile extends React.Component {
                         <Col>
                             <Card>
                                 <CardBody>
-                                    <CardTitle>To-dos</CardTitle>
+                                    <CardTitle>To-do</CardTitle>
                                     <CardText>
                                         <ListGroup className="scroll">
                                             <ListGroupItem>Study for exam</ListGroupItem>
@@ -129,6 +194,7 @@ class Profile extends React.Component {
                                             </CardBody>
                                         </Card>
                                     </CardGroup>
+                                    <Button outline color="info" id="seeall" href="/reminder">See all decks</Button>
                                 </Row>
                             </Card>
                         </Col>
@@ -174,6 +240,7 @@ class Profile extends React.Component {
                                         </CardBody>
                                     </Card>
                                 </CardGroup>
+                                <Button outline color="info" id="seeall" href="/note">See all notes</Button>
                             </Card>
                         </Col>
                     </Row>

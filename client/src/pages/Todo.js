@@ -6,7 +6,6 @@ import axios from "axios";
 import moment from "moment";
 
 // Components
-import TimeDate from "../components/TimeDate";
 import Sidebar from "../components/Sidebar";
 
 // CSS
@@ -23,7 +22,8 @@ class Todo extends React.Component {
             modal: false,
             modalMode: "",
             validationClass: "novalidation",
-            backdrop: "static"
+            backdrop: "static",
+            time_date: moment().format("ddd, MMMM Do YYYY, h:mm:ss a")
         };
         this.toggle = this.toggle.bind(this);
     }
@@ -133,7 +133,7 @@ class Todo extends React.Component {
             this.setState({
                 modal: !this.state.modal,
             });
-            axios.put("/todos/" + this.state.itemId, {item: this.state.item})
+            axios.put("/todos/" + this.state.itemId, { item: this.state.item })
                 .then(res => {
                     if (res.data === true) {
                         console.log("Task was edited to '" + this.state.item + "'");
@@ -199,11 +199,12 @@ class Todo extends React.Component {
             <div className="container">
                 <Sidebar />
                 {modal}
-                <p className="time_date"><TimeDate /></p>
+                <p className="time_date">{this.state.time_date}</p>
                 <Card className="text-center">
                     <CardBody>
                         <CardTitle>To-do List</CardTitle>
                         <CardText>
+                            {/************* Test without backend *************/}
                             <ListGroup>
                                 <ListGroupItem>
                                     <span className="task">Example</span>
@@ -217,8 +218,8 @@ class Todo extends React.Component {
                                     </span>
                                 </ListGroupItem>
                             </ListGroup>
+                            {/************* Display Existing Tasks Start *************/}
                             <div>
-                                {/************* Display Existing Tasks *************/}
                                 {this.state.todos.map((item) => {
                                     return (
                                         <ListGroup>
@@ -237,6 +238,7 @@ class Todo extends React.Component {
                                     )
                                 })}
                             </div>
+                            {/************* Display Existing Tasks End *************/}
                         </CardText>
                         {/************* Create Task/Profile Buttons *************/}
                         <Button outline color="info" href="/profile">Back</Button>

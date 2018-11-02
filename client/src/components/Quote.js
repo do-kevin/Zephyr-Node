@@ -16,7 +16,7 @@ const Quote = () => {
   });
 
   return (
-    <p className="lead"> "{quote}" - {author} </p>
+    <p className="quote"> "{quote}" - {author} </p>
   )
 };
 

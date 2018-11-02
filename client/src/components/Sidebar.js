@@ -44,7 +44,7 @@ class Sidebar extends React.Component {
                 </a>
                 <ul className="collapse list-unstyled" id="flashcards-submenu">
                   <li>
-                    <a href="/decks">Decks</a>
+                    <a href="/deck">Decks</a>
                   </li>
                   <li>
                     <a href="">Cards</a>
