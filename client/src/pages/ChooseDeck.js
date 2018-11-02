@@ -22,6 +22,8 @@ class ChooseDeck extends React.Component {
       openCreate: false
     };
 
+    // 
+
     this.toggle = this.toggle.bind(this);
   }
 
