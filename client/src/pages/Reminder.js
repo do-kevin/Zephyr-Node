@@ -35,7 +35,8 @@ class Reminder extends React.Component {
             saveClicked: false,
             events: [],
             currentModal: "", 
-            editingObj: {}
+            editingObj: {}, 
+            userId: 1       //---------------userId-----------
         };
     
         this.toggle = this.toggle.bind(this);
@@ -47,8 +48,7 @@ class Reminder extends React.Component {
     }
     
     getReminders = () => {
-        //--------------------------get userId
-        axios.get("/reminders/1")
+        axios.get("/reminders/" + this.state.userId)
             .then (data => {
                 console.log(data.data);
                 this.setState({
@@ -71,8 +71,7 @@ class Reminder extends React.Component {
   }
 
   getReminders = () => {
-    //get userId
-    axios.get("/reminders/1").then(data => {
+    axios.get("/reminders/" + this.state.userId).then(data => {
       console.log(data.data);
       this.setState({
         events: data.data
@@ -151,7 +150,7 @@ class Reminder extends React.Component {
       note: this.state.note,
       date: moment(this.state.date).format("YYYY-MM-DD HH:mm"),
       sendAlert: this.state.sendReminder,
-      userId: 1 //*************replace with current user id*****************/
+      userId: this.state.userId
     };
     if (this.state.sendReminder) {
       eventObj.alertTime = this.state.alertTime;
@@ -220,13 +219,12 @@ class Reminder extends React.Component {
   //saves new event
   saveEvent = () => {
     if (this.state.item !== "") {
-      //*********************NEED USER ID****************
       let eventObj = {
         item: this.state.item,
         note: this.state.note,
         date: moment(this.state.date).format("YYYY-MM-DD HH:mm"),
         sendAlert: this.state.sendReminder,
-        userId: 1 //*************replace with current user id*****************/
+        userId: this.state.userId
       };
       if (this.state.sendReminder) {
         eventObj.alertTime = this.state.alertTime;
@@ -246,10 +244,10 @@ class Reminder extends React.Component {
           let obj = {
             date: eventDate,
             notification: this.state.alertTime,
-            message: `Upcoming event: ${this.state.item} on ${moment(
+            message: `You have an upcoming event: ${this.state.item} on ${moment(
               eventDate
             ).format("MMMM D")} at ${moment(eventDate).format("HH:mm")}`,
-            userId: 1,
+            userId: this.state.userId,
             type: "reminder",
             reminderId: data.data.id
           };

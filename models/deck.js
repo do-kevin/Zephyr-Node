@@ -41,6 +41,7 @@ module.exports = function (sequelize, DataTypes) {
                 foreignKey: "userId",
                 allowNull: false
             });
+
     };
     return Deck;
 }
