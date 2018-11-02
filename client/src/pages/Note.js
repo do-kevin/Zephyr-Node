@@ -6,7 +6,6 @@ import axios from "axios";
 import moment from "moment";
 
 // Components
-import TimeDate from "../components/TimeDate";
 import Sidebar from "../components/Sidebar";
 
 // CSS
@@ -20,7 +19,8 @@ class Note extends React.Component {
             note: "",
             noteId: 0,
             notes: [],
-            validationClass: "novalidation"
+            validationClass: "novalidation",
+            time_date: moment().format("ddd, MMMM Do YYYY, h:mm:ss a")
         };
     }
 
@@ -29,7 +29,7 @@ class Note extends React.Component {
             <div>
                 <Sidebar />
                 <h1>Notes</h1>
-                <p><TimeDate /></p>
+                <p>{this.state.time_date}</p>
             </div>
         )
     }

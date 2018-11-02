@@ -22,7 +22,7 @@ module.exports = (router) => {
     });
 
     // Retrieve all reminders on user id
-    router.get("/reminders/:id", (req, res) => {
+    router.get("/reminders/users/:id", (req, res) => {
         db.Reminder
             .findAll({
                 where: {
