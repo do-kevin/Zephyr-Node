@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Row, Col, Card, Button } from "reactstrap";
+import {Link} from "react-router-dom"
 
 // Components
 import Sidebar from "../components/Sidebar";
@@ -17,7 +18,7 @@ class ChooseDeck extends React.Component {
       openCreate: false,
       deckName: "",
       decks: [],
-      userId: 1
+      userId: JSON.parse(localStorage.getItem("user")).id
     };
 
     this.toggle = this.toggle.bind(this);
@@ -33,7 +34,7 @@ class ChooseDeck extends React.Component {
   getDecks = () => {
     axios.get("/decks/users/" + this.state.userId).then(response => {
       this.setState({
-        decks: [...response.data]
+        decks: response.data
       });
       this.getTags();
     });
@@ -69,27 +70,31 @@ class ChooseDeck extends React.Component {
     this.getDecks();
   }
 
+  deckIdSessionStorage = (id) =>{
+    sessionStorage.setItem("deckId", id);
+  }
+
   render() {
-    // console.log("=====test====");
+    console.log("deck: " + this.state.decks);
     let renderDecks = this.state.decks.map((item, index) => {
-      console.log("============")
-      console.log(typeof (item.tags))
+      // console.log("============")
+      // console.log(typeof (item.tags))
       console.log(item.tags)
 
       return (
         <Col>
+        
           <div className="decks decks-primary animated bounceIn">
             <Button color="danger" className="trash-btn" onClick={() => {this.deleteDeck(item.id)}}>
               <i className="fas fa-trash-alt" />
             </Button>
+            <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>
             <h1 className="deck-title text-center">{item.subject}</h1>
+            </Link>
             <hr />
             <div className="tags-box">
               <p>
-                {item.tags}
-
-                {/* {item.tags.map((elem) => {
-                  console.log(elem)
+                {/* {item.tags.map(elem => {
                   return(elem)
                 })} */}
               </p>

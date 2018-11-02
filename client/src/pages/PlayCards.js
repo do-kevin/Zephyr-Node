@@ -54,8 +54,8 @@ class PlayCards extends React.Component {
       phoneNumberSaved: false,
       phone: "",
       appts: [],
-      userId: 1, //-----------------------get userId
-      deckId: 1  //-----------------------get deckId
+      userId: JSON.parse(localStorage.getItem("user")).id, 
+      deckId: JSON.parse(sessionStorage.getItem('deckId'))
     };
 
     // this.refs.cardList;

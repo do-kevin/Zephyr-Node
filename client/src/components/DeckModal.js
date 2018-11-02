@@ -34,7 +34,7 @@ class DeckModal extends React.Component {
 
   getDeckInfo() {
     axios.get("/decks/1").then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
     })
   }
   
@@ -69,9 +69,9 @@ class DeckModal extends React.Component {
 
   componentDidMount() {
     this.getDeckInfo();
-    console.log("====props====")
-    console.log(this.props)
-    console.log("====props====")
+    // console.log("====props====")
+    // console.log(this.props)
+    // console.log("====props====")
 
     var { openCreate } = this.props;
 
@@ -81,7 +81,7 @@ class DeckModal extends React.Component {
   }
 
   render() {
-    console.log(this.state.deckName)
+    // console.log(this.state.deckName)
     return (
       <div>
         <Modal
