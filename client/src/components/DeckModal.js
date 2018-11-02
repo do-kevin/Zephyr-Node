@@ -18,7 +18,8 @@ class DeckModal extends React.Component {
     super(props);
     this.state = {
       deckName: "",
-      deckTags: ""
+      deckTags: "",
+      userId: 1
     };
   }
 
@@ -38,19 +39,39 @@ class DeckModal extends React.Component {
   }
   
   createTagsForDeck = () => {
-    let data = {
-      deckId: 1,
-      deckName: this.state.deckName,
-      deckTags: this.state.deckTags
-    }
 
-    axios.post("/tags/", data).then((response) => {
-      console.log(response)
+    let arr = [];
+
+
+    axios.post("/decks/" + this.state.userId, {subject: this.state.deckName}).then((response)=> {
+      console.log(response);
+
+      if (this.state.deckTags !== "") {
+        console.log("hithit")
+        arr = this.state.deckTags.split(" ");
+        arr.map((item) => {
+
+          let obj = { 
+            deckId: response.data.id,
+            tags: item
+          };
+
+          axios.post("/tags", obj).then((response) => {
+            console.log(response);
+          });
+          
+        })
+        this.props.toggle();
+        this.props.getDecks();
+      }
     });
   }
 
   componentDidMount() {
     this.getDeckInfo();
+    console.log("====props====")
+    console.log(this.props)
+    console.log("====props====")
 
     var { openCreate } = this.props;
 

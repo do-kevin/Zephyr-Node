@@ -1,16 +1,17 @@
 module.exports = function (sequelize, DataTypes) {
-    var Tags = sequelize.define("Tags", {
+    var Tag = sequelize.define("Tag", {
         tags: {
             type: DataTypes.STRING,
             allowNull: true
         }
     });
 
-    Tags.associate = function(models) {
-        Tags.belongsTo(models.Deck, {
-            foreignKey: "deckId"
+    Tag.associate = function(models) {
+        Tag.belongsTo(models.Deck, {
+            foreignKey: "deckId",
+            onDelete: "cascade"
         });
     };
 
-    return Tags;
+    return Tag;
 }
