@@ -250,7 +250,7 @@ class PlayCards extends React.Component {
             {this.state.flashcards.map((item, index) => {
               return (
                 <Col key={item.id}>
-                  <Card className="flashcard animated flipInX">
+                  <Card className="flashcard animated flip">
                     <Button
                       color="danger"
                       type="button"
@@ -289,7 +289,7 @@ class PlayCards extends React.Component {
           </Row>
           <Row>
             <Col>
-              <Card className="flashcard">
+              <Card className="flashcard animated bounceInUp">
                 <CardBody>
                   <CardTitle>
                     <label htmlFor="front">Question (front)</label>
