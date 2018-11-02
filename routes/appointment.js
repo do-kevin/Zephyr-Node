@@ -50,20 +50,20 @@ module.exports = (router) => {
                 res.status(404).json(err);
             });
     });
-    // Create appointment
-    router.post("/appointments/:userId", (req, res) => {
-        db.Appointment
-            .create({
-                ...req.body,
-                UserId: req.params.userId
-            })
-            .then((appointment) => {
-                res.status(200).json(appointment);
-            })
-            .catch((err) => {
-                res.status(404).json(err);
-            });
-    });
+    // // Create appointment
+    // router.post("/appointments/:userId", (req, res) => {
+    //     db.Appointment
+    //         .create({
+    //             ...req.body,
+    //             UserId: req.params.userId
+    //         })
+    //         .then((appointment) => {
+    //             res.status(200).json(appointment);
+    //         })
+    //         .catch((err) => {
+    //             res.status(404).json(err);
+    //         });
+    // });
     
     //  Update reminder appointment by id
     router.put("/appointments/reminders", (req, res) => {
@@ -101,4 +101,44 @@ module.exports = (router) => {
                 res.status(404).json(err);
             });
     });
+
+    // Delete daily quiz appointment by deckId and userId
+    router.delete("/appointments/decks/:deckId/:userId", (req, res) => {
+        console.log(req.body)
+        db.Appointment
+            .destroy({
+                where: {
+                    deckId: req.params.id,
+                    userId: req.params.userId
+                }
+            })
+            .then((appointment) => {
+                res.status(200).json(appointment);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+
+      // get appointments by deckId and userId
+      router.get("/appointments/decks/:id/:userId", (req, res) => {
+        console.log(req.body)
+        db.Appointment
+            .findAll({
+                where: {
+                    deckId: req.params.id,
+                    userId: req.params.userId
+                },
+                order: [
+                    ['date', 'ASC']
+                ]
+            })
+            .then((appointment) => {
+                res.status(200).json(appointment);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+
 };
