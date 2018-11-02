@@ -49,9 +49,10 @@ class Reminder extends React.Component {
     }
     
     getReminders = () => {
-        axios.get("/reminders/" + this.state.userId)
+      console.log(this.state.userId)
+        axios.get("/reminders/users/" + this.state.userId)
             .then (data => {
-                console.log(data.data);
+                console.log(data);
                 this.setState({
                     events: data.data
                 })
@@ -65,27 +66,6 @@ class Reminder extends React.Component {
         });
         this.clearModal();
     }
-
-  componentDidMount() {
-    console.log("start");
-    this.getReminders();
-  }
-
-  getReminders = () => {
-    axios.get("/reminders/" + this.state.userId).then(data => {
-      console.log(data.data);
-      this.setState({
-        events: data.data
-      });
-    });
-  };
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
-    this.clearModal();
-  }
 
   createEvent = () => {
     this.setState({ currentModal: "create" });
@@ -287,9 +267,9 @@ class Reminder extends React.Component {
 
   render() {
 
-    if (!this.props.user) {
-      return <Redirect to="/" />;
-    }
+    // if (!this.props.user) {
+    //   return <Redirect to="/" />;
+    // }
     
     //************buttons and onClick functions on the modal, depending on which button was clicked (create or edit event)
     let modalDisplay;

@@ -155,9 +155,9 @@ class Todo extends React.Component {
 
     render() {
 
-        if (this.props.user) {
-            return <Redirect to="/" />;
-        }
+        // if (this.props.user) {
+        //     return <Redirect to="/" />;
+        // }
         
         const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
         let modal;

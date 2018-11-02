@@ -1,4 +1,5 @@
 import React from "react";
+import {Link, Route} from "react-router-dom";
 
 // CSS
 import "../css/Sidebar.css";
@@ -28,41 +29,24 @@ class Sidebar extends React.Component {
           <div id="sidebar-wrapper">
             <ul className="sidebar-nav">
               <li className="sidebar-brand">
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/profile">Profile</a>
-              </li>
-              <li className="active">
-                <a
-                  href="#flashcards-submenu"
-                  data-toggle="collapse"
-                  aria-expanded="false"
-                  className="dropdown-toggle"
-                >
-                  Flashcards
-                </a>
-                <ul className="collapse list-unstyled" id="flashcards-submenu">
-                  <li>
-                    <a href="/deck">Decks</a>
-                  </li>
-                  <li>
-                    <a href="">Cards</a>
-                  </li>
-                </ul>
+                <Link to="/profile">Profile</Link>
               </li>
               <li>
-                <a href="/note">Notes</a>
+                <Link to="/choose">Decks</Link>
               </li>
               <li>
-                <a href="/reminder">Reminders</a>
+                <Link to="/note">Notes</Link>
               </li>
               <li>
-                <a href="/todo">To-Do</a>
+                <Link to="/reminder">Reminders</Link>
               </li>
               <li>
-                <a href="">Pomodoro Timer</a>
+                <Link to="/todo">To-Do</Link>
               </li>
+
               <li>
                 <button 
                   className="btn btn-danger"
@@ -73,14 +57,14 @@ class Sidebar extends React.Component {
                 </button>
               </li>
               <li>
-                <a
-                  href="#menu-toggle"
+                <Link
+                  to="#menu-toggle"
                   className="btn"
                   id="menu-toggle"
                   onClick={this.toggle}
                 >
                   <i className="far fa-times-circle"></i>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -98,14 +82,14 @@ class Sidebar extends React.Component {
           <div className="container-fluid">
             {/* Where we would insert our pages */}
 
-            <a
-              href="#menu-toggle"
+            <Link
+              to="#menu-toggle"
               className="btn btn-secondary"
               id="menu-toggle"
               onClick={this.toggle}
             >
               <i className="fas fa-bars"></i>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
