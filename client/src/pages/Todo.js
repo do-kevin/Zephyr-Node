@@ -239,8 +239,8 @@ class Todo extends React.Component {
                             </div>
                         </CardText>
                         {/************* Create Task/Profile Buttons *************/}
-                        <Button outline color="info" onClick={this.createToDo} name="create">New Task</Button>
                         <Button outline color="info" href="/profile">Back</Button>
+                        <Button outline color="info" onClick={this.createToDo} name="create">New Task</Button>
                     </CardBody>
                 </Card>
             </div>

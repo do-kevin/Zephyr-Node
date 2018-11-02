@@ -8,11 +8,11 @@ const Quote = () => {
   let author = "Anonymous";
 
   axios.get(
-    // `/api/...`
+    // `/quotes/...`
   ).then((res) => {
     var random = Math.floor(Math.random() * 30) + 1;
-    quote = res.quote[random];
-    author = res.author[random];
+    quote = res[random].quote;
+    author = res[random].author;
   });
 
   return (

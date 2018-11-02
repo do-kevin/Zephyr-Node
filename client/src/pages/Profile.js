@@ -12,6 +12,16 @@ import Sidebar from "../components/Sidebar";
 import "../css/Profile.css";
 
 class Profile extends React.Component {
+
+    // ************** edit with sessionStorage
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "jiraiya",
+            userId: 0
+        };
+    }
+
     render() {
         return (
             <div>
@@ -21,7 +31,8 @@ class Profile extends React.Component {
                         <Col>
                             <Jumbotron className="profile animated fadeIn">
                                 <Container>
-                                    <h1 className="display-4">Hello, <span id="username">[insert username here]</span>!</h1>
+                                    {/* add username using session storage */}
+                                    <h1 className="display-4">Hello, <span id="username">{this.state.username}</span>!</h1>
                                     <br />
                                     <Quote />
                                     <hr className="my-2" />
@@ -42,7 +53,7 @@ class Profile extends React.Component {
                                             <ListGroupItem>Homework 2 11/21/18 2:00pm</ListGroupItem>                                            <ListGroupItem>Midterm 11/21/18 2:00pm</ListGroupItem>
                                         </ListGroup>
                                     </CardText>
-                                    <Button outline color="info" id="reminder">Add</Button>
+                                    <Button outline color="info" id="reminder" href="/reminder">See more</Button>
                                 </CardBody>
                             </Card>
                         </Col>
