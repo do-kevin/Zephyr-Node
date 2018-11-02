@@ -61,6 +61,7 @@ class PlayCards extends React.Component {
     this.getDeckInfo();
     this.getUserInfo();
     this.getDeckAppts();
+    console.log(this.props.user)
   }
 
   getFlashcards = () => {
