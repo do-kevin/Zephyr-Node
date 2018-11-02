@@ -3,11 +3,7 @@ import {
   Row,
   Col,
   Card,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
+  Button
 } from "reactstrap";
 
 // Components
