@@ -49,12 +49,7 @@ class Reminder extends React.Component {
     }
     
     getReminders = () => {
-<<<<<<< HEAD
         axios.get("/reminders/" + this.state.userId)
-=======
-        //--------------------------get userId
-        axios.get("/reminders/users/1")
->>>>>>> notepage
             .then (data => {
                 console.log(data.data);
                 this.setState({
