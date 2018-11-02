@@ -22,7 +22,6 @@ class Todo extends React.Component {
             todos: [],
             modal: false,
             modalMode: "",
-            needValidation: false,
             validationClass: "novalidation",
             backdrop: "static"
         };
@@ -44,7 +43,7 @@ class Todo extends React.Component {
     }
 
     // get to-do's from database to display onto the page
-    // ------ get userID from session storage ------
+    // ************ get userID from session storage
     getTodos = () => {
         axios.get("/todos/users/1")
             .then(res => {
@@ -57,7 +56,7 @@ class Todo extends React.Component {
 
     // delete task from db when task is completed
     completeToDo = (id) => {
-        console.log("Attempt to complete a task");
+        console.log("Attempt to complete a task.");
         axios.delete("/todos/" + id)
             .then(res => {
                 console.log(res)
@@ -95,7 +94,6 @@ class Todo extends React.Component {
         if (this.state.item !== "") {
             this.setState({
                 modal: !this.state.modal,
-                needValidation: false
             });
             let toDoObj = {
                 item: this.state.item,
@@ -122,7 +120,6 @@ class Todo extends React.Component {
         else {
             console.log("Invalid new task input.")
             this.setState({
-                needValidation: true,
                 validationClass: "validation"
             })
         }
@@ -135,7 +132,6 @@ class Todo extends React.Component {
         if (this.state.item !== "") {
             this.setState({
                 modal: !this.state.modal,
-                needValidation: false
             });
             axios.put("/todos/" + this.state.itemId, {item: this.state.item})
                 .then(res => {
@@ -151,7 +147,6 @@ class Todo extends React.Component {
         else {
             console.log("Invalid edit.")
             this.setState({
-                needValidation: true,
                 validationClass: "validation"
             })
         }
@@ -161,7 +156,6 @@ class Todo extends React.Component {
 
         const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
         let modal;
-        let validation;
 
         // modal to create a new task
         if (this.state.modal === true && this.state.modalMode === "create") {
@@ -217,7 +211,7 @@ class Todo extends React.Component {
                                         <Button outline color="info" onClick={this.editToDo} name="edit">
                                             <i className="material-icons">edit</i>
                                         </Button>
-                                        <Button outline color="info" onClick={() => this.completeTodo} name="complete">
+                                        <Button outline color="info" onClick={() => this.completeToDo(this.state.itemId)} name="complete">
                                             <i className="material-icons">done</i>
                                         </Button>
                                     </span>
