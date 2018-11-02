@@ -47,6 +47,7 @@ module.exports = function (sequelize, DataTypes) {
                 onDelete: "cascade",
                 allowNull: false
             });
+
     };
     return Deck;
 }

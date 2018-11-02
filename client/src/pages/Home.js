@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 
 // Components
 import Search from "../components/Search";
@@ -9,11 +10,15 @@ import "../css/Home.css";
 
 class Home extends React.Component {
   render() {
+    if (this.props.user) {
+      return <Redirect to="/profile" />
+    }
+
     return (
       <div>
         <nav className="navbar justify-content-between">
         <h1>App Name</h1>
-          <Login />
+          <Login handleUserLogin={this.props.handleUserLogin} />
         </nav>
         <div className="jumbotron banner-image animated fadeIn">
           <div className="banner-text">

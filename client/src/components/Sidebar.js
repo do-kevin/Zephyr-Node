@@ -52,7 +52,7 @@ class Sidebar extends React.Component {
                 </ul>
               </li>
               <li>
-                <a href="">Notes</a>
+                <a href="/note">Notes</a>
               </li>
               <li>
                 <a href="/reminder">Reminders</a>
@@ -62,6 +62,15 @@ class Sidebar extends React.Component {
               </li>
               <li>
                 <a href="">Pomodoro Timer</a>
+              </li>
+              <li>
+                <button 
+                  className="btn btn-danger"
+                  type="button"
+                  onClick={this.props.handleUserLogout}
+                >
+                  Logout
+                </button>
               </li>
               <li>
                 <a

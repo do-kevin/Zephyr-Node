@@ -14,3 +14,12 @@
     float:left;
     padding-top: 10px;
 }
+
+.validation {
+    color: red;
+    visibility: visible;
+}
+
+.novalidation {
+    visibility: hidden;
+}
