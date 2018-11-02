@@ -8,16 +8,28 @@ import {
   Form,
   FormGroup,
   Label,
-  Input,
-  FormText
+  Input
 } from "reactstrap";
-import { object } from "twilio/lib/base/serialize";
 
 class DeckModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      deckName: "",
+      deckTags: ""
+    };
   }
+
+  // handleName & handleTags cannot read property of undefn.
+  handleName(event) {
+    this.setState({deckName: event.target.value});
+    console.log(this.state.deckName);
+  } 
+
+  handleTags(event) {
+    this.setState({deckTags: event.target.value});
+    console.log(this.state.deckTags);
+  } 
 
   componentDidMount() {
     var { openCreate } = this.props;
@@ -36,16 +48,15 @@ class DeckModal extends React.Component {
           className={this.props.className}
         >
           <ModalHeader toggle={this.props.toggle}>Create Deck</ModalHeader>
-          <ModalBody 
-            style={{margin: "0 2% 0 5%"}}>
+          <ModalBody style={{ margin: "0 2% 0 5%" }}>
             <Form>
               <FormGroup>
                 <Label for="deckname">Deck Name:</Label>
-                <Input
-                  type="text"
-                  name="deckname"
-                  id="deckname"
-                />
+                <Input type="text" name="deckname" id="deckname" onChange={this.handleName}/>
+              </FormGroup>
+              <FormGroup>
+                <Label for="decktags">Tags:</Label>
+                <Input type="text" name="decktags" id="decktags" onChange={this.handleTags}/>
               </FormGroup>
             </Form>
           </ModalBody>
