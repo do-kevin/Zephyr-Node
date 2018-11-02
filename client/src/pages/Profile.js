@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 import {
     Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardGroup, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
 } from 'reactstrap';
@@ -23,9 +24,13 @@ class Profile extends React.Component {
     }
 
     render() {
+        if (!this.props.user) {
+            return <Redirect to="/" />;
+        }
+
         return (
             <div>
-                <Sidebar />
+                <Sidebar handleUserLogout={this.props.handleUserLogout} />
                 <Container className="text-center">
                     <Row>
                         <Col>

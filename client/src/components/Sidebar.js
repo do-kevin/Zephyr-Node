@@ -64,6 +64,15 @@ class Sidebar extends React.Component {
                 <a href="">Pomodoro Timer</a>
               </li>
               <li>
+                <button 
+                  className="btn btn-danger"
+                  type="button"
+                  onClick={this.props.handleUserLogout}
+                >
+                  Logout
+                </button>
+              </li>
+              <li>
                 <a
                   href="#menu-toggle"
                   className="btn"

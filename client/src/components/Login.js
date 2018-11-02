@@ -73,7 +73,9 @@ class Login extends React.Component {
         password: "",
         passwordCheck: ""
       }));
+      // TEST:
       console.log(user);
+      this.props.handleUserLogin(user);
     })
     .catch((err) => {
       console.log(err);
@@ -97,7 +99,9 @@ class Login extends React.Component {
         username: "",
         password: ""
       }));
+      // TEST:
       console.log(user);
+      this.props.handleUserLogin(user);
     })
     .catch((err) => {
       console.log(err);

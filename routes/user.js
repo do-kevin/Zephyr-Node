@@ -11,11 +11,11 @@ const db = require("../models");
 module.exports = (router) => {
     // Log user out on user id
     router.get("/users/logout", (req, res) => {
-        if (req.session.user && req.cookies.user_sid) {
+        if (req.session.userId && req.cookies.user_sid) {
             res.clearCookie('user_sid');
-            res.status(200);
+            res.status(200).json({cookie: false});
         } else {
-            res.status(404);
+            res.status(404).json({cookie: true});
         }
     });
     // Retrieve specific user at login
@@ -26,9 +26,10 @@ module.exports = (router) => {
                 where: {username, password}
             })
             .then((user) => {
-                const {dataValues: userData} = user;
-                req.session.user = userData;
-                res.status(200).json(userData);
+                const {dataValues: userData} = user,
+                    {id, name, username} = userData;
+                req.session.userId = id;
+                res.status(200).json({id, name, username});
             })
             .catch((err) => {
                 res.status(404).json(err);
@@ -39,9 +40,10 @@ module.exports = (router) => {
         db.User
             .create(req.body)
             .then((user) => {
-                const {dataValues: userData} = user;
-                req.session.user = userData;
-                res.status(200).json(userData);
+                const {dataValues: userData} = user,
+                    {id, name, username} = userData;
+                req.session.userId = id;
+                res.status(200).json({id, name, username});
             })
             .catch((err) => {
                 res.status(404).json(err);

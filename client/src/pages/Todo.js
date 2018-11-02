@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 import {
     Card, CardBody, CardTitle, CardText, Button, ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Form, Input
 } from 'reactstrap';
@@ -154,6 +155,10 @@ class Todo extends React.Component {
 
     render() {
 
+        if (this.props.user) {
+            return <Redirect to="/" />;
+        }
+        
         const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
         let modal;
 
@@ -197,7 +202,7 @@ class Todo extends React.Component {
 
         return (
             <div className="container">
-                <Sidebar />
+                <Sidebar handleUserLogout={this.props.handleUserLogout} />
                 {modal}
                 <p className="time_date"><TimeDate /></p>
                 <Card className="text-center">

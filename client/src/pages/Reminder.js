@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 
@@ -285,6 +286,11 @@ class Reminder extends React.Component {
   };
 
   render() {
+
+    if (!this.props.user) {
+      return <Redirect to="/" />;
+    }
+    
     //************buttons and onClick functions on the modal, depending on which button was clicked (create or edit event)
     let modalDisplay;
     if (this.state.modal && this.state.currentModal === "create") {
@@ -379,7 +385,7 @@ class Reminder extends React.Component {
 
     return (
       <div>
-        <Sidebar />
+        <Sidebar handleUserLogout={this.props.handleUserLogout} />
 
         <div 
             className="container">
