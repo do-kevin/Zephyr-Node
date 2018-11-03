@@ -24,7 +24,7 @@ class Profile extends React.Component {
         super(props);
         this.state = {
             // name: "Jiraiya",
-            // id: 1,
+            id: JSON.parse(localStorage.getItem("user")).id,
             time_date: moment().format("ddd, MMMM Do YYYY, h:mm:ss a"),
             reminders: [], // arrays of objects
             todos: [],
@@ -48,7 +48,7 @@ class Profile extends React.Component {
     // request data from the database; save response into this.state
 
     getReminders = () => {
-        let id = this.props.user.id;
+        let id = JSON.parse(localStorage.getItem("user")).id;
         axios.get("/reminders/users/" + id)
             .then(res => {
                 console.log(res.data);
@@ -59,7 +59,7 @@ class Profile extends React.Component {
     };
 
     getToDos = () => {
-        let id = this.props.user.id;
+        let id = JSON.parse(localStorage.getItem("user")).id;
         axios.get("/todos/users/" + id)
             .then(res => {
                 console.log(res.data);
@@ -70,7 +70,7 @@ class Profile extends React.Component {
     };
 
     getDecks = () => {
-        let id = this.props.user.id;
+        let id = JSON.parse(localStorage.getItem("user")).id;
         axios.get("/decks/users/" + id)
             .then(res => {
                 console.log(res.data);
@@ -81,7 +81,7 @@ class Profile extends React.Component {
     };
 
     getNotes = () => {
-        let id = this.props.user.id;
+        let id = JSON.parse(localStorage.getItem("user")).id;
         axios.get("/notes/users/" + id)
             .then(res => {
                 console.log(res.data);
@@ -104,7 +104,7 @@ class Profile extends React.Component {
                         <Col>
                             <Jumbotron className="profile animated fadeIn">
                                 <Container>
-                                    <h1 className="display-4">Hello, <span id="username">{this.props.user.name}</span>!</h1>
+                                    <h1 className="display-4">Hello, <span id="username">{JSON.parse(localStorage.getItem("user")).name}</span>!</h1>
                                     <br />
                                     <Quote />
                                     <hr className="my-2" />
