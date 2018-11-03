@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from "react-router-dom"; 
 import axios from "axios";
 import { Row, Col, Card, Button } from "reactstrap";
 
@@ -70,6 +71,10 @@ class ChooseDeck extends React.Component {
   }
 
   render() {
+    if (!this.props.user) {
+      return <Redirect to="/" />;
+    }
+    
     // console.log("=====test====");
     let renderDecks = this.state.decks.map((item, index) => {
       console.log("============")
@@ -101,7 +106,7 @@ class ChooseDeck extends React.Component {
 
     return (
       <div>
-        <Sidebar />
+        <Sidebar handleUserLogout={this.props.handleUserLogout} />
         <Search />
         <div id="deck-list">
           <div className="row">
