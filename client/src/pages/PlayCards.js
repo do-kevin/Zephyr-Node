@@ -368,9 +368,9 @@ class PlayCards extends React.Component {
 
   render() {
 
-    // if (!this.props.user) {
-    //   return <Redirect to="/" />;
-    // }
+    if (!this.props.user) {
+      return <Redirect to="/" />;
+    }
 
     //============== Card Stack==============//
     const edit = this.state.edit;

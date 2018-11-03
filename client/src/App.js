@@ -51,6 +51,10 @@ class App extends Component {
   }
 
   handleUserLogout() {
+    // FIXME:
+    console.log("User Id:", this.state.user.id);
+    console.log("User Name:", this.state.user.name);
+    console.log("Username:", this.state.user.username);
     axios({
       url: "/users/logout",
       method: "GET"
@@ -58,6 +62,7 @@ class App extends Component {
     .then(() => {
       document.body.style.marginLeft = "0px";
       this.setState(() => ({user: null}));
+      console.log(this.state.user);
     })
     .catch((err) => {
       console.log(err);

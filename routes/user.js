@@ -11,15 +11,17 @@ const db = require("../models");
 module.exports = (router) => {
     // Log user out on user id
     router.get("/users/logout", (req, res) => {
-        if (req.session.userId && req.cookies.user_sid) {
-            res.clearCookie('user_sid');
-            res.status(200).json({cookie: false});
-        } else {
-            res.status(404).json({cookie: true});
-        }
+        // FIXME:
+        console.log("------------------------------------------------------------");
+        console.log("Session User Id:", req.session.userId);
+        console.log("Request Cookies:", req.cookies);
+        res.clearCookie('user_sid');
+        req.session.destroy();
+        res.status(200).json({cookie: false});
     });
     // Retrieve specific user at login
     router.post("/users/login", (req, res) => {
+        // FIXME:
         const {username, password} = req.body;
         db.User
             .findOne({
@@ -28,6 +30,8 @@ module.exports = (router) => {
             .then((user) => {
                 const {dataValues: userData} = user,
                     {id, name, username} = userData;
+                console.log("------------------------------------------------------------");
+                console.log("User Data:", userData);
                 req.session.userId = id;
                 res.status(200).json({id, name, username});
             })
@@ -37,11 +41,14 @@ module.exports = (router) => {
     });
     // Create user for sign up
     router.post("/users/signUp", (req, res) => {
+        // FIXME:
         db.User
             .create(req.body)
             .then((user) => {
                 const {dataValues: userData} = user,
                     {id, name, username} = userData;
+                console.log("------------------------------------------------------------");
+                console.log("User Data:", userData);
                 req.session.userId = id;
                 res.status(200).json({id, name, username});
             })

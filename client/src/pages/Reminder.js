@@ -267,9 +267,9 @@ class Reminder extends React.Component {
 
   render() {
 
-    // if (!this.props.user) {
-    //   return <Redirect to="/" />;
-    // }
+    if (!this.props.user) {
+      return <Redirect to="/" />;
+    }
     
     //************buttons and onClick functions on the modal, depending on which button was clicked (create or edit event)
     let modalDisplay;

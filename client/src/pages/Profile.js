@@ -92,9 +92,9 @@ class Profile extends React.Component {
     };
 
     render() {
-        // if (!this.props.user) {
-        //     return <Redirect to="/" />;
-        // }
+        if (!this.props.user) {
+            return <Redirect to="/" />;
+        }
 
         return (
             <div>

@@ -11,7 +11,7 @@ const express = require("express"),
 
 const db = require("./models"),
   router = require("./routes"),
-  {handleCookieSessionCheck, sessionCheckerHome, sessionCheckerAway} = require("./helpers/middleware");
+  {handleCookieSessionCheck} = require("./helpers/middleware");
 
 // Setup ---------------------------------------- /
 
