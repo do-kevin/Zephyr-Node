@@ -1,14 +1,14 @@
 module.exports = function (sequelize, DataTypes) {
     var Flashcard = sequelize.define("Flashcard", {
         front: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
         back: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
             validate: {
                 len: [1]
