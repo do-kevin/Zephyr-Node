@@ -3,12 +3,14 @@
   margin-left: 76%;
   margin-right: 76%;
   overflow-y: auto;
+  word-wrap: break-word;
 }
 
 .flippy-back {
     margin-left: 74%;
     margin-right: 74%;
     overflow-y: auto;
+    word-wrap: break-word;
 }
 
 div.slider {
