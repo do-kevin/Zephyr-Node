@@ -3,7 +3,7 @@
 // Flashcards --> Decks --> Cards
 
 import React from "react";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
@@ -54,8 +54,8 @@ class PlayCards extends React.Component {
       phoneNumberSaved: false,
       phone: "",
       appts: [],
-      userId: JSON.parse(localStorage.getItem("user")).id, 
-      deckId: JSON.parse(sessionStorage.getItem('deckId'))
+      userId: JSON.parse(localStorage.getItem("user")).id,
+      deckId: JSON.parse(sessionStorage.getItem("deckId"))
     };
 
     // this.refs.cardList;
@@ -68,55 +68,53 @@ class PlayCards extends React.Component {
     this.getDeckInfo();
     this.getUserInfo();
     this.getDeckAppts();
-    console.log(this.props.user)
+    console.log(this.props.user);
   }
 
   getFlashcards = () => {
-    axios.get("/flashcard/" + this.state.deckId)
-      .then(data => {
-        console.log(data.data);
-        this.setState({
-          flashcards: [...data.data],
-          prevFlashcards: [...data.data]
-        })
-      })
-  }
+    axios.get("/flashcard/" + this.state.deckId).then(data => {
+      console.log(data.data);
+      this.setState({
+        flashcards: [...data.data],
+        prevFlashcards: [...data.data]
+      });
+    });
+  };
 
   getDeckInfo = () => {
-    axios.get("/decks/" + this.state.deckId)
-      .then(data => {
-        // console.log(data.data)
-        this.setState({
-          deckName: data.data.subject,
-          privacy: data.data.private,
-          sendAlert: data.data.dailyQuiz,
-          alertTime: data.data.time,
-          timeInterval: data.data.alertInterval,
-          deck: {...data.data}
-        })
-      })
+    axios.get("/decks/" + this.state.deckId).then(data => {
+      // console.log(data.data)
+      this.setState({
+        deckName: data.data.subject,
+        privacy: data.data.private,
+        sendAlert: data.data.dailyQuiz,
+        alertTime: data.data.time,
+        timeInterval: data.data.alertInterval,
+        deck: { ...data.data }
+      });
+    });
   };
 
   getUserInfo = () => {
-    axios.get("/user/" + this.state.userId)
-      .then(data => {
-        if(data.data[0].phoneNumber !== null) {
-          this.setState({
-            phoneNumberSaved: true
-          })
-        }
-      })
+    axios.get("/user/" + this.state.userId).then(data => {
+      if (data.data[0].phoneNumber !== null) {
+        this.setState({
+          phoneNumberSaved: true
+        });
+      }
+    });
   };
 
   getDeckAppts = () => {
-    axios.get(`/appointments/decks/${this.state.deckId}/${this.state.userId}`)
+    axios
+      .get(`/appointments/decks/${this.state.deckId}/${this.state.userId}`)
       .then(data => {
         console.log(data.data);
         this.setState({
           appts: [...data.data]
-        })
-      })
-  }
+        });
+      });
+  };
 
   deleteFlashcard = id => {
     axios.delete("/flashcards/" + id).then(data => {
@@ -130,83 +128,93 @@ class PlayCards extends React.Component {
       front: this.state.front,
       back: this.state.back,
       deckId: this.state.deckId
-    }
+    };
 
-    axios.post("/flashcard", obj)
-      .then(data => {
-        console.log(data)
+    axios.post("/flashcard", obj).then(data => {
+      console.log(data);
 
-        if(this.state.sendAlert) {
-          let obj1 = {
-            date: moment(this.state.appts[this.state.appts.length-2].date).add(1, "days").format("YYYY-MM-DD HH:mm"),
-            notification: 0,
-            message: "Daily question: " + obj.front,
-            userId: this.state.userId,
-            type: "deck",
-            deckId: this.state.deckId
-          };
-          let obj2 = {
-            date: moment(obj1.date).add(this.state.timeInterval, "minutes").format("YYYY-MM-DD HH:mm"),
-            notification: 0,
-            message: "Answer: " + obj.back,
-            userId: this.state.userId,
-            type: "deck",
-            deckId: this.state.deckId
-          }
+      if (this.state.sendAlert) {
+        let obj1 = {
+          date: moment(this.state.appts[this.state.appts.length - 2].date)
+            .add(1, "days")
+            .format("YYYY-MM-DD HH:mm"),
+          notification: 0,
+          message: "Daily question: " + obj.front,
+          userId: this.state.userId,
+          type: "deck",
+          deckId: this.state.deckId
+        };
+        let obj2 = {
+          date: moment(obj1.date)
+            .add(this.state.timeInterval, "minutes")
+            .format("YYYY-MM-DD HH:mm"),
+          notification: 0,
+          message: "Answer: " + obj.back,
+          userId: this.state.userId,
+          type: "deck",
+          deckId: this.state.deckId
+        };
 
-          axios.post("/appointment", obj1)
-            .then(data => {
-              axios.post("/appointment", obj2)
-              .then(data => {
-                // console.log(data)
-                this.getDeckAppts()
-              })
-            })
-        }
+        axios.post("/appointment", obj1).then(data => {
+          axios.post("/appointment", obj2).then(data => {
+            // console.log(data)
+            this.getDeckAppts();
+          });
+        });
+      }
 
-        this.setState({
-          front: "", 
-          back: ""
-        })
+      this.setState({
+        front: "",
+        back: ""
+      });
 
-        this.getFlashcards()
-      })
+      this.getFlashcards();
+    });
   };
 
   saveFlashcardChanges = (id, index) => {
     let obj = {};
     let findObj = {};
 
-    if((this.state.flashcards[index].front !== this.state.prevFlashcards[index].front) &&
-      (this.state.flashcards[index].front !== this.state.prevFlashcards[index].front)) {
-        obj = {
-          front: this.state.flashcards[index].front,
-          back: this.state.flashcards[index].back,
-        }
-        findObj = {
-          front: this.state.prevFlashcards[index].front
-        }
-    } else if (this.state.flashcards[index].front !== this.state.prevFlashcards[index].front) {
+    if (
+      this.state.flashcards[index].front !==
+        this.state.prevFlashcards[index].front &&
+      this.state.flashcards[index].front !==
+        this.state.prevFlashcards[index].front
+    ) {
       obj = {
-        front: this.state.flashcards[index].front
-      }
-      findObj = {
-        front: this.state.prevFlashcards[index].back
-      }
-    } else if (this.state.flashcards[index].back !== this.state.prevFlashcards[index].back) {
-      obj = {
-        front: this.state.flashcards[index].back
-      }
+        front: this.state.flashcards[index].front,
+        back: this.state.flashcards[index].back
+      };
       findObj = {
         front: this.state.prevFlashcards[index].front
-      }
+      };
+    } else if (
+      this.state.flashcards[index].front !==
+      this.state.prevFlashcards[index].front
+    ) {
+      obj = {
+        front: this.state.flashcards[index].front
+      };
+      findObj = {
+        front: this.state.prevFlashcards[index].back
+      };
+    } else if (
+      this.state.flashcards[index].back !==
+      this.state.prevFlashcards[index].back
+    ) {
+      obj = {
+        front: this.state.flashcards[index].back
+      };
+      findObj = {
+        front: this.state.prevFlashcards[index].front
+      };
     }
 
-    axios.put("/flashcard/" + id, obj)
-      .then(data => {
-        console.log(data);
-        this.getFlashcards();
-      })
+    axios.put("/flashcard/" + id, obj).then(data => {
+      console.log(data);
+      this.getFlashcards();
+    });
   };
 
   //deck settings
@@ -216,43 +224,43 @@ class PlayCards extends React.Component {
       dailyQuiz: this.state.sendAlert,
       time: this.state.alertTime,
       alertInterval: this.state.timeInterval
-    }
+    };
 
-    axios.put("/decks/" + this.state.deckId, obj)
-      .then(data => {
-        // console.log(data);
-        this.toggleSettings()
-        console.log(obj.dailyQuiz)
-        console.log(this.state.deck.dailyQuiz)
+    axios.put("/decks/" + this.state.deckId, obj).then(data => {
+      // console.log(data);
+      this.toggleSettings();
+      console.log(obj.dailyQuiz);
+      console.log(this.state.deck.dailyQuiz);
 
-        //create appointment if user chooses to get daily questions
-        if(obj.dailyQuiz === true && this.state.deck.dailyQuiz === false) {
-          this.createAppointments();
-        }
-        //else delete appointments (if alerts were updated, they will be deleted and created again)
-        else {
-          axios.delete(`/appointments/decks/${this.state.deckId}/${this.state.userId}`)
+      //create appointment if user chooses to get daily questions
+      if (obj.dailyQuiz === true && this.state.deck.dailyQuiz === false) {
+        this.createAppointments();
+      }
+      //else delete appointments (if alerts were updated, they will be deleted and created again)
+      else {
+        axios
+          .delete(
+            `/appointments/decks/${this.state.deckId}/${this.state.userId}`
+          )
           .then(() => {
             this.getDeckAppts();
             if (obj.dailyQuiz) {
               this.createAppointments();
-
             }
           });
-        }
+      }
 
-        if(!this.state.phoneNumberSaved && this.state.phone !== "") {
-          let phoneObj = {
-            phoneNumber: this.state.phone.replace(/\D/g, '')
-          }
-          axios.put("/users/" + this.state.userId, phoneObj)
-            .then(data => {
-              console.log(data)
-            })
-        }
-      })
+      if (!this.state.phoneNumberSaved && this.state.phone !== "") {
+        let phoneObj = {
+          phoneNumber: this.state.phone.replace(/\D/g, "")
+        };
+        axios.put("/users/" + this.state.userId, phoneObj).then(data => {
+          console.log(data);
+        });
+      }
+    });
   };
-  
+
   // getDeckSettings = () => {
   //   this.toggleSettings()
 
@@ -269,7 +277,7 @@ class PlayCards extends React.Component {
   // };
 
   createAppointments = () => {
-    console.log("creating appts")
+    console.log("creating appts");
     this.state.flashcards.map((item, index) => {
       let eventDate = moment(this.state.alertTime, "HH:mm")
         .add(index, "days")
@@ -281,20 +289,21 @@ class PlayCards extends React.Component {
         userId: this.state.userId,
         type: "deck",
         deckId: this.state.deckId
-      }
-      axios.post("/appointment", obj)
-        .then(data => {
+      };
+      axios.post("/appointment", obj).then(data => {
+        // console.log(data);
+        obj.date = moment(this.state.alertTime, "HH:mm")
+          .add(index, "days")
+          .add(this.state.timeInterval, "minutes")
+          .format("YYYY-MM-DD HH:mm");
+        obj.message = "Answer: " + item.back;
+        axios.post("/appointment", obj).then(data => {
           // console.log(data);
-          obj.date = moment(this.state.alertTime,"HH:mm").add(index, "days").add(this.state.timeInterval,"minutes").format("YYYY-MM-DD HH:mm")
-          obj.message = "Answer: " + item.back;
-          axios.post("/appointment", obj)
-            .then(data => {
-              // console.log(data);
-              this.getDeckAppts();
-            })
-        })
-    })
-  }
+          this.getDeckAppts();
+        });
+      });
+    });
+  };
 
   handleFrontInputChange = event => {
     this.setState({
@@ -344,15 +353,15 @@ class PlayCards extends React.Component {
   handleSelectChange = event => {
     this.setState({
       timeInterval: event.target.value
-    })
+    });
   };
 
-  handlePhoneChange = (event) => {
+  handlePhoneChange = event => {
     // console.log(event.target.value.replace(/\D/g, ''))
     this.setState({
       phone: event.target.value
-    })
-  }
+    });
+  };
 
   toggle() {
     this.setState({
@@ -367,7 +376,6 @@ class PlayCards extends React.Component {
   }
 
   render() {
-
     // if (!this.props.user) {
     //   return <Redirect to="/" />;
     // }
@@ -480,21 +488,25 @@ class PlayCards extends React.Component {
 
     //========== request phone number if alert are turned on ========//
     let phoneRequest;
-    if(!this.state.phoneNumberSaved && this.state.sendAlert) {
-      phoneRequest = 
-      <Row style={{ margin: "auto" }}>
-        <Col>
-          <label>Enter Phone Number:</label>
-        </Col>
-        <Col>
-          <input type="tel" className="phone-input" value={this.state.phone} onChange={this.handlePhoneChange} />
-        </Col>
-      </Row>
-    }
-    else {
+    if (!this.state.phoneNumberSaved && this.state.sendAlert) {
+      phoneRequest = (
+        <Row style={{ margin: "auto" }}>
+          <Col>
+            <label>Enter Phone Number:</label>
+          </Col>
+          <Col>
+            <input
+              type="tel"
+              className="phone-input"
+              value={this.state.phone}
+              onChange={this.handlePhoneChange}
+            />
+          </Col>
+        </Row>
+      );
+    } else {
       phoneRequest = "";
     }
-
 
     //============== Deck Settings ==============//
 
@@ -588,7 +600,7 @@ class PlayCards extends React.Component {
                 </Col>
               </Row>
               {phoneRequest}
-              <hr></hr>
+              <hr />
               <Row>
                 <Button color="primary" onClick={this.saveSettings}>
                   Save Changes
@@ -603,7 +615,6 @@ class PlayCards extends React.Component {
       );
     }
 
-    
     return (
       <div>
         <Sidebar handleUserLogout={this.props.handleUserLogout} />
@@ -636,12 +647,18 @@ class PlayCards extends React.Component {
           })}
         </Carousel>
         <div id="edit-btns">
-          <Button color="primary" id="edit-deck-btn" onClick={this.toggle}>
-            Edit
-          </Button>
-          <Button id="settings-btn" color="dark" onClick={this.toggleSettings}>
-            <i className="fas fa-cogs" />
-          </Button>
+          <ButtonGroup>
+            <Button color="primary" id="edit-deck-btn" onClick={this.toggle}>
+              Edit
+            </Button>
+            <Button
+              id="settings-btn"
+              color="dark"
+              onClick={this.toggleSettings}
+            >
+              <i className="fas fa-cogs" />
+            </Button>
+          </ButtonGroup>
         </div>
         {showCardStack}
         {modal}
