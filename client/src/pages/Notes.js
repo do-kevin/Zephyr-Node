@@ -1,6 +1,6 @@
 import React from "react";
 import ReactQuill from "react-quill";
-import moment from "moment";
+import axios from "axios";
 
 // Components
 import Sidebar from "../components/Sidebar";
@@ -13,22 +13,49 @@ class Note extends React.Component {
     super(props);
     this.state = {
       note: "",
-      time_date: moment().format("ddd, MMMM Do YYYY, h:mm:ss a")
+      userId: JSON.parse(localStorage.getItem("user")).id
     };
     this.handleChange = this.handleChange.bind(this);
   }
+
+  modules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image'],
+      ['clean']
+    ],
+  }
+
+  formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image'
+  ]
 
   handleChange(value) {
     this.setState({ note: value });
   }
 
+  componentDidMount() {
+
+  }
+
   render() {
+    if (this.state.note !== null) {
+        console.log(this.state.note)
+    }
+
     return (
       <div>
         <Sidebar />
         <h1>Notes</h1>
-        <p>{this.state.time_date}</p>
-        <ReactQuill value={this.state.note} onChange={this.handleChange} />
+        <ReactQuill value={this.state.note} onChange={this.handleChange} modules={this.modules}
+                    formats={this.formats}/>
+
+        <div dangerouslySetInnerHTML={{__html: this.state.note}}></div>
       </div>
     );
   }
