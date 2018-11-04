@@ -31,13 +31,15 @@ class Reminder extends React.Component {
             note: "",
             date: new Date(),
             modal: false,
+            phoneNumberSaved: false,
+            phone: "",
             sendReminder: false,
             alertTime: 0,
             saveClicked: false,
             events: [],
             currentModal: "", 
             editingObj: {}, 
-            userId: 1       //---------------userId-----------
+            userId: JSON.parse(localStorage.getItem("user")).id,
         };
     
         this.toggle = this.toggle.bind(this);
@@ -46,6 +48,7 @@ class Reminder extends React.Component {
     componentDidMount() {
         console.log("start")
         this.getReminders();
+        this.getUserInfo();
     }
     
     getReminders = () => {
@@ -59,7 +62,17 @@ class Reminder extends React.Component {
             }
         )
     }
-    
+
+    getUserInfo = () => {
+      axios.get("/user/" + this.state.userId).then(data => {
+        if (data.data[0].phoneNumber !== null) {
+          this.setState({
+            phoneNumberSaved: true
+          });
+        }
+      });
+    };
+
     toggle() {
         this.setState({
             modal: !this.state.modal
@@ -109,18 +122,32 @@ class Reminder extends React.Component {
     });
   };
 
-  checkboxChange = event => {
+  handleAlertChange = () => {
+    // console.log(!this.state.privacy);
     this.setState({
-      sendReminder: event.target.checked
+      sendReminder: !this.state.sendReminder
     });
-    console.log(event.target.checked);
   };
+
+  // checkboxChange = event => {
+  //   this.setState({
+  //     sendReminder: event.target.checked
+  //   });
+  //   console.log(event.target.checked);
+  // };
 
   handleSelectChange = event => {
     this.setState({
       alertTime: event.target.value
     });
     // console.log(event.target.value)
+  };
+
+  handlePhoneChange = event => {
+    // console.log(event.target.value.replace(/\D/g, ''))
+    this.setState({
+      phone: event.target.value
+    });
   };
 
   //saves any edits done to the selected event
@@ -142,6 +169,15 @@ class Reminder extends React.Component {
     this.setState({
       modal: !this.state.modal
     });
+
+    if (!this.state.phoneNumberSaved && this.state.phone !== "") {
+      let phoneObj = {
+        phoneNumber: this.state.phone.replace(/\D/g, "")
+      };
+      axios.put("/users/" + this.state.userId, phoneObj).then(data => {
+        console.log(data);
+      });
+    }
 
     axios.put("/reminders", eventObj).then(data => {
       console.log(data);
@@ -290,13 +326,6 @@ class Reminder extends React.Component {
         </ModalFooter>
       );
     }
-    // else if (this.state.modal && this.state.currentModal === "delete") {
-    //     modalDisplay =
-    //     <ModalFooter>
-    //     <Button color="danger" onClick={this.saveEvent}>Delete</Button>{' '}
-    //     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-    //     </ModalFooter>
-    // }
 
     //******** dropdown menu display if user chooses to send alerts
     let alertOpts;
@@ -361,6 +390,28 @@ class Reminder extends React.Component {
       );
     } else {
       validation = "";
+    }
+
+    //========== request phone number if alert are turned on ========//
+    let phoneRequest;
+    if (!this.state.phoneNumberSaved && this.state.sendReminder) {
+      phoneRequest = (
+        <Row style={{ margin: "auto" }}>
+          <Col>
+            <label>Enter Phone Number:</label>
+          </Col>
+          <Col>
+            <input
+              type="tel"
+              className="phone-input"
+              value={this.state.phone}
+              onChange={this.handlePhoneChange}
+            />
+          </Col>
+        </Row>
+      );
+    } else {
+      phoneRequest = "";
     }
 
     return (
@@ -454,19 +505,24 @@ class Reminder extends React.Component {
                 onChange={this.handleDateChange}
                 value={this.state.date}
               />
-              <FormGroup check>
-                <Label check className="checkbox-format">
-                  <Input
-                    type="checkbox"
-                    onChange={this.checkboxChange}
-                    checked={this.state.sendReminder ? "checked" : ""}
-                  />{" "}
+              <Row className="alert-format">
+                <Col>
                   Send Alert
-                </Label>
-              </FormGroup>
+                </Col>
+                <Col className="toggle-format">
+                  <Label className="switch">
+                    <Input
+                      type="checkbox"
+                      onChange={this.handleAlertChange}
+                      checked={this.state.sendReminder ? "checked" : ""}
+                    />
+                    <span className="toggle-slider round" />
+                  </Label>
+                </Col>
+              </Row>
             </Form>
-            <br></br>
             {alertOpts}
+            {phoneRequest}
             {validation}
           </ModalBody>
           {modalDisplay}

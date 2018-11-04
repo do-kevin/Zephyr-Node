@@ -8,9 +8,9 @@
     padding: 5px;
 }
 
-p {
+/* p {
     margin-bottom: 8px;
-}
+} */
 
 .checkbox-format {
     margin-top: 8px;
@@ -45,4 +45,12 @@ p {
 
 .select-dropdown {
     margin: auto;
+}
+
+.alert-format {
+    margin-top: 15px;
+}
+
+.toggle-format {
+    padding-right: 50px;
 }

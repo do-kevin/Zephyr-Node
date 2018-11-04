@@ -24,7 +24,10 @@ module.exports = router => {
     db.Deck.findAll({
       where: {
         userId: req.params.userId
-      }
+      }, 
+      include: [{
+        model: db.Tag
+      }]
     })
       .then(decks => {
         res.status(200).json(decks);
@@ -93,6 +96,26 @@ module.exports = router => {
         res.status(404).json(err);
       });
   });
+
+  router.get("/decks/tags/:tag", (req, res) => {
+    db.Deck.findAll({
+      where: {
+        private: false
+      },
+      include: [{
+        model: db.Tag,
+        where: {
+          tags: req.params.tag
+        }
+      }]
+    })
+    .then(deck => {
+      res.status(200).json(deck);
+    })
+    .catch(err => {
+      res.status(404).json(err);
+    });
+  })
 
   //----------------flashcards---------------
 

@@ -56,7 +56,7 @@ app.get("*", (req, res) => {
 
 // Listen ---------------------------------------- /
 
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, () => {
     console.log("------------------------------------------------------------");
     console.log(`Flashcard application running on port ${PORT}...`);

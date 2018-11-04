@@ -18,7 +18,8 @@ class ChooseDeck extends React.Component {
       openCreate: false,
       deckName: "",
       decks: [],
-      userId: JSON.parse(localStorage.getItem("user")).id
+      userId: JSON.parse(localStorage.getItem("user")).id,
+      notFound: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -36,7 +37,8 @@ class ChooseDeck extends React.Component {
       this.setState({
         decks: response.data
       });
-      this.getTags();
+      // this.getTags();
+      console.log(response.data)
     });
   }
 
@@ -47,39 +49,62 @@ class ChooseDeck extends React.Component {
     }); 
   }
 
+  // getTags = () => {
 
+  //   let deckArr = this.state.decks;
 
-  getTags = () => {
+  //   deckArr.forEach((item, index) => {
+  //     axios.get("/tags/" + item.id).then((response) => {
 
-    let deckArr = this.state.decks;
+  //       let tagsArr = response.data.map((item) => {
+  //         return item.tags;
+  //       })
 
-    deckArr.forEach((item, index) => {
-      axios.get("/tags/" + item.id).then((response) => {
+  //       deckArr[index].tags = tagsArr;
+  //       this.setState({ decks: deckArr });
+  //     })
+  //   })
+  // };
 
-        let tagsArr = response.data.map((item) => {
-          return item.tags;
-        })
-
-        deckArr[index].tags = tagsArr;
-        this.setState({ decks: deckArr });
-      })
+  searchTags = (event, tagInput) => {
+    event.preventDefault();
+    this.setState({
+      notFound: false
     })
+    axios.get("/decks/tags/" + tagInput)
+      .then(response => {
+        console.log(response.data)
+        if (response.data === null || response.data.length === 0) {
+          this.setState({
+            notFound: true,
+            decks: []
+          });
+        }
+        else {
+          console.log("save data")
+          this.setState({
+            decks: response.data
+          })
+        }
+      })
   }
 
   componentDidMount() {
     this.getDecks();
   }
 
+
   deckIdSessionStorage = (id) =>{
     sessionStorage.setItem("deckId", id);
   }
 
   render() {
-    console.log("deck: " + this.state.decks);
-    let renderDecks = this.state.decks.map((item, index) => {
+    // console.log("deck: " + this.state.decks);
+    let renderDecks;
+    if(!this.state.notFound) {
+    renderDecks = this.state.decks.map((item, index) => {
       // console.log("============")
       // console.log(typeof (item.tags))
-      console.log(item.tags)
 
       return (
         <Col>
@@ -93,19 +118,23 @@ class ChooseDeck extends React.Component {
             </Link>
             <hr />
             <div className="tags-box">
-              <p>
-                {item.tags}
-              </p>
+              {item.Tags.map(elem => {
+                return <p>#{elem.tags}</p>
+              })}
             </div>
           </div>
         </Col>
       );
     });
-
+  }
+  else {
+    renderDecks = <h3>Decks Not Found</h3>
+    
+  }
     return (
       <div>
         <Sidebar />
-        <Search />
+        <Search handleFunction={this.searchTags}/>
         <div id="deck-list">
           <div className="row">
             <Card className="add-event-btn">

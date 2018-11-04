@@ -536,7 +536,7 @@ class PlayCards extends React.Component {
             <ModalBody>
               <Row style={{ margin: "auto" }}>
                 <Col>
-                  <p>Make deck public</p>
+                  <p>Make deck private</p>
                 </Col>
                 <Col>
                   <Label className="switch">

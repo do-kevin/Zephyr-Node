@@ -1,5 +1,6 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
+import axios from "axios"
 
 // Components
 import Search from "../components/Search";
@@ -9,6 +10,38 @@ import Login from "../components/Login";
 import "../css/Home.css";
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      decks: [],
+      search: false,
+      notFound: false
+    };
+  }
+
+  searchTags = (event, tagInput) => {
+    event.preventDefault();
+    this.setState({
+      notFound: false
+    })
+    axios.get("/decks/tags/" + tagInput)
+      .then(response => {
+        console.log(response.data)
+        if (response.data === null || response.data.length === 0) {
+          this.setState({
+            notFound: true,
+            decks: []
+          });
+        }
+        else {
+          console.log("save data")
+          this.setState({
+            decks: response.data
+          })
+        }
+      })
+  }
+
   render() {
     if (this.props.user) {
       return <Redirect to="/profile" />
