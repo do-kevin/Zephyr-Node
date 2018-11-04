@@ -1,6 +1,7 @@
 html {
   overflow: hidden;
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {

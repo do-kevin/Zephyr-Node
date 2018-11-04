@@ -1,3 +1,23 @@
+html {
+    scroll-behavior: smooth;
+}
+#quill-wrapper {
+    width: 70%;
+    height: 70%;
+    margin: auto;
+}
+
+#quill-input {
+    height: 13rem;
+}
+
+.note-output {
+    border: 1px solid black;
+    width: 70%;
+    height: 17rem;
+    margin: 20px auto 20px auto;
+}
+
 blockquote {
     display: block;
     margin-block-start: 1em;
