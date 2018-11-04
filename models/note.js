@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
     var Note = sequelize.define("Note", {
         note: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
             validate: {
                 len: [1]
