@@ -14,7 +14,7 @@ module.exports = (router) => {
         db.Note
             .findAll({
                 where: {
-                    UserId: req.params.userId
+                    userId: req.params.userId
                 }
             })
             .then((notes) => {
@@ -44,7 +44,7 @@ module.exports = (router) => {
         db.Note
             .create({
                 ...req.body,
-                UserId: req.params.userId
+                userId: req.params.userId
             })
             .then((note) => {
                 res.status(200).json(note);
