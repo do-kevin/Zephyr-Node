@@ -45,7 +45,7 @@ INSERT INTO flashcards (front, back, deckId) VALUES
 ("If the client's friend wants to commit suicide and he/she asks the client to help them do so, what crime had the client most closely done?", "Aiding in Suicide ", 6),
 ("What is it called when the client tells a false statement while under oath in a courtroom?", "Perjury", 6),
 ("What is entrapment?", "When a police officer induces you into doing something unlawful to obtain an arrest.", 6),
---- Deck 2
+-- Deck 2
 ("Justice", "The principle of fairness; the ideal of moral equality", 7),
 ("National Crime Victimization Survey", "Survey given to victims door-to-door to acquire crime data.", 7),
 ("Who is called the Father of Policing?", "Sir Robert Peel", 7),
@@ -71,17 +71,20 @@ INSERT INTO flashcards (front, back, deckId) VALUES
 ("What is a Quick Sort?", "A comparison sort, meaning that it can sort items of any type for which a less-than relation (formally, a total order) is defined. In efficient implementations it is not a stable sort, meaning that the relative order of equal sort items is not preserved. Quicksort can operate in-place on an array, requiring small additional amounts of memory to perform the sorting. It is very similar to selection sort, except that it does not always choose worst-case partition.", 10);
 
 INSERT INTO Tags (tags, createdAt, updatedAt, deckId) VALUES
-("#1", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 1),
-("#2", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 1),
-("#3", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 2),
-("#4", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 2),
-("#5", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 3),
-("#6", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 4),
-("#7", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 4),
-("#8", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 5),
-("#9", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 5),
-("#10", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 6),
-("#11", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 7);
+("#pistachio", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 1),
+("#banana", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 2),
+("#apple", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 4),
+("#cider", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 4),
+("#protein", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 5),
+("#texas", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 6),
+("#criminal", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 6),
+("#criminal", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 7),
+("#saul", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 7),
+("#saul", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 8),
+("#pokemon", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 9),
+("#bubble", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 10),
+("#quick", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 10),
+("#insertion", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 10);
 
 SELECT * FROM Users;
 SELECT * FROM Reminders;
