@@ -53,15 +53,10 @@ class Home extends React.Component {
     if (this.state.search) {
       if (!this.state.notFound) {
         renderDecks = this.state.decks.map((item, index) => {
-          // console.log("============")
-          // console.log(typeof (item.tags))
 
           return (
             <Col key={item.id}>
               <div className="decks decks-primary animated bounceIn">
-                <Button color="danger" className="trash-btn" onClick={() => { this.deleteDeck(item.id) }}>
-                  <i className="fas fa-trash-alt" />
-                </Button>
                 <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>
                   <h1 className="deck-title text-center">{item.subject}</h1>
                 </Link>
