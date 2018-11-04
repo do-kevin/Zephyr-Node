@@ -61,24 +61,41 @@ class Note extends React.Component {
     "code-block"
   ];
 
+  handleChange(value) {
+    this.setState({ text: value });
+    console.log(this.state.text)
+  }
+
   getNotes = () => {
     axios.get(`/notes/users/${this.state.userId}`).then((response) => {
-      console.log(response);
       this.setState({
-        noteArr: response.data
+        noteArr: [...response.data]
       })
+      console.log(this.state.notesArr);
     })
   }
 
-  handleChange(value) {
-    this.setState({ text: value });
+  createNote = () => {
+    console.log("Creating Note");
+    axios.post(`/notes/${this.state.userId}`, { note: this.state.note }).then((response) => {
+      console.log(response);
+    });
+    this.getNotes();
   }
 
-  saveNote = event => {
+  saveNote = (event) => {
     event.preventDefault();
-
+    console.log("Save note button pressed")
     this.setState({ note: this.state.text });
+    console.log("Saved Note:\n", this.state.note)
+    this.createNote();
   };
+
+  deleteNote = (id) => {
+    axios.delete(`/notes/${id}`).then((response) => {
+      this.getNotes();
+    });
+  }
 
   componentDidMount() {
     this.getNotes();
@@ -89,12 +106,22 @@ class Note extends React.Component {
       <div style={{scrollBehavior: "smooth"}}>
         <Sidebar />
         <a href="#save-note-btn" style={{marginLeft: "90%"}}><i className="fas fa-chevron-circle-down animated slideInDown" style={{fontSize: "50px", color: "#FFD300"}}></i></a>
-        {
+        {this.state.notesArr.map((item, index) => {
+          return (
+              <div key={item.id} className="animated slideInRight note-output">
+                <Button color="danger" type="button" onClick={ () => this.deleteNote(item.id) }></Button>
+                <div dangerouslySetInnerHTML={{ __html: this.state.notesArr[index] }} style={{ wordBreak: "break-word"}}></div> 
+              </div>
+          );
+        })}
+
+        {/* {
         <div className="animated slideInRight note-output">
           <h6 style={{ textAlign: "left"}}>{this.state.timeNdate}</h6>
           <div dangerouslySetInnerHTML={{ __html: this.state.note }} style={{ wordBreak: "break-word"}}></div> 
         </div>
-        }
+        } */}
+
         <div id="quill-wrapper" className="text-center">
           <h1>Notes</h1>
           <p>*To create an <strong>embed link</strong>: Highlight a typed text, click the link button, and save the url</p>
@@ -106,7 +133,7 @@ class Note extends React.Component {
             modules={this.modules}
             formats={this.formats}
           />
-        <Button id="save-note-btn"color="primary" onClick={this.saveNote} style={{ margin : "70px 0 30px 0" }}> Save Note </Button>
+        <Button id="save-note-btn" color="primary" onClick={this.saveNote} style={{ margin : "70px 0 30px 0" }}> Save Note </Button>
 
         </div>
       </div>
