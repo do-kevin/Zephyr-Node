@@ -71,20 +71,20 @@ INSERT INTO flashcards (front, back, deckId) VALUES
 ("What is a Quick Sort?", "A comparison sort, meaning that it can sort items of any type for which a less-than relation (formally, a total order) is defined. In efficient implementations it is not a stable sort, meaning that the relative order of equal sort items is not preserved. Quicksort can operate in-place on an array, requiring small additional amounts of memory to perform the sorting. It is very similar to selection sort, except that it does not always choose worst-case partition.", 10);
 
 INSERT INTO Tags (tags, createdAt, updatedAt, deckId) VALUES
-("pistachio", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 1),
-("banana", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 2),
-("apple", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 4),
-("cider", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 4),
-("protein", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 5),
-("texas", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 6),
-("criminal", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 6),
-("criminal", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 7),
-("saul", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 7),
-("saul", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 8),
-("pokemon", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 9),
-("bubble", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 10),
-("quick", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 10),
-("insertion", "2018-11-3 21:12:06", "2018-11-3 21:12:06", 10);
+("pistachio", 1),
+("banana", 2),
+("apple", 4),
+("cider", 4),
+("protein", 5),
+("texas", 6),
+("criminal", 6),
+("criminal", 7),
+("saul", 7),
+("saul", 8),
+("pokemon", 9),
+("bubble", 10),
+("quick", 10),
+("insertion", 10);
 
 SELECT * FROM Users;
 SELECT * FROM Reminders;
