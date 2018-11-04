@@ -68,11 +68,13 @@ class Note extends React.Component {
 
   getNotes = () => {
     axios.get(`/notes/users/${this.state.userId}`).then((response) => {
-      console.log(response);
+      console.log(response.data);
       this.setState({
-        noteArr: [...response.data]
+        notesArr: [...response.data]
       })
       console.log(this.state.notesArr);
+      console.log(typeof this.state.notesArr)
+      this.testArr();
     })
   }
 
@@ -103,16 +105,30 @@ class Note extends React.Component {
     this.getNotes();
   }
 
+  componentDidUpdate() {
+      // this.getNotes();
+  }
+
+  testArr = () => {
+    console.log("hit")
+    console.log(this.state.notesArr)
+    this.state.notesArr.map((item, index) => {
+      console.log(item);
+    })
+    console.log(this.state.notesArr)
+  }
+
   render() {
     return (
       <div style={{scrollBehavior: "smooth"}}>
         <Sidebar />
         <a href="#save-note-btn" style={{marginLeft: "90%"}}><i className="fas fa-chevron-circle-down animated slideInDown" style={{fontSize: "50px", color: "#FFD300"}}></i></a>
         {this.state.notesArr.map((item, index) => {
+          console.log(index)
           return (
               <div key={item.id} className="animated slideInRight note-output">
                 <Button color="danger" type="button" onClick={ () => this.deleteNote(item.id) }></Button>
-                <div dangerouslySetInnerHTML={{ __html: item.note }} style={{ wordBreak: "break-word"}}></div> 
+                <div dangerouslySetInnerHTML={{ __html: item.note}} style={{ wordBreak: "break-word"}}></div> 
               </div>
           );
         })}
