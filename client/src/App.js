@@ -9,7 +9,7 @@ import Reminder from "./pages/Reminder";
 import Todo from "./pages/Todo";
 import ChooseDeck from "./pages/ChooseDeck";
 import PlayCards from "./pages/PlayCards";
-import Note from "./pages/Note";
+import Notes from "./pages/Notes";
 
 // Components
 // import Sidebar from "./components/Sidebar";
@@ -103,6 +103,12 @@ class App extends Component {
             render={(props) => <PlayCards {...props}
               user={this.state.user}
               handleUserLogout={this.handleUserLogout} />}
+          />
+            <Route 
+            exact path="/notes" 
+            render={(props) => <Notes {...props}
+            user={this.state.user}
+            handleUserLogout={this.handleUserLogout} />}
           />
         </div>
       </Router>
