@@ -68,6 +68,7 @@ class Note extends React.Component {
 
   getNotes = () => {
     axios.get(`/notes/users/${this.state.userId}`).then((response) => {
+      console.log(response);
       this.setState({
         noteArr: [...response.data]
       })
@@ -79,8 +80,9 @@ class Note extends React.Component {
     console.log("Creating Note");
     axios.post(`/notes/${this.state.userId}`, { note: this.state.note }).then((response) => {
       console.log(response);
+      this.getNotes();
     });
-    this.getNotes();
+    
   }
 
   saveNote = (event) => {
@@ -110,7 +112,7 @@ class Note extends React.Component {
           return (
               <div key={item.id} className="animated slideInRight note-output">
                 <Button color="danger" type="button" onClick={ () => this.deleteNote(item.id) }></Button>
-                <div dangerouslySetInnerHTML={{ __html: this.state.notesArr[index] }} style={{ wordBreak: "break-word"}}></div> 
+                <div dangerouslySetInnerHTML={{ __html: item.note }} style={{ wordBreak: "break-word"}}></div> 
               </div>
           );
         })}
