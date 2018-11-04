@@ -89,6 +89,13 @@ class ChooseDeck extends React.Component {
       })
   }
 
+  showMyDecks = () => {
+    this.setState({
+      notFound: false
+    });
+    this.getDecks();
+  }
+
   componentDidMount() {
     this.getDecks();
   }
@@ -107,8 +114,7 @@ class ChooseDeck extends React.Component {
       // console.log(typeof (item.tags))
 
       return (
-        <Col>
-        
+        <Col key={item.id}>
           <div className="decks decks-primary animated bounceIn">
             <Button color="danger" className="trash-btn" onClick={() => {this.deleteDeck(item.id)}}>
               <i className="fas fa-trash-alt" />
@@ -119,7 +125,7 @@ class ChooseDeck extends React.Component {
             <hr />
             <div className="tags-box">
               {item.Tags.map(elem => {
-                return <p>#{elem.tags}</p>
+                return <p key={elem.id}>#{elem.tags}</p>
               })}
             </div>
           </div>
@@ -128,7 +134,13 @@ class ChooseDeck extends React.Component {
     });
   }
   else {
-    renderDecks = <h3>Decks Not Found</h3>
+    renderDecks = 
+    <div>
+      <h3>Decks Not Found</h3>
+      <Button  color="info" onClick={this.showMyDecks}>
+        Show My Decks
+      </Button>
+    </div>
     
   }
     return (

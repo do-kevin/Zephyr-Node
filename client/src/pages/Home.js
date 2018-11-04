@@ -1,6 +1,7 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios"
+import { Row, Col, Card, Button } from "reactstrap";
 
 // Components
 import Search from "../components/Search";
@@ -22,6 +23,7 @@ class Home extends React.Component {
   searchTags = (event, tagInput) => {
     event.preventDefault();
     this.setState({
+      search: true,
       notFound: false
     })
     axios.get("/decks/tags/" + tagInput)
@@ -47,10 +49,44 @@ class Home extends React.Component {
       return <Redirect to="/profile" />
     }
 
+    let renderDecks;
+    if (this.state.search) {
+      if (!this.state.notFound) {
+        renderDecks = this.state.decks.map((item, index) => {
+          // console.log("============")
+          // console.log(typeof (item.tags))
+
+          return (
+            <Col key={item.id}>
+              <div className="decks decks-primary animated bounceIn">
+                <Button color="danger" className="trash-btn" onClick={() => { this.deleteDeck(item.id) }}>
+                  <i className="fas fa-trash-alt" />
+                </Button>
+                <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>
+                  <h1 className="deck-title text-center">{item.subject}</h1>
+                </Link>
+                <hr />
+                <div className="tags-box">
+                  {item.Tags.map(elem => {
+                    return <p key={elem.id}>#{elem.tags}</p>
+                  })}
+                </div>
+              </div>
+            </Col>
+          );
+        });
+      }
+      else {
+        renderDecks =
+          <div>
+            <h3>Decks Not Found</h3>
+          </div>
+      }
+    }
     return (
       <div>
         <nav className="navbar justify-content-between">
-        <h1>App Name</h1>
+          <h1>App Name</h1>
           <Login handleUserLogin={this.props.handleUserLogin} />
         </nav>
         <div className="jumbotron banner-image animated fadeIn">
@@ -58,8 +94,11 @@ class Home extends React.Component {
             <h1>Wholesome and Inspirational Quote</h1>
             <p>Current date and time or quotist</p>
             <br />
-            <Search />
+            <Search handleFunction={this.searchTags} />
           </div>
+        </div>
+        <div>
+          {renderDecks}
         </div>
         <h1 className="text-center display-3">Features</h1>
         <div className="container text-center">
