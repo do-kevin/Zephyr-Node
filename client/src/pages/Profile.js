@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom"
 import {
     Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardDeck, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
 } from 'reactstrap';
@@ -37,6 +37,14 @@ class Profile extends React.Component {
         this.getDecks();
         this.getNotes();
     };
+
+    deckIdSessionStorage = (id) => {
+        sessionStorage.setItem("deckId", id);
+    }
+
+    noteIdSessionStorage = (id) => {
+        sessionStorage.setItem("noteId", id);
+    }
 
     // Request data from the database; obtain user id from localStorage
 
@@ -84,17 +92,16 @@ class Profile extends React.Component {
             });
     };
 
+    // Render page
+
     render() {
-        // if (!this.props.user) {
-        //     return <Redirect to="/" />;
-        // }
 
         let renderToDos;
         let renderReminders;
         let renderDecks;
         let renderNotes;
 
-        // Render Reminders
+        // -------------- Render Reminders -------------- 
         if (this.state.reminders.length > 0) {
             renderReminders = (
                 <ListGroup className="rem_todo_scroll">
@@ -120,7 +127,7 @@ class Profile extends React.Component {
             )
         }
 
-        // Render To-Do List
+        // -------------- Render To-Do List -------------- 
         if (this.state.todos.length > 0) {
             renderToDos = (
                 <ListGroup className="rem_todo_scroll">
@@ -142,7 +149,7 @@ class Profile extends React.Component {
             )
         }
 
-        // Render Decks
+        // -------------- Render Decks -------------- 
         if (this.state.decks.length > 1) {
             renderDecks = (
                 <div>
@@ -151,9 +158,14 @@ class Profile extends React.Component {
                             return (
                                 <Col xs="12" sm="6" md="4" lg="3">
                                     <Card>
-                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                        <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
+                                            <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                        </Link>
                                         <CardBody>
-                                            <CardText>{deck.subject}</CardText>
+                                            <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
+                                                <CardText>{deck.subject}</CardText>
+                                                <CardSubtitle>{deck.tags}</CardSubtitle>
+                                            </Link>
                                         </CardBody>
                                     </Card>
                                 </Col>
@@ -170,9 +182,14 @@ class Profile extends React.Component {
                         return (
                             <Col xs="12" sm="6" md="4" lg="3">
                                 <Card>
-                                    <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                    <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
+                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                    </Link>
                                     <CardBody>
-                                        <CardTitle>{deck.subject}</CardTitle>
+                                        <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
+                                            <CardTitle>{deck.subject}</CardTitle>
+                                            <CardSubtitle>{deck.tags}</CardSubtitle>
+                                        </Link>
                                     </CardBody>
                                 </Card>
                             </Col>
@@ -191,7 +208,7 @@ class Profile extends React.Component {
             )
         }
 
-        // Render Notes
+        // -------------- Render Notes -------------- 
         if (this.state.notes.length > 1) {
             renderNotes = (
                 <div>
@@ -200,9 +217,13 @@ class Profile extends React.Component {
                             return (
                                 <Col xs="12" sm="6" md="4" lg="3">
                                     <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                        <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
+                                            <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                        </Link>
                                         <CardBody>
-                                            <CardTitle>{note.note}</CardTitle>
+                                            <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
+                                                <CardTitle>{note.note}</CardTitle>
+                                            </Link>
                                         </CardBody>
                                     </Card>
                                 </Col>
@@ -219,9 +240,13 @@ class Profile extends React.Component {
                         return (
                             <Col xs="12" sm="6" md="4" lg="3">
                                 <Card>
-                                    <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                    <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
+                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                    </Link>
                                     <CardBody>
-                                        <CardTitle>{note.note}</CardTitle>
+                                        <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
+                                            <CardTitle>{note.note}</CardTitle>
+                                        </Link>
                                     </CardBody>
                                 </Card>
                             </Col>
