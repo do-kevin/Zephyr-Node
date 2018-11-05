@@ -69,7 +69,7 @@ db.sequelize.sync({ force: false }).then(function() {
 const scheduler = require('./scheduler');
 scheduler.start();
 
-// var moment = require('moment-timezone');
-// moment.tz.setDefault("America/Los_Angeles");
+var moment = require('moment-timezone');
+moment.tz.setDefault("America/Los_Angeles");
 
 

@@ -40,7 +40,7 @@ class Home extends React.Component {
           });
         }
         else {
-          console.log("save data")
+          console.log(response.data)
           this.setState({
             decks: response.data
           })

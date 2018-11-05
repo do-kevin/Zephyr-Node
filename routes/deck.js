@@ -20,8 +20,8 @@ module.exports = router => {
       }]
 
     })
-      .then(decks => {
-        res.status(200).json(decks);
+      .then(deck => {
+        res.status(200).json(deck);
       })
       .catch(err => {
         res.status(404).json(err);
@@ -109,17 +109,31 @@ module.exports = router => {
   router.get("/decks/tags/:tag", (req, res) => {
     db.Deck.findAll({
       where: {
-        private: false
+        private: false,
       },
       include: [{
         model: db.Tag,
-        where: {
-          tags: req.params.tag
-        }
       }]
     })
     .then(deck => {
-      res.status(200).json(deck);
+      // console.log("get tags")
+      // console.log(deck.length)
+
+      let arr = [];
+      deck.forEach((elem, index) => {
+        let found = false;
+        elem.dataValues.Tags.forEach(item => {
+          if(item.tags === req.params.tag) {
+            found = true;
+          }
+        })
+        if(found) {
+          arr.push(elem);
+        }
+      })
+
+      // console.log(arr.length)
+      res.status(200).json(arr);            
     })
     .catch(err => {
       res.status(404).json(err);

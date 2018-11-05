@@ -30,7 +30,7 @@ const notificationWorkerFactory = function () {
             }
             objArr.push(obj);
           })
-          console.log(objArr);
+          // console.log(objArr);
 
           let appts = objArr.filter(item => {
             return requiresNotification(item);

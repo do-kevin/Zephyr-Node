@@ -1,6 +1,6 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
-import moment from "moment";
+import moment from "moment-timezone";
 import axios from "axios";
 
 import Sidebar from "../components/Sidebar";
@@ -183,6 +183,7 @@ class Reminder extends React.Component {
     });
 
     if (!this.state.phoneNumberSaved && this.state.phone !== "") {
+
       let phoneObj = {
         phoneNumber: this.state.phone.replace(/\D/g, "")
       };
@@ -199,7 +200,7 @@ class Reminder extends React.Component {
         notification: eventObj.alertTime,
         message: `Upcoming event: ${eventObj.item} on ${moment(
           eventDate
-        ).format("MMMM D")} at ${moment(eventDate).format("HH:mm")}`,
+        ).format("MMMM D")} at ${moment(eventDate).format("hh:mm A")}`,
         userId: 1,
         type: "reminder",
         reminderId: eventObj.id
@@ -454,7 +455,7 @@ class Reminder extends React.Component {
                           <p>{item.note}</p>
                           <p>
                             {moment(item.date).format("MMMM D")} at{" "}
-                            {moment(item.date).format("HH:mm")}
+                            {moment(item.date).tz("America/Los_Angeles").format("hh:mm A")}
                           </p>
                         </CardText>
                         <div>
