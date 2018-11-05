@@ -70,7 +70,7 @@ INSERT INTO flashcards (front, back, deckId) VALUES
 ("What is an Insertion Sort?", "A simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort", 10),
 ("What is a Quick Sort?", "A comparison sort, meaning that it can sort items of any type for which a less-than relation (formally, a total order) is defined. In efficient implementations it is not a stable sort, meaning that the relative order of equal sort items is not preserved. Quicksort can operate in-place on an array, requiring small additional amounts of memory to perform the sorting. It is very similar to selection sort, except that it does not always choose worst-case partition.", 10);
 
-INSERT INTO Tags (tags, createdAt, updatedAt, deckId) VALUES
+INSERT INTO Tags (tags, deckId) VALUES
 ("pistachio", 1),
 ("banana", 2),
 ("apple", 4),
