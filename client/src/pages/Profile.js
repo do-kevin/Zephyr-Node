@@ -15,18 +15,11 @@ import "../css/Profile.css";
 
 class Profile extends React.Component {
 
-    // user information
-    // this.props.user.name
-    // this.props.user.id
-    // this.props.user.username(?)
-
     constructor(props) {
         super(props);
         this.state = {
-            // name: "Jiraiya",
-            id: JSON.parse(localStorage.getItem("user")).id,
             time_date: moment().format("ddd, MMMM Do YYYY, h:mm:ss a"),
-            reminders: [], // arrays of objects
+            reminders: [],
             todos: [],
             decks: [],
             notes: []
@@ -45,7 +38,7 @@ class Profile extends React.Component {
         this.getNotes();
     };
 
-    // request data from the database; save response into this.state
+    // Request data from the database; obtain user id from localStorage
 
     getReminders = () => {
         let id = JSON.parse(localStorage.getItem("user")).id;
@@ -142,7 +135,6 @@ class Profile extends React.Component {
                                     <CardTitle>To-do</CardTitle>
                                     <CardText>
                                         <ListGroup className="scroll">
-                                            <ListGroupItem>Do homework (dummy)</ListGroupItem>
                                             <div>
                                                 {/************** Display existing to-dos START ****************/}
                                                 {this.state.todos.map((todo) => {
@@ -194,7 +186,7 @@ class Profile extends React.Component {
                                         </div>
                                     </CardGroup>
                                 </Row>
-                                <Button outline color="info" id="seeall" href="/reminder">See all decks</Button>
+                                <Button outline color="info" id="seeall" href="/choose">See all decks</Button>
                             </Card>
                         </Col>
                     </Row>

@@ -17,8 +17,8 @@ class Todo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: "",
-            itemId: 0,
+            task: "",
+            taskId: 0,
             todos: [],
             modal: false,
             modalMode: "",
@@ -34,19 +34,18 @@ class Todo extends React.Component {
         this.getTodos();
     }
 
-    // show modal
+    // Show modal
     toggle() {
         this.setState({
             modal: !this.state.modal,
-            item: "",
             validationClass: "novalidation"
         });
     }
 
-    // get to-do's from database to display onto the page
-    // ************ get userID from session storage
+    // Get to-do's from database to display onto the page
     getTodos = () => {
-        axios.get("/todos/users/1")
+        const id = JSON.parse(localStorage.getItem("user")).id;
+        axios.get("/todos/users/" + id)
             .then(res => {
                 console.log(res.data);
                 this.setState({
@@ -55,7 +54,7 @@ class Todo extends React.Component {
             });
     }
 
-    // delete task from db when task is completed
+    // Delete task from db when task is completed
     completeToDo = (id) => {
         console.log("Attempt to complete a task.");
         axios.delete("/todos/" + id)
@@ -65,56 +64,59 @@ class Todo extends React.Component {
             });
     }
 
+    // Prompt modal that creates task
     createToDo = () => {
         this.setState({
             modalMode: "create",
+            task: ""
         });
         this.toggle();
     }
 
-    editToDo = (item, id) => {
+    editToDo = (task, id) => {
         this.setState({
             modalMode: "edit",
-            item: item,
-            itemId: id
+            task: task,
+            taskId: id
         });
         this.toggle();
     }
 
-    // change item state to text input
+    // Change item state to text input
     handleChange = (event) => {
         this.setState({
-            item: event.target.value
+            task: event.target.value
         });
     }
 
-    // save new task
+    // Save new task
     saveToDo = (event) => {
         event.preventDefault();
         console.log("Attempt to save new task.")
-        if (this.state.item !== "") {
+        console.log(this.state.task)
+        if (this.state.task !== "") {
             this.setState({
-                modal: !this.state.modal,
+                modal: !this.state.modal
             });
             let toDoObj = {
-                item: this.state.item,
+                item: this.state.task,
                 date: moment().format("YYYY-MM-DD HH:mm"),
                 done: false,
-                // *************** replace with current userId
-                userId: 1
+                userId: JSON.parse(localStorage.getItem("user")).id
             };
-            // *************** replace with current userId
-            axios.post("/todos/1", toDoObj)
+            axios.post("/todos/" + toDoObj.userId, toDoObj)
                 .then(res => {
-                    if (res.data === true) {
-                        console.log("Task '" + this.state.item + "' was saved");
+                    if (res) {
+                        console.log(res.data)
+                        console.log("Task '" + this.state.task + "' was saved");
                         this.setState({
-                            item: ""
+                            task: ""
                         });
                         this.getTodos();
                     }
                     else {
                         alert("Error: task was not saved successfully.");
+                        this.getTodos();
                     }
                 });
         }
@@ -126,18 +128,18 @@ class Todo extends React.Component {
         }
     }
 
-    // save edit to task
-    saveEdit = (event) => {
+    // Save edit to task
+    saveEdit = (event, task, id) => {
         event.preventDefault();
         console.log("Attempt to edit existing task.")
-        if (this.state.item !== "") {
+        if (this.state.task !== "") {
             this.setState({
                 modal: !this.state.modal,
             });
-            axios.put("/todos/" + this.state.itemId, { item: this.state.item })
+            axios.put("/todos/" + this.state.taskId, { item: this.state.task })
                 .then(res => {
-                    if (res.data === true) {
-                        console.log("Task was edited to '" + this.state.item + "'");
+                    if (res.data) {
+                        console.log("Task was edited to '" + this.state.task + "'");
                         this.getTodos();
                     }
                     else {
@@ -162,7 +164,7 @@ class Todo extends React.Component {
         const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
         let modal;
 
-        // modal to create a new task
+        // Modal to create a new task
         if (this.state.modal === true && this.state.modalMode === "create") {
             modal = (
                 <div>
@@ -170,7 +172,7 @@ class Todo extends React.Component {
                         <ModalHeader toggle={this.toggle} close={closeBtn}>New Task</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.saveToDo}>
-                                <Input type="textarea" name="text" value={this.state.item} onChange={this.handleChange} />
+                                <Input type="textarea" name="text" onChange={this.handleChange} />
                                 <hr />
                                 <p className={this.state.validationClass}>Please fill in required field.</p>
                                 <Button outline color="info" type="submit" value="Submit" className="pull-right">Add</Button>{' '}
@@ -181,7 +183,7 @@ class Todo extends React.Component {
             )
         }
 
-        // modal to edit an existing task
+        // Modal to edit an existing task
         if (this.state.modal === true && this.state.modalMode === "edit") {
             modal = (
                 <div>
@@ -189,10 +191,10 @@ class Todo extends React.Component {
                         <ModalHeader toggle={this.toggle} close={closeBtn}>Edit Task</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.saveEdit}>
-                                <Input type="textarea" name="text" value={this.state.item} onChange={this.handleChange} />
+                                <Input type="textarea" name="text" value={this.state.task} onChange={this.handleChange} />
                                 <hr />
                                 <p className={this.state.validationClass}>Please fill in required field.</p>
-                                <Button outline color="info" type="submit" value="Submit" className="pull-right">Add</Button>{' '}
+                                <Button outline color="info" type="submit" value="Submit" className="pull-right">Edit</Button>{' '}
                             </Form>
                         </ModalBody>
                     </Modal>
@@ -209,32 +211,18 @@ class Todo extends React.Component {
                     <CardBody>
                         <CardTitle>To-do List</CardTitle>
                         <CardText>
-                            {/************* Test without backend *************/}
-                            <ListGroup>
-                                <ListGroupItem>
-                                    <span className="task">Example</span>
-                                    <span className="pull-right">
-                                        <Button outline color="info" onClick={this.editToDo} name="edit">
-                                            <i className="material-icons">edit</i>
-                                        </Button>
-                                        <Button outline color="info" onClick={() => this.completeToDo(this.state.itemId)} name="complete">
-                                            <i className="material-icons">done</i>
-                                        </Button>
-                                    </span>
-                                </ListGroupItem>
-                            </ListGroup>
                             {/************* Display Existing Tasks Start *************/}
                             <div>
-                                {this.state.todos.map((item) => {
+                                {this.state.todos.map((todo) => {
                                     return (
                                         <ListGroup>
                                             <ListGroupItem>
-                                                <span className="task">{item.item}</span>
+                                                <span className="task">{todo.item}</span>
                                                 <span className="pull-right">
-                                                    <Button outline color="info" onClick={() => this.editToDo(item.item, item.id)} name="edit">
+                                                    <Button outline color="info" onClick={() => this.editToDo(todo.item, todo.id)} name="edit">
                                                         <i className="material-icons">edit</i>
                                                     </Button>
-                                                    <Button outline color="info" onClick={() => this.completeToDo(item.id)} name="complete">
+                                                    <Button outline color="info" onClick={() => this.completeToDo(todo.id)} name="complete">
                                                         <i className="material-icons">done</i>
                                                     </Button>
                                                 </span>

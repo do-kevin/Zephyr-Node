@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Row, Col, Card, Button } from "reactstrap";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 // Components
 import Sidebar from "../components/Sidebar";
@@ -44,7 +44,7 @@ class ChooseDeck extends React.Component {
     axios.delete("/decks/" + id).then(response => {
       // console.log(response)
       this.getDecks();
-    }); 
+    });
   }
 
 
@@ -70,26 +70,28 @@ class ChooseDeck extends React.Component {
     this.getDecks();
   }
 
-  deckIdSessionStorage = (id) =>{
+  deckIdSessionStorage = (id) => {
     sessionStorage.setItem("deckId", id);
   }
 
   render() {
     console.log("deck: " + this.state.decks);
-    let renderDecks = this.state.decks.map((item, index) => {
+    let renderDecks;
+
+    renderDecks = (this.state.decks.map((item, index) => {
       // console.log("============")
       // console.log(typeof (item.tags))
       console.log(item.tags)
 
       return (
         <Col>
-        
+
           <div className="decks decks-primary animated bounceIn">
-            <Button color="danger" className="trash-btn" onClick={() => {this.deleteDeck(item.id)}}>
+            <Button color="danger" className="trash-btn" onClick={() => { this.deleteDeck(item.id) }}>
               <i className="fas fa-trash-alt" />
             </Button>
             <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>
-            <h1 className="deck-title text-center">{item.subject}</h1>
+              <h1 className="deck-title text-center">{item.subject}</h1>
             </Link>
             <hr />
             <div className="tags-box">
@@ -100,7 +102,8 @@ class ChooseDeck extends React.Component {
           </div>
         </Col>
       );
-    });
+    })
+    )
 
     return (
       <div>
