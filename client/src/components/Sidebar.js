@@ -49,14 +49,15 @@ class Sidebar extends React.Component {
 
               <li>
                 <button 
-                  className="btn btn-danger"
+                  className="btn"
                   type="button"
                   onClick={this.props.handleUserLogout}
+                  style={{marginLeft: "22%", marginTop: "140%"}}
                 >
-                  Logout
+                  <i className="fas fa-sign-out-alt"></i>{" "}Logout 
                 </button>
               </li>
-              <li>
+              <li style={{marginTop: "20%"}}>
                 <Link
                   to="#menu-toggle"
                   className="btn"
