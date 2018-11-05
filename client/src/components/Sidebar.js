@@ -38,7 +38,7 @@ class Sidebar extends React.Component {
                 <Link to="/choose">Decks</Link>
               </li>
               <li>
-                <Link to="/note">Notes</Link>
+                <Link to="/notes">Notes</Link>
               </li>
               <li>
                 <Link to="/reminder">Reminders</Link>
