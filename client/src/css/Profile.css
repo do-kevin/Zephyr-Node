@@ -13,13 +13,13 @@ li {
     text-align: center;
 }
 
-.group {
-    margin-top: 50px;
-    padding-top: 20px;
+.rem_todo_scroll {
+    height: 250px;
+    overflow-y: scroll;
 }
 
-.scroll {
-    height: 250px;
+.deck_note_scroll {
+    height: 420px;
     overflow-y: scroll;
 }
 
@@ -27,15 +27,15 @@ li {
     margin: 10px auto 10px auto;
 }
 
-.decks {
+.group {
+    margin-top: 50px;
+    padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
 .notes {
     margin-bottom: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .noDisplay {
