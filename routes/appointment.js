@@ -85,6 +85,27 @@ module.exports = (router) => {
                 res.status(404).json(appointment);
             });
     });
+
+    // Update flashcard appointment message
+    router.put("/appointments/flashcard/:id", (req, res) => {
+        const {message, front} = req.body;
+        db.Appointment
+            .update({
+                    message
+                }, {
+                    where: {
+                        flashcardId: req.params.id,
+                        front
+                    }
+            })
+            .then((appointment) => {
+                res.status(200).json(appointment);
+            })
+            .catch((err) => {
+                res.status(404).json(appointment);
+            });
+    });
+
     // Delete reminder appointment by id
     router.delete("/appointments/reminders/:id", (req, res) => {
         console.log(req.body)
@@ -102,13 +123,30 @@ module.exports = (router) => {
             });
     });
 
+    // Delete single flashcard appointment by flashcardId
+    router.delete("/appointments/decks/:id", (req, res) => {
+        console.log(req.body)
+        db.Appointment
+            .destroy({
+                where: {
+                    flashcardId: req.params.id
+                }
+            })
+            .then((appointment) => {
+                res.status(200).json(appointment);
+            })
+            .catch((err) => {
+                res.status(404).json(err);
+            });
+    });
+
     // Delete daily quiz appointment by deckId and userId
     router.delete("/appointments/decks/:deckId/:userId", (req, res) => {
         console.log(req.body)
         db.Appointment
             .destroy({
                 where: {
-                    deckId: req.params.id,
+                    deckId: req.params.deckId,
                     userId: req.params.userId
                 }
             })

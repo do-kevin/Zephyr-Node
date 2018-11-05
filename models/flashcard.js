@@ -23,6 +23,11 @@ module.exports = function (sequelize, DataTypes) {
                 foreignKey: "deckId",
                 onDelete: 'cascade' 
             });
+            Flashcard.hasMany(models.Appointment, {
+                foreignKey: "flashcardId",
+                onDelete: 'cascade',
+                allowNull: true
+            });
         };
 
     return Flashcard;

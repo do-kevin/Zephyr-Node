@@ -38,25 +38,29 @@ class DeckModal extends React.Component {
 
 
     axios.post("/decks/" + this.state.userId, {subject: this.state.deckName}).then((response)=> {
-      console.log(response);
+      // console.log(response);
 
       if (this.state.deckTags !== "") {
-        console.log("hithit")
+        // console.log("hithit")
         arr = this.state.deckTags.split(" ");
-        arr.map((item) => {
 
+        arr.map((item) => {
           let obj = { 
             deckId: response.data.id,
             tags: item
           };
 
           axios.post("/tags", obj).then((response) => {
-            console.log(response);
+            this.props.getDecks();
           });
           
         })
         this.props.toggle();
-        this.props.getDecks();
+        // this.props.getDecks();
+        this.setState({
+          deckName: "",
+          deckTags: ""
+        })
       }
     });
   }

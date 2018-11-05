@@ -1,5 +1,9 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import axios from "axios"
+import { Row, Col, Card, Button } from "reactstrap";
+import Flippy, { FrontSide, BackSide } from "react-flippy";
+import Carousel from "nuka-carousel";
 
 // Components
 import Search from "../components/Search";
@@ -9,12 +13,135 @@ import Login from "../components/Login";
 import "../css/Home.css";
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      decks: [],
+      flashcard: [],
+      search: false,
+      notFound: false,
+      showCards: false,
+    };
+  }
+
+  searchTags = (event, tagInput) => {
+    event.preventDefault();
+    this.setState({
+      search: true,
+      notFound: false
+    })
+    axios.get("/decks/tags/" + tagInput)
+      .then(response => {
+        console.log(response.data)
+        if (response.data === null || response.data.length === 0) {
+          this.setState({
+            notFound: true,
+            decks: []
+          });
+        }
+        else {
+          console.log("save data")
+          this.setState({
+            decks: response.data
+          })
+        }
+      })
+  }
+
+  getFlashcards = (id) => {
+    axios.get("/flashcard/" + id)
+      .then(response => {
+        this.setState({
+          flashcard: response.data,
+          showCards: true,
+          search: false,
+          notFound: false,
+        })
+      })
+  }
+
+  displayPublicDecks = () => {
+    axios.get("/decks/public")
+      .then(response => {
+        this.setState({
+          decks: response.data,
+          showCards: false,
+          search: true, 
+        })
+      })
+  }
+
+
   render() {
+    if (this.props.user) {
+      return <Redirect to="/profile" />
+    }
+
+    let renderDecks;
+    if (this.state.search) {
+      if (!this.state.notFound) {
+        renderDecks = this.state.decks.map((item, index) => {
+
+          return (
+            <Col key={item.id}>
+              <div className="decks decks-primary animated bounceIn">
+                <h1 className="deck-title text-center" onClick={() => this.getFlashcards(item.id)}>{item.subject}</h1>
+                <hr />
+                <div className="tags-box">
+                  {item.Tags.map(elem => {
+                    return <p key={elem.id}>#{elem.tags}</p>
+                  })}
+                </div>
+              </div>
+            </Col>
+          );
+        });
+      }
+      else {
+        renderDecks =
+          <div>
+            <h3>Decks Not Found</h3>
+          </div>
+      }
+    }
+    else if (this.state.showCards) {
+      renderDecks =
+        <div>
+          <Carousel
+            // ref="cardList"
+            id="carousel"
+          >
+            {this.state.flashcard.map(item => {
+              return (
+                <Flippy
+                  key={item.id}
+                  flipOnHover={false}
+                  flipOnClick={true}
+                  flipDirection="horizontal"
+                  ref={r => (this.Flippy = r)}
+                  style={{ width: "400px", height: "200px" }}
+                >
+                  <FrontSide style={{ backgroundColor: "#93bbde" }}>
+                    <p>{item.front}</p>
+                  </FrontSide>
+
+                  <BackSide style={{ backgroundColor: "#66b361" }}>
+                    <p>{item.back}</p>
+                  </BackSide>
+                </Flippy>
+              );
+            })}
+          </Carousel>
+          <Button color="info" onClick={this.displayPublicDecks}>
+            Return to Decks
+          </Button>
+        </div>
+    }
     return (
       <div>
         {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
-        <h1>App Name</h1>
+          <h1>App Name</h1>
           <Login handleUserLogin={this.props.handleUserLogin} />
         </nav>
         <div className="jumbotron banner-image animated fadeIn">
@@ -22,8 +149,11 @@ class Home extends React.Component {
             <h1>Wholesome and Inspirational Quote</h1>
             <p>Current date and time or quotist</p>
             <br />
-            <Search />
+            <Search handleFunction={this.searchTags} />
           </div>
+        </div>
+        <div>
+          {renderDecks}
         </div>
         <h1 className="text-center display-3">Features</h1>
         <div className="container text-center">

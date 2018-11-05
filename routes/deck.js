@@ -11,7 +11,15 @@ const db = require("../models");
 module.exports = router => {
   // Get all public decks
   router.get("/decks/public", (req, res) => {
-    db.Deck.query("SELECT * FROM Decks WHERE private IS NOT false")
+    db.Deck.findAll({
+      where: {
+        private: false
+      },
+      include: [{
+        model: db.Tag
+      }]
+
+    })
       .then(decks => {
         res.status(200).json(decks);
       })
@@ -24,7 +32,10 @@ module.exports = router => {
     db.Deck.findAll({
       where: {
         userId: req.params.userId
-      }
+      }, 
+      include: [{
+        model: db.Tag
+      }]
     })
       .then(decks => {
         res.status(200).json(decks);
@@ -94,6 +105,27 @@ module.exports = router => {
       });
   });
 
+  //get public decks with matching tags
+  router.get("/decks/tags/:tag", (req, res) => {
+    db.Deck.findAll({
+      where: {
+        private: false
+      },
+      include: [{
+        model: db.Tag,
+        where: {
+          tags: req.params.tag
+        }
+      }]
+    })
+    .then(deck => {
+      res.status(200).json(deck);
+    })
+    .catch(err => {
+      res.status(404).json(err);
+    });
+  })
+
   //----------------flashcards---------------
 
   //create flashcards, save with deckId
@@ -152,7 +184,7 @@ module.exports = router => {
       });
   });
 
-  // Decks tags
+  //--------------------Decks tags--------------------
   router.post("/tags", (req, res) => {
     db.Tag.create(req.body)
       .then(response => {
