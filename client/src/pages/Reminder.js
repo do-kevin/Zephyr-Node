@@ -201,7 +201,7 @@ class Reminder extends React.Component {
         message: `Upcoming event: ${eventObj.item} on ${moment(
           eventDate
         ).format("MMMM D")} at ${moment(eventDate).format("hh:mm A")}`,
-        userId: 1,
+        userId: this.state.userId,
         type: "reminder",
         reminderId: eventObj.id
       };
@@ -455,7 +455,7 @@ class Reminder extends React.Component {
                           <p>{item.note}</p>
                           <p>
                             {moment(item.date).format("MMMM D")} at{" "}
-                            {moment(item.date).tz("America/Los_Angeles").format("hh:mm A")}
+                            {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mm A")}
                           </p>
                         </CardText>
                         <div>
