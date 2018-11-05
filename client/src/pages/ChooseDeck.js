@@ -50,23 +50,6 @@ class ChooseDeck extends React.Component {
     }); 
   }
 
-  // getTags = () => {
-
-  //   let deckArr = this.state.decks;
-
-  //   deckArr.forEach((item, index) => {
-  //     axios.get("/tags/" + item.id).then((response) => {
-
-  //       let tagsArr = response.data.map((item) => {
-  //         return item.tags;
-  //       })
-
-  //       deckArr[index].tags = tagsArr;
-  //       this.setState({ decks: deckArr });
-  //     })
-  //   })
-  // };
-
   searchTags = (event, tagInput) => {
     event.preventDefault();
     this.setState({
@@ -126,7 +109,8 @@ class ChooseDeck extends React.Component {
             <hr />
             <div className="tags-box">
               {item.Tags.map(elem => {
-                return <p key={elem.id}>#{elem.tags}</p>
+                return <button key={elem.id} className="tag-btn" onClick={(e) => this.searchTags(e, elem.tags)}>#{elem.tags} </button>
+                // <p key={elem.id}>#{elem.tags}</p>
               })}
             </div>
         </div>

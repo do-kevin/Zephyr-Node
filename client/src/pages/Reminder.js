@@ -76,6 +76,7 @@ class Reminder extends React.Component {
 
     getUserInfo = () => {
       axios.get("/user/" + this.state.userId).then(data => {
+        console.log(data)
         if (data.data[0].phoneNumber !== null) {
           this.setState({
             phoneNumberSaved: true
