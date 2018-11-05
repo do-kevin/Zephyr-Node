@@ -86,9 +86,17 @@ INSERT INTO Tags (tags, deckId) VALUES
 ("quick", 10),
 ("insertion", 10);
 
+INSERT INTO Quotes (quote, author) VALUES
+("The secret to getting ahead is getting started. The secret of getting started is breaking your complex, overwhelming tasks into small manageable tasks, and then starting on the first one.", "Mark Twain"),
+("The expert in everything was once a beginner.", "Helen Hayes"),
+("Start where you are. Use what you have. Do what you can.","Arthur Ashe"),
+("There are two kinds of people in this world: those who want to get things done and those who don’t want to make mistakes.","John Maxwell"),
+("Your positive action combined with positive thinking results in success.","Shiv Khera")
+
 SELECT * FROM Users;
 SELECT * FROM Reminders;
 SELECT * FROM Appointments;
 SELECT * FROM Decks;
 SELECT * FROM Flashcards;
 SELECT * FROM Tags;
+SELECT * FROM Quotes;
