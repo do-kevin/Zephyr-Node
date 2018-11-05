@@ -51,13 +51,15 @@ class Reminder extends React.Component {
           const userId = JSON.parse(localStorage.getItem("user")).id,
             redirect = !userId;
           if (userId) {
-            this.setState(() => ({userId, redirect}));
+            this.setState(() => ({userId, redirect}), 
+            () => {
+              this.getReminders();
+              this.getUserInfo();
+            });
           }
         } catch (err) {
           console.log(err);
         }
-        this.getReminders();
-        this.getUserInfo();
     }
     
     getReminders = () => {
