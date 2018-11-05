@@ -34,3 +34,12 @@
     transform: translate(-50%, -50%);
     color: white;
 }
+
+.tag-btn {
+    background:none!important;
+    color:black;
+    border:none; 
+    padding:5px;
+    font: inherit;
+    cursor: pointer;
+}

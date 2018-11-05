@@ -51,13 +51,15 @@ class Reminder extends React.Component {
           const userId = JSON.parse(localStorage.getItem("user")).id,
             redirect = !userId;
           if (userId) {
-            this.setState(() => ({userId, redirect}));
+            this.setState(() => ({userId, redirect}), 
+            () => {
+              this.getReminders();
+              this.getUserInfo();
+            });
           }
         } catch (err) {
           console.log(err);
         }
-        this.getReminders();
-        this.getUserInfo();
     }
     
     getReminders = () => {
@@ -74,6 +76,7 @@ class Reminder extends React.Component {
 
     getUserInfo = () => {
       axios.get("/user/" + this.state.userId).then(data => {
+        console.log(data)
         if (data.data[0].phoneNumber !== null) {
           this.setState({
             phoneNumberSaved: true

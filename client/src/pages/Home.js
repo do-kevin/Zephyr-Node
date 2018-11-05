@@ -89,7 +89,7 @@ class Home extends React.Component {
                 <hr />
                 <div className="tags-box">
                   {item.Tags.map(elem => {
-                    return <p key={elem.id}>#{elem.tags}</p>
+                    return <button key={elem.id} className="tag-btn" onClick={(e) => this.searchTags(e, elem.tags)}>#{elem.tags} </button>
                   })}
                 </div>
               </div>

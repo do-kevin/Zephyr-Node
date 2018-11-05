@@ -53,6 +53,8 @@ class PlayCards extends React.Component {
       phoneNumberSaved: false,
       phone: "",
       appts: [],
+      editSaved: false,
+      editId: -1,
       userId: JSON.parse(localStorage.getItem("user")).id,
       deckId: JSON.parse(sessionStorage.getItem("deckId"))
     };
@@ -95,6 +97,7 @@ class PlayCards extends React.Component {
 
   getUserInfo = () => {
     axios.get("/user/" + this.state.userId).then(data => {
+      console.log(data.data)
       if (data.data[0].phoneNumber !== null) {
         this.setState({
           phoneNumberSaved: true
@@ -171,7 +174,8 @@ class PlayCards extends React.Component {
 
       this.setState({
         front: "",
-        back: ""
+        back: "",
+        editSaved: false
       });
 
       this.getFlashcards();
@@ -204,6 +208,10 @@ class PlayCards extends React.Component {
         axios.put("/appointments/flashcard/" + id, backObj)
         .then(response => {
           console.log(response)
+          this.setState({
+            editSaved: true,
+            editId: index
+          })
         })
 
     });
@@ -412,6 +420,7 @@ class PlayCards extends React.Component {
                           onChange={event => this.handleBackEdit(index, event)}
                         />
                       </CardText>
+                      <p className="cardSaved">{this.state.editSaved && this.state.editId === index ? "Flashcard Saved!" : ""}</p>
                       <Button
                         onClick={() =>
                           this.saveFlashcardChanges(item.id, index)

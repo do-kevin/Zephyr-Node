@@ -76,3 +76,13 @@ p {
 .deck-create {
     margin-top: 15%;
 }
+
+.tag-btn {
+    background:none!important;
+    color:black;
+    border:none; 
+    padding:5px;
+    font: inherit;
+    cursor: pointer;
+    font-weight: 500;
+}
