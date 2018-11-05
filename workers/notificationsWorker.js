@@ -47,7 +47,7 @@ const notificationWorkerFactory = function () {
 
       function requiresNotification(apptObj) {
         let currentTime = moment().format("YYYY-MM-DD HH:mm");
-        return Math.round(moment.duration(moment(apptObj.date).tz("America/Los_Angeles").utc()
+        return Math.round(moment.duration(moment(apptObj.date).utc()
           .diff(moment(currentTime).utc())
         ).asMinutes()) === apptObj.notification;
 
