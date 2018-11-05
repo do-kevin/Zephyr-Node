@@ -120,7 +120,7 @@ class Note extends React.Component {
             formats={this.formats}
             style={{whiteSpace: "normal !important"}}
           />
-        <Button id="save-note-btn" href="#save-note-btn" color="primary" onClick={this.createNote} style={{ margin : "70px 0 30px 0" }}><i className="fas fa-pen-alt"></i></Button>
+        <Button id="save-note-btn" color="primary" onClick={this.createNote} style={{ margin : "70px 0 30px 0" }}><i className="fas fa-pen-alt"></i></Button>
         </div>
       </div>
     );

@@ -18,6 +18,8 @@ html {
 
 #quill-input {
     height: 13rem;
+    margin-top: 30px;
+    margin-bottom: 52px;
 }
 
 .note-output {
