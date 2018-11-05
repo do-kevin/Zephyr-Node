@@ -22,7 +22,7 @@ class Note extends React.Component {
       timeNdate: moment().format("ddd, MMMM Do YYYY, h:mm:ss a")
     };
     this.handleChange = this.handleChange.bind(this);
-    this.saveNote = this.saveNote.bind(this);
+    // this.saveNote = this.saveNote.bind(this);
   }
   
 
@@ -61,11 +61,8 @@ class Note extends React.Component {
     "code-block"
   ];
 
-  
-
   handleChange(value) {
     this.setState({ text: value });
-    console.log(this.state.text)
   }
 
   getNotes = () => {
@@ -74,27 +71,18 @@ class Note extends React.Component {
       this.setState({
         notesArr: [...response.data]
       })
-      console.log(this.state.notesArr);
-      console.log(typeof this.state.notesArr)
     })
   }
 
   createNote = () => {
     console.log("Creating Note");
+    this.setState({ note: this.state.text });
     axios.post(`/notes/${this.state.userId}`, { note: this.state.note }).then((response) => {
       console.log(response);
       this.getNotes();
     });
     
   }
-
-  saveNote = (event) => {
-    event.preventDefault();
-    console.log("Save note button pressed")
-    this.setState({ note: this.state.text });
-    console.log("Saved Note:\n", this.state.note)
-    this.createNote();
-  };
 
   deleteNote = (id) => {
     axios.delete(`/notes/${id}`).then((response) => {
@@ -132,8 +120,7 @@ class Note extends React.Component {
             formats={this.formats}
             style={{whiteSpace: "normal !important"}}
           />
-        <Button id="save-note-btn" href="#save-note-btn" color="primary" onClick={this.saveNote} style={{ margin : "70px 0 30px 0" }}><i className="fas fa-pen-alt"></i></Button>
-
+        <Button id="save-note-btn" href="#save-note-btn" color="primary" onClick={this.createNote} style={{ margin : "70px 0 30px 0" }}><i className="fas fa-pen-alt"></i></Button>
         </div>
       </div>
     );
