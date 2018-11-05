@@ -376,10 +376,6 @@ class PlayCards extends React.Component {
   }
 
   render() {
-    // if (!this.props.user) {
-    //   return <Redirect to="/" />;
-    // }
-
     //============== Card Stack==============//
     const edit = this.state.edit;
     let showCardStack;
@@ -617,6 +613,9 @@ class PlayCards extends React.Component {
 
     return (
       <div>
+        {/* Logout redirection */}
+        {this.props.handleUserRedirect()}
+        
         <Sidebar handleUserLogout={this.props.handleUserLogout} />
 
         <h1 className="text-center">{this.state.deckName}</h1>

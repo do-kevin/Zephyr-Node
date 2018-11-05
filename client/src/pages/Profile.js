@@ -24,7 +24,7 @@ class Profile extends React.Component {
         super(props);
         this.state = {
             // name: "Jiraiya",
-            id: JSON.parse(localStorage.getItem("user")).id,
+            id: null,
             time_date: moment().format("ddd, MMMM Do YYYY, h:mm:ss a"),
             reminders: [], // arrays of objects
             todos: [],
@@ -39,6 +39,12 @@ class Profile extends React.Component {
 
     componentDidMount() {
         console.log("Profile component mounted.");
+        try {
+            const userId = JSON.parse(localStorage.getItem("user")).id;
+            if (userId) this.setState(() => ({id: userId}));
+        } catch (err) {
+            console.log(err.message);
+        }
         this.getReminders();
         this.getToDos();
         this.getDecks();
@@ -92,12 +98,11 @@ class Profile extends React.Component {
     };
 
     render() {
-        // if (!this.props.user) {
-        //     return <Redirect to="/" />;
-        // }
-
         return (
             <div>
+                {/* Logout redirection */}
+                {this.props.handleUserRedirect()}
+
                 <Sidebar handleUserLogout={this.props.handleUserLogout} />
                 <Container className="text-center">
                     <Row>

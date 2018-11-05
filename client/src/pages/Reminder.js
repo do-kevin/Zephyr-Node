@@ -37,7 +37,7 @@ class Reminder extends React.Component {
             events: [],
             currentModal: "", 
             editingObj: {}, 
-            userId: 1       //---------------userId-----------
+            userId: null
         };
     
         this.toggle = this.toggle.bind(this);
@@ -45,6 +45,15 @@ class Reminder extends React.Component {
     
     componentDidMount() {
         console.log("start")
+        try {
+          const userId = JSON.parse(localStorage.getItem("user")).id,
+            redirect = !userId;
+          if (userId) {
+            this.setState(() => ({userId, redirect}));
+          }
+        } catch (err) {
+          console.log(err);
+        }
         this.getReminders();
     }
     
@@ -266,11 +275,6 @@ class Reminder extends React.Component {
   };
 
   render() {
-
-    // if (!this.props.user) {
-    //   return <Redirect to="/" />;
-    // }
-    
     //************buttons and onClick functions on the modal, depending on which button was clicked (create or edit event)
     let modalDisplay;
     if (this.state.modal && this.state.currentModal === "create") {
@@ -365,6 +369,9 @@ class Reminder extends React.Component {
 
     return (
       <div>
+        {/* Logout Redirection */}
+        {this.props.handleUserRedirect()}
+
         <Sidebar handleUserLogout={this.props.handleUserLogout} />
 
         <div 

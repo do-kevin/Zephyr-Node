@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import axios from "axios";
 
 // Pages
@@ -21,21 +21,28 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      redirect: false
     };
     this.handleUserLogin = this.handleUserLogin.bind(this);
     this.handleUserLogout = this.handleUserLogout.bind(this);
+    this.handleUserRedirect = this.handleUserRedirect.bind(this);
   }
 
   componentDidMount() {
-    const userStr = localStorage.getItem("user");
+    const userStr = localStorage.getItem("user"),
+      redirectStr = localStorage.getItem("redirect");
     try {
       const user = JSON.parse(userStr);
-      if (user) {
-        this.setState(() => ({user}));
-      }
+      if (user) this.setState(() => ({user}));      
     } catch (err) {
-      console.log(err.message);
+      console.log(err);
+    }
+    try {
+      const redirect = JSON.parse(redirectStr);
+      if (redirect) this.setState(() => ({redirect}));
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -43,6 +50,10 @@ class App extends Component {
     if (prevState.user !== this.state.user) {
       const userStr = JSON.stringify(this.state.user);
       localStorage.setItem("user", userStr);
+    }
+    if (prevState.redirect !== this.state.redirect) {
+      const redirectStr = JSON.stringify(this.state.redirect);
+      localStorage.setItem("redirect", redirectStr);
     }
   }
 
@@ -56,12 +67,20 @@ class App extends Component {
       method: "GET"
     })
     .then(() => {
+      this.setState(() => ({user: null, redirect: true}));
       document.body.style.marginLeft = "0px";
-      this.setState(() => ({user: null}));
     })
     .catch((err) => {
       console.log(err);
     });
+  }
+
+  handleUserRedirect() {
+    if (this.state.redirect) {
+      this.setState(() => ({redirect: false}));
+      document.body.style.marginLeft = "0px";
+      return <Redirect to="/" />;
+    } 
   }
   
   render() {
@@ -72,37 +91,43 @@ class App extends Component {
             exact path="/" 
             render={(props) => <Home {...props} 
               user={this.state.user}
-              handleUserLogin={this.handleUserLogin} />}
+              handleUserLogin={this.handleUserLogin}
+              handleUserRedirect={this.handleUserRedirect} />}
           />
           <Route 
             exact path="/reminder"
             render={(props) => <Reminder {...props}
               user={this.state.user}
-              handleUserLogout={this.handleUserLogout} />}
+              handleUserLogout={this.handleUserLogout}
+              handleUserRedirect={this.handleUserRedirect} />}
           />
           <Route 
             exact path="/profile" 
             render={(props) => <Profile {...props} 
               user={this.state.user}
-              handleUserLogout={this.handleUserLogout} />}
+              handleUserLogout={this.handleUserLogout}
+              handleUserRedirect={this.handleUserRedirect} />}
           />
           <Route 
             exact path="/todo" 
             render={(props) => <Todo {...props}
               user={this.state.user}
-              handleUserLogout={this.handleUserLogout} />}
+              handleUserLogout={this.handleUserLogout}
+              handleUserRedirect={this.handleUserRedirect} />}
           />            
           <Route 
             exact path="/choose" 
             render={(props) => <ChooseDeck {...props}
               user={this.state.user}
-              handleUserLogout={this.handleUserLogout} />}
+              handleUserLogout={this.handleUserLogout}
+              handleUserRedirect={this.handleUserRedirect} />}
           />
           <Route 
             exact path="/deck" 
             render={(props) => <PlayCards {...props}
               user={this.state.user}
-              handleUserLogout={this.handleUserLogout} />}
+              handleUserLogout={this.handleUserLogout}
+              handleUserRedirect={this.handleUserRedirect} />}
           />
         </div>
       </Router>

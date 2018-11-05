@@ -154,11 +154,6 @@ class Todo extends React.Component {
     }
 
     render() {
-
-        // if (this.props.user) {
-        //     return <Redirect to="/" />;
-        // }
-        
         const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
         let modal;
 
@@ -202,6 +197,9 @@ class Todo extends React.Component {
 
         return (
             <div className="container">
+                {/* Logout redirection */}
+                {this.props.handleUserRedirect()}
+                
                 <Sidebar handleUserLogout={this.props.handleUserLogout} />
                 {modal}
                 <p className="time_date">{this.state.time_date}</p>

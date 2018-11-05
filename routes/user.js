@@ -11,12 +11,9 @@ const db = require("../models");
 module.exports = (router) => {
     // Log user out on user id
     router.get("/users/logout", (req, res) => {
-        if (req.session.userId && req.cookies.user_sid) {
-            res.clearCookie('user_sid');
-            res.status(200).json({cookie: false});
-        } else {
-            res.status(404).json({cookie: true});
-        }
+        res.clearCookie("user_sid");
+        req.session.destroy();
+        res.status(200).json({ cookie: false });
     });
     // Retrieve specific user at login
     router.post("/users/login", (req, res) => {

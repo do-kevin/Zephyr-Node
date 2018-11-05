@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 import axios from "axios";
 import { Row, Col, Card, Button } from "reactstrap";
 import {Link} from "react-router-dom"
@@ -82,29 +83,33 @@ class ChooseDeck extends React.Component {
       console.log(item.tags)
 
       return (
-        <Col>
-        
-          <div className="decks decks-primary animated bounceIn">
-            <Button color="danger" className="trash-btn" onClick={() => {this.deleteDeck(item.id)}}>
-              <i className="fas fa-trash-alt" />
-            </Button>
-            <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>
-            <h1 className="deck-title text-center">{item.subject}</h1>
-            </Link>
-            <hr />
-            <div className="tags-box">
-              <p>
-                {item.tags}
-              </p>
+        <div>
+          <Col>
+            <div className="decks decks-primary animated bounceIn">
+              <Button color="danger" className="trash-btn" onClick={() => {this.deleteDeck(item.id)}}>
+                <i className="fas fa-trash-alt" />
+              </Button>
+              <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>
+              <h1 className="deck-title text-center">{item.subject}</h1>
+              </Link>
+              <hr />
+              <div className="tags-box">
+                <p>
+                  {item.tags}
+                </p>
+              </div>
             </div>
-          </div>
-        </Col>
+          </Col>      
+        </div>
       );
     });
 
     return (
       <div>
-        <Sidebar />
+        {/* Logout redirection */}
+        {this.props.handleUserRedirect()}
+        
+        <Sidebar handleUserLogout={this.props.handleUserLogout} />
         <Search />
         <div id="deck-list">
           <div className="row">

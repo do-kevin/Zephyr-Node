@@ -10,12 +10,9 @@ import "../css/Home.css";
 
 class Home extends React.Component {
   render() {
-    if (this.props.user) {
-      return <Redirect to="/profile" />
-    }
-
     return (
       <div>
+        {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
         <h1>App Name</h1>
           <Login handleUserLogin={this.props.handleUserLogin} />
