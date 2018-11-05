@@ -79,7 +79,18 @@ class Home extends React.Component {
 
     let renderDecks;
     if (this.state.search) {
-      if (!this.state.notFound) {
+      if (this.state.notFound) {
+        document.querySelector("#render-decks").style.height = "auto";
+        document.querySelector("#render-decks").style.boxShadow = "";
+        renderDecks =
+          <div className="decks-not-found animated wobble">
+          <i className="fas fa-binoculars" style={{fontSize: "200px", marginLeft: "4%", color: "#E34234"}}></i>
+            <h3 style={{color: "#E34234"}}>Decks Not Found</h3>
+          </div>
+      }
+      else if (!this.state.notFound) {
+        document.querySelector("#render-decks").style.height = "700px";
+        document.querySelector("#render-decks").style.boxShadow = "inset 0 0 10px #000000";
         renderDecks = this.state.decks.map((item, index) => {
 
           return (
@@ -97,19 +108,14 @@ class Home extends React.Component {
           );
         });
       }
-      else {
-        renderDecks =
-          <div>
-            <h3>Decks Not Found</h3>
-          </div>
-      }
     }
     else if (this.state.showCards) {
+      document.querySelector("#render-decks").style.height = "auto";
+      document.querySelector("#render-decks").style.boxShadow = "";
       renderDecks =
-        <div>
+        <div className="animated fadeIn" id="carousel">
           <Carousel
             // ref="cardList"
-            id="carousel"
           >
             {this.state.flashcard.map(item => {
               return (
@@ -132,8 +138,8 @@ class Home extends React.Component {
               );
             })}
           </Carousel>
-          <Button color="info" onClick={this.displayPublicDecks}>
-            Return to Decks
+          <Button color="warning" onClick={this.displayPublicDecks} style={{ marginLeft: "47%", fontSize: "170%"}}>
+          <i className="fas fa-sign-out-alt"></i>
           </Button>
         </div>
     }
@@ -141,22 +147,26 @@ class Home extends React.Component {
       <div>
         {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
-          <h1>App Name</h1>
+          <a href="https://github.com/do-kevin/Project-Three" target="_blank">
+            <img id="app-logo" src={"http://now.outsystems.com/OutSystemsNowDocs/img/github.png?862"} alt="github logo"/>
+          </a>
           <Login handleUserLogin={this.props.handleUserLogin} />
         </nav>
         <div className="jumbotron banner-image animated fadeIn">
           <div className="banner-text">
-            <h1>Wholesome and Inspirational Quote</h1>
-            <p>Current date and time or quotist</p>
+            <h1 className="display-1 app-name">Flash Me</h1>
             <br />
             <Search handleFunction={this.searchTags} />
           </div>
         </div>
         <div>
-          {renderDecks}
+          <Row id="render-decks" className="animated fadeIn">
+            {renderDecks}
+          </Row>
         </div>
-        <h1 className="text-center display-3">Features</h1>
+        
         <div className="container text-center">
+        <h1 className="text-center display-3">Features</h1>
           <div className="row">
             <div className="col">
               <div className="card animated slideInLeft">
@@ -166,11 +176,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Flashcards</h5>
                   <p className="card-text text-left">
-                    Etiam sapien lectus, pulvinar fringilla lorem ut, imperdiet
-                    vehicula ipsum. Curabitur sagittis dolor augue, at tempus
-                    massa accumsan a. Nulla sed velit at orci interdum mollis.
-                    Fusce faucibus sapien leo, in pellentesque purus molestie
-                    ultricies. Suspendisse a sem ac libero facilisis tempus.
+                    Create decks tied to specific tags. Type questions in each front of the flashcard and answers in the back, so you can flip them to study for a big, incoming exam.
                   </p>
                 </div>
               </div>
@@ -183,11 +189,8 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Notes</h5>
                   <p className="card-text text-left">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                    in sapien congue, varius turpis at, tincidunt odio. Maecenas
-                    tincidunt magna et volutpat fringilla. Integer pretium
-                    cursus dignissim. Fusce lectus est, vestibulum ut metus et,
-                    condimentum scelerisque nisl.
+                    Ideas and inspiration swimming around in your head? Need to record paraphrased information?
+                    Capture all of them here. Type and save whatever you want, whether it's business or personal, for future reference. You can include URL, image, and video links.
                   </p>
                 </div>
               </div>
@@ -200,12 +203,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Lists</h5>
                   <p className="card-text text-left">
-                    Morbi accumsan sapien vitae sodales porta. Nulla non nibh
-                    eget urna dictum hendrerit. Vivamus mattis velit sed lacus
-                    sodales, vel facilisis lectus auctor. Donec porttitor
-                    pulvinar libero, et mollis eros congue quis. Vestibulum
-                    risus ex, mattis et aliquet quis, viverra eu sem. Curabitur
-                    varius tempor mi at egestas.
+                      Organize a list of To-Dos to prioritize what you intend to do for the day, week, month, whatever.
                   </p>
                 </div>
               </div>
@@ -222,32 +220,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Reminders</h5>
                   <p className="card-text text-left">
-                    Aliquam sed tempor justo. Praesent sit amet semper justo. In
-                    lobortis ullamcorper tellus varius vulputate. Nulla placerat
-                    vestibulum tortor, ut efficitur magna elementum eu. Nam
-                    lectus eros, elementum at nulla id, ullamcorper feugiat
-                    neque. Nullam eget sem porttitor nulla viverra cursus.
-                  </p>
-                </div>
-              </div>
-              <br />
-            </div>
-            <div className="col">
-              <br />
-              <div className="card animated slideInUp">
-                <div className="card-body feature-cards">
-                  <h1>
-                    <i className="fas fa-stopwatch" />
-                  </h1>
-                  <h5 className="card-title">Pomodoro Timer</h5>
-                  <p className="card-text text-left">
-                    Mauris in leo volutpat, sagittis ex sed, suscipit augue.
-                    Suspendisse massa ante, venenatis nec luctus at, vestibulum
-                    in felis. Nulla ante diam, pellentesque a nunc nec, varius
-                    pharetra nunc. Class aptent taciti sociosqu ad litora
-                    torquent per conubia nostra, per inceptos himenaeos.
-                    Suspendisse sollicitudin a orci ac mollis. Curabitur
-                    vehicula tristique porttitor.
+                      Select a time and day to send yourself a reminder about an upcoming event, so you don't panick or be a hurry.
                   </p>
                 </div>
               </div>
@@ -263,12 +236,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">SMS</h5>
                   <p className="card-text text-left">
-                    Donec id hendrerit eros, sed mollis sem. Etiam felis justo,
-                    volutpat tempor lacus quis, placerat interdum tortor.
-                    Aliquam in dolor vel nunc hendrerit auctor. Maecenas non
-                    ante consectetur, consequat nisi et, euismod risus. Nam id
-                    commodo lorem. Cras volutpat nisl sit amet sem laoreet
-                    posuere.
+                      A text messaging feature for decks of flashcards and reminders. Need a reminder sent to your phone? Want to send flashcard questions to keep your memory sharp? All you need to do it enter your phone number and turn those features on!
                   </p>
                 </div>
               </div>

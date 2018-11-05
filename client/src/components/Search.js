@@ -23,7 +23,6 @@ class Search extends React.Component {
         <input
           className="form-control"
           type="search"
-          placeholder="Search #lorem-ipsum"
           aria-label="Search"
           id="search-input"
           onChange={this.handleInputChange}
