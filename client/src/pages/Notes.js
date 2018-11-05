@@ -61,6 +61,8 @@ class Note extends React.Component {
     "code-block"
   ];
 
+  
+
   handleChange(value) {
     this.setState({ text: value });
     console.log(this.state.text)
@@ -74,7 +76,6 @@ class Note extends React.Component {
       })
       console.log(this.state.notesArr);
       console.log(typeof this.state.notesArr)
-      this.testArr();
     })
   }
 
@@ -105,42 +106,21 @@ class Note extends React.Component {
     this.getNotes();
   }
 
-  componentDidUpdate() {
-      // this.getNotes();
-  }
-
-  testArr = () => {
-    console.log("hit")
-    console.log(this.state.notesArr)
-    this.state.notesArr.map((item, index) => {
-      console.log(item);
-    })
-    console.log(this.state.notesArr)
-  }
-
   render() {
     return (
       <div style={{scrollBehavior: "smooth"}}>
         <Sidebar />
         <a href="#save-note-btn" style={{marginLeft: "90%"}}><i className="fas fa-chevron-circle-down animated slideInDown" style={{fontSize: "50px", color: "#FFD300"}}></i></a>
         {this.state.notesArr.map((item, index) => {
-          console.log(index)
           return (
-              <div key={item.id} className="animated slideInRight note-output">
-                <Button color="danger" type="button" onClick={ () => this.deleteNote(item.id) }></Button>
-                <div dangerouslySetInnerHTML={{ __html: item.note}} style={{ wordBreak: "break-word"}}></div> 
+              <div key={item.id} className="animated flipInX note-output" style={{ overflowY: "scroll"}}>
+                <Button className="delete-note-btn" style={{marginLeft: "94%", borderRadius: "25px 0 25px 0", marginTop: "2px"}} color="danger" type="button" onClick={ () => this.deleteNote(item.id) }><i className="fas fa-trash-alt"></i></Button>
+                <div className="quill-output" dangerouslySetInnerHTML={{ __html: item.note}} style={{ wordBreak: "break-word"}}></div> 
               </div>
           );
         })}
 
-        {/* {
-        <div className="animated slideInRight note-output">
-          <h6 style={{ textAlign: "left"}}>{this.state.timeNdate}</h6>
-          <div dangerouslySetInnerHTML={{ __html: this.state.note }} style={{ wordBreak: "break-word"}}></div> 
-        </div>
-        } */}
-
-        <div id="quill-wrapper" className="text-center">
+        <div id="quill-wrapper" className="text-center animated slideInUp">
           <h1>Notes</h1>
           <p>*To create an <strong>embed link</strong>: Highlight a typed text, click the link button, and save the url</p>
           <ReactQuill
@@ -150,8 +130,9 @@ class Note extends React.Component {
             onChange={this.handleChange}
             modules={this.modules}
             formats={this.formats}
+            style={{whiteSpace: "normal !important"}}
           />
-        <Button id="save-note-btn" color="primary" onClick={this.saveNote} style={{ margin : "70px 0 30px 0" }}> Save Note </Button>
+        <Button id="save-note-btn" href="#save-note-btn" color="primary" onClick={this.saveNote} style={{ margin : "70px 0 30px 0" }}><i className="fas fa-pen-alt"></i></Button>
 
         </div>
       </div>
