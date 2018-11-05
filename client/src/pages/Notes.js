@@ -101,7 +101,7 @@ class Note extends React.Component {
         <a href="#save-note-btn" style={{marginLeft: "90%"}}><i className="fas fa-chevron-circle-down animated slideInDown" style={{fontSize: "50px", color: "#FFD300"}}></i></a>
         {this.state.notesArr.map((item, index) => {
           return (
-              <div key={item.id} className="animated flipInX note-output" style={{ overflowY: "scroll"}}>
+              <div key={item.id} className="animated zoomInRight note-output" style={{ overflowY: "scroll"}}>
                 <Button className="delete-note-btn" style={{marginLeft: "94%", borderRadius: "25px 0 25px 0", marginTop: "2px"}} color="danger" type="button" onClick={ () => this.deleteNote(item.id) }><i className="fas fa-trash-alt"></i></Button>
                 <div className="quill-output" dangerouslySetInnerHTML={{ __html: item.note}} style={{ wordBreak: "break-word"}}></div> 
               </div>
