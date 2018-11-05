@@ -97,7 +97,10 @@ class Note extends React.Component {
   render() {
     return (
       <div style={{scrollBehavior: "smooth"}}>
-        <Sidebar />
+        {/* Logout redirection */}
+        {this.props.handleUserRedirect()}
+      
+        <Sidebar handleUserLogout={this.props.handleUserLogout} />
         <a href="#save-note-btn" style={{marginLeft: "90%"}}><i className="fas fa-chevron-circle-down animated slideInDown" style={{fontSize: "50px", color: "#FFD300"}}></i></a>
         {this.state.notesArr.map((item, index) => {
           return (

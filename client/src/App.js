@@ -129,11 +129,12 @@ class App extends Component {
               handleUserLogout={this.handleUserLogout}
               handleUserRedirect={this.handleUserRedirect} />}
           />
-            <Route 
+          <Route 
             exact path="/notes" 
             render={(props) => <Notes {...props}
-            user={this.state.user}
-            handleUserLogout={this.handleUserLogout} />}
+              user={this.state.user}
+              handleUserLogout={this.handleUserLogout}
+              handleUserRedirect={this.handleUserRedirect} />}
           />
         </div>
       </Router>
