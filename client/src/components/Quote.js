@@ -4,13 +4,13 @@ import "../css/Quote.css"
 
 const Quote = () => {
 
-  let quote = "Something wholesome and motivational.";
-  let author = "Anonymous";
+  var quote = "Something wholesome and motivational.";
+  var author = "Anonymous";
 
   axios.get(
-    // `/quotes/...`
+    "/quotes"
   ).then((res) => {
-    var random = Math.floor(Math.random() * 30) + 1;
+    var random = Math.floor(Math.random() * 5) + 1;
     quote = res[random].quote;
     author = res[random].author;
   });

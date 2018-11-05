@@ -1,7 +1,7 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
-    Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardGroup, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
+    Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardDeck, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
 } from 'reactstrap';
 import moment from "moment";
 import axios from "axios";
@@ -89,6 +89,111 @@ class Profile extends React.Component {
         //     return <Redirect to="/" />;
         // }
 
+        let renderToDos;
+        let renderReminders;
+        let renderDecks;
+        let renderNotes;
+
+        // Render Reminders
+        if (this.state.reminders.length > 0) {
+            renderReminders = (
+                <ListGroup className="scroll">
+                    <div>
+                        {this.state.reminders.map((reminder) => {
+                            return (
+                                <ListGroupItem>
+                                    {reminder.item} | {reminder.date}
+                                    <br />
+                                    {reminder.note}
+                                </ListGroupItem>
+                            );
+                        })}
+                    </div>
+                </ListGroup>
+            )
+        }
+        else {
+            renderReminders = (
+                <ListGroup className="scroll">
+                    <ListGroupItem className="centerText">No important dates.</ListGroupItem>
+                </ListGroup>
+            )
+        }
+
+        // Render To-Do List
+        if (this.state.todos.length > 0) {
+            renderToDos = (
+                <ListGroup className="scroll">
+                    <div>
+                        {this.state.todos.map((todo) => {
+                            return (
+                                <ListGroupItem>{todo.item}</ListGroupItem>
+                            );
+                        })}
+                    </div>
+                </ListGroup>
+            )
+        }
+        else {
+            renderToDos = (
+                <ListGroup className="scroll">
+                    <ListGroupItem className="centerText">All tasks completed.</ListGroupItem>
+                </ListGroup >
+            )
+        }
+
+        // Render Decks
+        if (this.state.decks.length > 1) {
+            renderDecks = (
+                <div>
+                    <CardDeck>
+                        {this.state.decks.map((deck) => {
+                            return (
+                                <Card>
+                                    <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                    <CardBody>
+                                        <CardTitle>{deck.subject}</CardTitle>
+                                    </CardBody>
+                                </Card>
+                            );
+                        })}
+                    </CardDeck>
+                </div>
+            )
+        }
+        else if (this.state.decks.length === 1) {
+            renderDecks = (
+                <div>
+                    <CardDeck>
+                        {this.state.decks.map((deck) => {
+                            return (
+                                <Col xs="6" sm="6" md="6">
+                                    <Card>
+                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                        <CardBody>
+                                            <CardTitle>{deck.subject}</CardTitle>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            );
+                        })}
+                    </CardDeck>
+                </div>
+            )
+        }
+        else {
+            renderDecks = (
+                <Col>
+                    <ListGroup>
+                        <ListGroupItem className="noDisplay">No decks to display.</ListGroupItem>
+                    </ListGroup>
+                </Col>
+            )
+        }
+
+        // Render Notes
+
+
         return (
             <div>
                 <Sidebar handleUserLogout={this.props.handleUserLogout} />
@@ -112,18 +217,8 @@ class Profile extends React.Component {
                                 <CardBody>
                                     <CardTitle>Important Dates</CardTitle>
                                     <CardText>
-                                        <ListGroup className="scroll">
-                                            <ListGroupItem>Exam 11/21/18 2:00pm (dummy)</ListGroupItem>
-                                            <div>
-                                                {/************** Display existing reminders START ****************/}
-                                                {this.state.reminders.map((reminder) => {
-                                                    return (
-                                                        <ListGroupItem>{reminder.item}</ListGroupItem>
-                                                    );
-                                                })}
-                                                {/************** Display existing reminders END ****************/}
-                                            </div>
-                                        </ListGroup>
+                                        {/************** Display existing reminders ****************/}
+                                        {renderReminders}
                                     </CardText>
                                     <Button outline color="info" id="reminder" href="/reminder">See more</Button>
                                 </CardBody>
@@ -134,17 +229,8 @@ class Profile extends React.Component {
                                 <CardBody>
                                     <CardTitle>To-do</CardTitle>
                                     <CardText>
-                                        <ListGroup className="scroll">
-                                            <div>
-                                                {/************** Display existing to-dos START ****************/}
-                                                {this.state.todos.map((todo) => {
-                                                    return (
-                                                        <ListGroupItem>{todo.item}</ListGroupItem>
-                                                    );
-                                                })}
-                                                {/************** Display existing to-dos END ****************/}
-                                            </div>
-                                        </ListGroup>
+                                        {/************** Display existing to-dos ****************/}
+                                        {renderToDos}
                                     </CardText>
                                     <Button outline color="info" id="todo" href="/todo">See more</Button>
                                 </CardBody>
@@ -152,91 +238,60 @@ class Profile extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
-                            <Card className="group">
-                                <h3>Recent Decks</h3>
-                                <Row>
-                                    <CardGroup>
-                                        <Col>
-                                            <Card>
-                                                <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
-                                                <CardBody>
-                                                    <CardTitle>Deck 1</CardTitle>
-                                                    <CardSubtitle>Dummy</CardSubtitle>
-                                                </CardBody>
-                                            </Card>
-                                        </Col>
-                                        <div>
-                                            {/************** Display existing decks START ****************/}
-                                            {this.state.decks.map((deck) => {
-                                                return (
-                                                    <Col>
-                                                        <Card>
-                                                            <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
-                                                            <CardBody>
-                                                                <CardTitle>{deck.subject}</CardTitle>
-                                                                <CardSubtitle>Private: {deck.private}</CardSubtitle>
-                                                                <CardSubtitle>Daily Quiz: {deck.dailyQuiz}</CardSubtitle>
-                                                            </CardBody>
-                                                        </Card>
-                                                    </Col>
-                                                );
-                                            })}
-                                            {/************** Display existing decks END ****************/}
-                                        </div>
-                                    </CardGroup>
-                                </Row>
-                                <Button outline color="info" id="seeall" href="/choose">See all decks</Button>
-                            </Card>
-                        </Col>
+                        <Card className="group">
+                            <h5>Recent Decks</h5>
+                            {/************** Display existing decks ****************/}
+                            {renderDecks}
+                            <Button outline color="info" id="seeall" href="/choose">See decks</Button>
+                        </Card>
                     </Row>
                     <Row>
-                        <Col>
-                            <Card className="group notes">
-                                <h3>Recent Notes</h3>
-                                <CardGroup>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 1</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 2</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 3</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 4</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 5</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                </CardGroup>
-                                <Button outline color="info" id="seeall" href="/note">See all notes</Button>
-                            </Card>
-                        </Col>
+                        <Card className="group notes">
+                            <h5>Recent Notes</h5>
+                            <CardDeck>
+                                <Card>
+                                    <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                    <CardBody>
+                                        <CardTitle>Notes 1</CardTitle>
+                                        <CardSubtitle>Card subtitle</CardSubtitle>
+                                    </CardBody>
+                                </Card>
+                                <Card>
+                                    <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                    <CardBody>
+                                        <CardTitle>Notes 2</CardTitle>
+                                        <CardSubtitle>Card subtitle</CardSubtitle>
+                                    </CardBody>
+                                </Card>
+                                <Card>
+                                    <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                    <CardBody>
+                                        <CardTitle>Notes 3</CardTitle>
+                                        <CardSubtitle>Card subtitle</CardSubtitle>
+                                    </CardBody>
+                                </Card>
+                                <Card>
+                                    <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                    <CardBody>
+                                        <CardTitle>Notes 4</CardTitle>
+                                        <CardSubtitle>Card subtitle</CardSubtitle>
+                                    </CardBody>
+                                </Card>
+                                <Card>
+                                    <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                    <CardBody>
+                                        <CardTitle>Notes 5</CardTitle>
+                                        <CardSubtitle>Card subtitle</CardSubtitle>
+                                    </CardBody>
+                                </Card>
+                            </CardDeck>
+                            {/************** Display existing decks ****************/}
+                            {renderNotes}
+                            <Button outline color="info" id="seeall" href="/note">See notes</Button>
+                        </Card>
                     </Row>
                 </Container>
-            </div>
+            </div >
         );
     }
 }

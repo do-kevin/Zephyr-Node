@@ -27,6 +27,23 @@ li {
     margin: 10px auto 10px auto;
 }
 
+.decks {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .notes {
     margin-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.noDisplay {
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.centerText {
+    text-align: center;
 }

@@ -44,7 +44,7 @@ class Sidebar extends React.Component {
                 <Link to="/reminder">Reminders</Link>
               </li>
               <li>
-                <Link to="/todo">To-Do List</Link>
+                <Link to="/todo">To-Do</Link>
               </li>
 
               <li>
