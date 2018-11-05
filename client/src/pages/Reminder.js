@@ -460,7 +460,7 @@ class Reminder extends React.Component {
                           <p>{item.note}</p>
                           <p>
                             {moment(item.date).format("MMMM D")} at{" "}
-                            {moment(time.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mm A")}
+                            {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mm A")}
                           </p>
                         </CardText>
                         <div>
