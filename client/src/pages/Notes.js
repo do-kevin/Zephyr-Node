@@ -76,8 +76,8 @@ class Note extends React.Component {
 
   createNote = () => {
     console.log("Creating Note");
-    this.setState({ note: this.state.text });
-    axios.post(`/notes/${this.state.userId}`, { note: this.state.note }).then((response) => {
+    // this.setState({ note: this.state.text });
+    axios.post(`/notes/${this.state.userId}`, { note: this.state.text }).then((response) => {
       console.log(response);
       this.getNotes();
     });
