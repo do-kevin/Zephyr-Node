@@ -2,6 +2,8 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios"
 import { Row, Col, Card, Button } from "reactstrap";
+import Flippy, { FrontSide, BackSide } from "react-flippy";
+import Carousel from "nuka-carousel";
 
 // Components
 import Search from "../components/Search";
@@ -15,8 +17,10 @@ class Home extends React.Component {
     super(props);
     this.state = {
       decks: [],
+      flashcard: [],
       search: false,
-      notFound: false
+      notFound: false,
+      showCards: false,
     };
   }
 
@@ -44,6 +48,30 @@ class Home extends React.Component {
       })
   }
 
+  getFlashcards = (id) => {
+    axios.get("/flashcard/" + id)
+      .then(response => {
+        this.setState({
+          flashcard: response.data,
+          showCards: true,
+          search: false,
+          notFound: false,
+        })
+      })
+  }
+
+  displayPublicDecks = () => {
+    axios.get("/decks/public")
+      .then(response => {
+        this.setState({
+          decks: response.data,
+          showCards: false,
+          search: true, 
+        })
+      })
+  }
+
+
   render() {
     if (this.props.user) {
       return <Redirect to="/profile" />
@@ -57,9 +85,7 @@ class Home extends React.Component {
           return (
             <Col key={item.id}>
               <div className="decks decks-primary animated bounceIn">
-                <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>
-                  <h1 className="deck-title text-center">{item.subject}</h1>
-                </Link>
+                <h1 className="deck-title text-center" onClick={() => this.getFlashcards(item.id)}>{item.subject}</h1>
                 <hr />
                 <div className="tags-box">
                   {item.Tags.map(elem => {
@@ -77,6 +103,39 @@ class Home extends React.Component {
             <h3>Decks Not Found</h3>
           </div>
       }
+    }
+    else if (this.state.showCards) {
+      renderDecks =
+        <div>
+          <Carousel
+            // ref="cardList"
+            id="carousel"
+          >
+            {this.state.flashcard.map(item => {
+              return (
+                <Flippy
+                  key={item.id}
+                  flipOnHover={false}
+                  flipOnClick={true}
+                  flipDirection="horizontal"
+                  ref={r => (this.Flippy = r)}
+                  style={{ width: "400px", height: "200px" }}
+                >
+                  <FrontSide style={{ backgroundColor: "#93bbde" }}>
+                    <p>{item.front}</p>
+                  </FrontSide>
+
+                  <BackSide style={{ backgroundColor: "#66b361" }}>
+                    <p>{item.back}</p>
+                  </BackSide>
+                </Flippy>
+              );
+            })}
+          </Carousel>
+          <Button color="info" onClick={this.displayPublicDecks}>
+            Return to Decks
+          </Button>
+        </div>
     }
     return (
       <div>

@@ -15,6 +15,10 @@ module.exports = function (sequelize, DataTypes) {
         type: {                        //defines if it's an event or deck notification
             type: DataTypes.STRING,
             allowNull: false
+        },
+        front: {                        //if it's a flashcard, indicates if it's the front or back being stored
+            type: DataTypes.BOOLEAN,
+            allowNull: true
         }
     },
         {

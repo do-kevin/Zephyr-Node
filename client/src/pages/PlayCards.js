@@ -44,7 +44,6 @@ class PlayCards extends React.Component {
       deckName: "",
       deck: {},
       flashcards: [],
-      prevFlashcards: [],
       front: "",
       back: "",
       privacy: false,
@@ -75,8 +74,7 @@ class PlayCards extends React.Component {
     axios.get("/flashcard/" + this.state.deckId).then(data => {
       console.log(data.data);
       this.setState({
-        flashcards: [...data.data],
-        prevFlashcards: [...data.data]
+        flashcards: [...data.data]
       });
     });
   };
@@ -120,6 +118,10 @@ class PlayCards extends React.Component {
     axios.delete("/flashcards/" + id).then(data => {
       console.log(data);
       this.getFlashcards();
+      axios.delete("/appointments/decks/" + id)
+        .then(response => {
+          console.log(response)
+        })
     });
   };
 
@@ -142,7 +144,9 @@ class PlayCards extends React.Component {
           message: "Daily question: " + obj.front,
           userId: this.state.userId,
           type: "deck",
-          deckId: this.state.deckId
+          deckId: this.state.deckId,
+          flashcardId: data.data.id,
+          front: true
         };
         let obj2 = {
           date: moment(obj1.date)
@@ -152,7 +156,9 @@ class PlayCards extends React.Component {
           message: "Answer: " + obj.back,
           userId: this.state.userId,
           type: "deck",
-          deckId: this.state.deckId
+          deckId: this.state.deckId,
+          flashcardId: data.data.id,
+          front: false
         };
 
         axios.post("/appointment", obj1).then(data => {
@@ -173,47 +179,33 @@ class PlayCards extends React.Component {
   };
 
   saveFlashcardChanges = (id, index) => {
-    let obj = {};
-    let findObj = {};
+    let obj =  {
+      front: this.state.flashcards[index].front,
+      back: this.state.flashcards[index].back
+    };
 
-    if (
-      this.state.flashcards[index].front !==
-        this.state.prevFlashcards[index].front &&
-      this.state.flashcards[index].front !==
-        this.state.prevFlashcards[index].front
-    ) {
-      obj = {
-        front: this.state.flashcards[index].front,
-        back: this.state.flashcards[index].back
-      };
-      findObj = {
-        front: this.state.prevFlashcards[index].front
-      };
-    } else if (
-      this.state.flashcards[index].front !==
-      this.state.prevFlashcards[index].front
-    ) {
-      obj = {
-        front: this.state.flashcards[index].front
-      };
-      findObj = {
-        front: this.state.prevFlashcards[index].back
-      };
-    } else if (
-      this.state.flashcards[index].back !==
-      this.state.prevFlashcards[index].back
-    ) {
-      obj = {
-        front: this.state.flashcards[index].back
-      };
-      findObj = {
-        front: this.state.prevFlashcards[index].front
-      };
+    let frontObj = {
+      message: "Daily question: " + this.state.flashcards[index].front,
+      front: true
+    }
+
+    let backObj = {
+      message: "Answer: " + this.state.flashcards[index].back,
+      front: false
     }
 
     axios.put("/flashcard/" + id, obj).then(data => {
       console.log(data);
       this.getFlashcards();
+      axios.put("/appointments/flashcard/" + id, frontObj)
+        .then(response => {
+          console.log(response)
+        })
+        axios.put("/appointments/flashcard/" + id, backObj)
+        .then(response => {
+          console.log(response)
+        })
+
     });
   };
 
@@ -278,6 +270,7 @@ class PlayCards extends React.Component {
 
   createAppointments = () => {
     console.log("creating appts");
+    console.log(this.state.flashcards)
     this.state.flashcards.map((item, index) => {
       let eventDate = moment(this.state.alertTime, "HH:mm")
         .add(index, "days")
@@ -288,7 +281,9 @@ class PlayCards extends React.Component {
         message: "Daily question: " + item.front,
         userId: this.state.userId,
         type: "deck",
-        deckId: this.state.deckId
+        deckId: this.state.deckId,
+        flashcardId: item.id,
+        front: true
       };
       axios.post("/appointment", obj).then(data => {
         // console.log(data);
@@ -297,6 +292,8 @@ class PlayCards extends React.Component {
           .add(this.state.timeInterval, "minutes")
           .format("YYYY-MM-DD HH:mm");
         obj.message = "Answer: " + item.back;
+        obj.front = false;
+
         axios.post("/appointment", obj).then(data => {
           // console.log(data);
           this.getDeckAppts();
