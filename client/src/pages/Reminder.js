@@ -106,7 +106,7 @@ class Reminder extends React.Component {
     this.setState({
       item: obj.item,
       note: obj.note,
-      date: new Date(obj.date),
+      date: moment(obj.date.replace(":00.000Z", "").replace("T", " ")).format("YYYY-MM-DD HH:mm"),
       sendReminder: obj.sendAlert,
       editingObj: obj
     });
@@ -460,7 +460,7 @@ class Reminder extends React.Component {
                           <p>{item.note}</p>
                           <p>
                             {moment(item.date).format("MMMM D")} at{" "}
-                            {moment(item.date).format("hh:mm A")}
+                            {moment(time.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mm A")}
                           </p>
                         </CardText>
                         <div>
