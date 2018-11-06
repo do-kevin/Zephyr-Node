@@ -147,6 +147,7 @@ class Home extends React.Component {
     }
     return (
       <div>
+      <div>
         {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
           <a href="https://github.com/do-kevin/Project-Three" target="_blank">
@@ -200,6 +201,8 @@ class Home extends React.Component {
               </div>
             </div>
             </Container>
+            </div>
+            <div className="row" style={{margin: "30px auto 0 auto"}}>
             <Container className="feature-containers">
             <div className="col">
               <div className="card feature-cards animated slideInLeft">
@@ -219,7 +222,7 @@ class Home extends React.Component {
             <Container className="feature-containers">
             <div className="col">
               <br />
-              <div className="card feature-cards animated slideInRight">
+              <div className="card feature-cards animated slideInRight" style={{marginTop: "-23px"}}>
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="far fa-calendar-alt" />
@@ -233,10 +236,11 @@ class Home extends React.Component {
               <br />
             </div>
             </Container>
+            </div>
             <Container className="feature-containers">
             <div className="col">
               <br />
-              <div className="card feature-cards animated zoomIn">
+              <div className="card feature-cards animated zoomIn" style={{marginTop: "-40px"}}>
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="far fa-comment" />
@@ -252,7 +256,7 @@ class Home extends React.Component {
             </Container>
           </div>
         </div>
-      </div>
+        </div>
     );
   }
 }
