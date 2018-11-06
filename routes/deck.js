@@ -122,6 +122,9 @@ module.exports = router => {
       let arr = [];
       deck.forEach((elem, index) => {
         let found = false;
+        if(elem.dataValues.subject.replace(/\s/g, '').toLowerCase() === req.params.tag) {
+          found = true;
+        }
         elem.dataValues.Tags.forEach(item => {
           if(item.tags === req.params.tag) {
             found = true;

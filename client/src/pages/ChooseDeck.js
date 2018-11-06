@@ -55,7 +55,8 @@ class ChooseDeck extends React.Component {
     this.setState({
       notFound: false
     })
-    axios.get("/decks/tags/" + tagInput)
+    // console.log("input: " +tagInput.replace(/\s/g, ''))
+    axios.get("/decks/tags/" + tagInput.replace(/\s/g, ''))
       .then(response => {
         console.log(response.data)
         if (response.data === null || response.data.length === 0) {

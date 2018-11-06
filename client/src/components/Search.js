@@ -16,6 +16,7 @@ class Search extends React.Component {
     console.log(event.target.value)
   }
 
+
   render() {
   return (
     <div id="search-bar">
@@ -26,10 +27,10 @@ class Search extends React.Component {
           aria-label="Search"
           id="search-input"
           onChange={this.handleInputChange}
-          placeholder="lorem"
+          placeholder="Search decks"
         />
         <div className="input-group-append">
-          <button type="submit" className="btn btn-primary" id="search-btn" onClick={(e) => this.props.handleFunction(e, this.state.searchValue)}>
+          <button type="submit" className="btn btn-primary" id="search-btn" onClick={(e) => {this.props.handleFunction(e, this.state.searchValue)}}>
             <i className="fa fa-search text-grey" aria-hidden="true" />
           </button>
         </div>
