@@ -6,6 +6,10 @@ li {
     margin-bottom: 25px;
 }
 
+.card-body {
+    width: 75vw;
+}
+
 .profile {
     height: 300px !important;
     border-radius: 0 !important;
