@@ -179,7 +179,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Flashcards</h5>
                   <p className="card-text text-left">
-                    Create decks tied to specific tags. Type questions in each front of the flashcard and answers in the back, so you can flip them to study for a big, incoming exam.
+                    Create decks tied to specific tags. Make your own flashcards with the question on front and anwer on the back. You can set your decks to private or leave them public. Keep your mind sharp for the big exam by quizzing yourself and flipping the flashcard to reveal the correct answer.
                   </p>
                 </div>
               </div>
@@ -194,8 +194,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Notes</h5>
                   <p className="card-text text-left">
-                    Ideas and information swimming around in your head?
-                    Capture all of them here. Type and save whatever you want, whether it's business or personal, for future reference. You can include URL, image, and video links.
+                    Ideas and information swimming around in your head? Capture all of them here. Type and save whatever you want, whether it's business or personal, for future reference. You can include URL, image, and video links.
                   </p>
                 </div>
               </div>
@@ -210,7 +209,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Lists</h5>
                   <p className="card-text text-left">
-                      Organize a list of To-Dos to prioritize what you intend to do for the day, week, month, whatever.
+                      Prioritize what you intend to do for the day, week, month or whatever by organizing a list of tasks.
                   </p>
                 </div>
               </div>
@@ -227,7 +226,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Reminders</h5>
                   <p className="card-text text-left">
-                      Select a time and day to send yourself a reminder about an upcoming event, so you don't panick or be a hurry.
+                      Select a time and day to send yourself a reminder of an upcoming event, so you don't panick and miss it.
                   </p>
                 </div>
               </div>
@@ -244,7 +243,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">SMS</h5>
                   <p className="card-text text-left">
-                      A text messaging feature for decks of flashcards and reminders. Need a reminder sent to your phone? Want to send flashcard questions to keep your memory sharp? All you need to do is enter your phone number and turn those features on!
+                      Provides a text messaging feature for both decks and reminders. Need to remind yourself about an event? Turn on the option to send yourself an alert. Want to keep your memory sharp? Our app will send you each question with an answer following after, depending on which deck you choose.
                   </p>
                 </div>
               </div>
