@@ -1,6 +1,4 @@
 # Flash Me
-
-### Project-Three
 ---------------
 
 ## About:
