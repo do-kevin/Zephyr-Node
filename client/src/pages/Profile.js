@@ -109,9 +109,12 @@ class Profile extends React.Component {
                 <ListGroup className="rem_todo_scroll">
                     <div>
                         {this.state.reminders.map((reminder) => {
+                            var date = moment(reminder.date).format("ddd, MMMM Do YYYY, h:mm:ss a");
                             return (
-                                <ListGroupItem>
-                                    {reminder.item} | {reminder.date}
+                                <ListGroupItem className="small_font">
+                                    <span style={{ color: "#17A2B8" }}>{date}</span>
+                                    <br />
+                                    {reminder.item}
                                     <br />
                                     {reminder.note}
                                 </ListGroupItem>
@@ -124,7 +127,7 @@ class Profile extends React.Component {
         else {
             renderReminders = (
                 <ListGroup className="rem_todo_scroll">
-                    <ListGroupItem className="centerText">No important dates.</ListGroupItem>
+                    <ListGroupItem className="small_font centerText">No important dates.</ListGroupItem>
                 </ListGroup>
             )
         }
@@ -136,7 +139,7 @@ class Profile extends React.Component {
                     <div>
                         {this.state.todos.map((todo) => {
                             return (
-                                <ListGroupItem>{todo.item}</ListGroupItem>
+                                <ListGroupItem className="small_font">{todo.item}</ListGroupItem>
                             );
                         })}
                     </div>
@@ -146,7 +149,7 @@ class Profile extends React.Component {
         else {
             renderToDos = (
                 <ListGroup className="rem_todo_scroll">
-                    <ListGroupItem className="centerText">All tasks completed.</ListGroupItem>
+                    <ListGroupItem className="small_font centerText">All tasks completed.</ListGroupItem>
                 </ListGroup >
             )
         }
@@ -156,7 +159,7 @@ class Profile extends React.Component {
             renderDecks = (
                 <div>
                     <CardDeck className="deck_scroll">
-                        {this.state.decks.map((deck) => {
+                        {this.state.decks.slice(0, 4).map((deck) => {
                             return (
                                 <Col xs="12" sm="6" md="4" lg="3">
                                     <Card>
@@ -165,7 +168,7 @@ class Profile extends React.Component {
                                         </Link>
                                         <CardBody>
                                             <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
-                                                <CardText>{deck.subject}</CardText>
+                                                <CardText className="small_font">{deck.subject}</CardText>
                                             </Link>
                                         </CardBody>
                                     </Card>
@@ -188,7 +191,7 @@ class Profile extends React.Component {
                                     </Link>
                                     <CardBody>
                                         <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
-                                            <p>{deck.subject}</p>
+                                            <p className="small_font">{deck.subject}</p>
                                         </Link>
                                     </CardBody>
                                 </Card>
@@ -202,7 +205,7 @@ class Profile extends React.Component {
             renderDecks = (
                 <Col>
                     <ListGroup>
-                        <ListGroupItem className="noDisplay">No decks to display.</ListGroupItem>
+                        <ListGroupItem className="small_font noDisplay">No decks to display.</ListGroupItem>
                     </ListGroup>
                 </Col>
             )
@@ -216,7 +219,7 @@ class Profile extends React.Component {
                         return (
                             <Card className="animated zoomInRight note-output">
                                 <CardBody>
-                                    <div className="quill-output" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
+                                    <div className="quill-output small_font" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
                                 </CardBody>
                             </Card>
                         );
@@ -226,7 +229,7 @@ class Profile extends React.Component {
         }
         else if (this.state.notes.length === 1) {
             renderNotes = (
-                <div style={{ width: "100%" }}>
+                <div>
                     {this.state.notes.map((note) => {
                         return (
                             <Card className="animated zoomInRight note-output">
@@ -243,7 +246,7 @@ class Profile extends React.Component {
             renderNotes = (
                 <Col>
                     <ListGroup>
-                        <ListGroupItem className="noDisplay">No notes to display.</ListGroupItem>
+                        <ListGroupItem className="small_font noDisplay">No notes to display.</ListGroupItem>
                     </ListGroup>
                 </Col>
             )
@@ -278,7 +281,7 @@ class Profile extends React.Component {
                                         {/************** Display existing reminders ****************/}
                                         {renderReminders}
                                     </CardText>
-                                    <Button outline color="info" id="reminder" href="/reminder">See more</Button>
+                                    <Button outline color="info" id="reminder" href="/reminder">See More</Button>
                                 </CardBody>
                             </Card>
                         </Col>
@@ -290,7 +293,7 @@ class Profile extends React.Component {
                                         {/************** Display existing to-dos ****************/}
                                         {renderToDos}
                                     </CardText>
-                                    <Button outline color="info" id="todo" href="/todo">See more</Button>
+                                    <Button outline color="info" id="todo" href="/todo">See More</Button>
                                 </CardBody>
                             </Card>
                         </Col>
@@ -303,7 +306,7 @@ class Profile extends React.Component {
                                     {/************** Display existing decks ****************/}
                                     {renderDecks}
                                 </Row>
-                                <Button outline color="info" id="seeall" href="/choose">See decks</Button>
+                                <Button outline color="info" id="seeall" href="/choose">View All</Button>
                             </Card>
                         </Col>
                     </Row>
@@ -315,7 +318,7 @@ class Profile extends React.Component {
                                     {/************** Display existing decks ****************/}
                                     {renderNotes}
                                 </Row>
-                                <Button outline color="info" id="seeall" href="/notes">See notes</Button>
+                                <Button outline color="info" id="seeall" href="/notes">View All</Button>
                             </Card>
                         </Col>
                     </Row>

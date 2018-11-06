@@ -420,7 +420,7 @@ class PlayCards extends React.Component {
                           onChange={event => this.handleBackEdit(index, event)}
                         />
                       </CardText>
-                      <p className="cardSaved">{this.state.editSaved && this.state.editId === index ? "Flashcard Saved!" : ""}</p>
+                      <p className="p_font cardSaved">{this.state.editSaved && this.state.editId === index ? "Flashcard Saved!" : ""}</p>
                       <Button
                         onClick={() =>
                           this.saveFlashcardChanges(item.id, index)
@@ -538,7 +538,7 @@ class PlayCards extends React.Component {
             <ModalBody>
               <Row style={{ margin: "auto" }}>
                 <Col>
-                  <p>Make deck private</p>
+                  <p className="p_font">Make deck private</p>
                 </Col>
                 <Col>
                   <Label className="switch">
@@ -553,7 +553,7 @@ class PlayCards extends React.Component {
               </Row>
               <Row style={{ margin: "auto" }}>
                 <Col>
-                  <p>Send text message</p>
+                  <p className="p_font">Send text message</p>
                 </Col>
                 <Col>
                   <label className="switch">
@@ -568,7 +568,7 @@ class PlayCards extends React.Component {
               </Row>
               <Row style={{ margin: "auto" }}>
                 <Col>
-                  <p style={{ textAlign: "left" }}>Starting tomorrow, send Daily Questions at </p>
+                  <p className="p_font" style={{ textAlign: "left" }}>Starting tomorrow, send Daily Questions at </p>
                 </Col>
                 <Col>
                   <div className="control">
@@ -585,7 +585,7 @@ class PlayCards extends React.Component {
               </Row>
               <Row style={{ margin: "auto" }}>
                 <Col>
-                  <p style={{ textAlign: "left" }}>Send the answers every</p>
+                  <p className="p_font" style={{ textAlign: "left" }}>Send the answers every</p>
                 </Col>
                 <select
                   defaultValue={this.state.timeInterval}
@@ -598,7 +598,7 @@ class PlayCards extends React.Component {
                   <option value="30">30</option>
                 </select>
                 <Col>
-                  <p>minutes.</p>
+                  <p className="p_font">minutes.</p>
                 </Col>
               </Row>
               {phoneRequest}
@@ -638,11 +638,11 @@ class PlayCards extends React.Component {
                 style={{ width: "400px", height: "200px" }}
               >
                 <FrontSide style={{ backgroundColor: "#93bbde" }}>
-                  <p>{item.front}</p>
+                  <p className="p_font">{item.front}</p>
                 </FrontSide>
 
                 <BackSide style={{ backgroundColor: "#66b361" }}>
-                  <p>{item.back}</p>
+                  <p className="p_font">{item.back}</p>
                 </BackSide>
               </Flippy>
             );
