@@ -1,3 +1,5 @@
+-- INSERTING INTO Users won't work due to hash passwords, so manually make these accounts in the same order to get the other seeds working
+
 INSERT INTO Users (name, username, password, phoneNumber) VALUES
 ("Pistachio Jones", "pjones", "password", null),
 ("Banana Jenkins", "banana", "password", null),
@@ -116,7 +118,7 @@ INSERT INTO Quotes (quote, author) VALUES
 ("If you can image it, you can achieve it. If you can dream it, you can become it.","William Arthur Ward"),
 ("Do it now. Sometimes 'later' becomes 'never'.","Anonymous"),
 ("When you feel like quitting, think about why you started.","Anonymous"),
-("With the new day comes new strength and new thoughts.","Eleanor Roosevelt")
+("With the new day comes new strength and new thoughts.","Eleanor Roosevelt");
 
 SELECT * FROM Users;
 SELECT * FROM Reminders;
