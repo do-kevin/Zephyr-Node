@@ -137,7 +137,9 @@ class Login extends React.Component {
       this.props.handleUserLogin(user);
     })
     .catch((err) => {
-      console.log(err);
+      this.setState(() => ({
+        loginError: "Unable to Create, User May Already Exist"
+      }));
     });
   }
 
@@ -164,7 +166,7 @@ class Login extends React.Component {
     })
     .catch(() => {
       this.setState(() => ({
-        loginError: "Invalid Username and/or Password!"
+        loginError: "Invalid Username and/or Password"
       }));
     });
   }
@@ -260,7 +262,9 @@ class Login extends React.Component {
               />
               <label htmlFor="password">Re-enter Password</label>
               <input
-                style={this.state.password === this.state.passwordCheck ? readyStyles : notReadyStyles}
+                style={this.state.password === this.state.passwordCheck && 
+                  this.state.passwordCheck.length > 0
+                    ? readyStyles : notReadyStyles}
                 type="password"
                 className="form-control animated flipInX"
                 id="passwordCheck"

@@ -20,10 +20,7 @@ module.exports = (router) => {
     });
     // Retrieve specific user at login
     router.post("/users/login", (req, res) => {
-        // FIXME:
         const {username, password} = req.body;
-        console.log("Username:", username);
-        console.log("Password Plain:", password);
         db.User
             .findOne({
                 where: {username}
