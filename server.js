@@ -5,13 +5,10 @@
 // Dependencies ---------------------------------------- /
 
 const express = require("express"),
-  session = require("express-session"),
-  cookieParser = require("cookie-parser"),
   path = require("path");
 
 const db = require("./models"),
-  router = require("./routes"),
-  {handleCookieSessionCheck, sessionCheckerHome, sessionCheckerAway} = require("./helpers/middleware");
+  router = require("./routes");
 
 // Setup ---------------------------------------- /
 
@@ -28,21 +25,6 @@ if (process.env.NODE_ENV === "production") {
 // User parsers
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser());
-
-// Create user session
-app.use(session({
-  key: "user_sid",
-  secret: "flashknowledge",
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    expires: 600000
-  }
-}));
-
-// Check cookie, handle session for all routes
-app.use(handleCookieSessionCheck);
 
 // Mount Router ---------------------------------------- /
 

@@ -108,6 +108,7 @@ class Login extends React.Component {
       username: "",
       password: "",
       passwordCheck: "",
+      loginError: null,
       modal: !prevState.modal
     }));
   }
