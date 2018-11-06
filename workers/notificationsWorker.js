@@ -1,7 +1,7 @@
 'use strict';
 
 var moment = require('moment-timezone');
-moment().tz("America/Los_Angeles").format();
+// moment().tz("America/Los_Angeles").format();
 const db = require("../models");
 
 const keys = require("../keys.js");
@@ -46,8 +46,8 @@ const notificationWorkerFactory = function () {
         });
 
       function requiresNotification(apptObj) {
-        let currentTime = moment().format("YYYY-MM-DD HH:mm");
-        return Math.round(moment.duration(moment(apptObj.date).tz("America/Los_Angeles").utc()
+        let currentTime = moment.tz("America/Los_Angeles").format("YYYY-MM-DD HH:mm");
+        return Math.round(moment.duration(moment(apptObj.date).utc()
           .diff(moment(currentTime).utc())
         ).asMinutes()) === apptObj.notification;
 
