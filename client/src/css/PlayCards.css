@@ -19,7 +19,8 @@ p {
 
 div.slider {
     height: 450px !important;
-    width: 1000px !important;
+    width: 900px !important;
+    /* width: 1000px !important; */
     margin: auto;
 }
 
