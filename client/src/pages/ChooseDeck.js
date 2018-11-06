@@ -2,7 +2,7 @@ import React from "react";
 import {Redirect} from "react-router-dom";
 import axios from "axios";
 import { Row, Col, Card, Button } from "reactstrap";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 // Components
 import Sidebar from "../components/Sidebar";
@@ -47,7 +47,7 @@ class ChooseDeck extends React.Component {
     axios.delete("/decks/" + id).then(response => {
       // console.log(response)
       this.getDecks();
-    }); 
+    });
   }
 
   searchTags = (event, tagInput) => {
@@ -84,8 +84,7 @@ class ChooseDeck extends React.Component {
     this.getDecks();
   }
 
-
-  deckIdSessionStorage = (id) =>{
+  deckIdSessionStorage = (id) => {
     sessionStorage.setItem("deckId", id);
   }
 
@@ -100,7 +99,7 @@ class ChooseDeck extends React.Component {
       return (
         <Col key={item.id}>
           <div className="decks decks-primary animated bounceIn">
-            <Button color="danger" className="trash-btn" onClick={() => {this.deleteDeck(item.id)}}>
+            <Button color="danger" className="trash-btn" onClick={() => { this.deleteDeck(item.id) }}>
               <i className="fas fa-trash-alt" />
             </Button>
             <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>

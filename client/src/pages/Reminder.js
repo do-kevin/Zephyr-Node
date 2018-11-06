@@ -1,6 +1,6 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
-import moment from "moment";
+import moment from "moment-timezone";
 import axios from "axios";
 
 import Sidebar from "../components/Sidebar";
@@ -101,12 +101,14 @@ class Reminder extends React.Component {
     console.log(id);
     this.setState({ currentModal: "edit" });
     this.toggle();
-
     let obj = { ...this.state.events[index] };
+    let convertDate = new Date(obj.date);
+    convertDate.setHours(convertDate.getHours() + 8);
     this.setState({
       item: obj.item,
       note: obj.note,
-      date: new Date(obj.date),
+      date: convertDate,
+      // moment(obj.date.replace(":00.000Z", "").replace("T", " ")).format("YYYY-MM-DD HH:mm"),
       sendReminder: obj.sendAlert,
       editingObj: obj
     });
@@ -183,6 +185,7 @@ class Reminder extends React.Component {
     });
 
     if (!this.state.phoneNumberSaved && this.state.phone !== "") {
+
       let phoneObj = {
         phoneNumber: this.state.phone.replace(/\D/g, "")
       };
@@ -197,10 +200,10 @@ class Reminder extends React.Component {
       let obj = {
         date: eventDate,
         notification: eventObj.alertTime,
-        message: `Upcoming event: ${eventObj.item} on ${moment(
+        message: `You have an upcoming event: ${eventObj.item} on ${moment(
           eventDate
-        ).format("MMMM D")} at ${moment(eventDate).format("HH:mm")}`,
-        userId: 1,
+        ).format("MMMM D")} at ${moment(eventDate).format("hh:mm A")}`,
+        userId: this.state.userId,
         type: "reminder",
         reminderId: eventObj.id
       };
@@ -224,6 +227,7 @@ class Reminder extends React.Component {
           this.state.editingObj.date !== eventObj.date)
       ) {
         console.log("update appt");
+        console.log(obj)
         axios.put("/appointments/reminders", obj).then(function(data) {
           console.log(data);
         });
@@ -293,10 +297,14 @@ class Reminder extends React.Component {
   };
 
   deleteEvent = id => {
-    axios.delete("/reminders/" + id).then(data => {
-      console.log(data);
-      this.getReminders();
-    });
+    axios.delete("/appointments/reminders/" + id)
+      .then((data) => {
+        // console.log(data);
+        axios.delete("/reminders/" + id).then(data => {
+          console.log(data);
+          this.getReminders();
+        });
+      });
   };
 
   //resets all states settings on the modal whenever it's opened or closed
@@ -454,7 +462,7 @@ class Reminder extends React.Component {
                           <p>{item.note}</p>
                           <p>
                             {moment(item.date).format("MMMM D")} at{" "}
-                            {moment(item.date).format("HH:mm")}
+                            {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mm A")}
                           </p>
                         </CardText>
                         <div>
@@ -508,7 +516,7 @@ class Reminder extends React.Component {
                   onChange={this.handleNoteChange}
                 />
               </FormGroup>
-              <p>Date & Time</p>
+              <p>Date & Time (PST)</p>
               <DateTimePicker
                 className="date-format"
                 maxDetail="minute"

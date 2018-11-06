@@ -1,7 +1,7 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import { Link } from "react-router-dom"
 import {
-    Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardGroup, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
+    Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardDeck, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
 } from 'reactstrap';
 import moment from "moment";
 import axios from "axios";
@@ -15,18 +15,11 @@ import "../css/Profile.css";
 
 class Profile extends React.Component {
 
-    // user information
-    // this.props.user.name
-    // this.props.user.id
-    // this.props.user.username(?)
-
     constructor(props) {
         super(props);
         this.state = {
-            // name: "Jiraiya",
-            id: null,
             time_date: moment().format("ddd, MMMM Do YYYY, h:mm:ss a"),
-            reminders: [], // arrays of objects
+            reminders: [],
             todos: [],
             decks: [],
             notes: []
@@ -51,7 +44,15 @@ class Profile extends React.Component {
         this.getNotes();
     };
 
-    // request data from the database; save response into this.state
+    deckIdSessionStorage = (id) => {
+        sessionStorage.setItem("deckId", id);
+    }
+
+    noteIdSessionStorage = (id) => {
+        sessionStorage.setItem("noteId", id);
+    }
+
+    // Request data from the database; obtain user id from localStorage
 
     getReminders = () => {
         let id = JSON.parse(localStorage.getItem("user")).id;
@@ -97,7 +98,179 @@ class Profile extends React.Component {
             });
     };
 
+    // Render page
+
     render() {
+
+        let renderToDos;
+        let renderReminders;
+        let renderDecks;
+        let renderNotes;
+
+        // -------------- Render Reminders -------------- 
+        if (this.state.reminders.length > 0) {
+            renderReminders = (
+                <ListGroup className="rem_todo_scroll">
+                    <div>
+                        {this.state.reminders.map((reminder) => {
+                            return (
+                                <ListGroupItem>
+                                    {reminder.item} | {reminder.date}
+                                    <br />
+                                    {reminder.note}
+                                </ListGroupItem>
+                            );
+                        })}
+                    </div>
+                </ListGroup>
+            )
+        }
+        else {
+            renderReminders = (
+                <ListGroup className="rem_todo_scroll">
+                    <ListGroupItem className="centerText">No important dates.</ListGroupItem>
+                </ListGroup>
+            )
+        }
+
+        // -------------- Render To-Do List -------------- 
+        if (this.state.todos.length > 0) {
+            renderToDos = (
+                <ListGroup className="rem_todo_scroll">
+                    <div>
+                        {this.state.todos.map((todo) => {
+                            return (
+                                <ListGroupItem>{todo.item}</ListGroupItem>
+                            );
+                        })}
+                    </div>
+                </ListGroup>
+            )
+        }
+        else {
+            renderToDos = (
+                <ListGroup className="rem_todo_scroll">
+                    <ListGroupItem className="centerText">All tasks completed.</ListGroupItem>
+                </ListGroup >
+            )
+        }
+
+        // -------------- Render Decks -------------- 
+        if (this.state.decks.length > 1) {
+            renderDecks = (
+                <div>
+                    <CardDeck className="deck_note_scroll">
+                        {this.state.decks.map((deck) => {
+                            return (
+                                <Col xs="12" sm="6" md="4" lg="3">
+                                    <Card>
+                                        <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
+                                            <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                        </Link>
+                                        <CardBody>
+                                            <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
+                                                <CardText>{deck.subject}</CardText>
+                                                <CardSubtitle>{deck.tags}</CardSubtitle>
+                                            </Link>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            );
+                        })}
+                    </CardDeck>
+                </div>
+            )
+        }
+        else if (this.state.decks.length === 1) {
+            renderDecks = (
+                <div>
+                    {this.state.decks.map((deck) => {
+                        return (
+                            <Col xs="12" sm="6" md="4" lg="3">
+                                <Card>
+                                    <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
+                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                    </Link>
+                                    <CardBody>
+                                        <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
+                                            <CardTitle>{deck.subject}</CardTitle>
+                                            <CardSubtitle>{deck.tags}</CardSubtitle>
+                                        </Link>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                        );
+                    })}
+                </div>
+            )
+        }
+        else {
+            renderDecks = (
+                <Col>
+                    <ListGroup>
+                        <ListGroupItem className="noDisplay">No decks to display.</ListGroupItem>
+                    </ListGroup>
+                </Col>
+            )
+        }
+
+        // -------------- Render Notes -------------- 
+        if (this.state.notes.length > 1) {
+            renderNotes = (
+                <div>
+                    <CardDeck className="deck_note_scroll">
+                        {this.state.notes.map((note) => {
+                            return (
+                                <Col xs="12" sm="6" md="4" lg="3">
+                                    <Card>
+                                        <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
+                                            <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                        </Link>
+                                        <CardBody>
+                                            <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
+                                                <CardTitle>{note.note}</CardTitle>
+                                            </Link>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            );
+                        })}
+                    </CardDeck>
+                </div>
+            )
+        }
+        else if (this.state.notes.length === 1) {
+            renderNotes = (
+                <div>
+                    {this.state.notes.map((note) => {
+                        return (
+                            <Col xs="12" sm="6" md="4" lg="3">
+                                <Card>
+                                    <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
+                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                    </Link>
+                                    <CardBody>
+                                        <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
+                                            <CardTitle>{note.note}</CardTitle>
+                                        </Link>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                        );
+                    })}
+                </div>
+            )
+        }
+        else {
+            renderNotes = (
+                <Col>
+                    <ListGroup>
+                        <ListGroupItem className="noDisplay">No notes to display.</ListGroupItem>
+                    </ListGroup>
+                </Col>
+            )
+        }
+
         return (
             <div>
                 {/* Logout redirection */}
@@ -124,18 +297,8 @@ class Profile extends React.Component {
                                 <CardBody>
                                     <CardTitle>Important Dates</CardTitle>
                                     <CardText>
-                                        <ListGroup className="scroll">
-                                            <ListGroupItem>Exam 11/21/18 2:00pm (dummy)</ListGroupItem>
-                                            <div>
-                                                {/************** Display existing reminders START ****************/}
-                                                {this.state.reminders.map((reminder) => {
-                                                    return (
-                                                        <ListGroupItem>{reminder.item}</ListGroupItem>
-                                                    );
-                                                })}
-                                                {/************** Display existing reminders END ****************/}
-                                            </div>
-                                        </ListGroup>
+                                        {/************** Display existing reminders ****************/}
+                                        {renderReminders}
                                     </CardText>
                                     <Button outline color="info" id="reminder" href="/reminder">See more</Button>
                                 </CardBody>
@@ -146,18 +309,8 @@ class Profile extends React.Component {
                                 <CardBody>
                                     <CardTitle>To-do</CardTitle>
                                     <CardText>
-                                        <ListGroup className="scroll">
-                                            <ListGroupItem>Do homework (dummy)</ListGroupItem>
-                                            <div>
-                                                {/************** Display existing to-dos START ****************/}
-                                                {this.state.todos.map((todo) => {
-                                                    return (
-                                                        <ListGroupItem>{todo.item}</ListGroupItem>
-                                                    );
-                                                })}
-                                                {/************** Display existing to-dos END ****************/}
-                                            </div>
-                                        </ListGroup>
+                                        {/************** Display existing to-dos ****************/}
+                                        {renderToDos}
                                     </CardText>
                                     <Button outline color="info" id="todo" href="/todo">See more</Button>
                                 </CardBody>
@@ -167,89 +320,39 @@ class Profile extends React.Component {
                     <Row>
                         <Col>
                             <Card className="group">
-                                <h3>Recent Decks</h3>
+                                <CardTitle>Recent Decks</CardTitle>
                                 <Row>
-                                    <CardGroup>
-                                        <Col>
-                                            <Card>
-                                                <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
-                                                <CardBody>
-                                                    <CardTitle>Deck 1</CardTitle>
-                                                    <CardSubtitle>Dummy</CardSubtitle>
-                                                </CardBody>
-                                            </Card>
-                                        </Col>
-                                        <div>
-                                            {/************** Display existing decks START ****************/}
-                                            {this.state.decks.map((deck) => {
-                                                return (
-                                                    <Col>
-                                                        <Card>
-                                                            <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
-                                                            <CardBody>
-                                                                <CardTitle>{deck.subject}</CardTitle>
-                                                                <CardSubtitle>Private: {deck.private}</CardSubtitle>
-                                                                <CardSubtitle>Daily Quiz: {deck.dailyQuiz}</CardSubtitle>
-                                                            </CardBody>
-                                                        </Card>
-                                                    </Col>
-                                                );
-                                            })}
-                                            {/************** Display existing decks END ****************/}
-                                        </div>
-                                    </CardGroup>
+                                    {/************** Display existing decks ****************/}
+                                    {renderDecks}
                                 </Row>
-                                <Button outline color="info" id="seeall" href="/reminder">See all decks</Button>
+                                <Button outline color="info" id="seeall" href="/choose">See decks</Button>
                             </Card>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <Card className="group notes">
-                                <h3>Recent Notes</h3>
-                                <CardGroup>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 1</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 2</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 3</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 4</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                    <Card>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>Notes 5</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                                </CardGroup>
-                                <Button outline color="info" id="seeall" href="/note">See all notes</Button>
+                                <CardTitle>Recent Notes</CardTitle>
+                                <Row>
+                                    {/* DUMMYDATA */}
+                                    <Col sm="6" md="4" lg="3">
+                                        <Card>
+                                            <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
+                                            <CardBody>
+                                                <CardTitle>Notes 1</CardTitle>
+                                                <CardSubtitle>Card subtitle</CardSubtitle>
+                                            </CardBody>
+                                        </Card>
+                                    </Col>
+                                    {/************** Display existing decks ****************/}
+                                    {/* {renderNotes} */}
+                                </Row>
+                                <Button outline color="info" id="seeall" href="/note">See notes</Button>
                             </Card>
                         </Col>
                     </Row>
-                </Container>
-            </div>
+                </Container >
+            </div >
         );
     }
 }
