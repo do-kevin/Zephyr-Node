@@ -102,11 +102,12 @@ class Reminder extends React.Component {
     this.setState({ currentModal: "edit" });
     this.toggle();
     let obj = { ...this.state.events[index] };
-    console.log(new Date(obj.date).toString())
+    let convertDate = new Date(obj.date);
+    convertDate.setHours(convertDate.getHours() - 8);
     this.setState({
       item: obj.item,
       note: obj.note,
-      date: new Date(obj.date),
+      date: convertDate,
       // moment(obj.date.replace(":00.000Z", "").replace("T", " ")).format("YYYY-MM-DD HH:mm"),
       sendReminder: obj.sendAlert,
       editingObj: obj
