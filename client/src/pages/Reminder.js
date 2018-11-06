@@ -103,7 +103,7 @@ class Reminder extends React.Component {
     this.toggle();
     let obj = { ...this.state.events[index] };
     let convertDate = new Date(obj.date);
-    convertDate.setHours(convertDate.getHours() - 4);
+    convertDate.setHours(convertDate.getHours() + 8);
     this.setState({
       item: obj.item,
       note: obj.note,
