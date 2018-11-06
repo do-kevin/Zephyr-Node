@@ -568,7 +568,7 @@ class PlayCards extends React.Component {
               </Row>
               <Row style={{ margin: "auto" }}>
                 <Col>
-                  <p style={{ textAlign: "left" }}>Send Daily Questions at </p>
+                  <p style={{ textAlign: "left" }}>Starting tomorrow, send Daily Questions at </p>
                 </Col>
                 <Col>
                   <div className="control">
@@ -604,11 +604,8 @@ class PlayCards extends React.Component {
               {phoneRequest}
               <hr />
               <Row>
-                <Button color="primary" onClick={this.saveSettings}>
-                  Save Changes
-                </Button>{" "}
-                <Button color="secondary" onClick={this.toggleSettings}>
-                  Cancel
+                <Button color="primary" onClick={this.saveSettings} style={{ marginLeft: "90%"}}>
+                <i className="fas fa-save"></i>
                 </Button>
               </Row>
             </ModalBody>

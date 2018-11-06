@@ -1,3 +1,7 @@
+p {
+  font-size: 20px;
+}
+
 .flippy-front {
   margin-top: 25%;
   margin-left: 76%;
@@ -164,4 +168,10 @@ div.slider-frame {
 
 .cardSaved {
   color: red;
+}
+
+.tags-box {
+  border-top: 1px solid rgb(126, 198, 247);
+  border-bottom: 1px solid rgb(126, 198, 247);
+  margin-top: 1%;
 }

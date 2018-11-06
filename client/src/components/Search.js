@@ -26,6 +26,7 @@ class Search extends React.Component {
           aria-label="Search"
           id="search-input"
           onChange={this.handleInputChange}
+          placeholder="lorem"
         />
         <div className="input-group-append">
           <button type="submit" className="btn btn-primary" id="search-btn" onClick={(e) => this.props.handleFunction(e, this.state.searchValue)}>

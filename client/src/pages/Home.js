@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios"
-import { Row, Col, Card, Button } from "reactstrap";
+import { Row, Col, Container, Button } from "reactstrap";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import Carousel from "nuka-carousel";
 
@@ -96,11 +96,12 @@ class Home extends React.Component {
           return (
             <Col key={item.id}>
               <div className="decks decks-primary animated bounceIn">
+              <div className="h1-wrappers">
                 <h1 className="deck-title text-center" onClick={() => this.getFlashcards(item.id)}>{item.subject}</h1>
-                <hr />
+                </div>
                 <div className="tags-box">
                   {item.Tags.map(elem => {
-                    return <button key={elem.id} className="tag-btn" onClick={(e) => this.searchTags(e, elem.tags)}>#{elem.tags} </button>
+                    return <p key={elem.id}>#{elem.tags}</p>
                   })}
                 </div>
               </div>
@@ -167,9 +168,10 @@ class Home extends React.Component {
         
         <div className="container text-center">
         <h1 className="text-center display-3">Features</h1>
-          <div className="row">
+          <div className="row" style={{margin: "30px auto 0 auto"}}>
+          <Container className="feature-containers">
             <div className="col">
-              <div className="card animated slideInLeft">
+              <div className="card feature-cards animated slideInLeft">
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="fas fa-layer-group" />
@@ -181,22 +183,26 @@ class Home extends React.Component {
                 </div>
               </div>
             </div>
+            </Container>
+            <Container className="feature-containers">
             <div className="col">
-              <div className="card animated zoomIn">
+              <div className="card feature-cards animated slideInRight">
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="fas fa-feather" />
                   </h1>
                   <h5 className="card-title">Notes</h5>
                   <p className="card-text text-left">
-                    Ideas and inspiration swimming around in your head? Need to record paraphrased information?
+                    Ideas and information swimming around in your head?
                     Capture all of them here. Type and save whatever you want, whether it's business or personal, for future reference. You can include URL, image, and video links.
                   </p>
                 </div>
               </div>
             </div>
+            </Container>
+            <Container className="feature-containers">
             <div className="col">
-              <div className="card animated slideInRight">
+              <div className="card feature-cards animated slideInLeft">
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="fas fa-list" />
@@ -209,11 +215,11 @@ class Home extends React.Component {
               </div>
               <br />
             </div>
-          </div>
-          <div className="row">
+            </Container>
+            <Container className="feature-containers">
             <div className="col">
               <br />
-              <div className="card animated slideInLeft">
+              <div className="card feature-cards animated slideInRight">
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="far fa-calendar-alt" />
@@ -226,22 +232,24 @@ class Home extends React.Component {
               </div>
               <br />
             </div>
-
+            </Container>
+            <Container className="feature-containers">
             <div className="col">
               <br />
-              <div className="card animated slideInRight">
+              <div className="card feature-cards animated zoomIn">
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="far fa-comment" />
                   </h1>
                   <h5 className="card-title">SMS</h5>
                   <p className="card-text text-left">
-                      A text messaging feature for decks of flashcards and reminders. Need a reminder sent to your phone? Want to send flashcard questions to keep your memory sharp? All you need to do it enter your phone number and turn those features on!
+                      A text messaging feature for decks of flashcards and reminders. Need a reminder sent to your phone? Want to send flashcard questions to keep your memory sharp? All you need to do is enter your phone number and turn those features on!
                   </p>
                 </div>
               </div>
               <br />
             </div>
+            </Container>
           </div>
         </div>
       </div>

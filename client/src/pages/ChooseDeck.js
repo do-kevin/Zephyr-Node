@@ -103,9 +103,10 @@ class ChooseDeck extends React.Component {
               <i className="fas fa-trash-alt" />
             </Button>
             <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>
+            <div className="h1-wrappers container">
               <h1 className="deck-title text-center">{item.subject}</h1>
+            </div>
             </Link>
-            <hr />
             <div className="tags-box">
               {item.Tags.map(elem => {
                 return <button key={elem.id} className="tag-btn" onClick={(e) => this.searchTags(e, elem.tags)}>#{elem.tags} </button>
