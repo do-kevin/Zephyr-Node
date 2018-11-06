@@ -4,14 +4,14 @@
 
 .flippy-front {
   margin-top: 25%;
-  margin-left: 76%;
+  /* margin-left: 76%; For PC screens, comment this out */
   margin-right: 76%;
   overflow-y: auto;
   word-wrap: break-word;
 }
 
 .flippy-back {
-    margin-left: 74%;
+    /* margin-left: 74%; */
     margin-right: 74%;
     overflow-y: auto;
     word-wrap: break-word;
