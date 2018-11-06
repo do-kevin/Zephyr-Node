@@ -67,6 +67,10 @@
     box-shadow: 0;
 }
 
+.flippy-card {
+    margin-left: 65%;
+}
+
 #app-logo {
     height: 60px;
     width: 60px;
