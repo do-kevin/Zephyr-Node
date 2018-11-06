@@ -59,10 +59,10 @@
 }
 
 #render-decks {
-    width: 70%;
+    width: 74%;
     margin: 50px auto 50px auto;
     padding: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     box-shadow: 0;
 }
@@ -116,4 +116,8 @@
     padding:5px;
     font: inherit;
     cursor: pointer;
+}
+
+.feature-containers {
+    width: 520px;
 }

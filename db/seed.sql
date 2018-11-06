@@ -1,4 +1,4 @@
-INSERT INTO users (name, username, password, phoneNumber) VALUES
+INSERT INTO Users (name, username, password, phoneNumber) VALUES
 ("Pistachio Jones", "pjones", "password", null),
 ("Banana Jenkins", "banana", "password", null),
 ("Apple Cider", "applecider", "password", null),
@@ -7,7 +7,7 @@ INSERT INTO users (name, username, password, phoneNumber) VALUES
 ("Jiggly Puff", "puffpuffjiggle", "password", null),
 ("Bubble Sort", "bulbasaur","password", null);
 
-INSERT INTO decks (subject, userId) VALUES
+INSERT INTO Decks (subject, userId) VALUES
 ("pistachio", 1),
 ("bananas", 2),
 ("Apple", 3),
@@ -19,7 +19,7 @@ INSERT INTO decks (subject, userId) VALUES
 ("Pokemon", 6),
 ("Sorting", 7);
 
-INSERT INTO flashcards (front, back, deckId) VALUES
+INSERT INTO Flashcards (front, back, deckId) VALUES
 -- Pistachio Jones (Should be userId 1 if you run with a blank db)
 ("How long has the pistachio been cultivated?", "Over 7000 years", 1),
 ("In what famous book is it mentioned in?", "The Old Testament of the Bible", 1),

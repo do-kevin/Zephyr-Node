@@ -16,10 +16,21 @@ p {
 }
 
 .deck-title {
-    margin: 40% 0 30% 0;
+    margin: 10% auto 0 auto;
     color: black;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.5vmax;
+}
+
+.deck-title:hover {
+    color: orangered;
+}
+
+.h1-wrappers {
+    width: 11vw;
+    height: 18vh;
+    margin: auto;
+    display:inline-block
 }
 
 .tags-box {
@@ -44,6 +55,8 @@ p {
 }
 
 .decks {
+    height: 500px;
+    position: relative;
     margin: 0 auto 2rem;
     padding: 1rem;
     min-width: 10rem;
