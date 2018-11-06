@@ -101,12 +101,13 @@ class Reminder extends React.Component {
     console.log(id);
     this.setState({ currentModal: "edit" });
     this.toggle();
-
     let obj = { ...this.state.events[index] };
+    console.log(new Date(obj.date).toString())
     this.setState({
       item: obj.item,
       note: obj.note,
-      date: moment(obj.date.replace(":00.000Z", "").replace("T", " ")).format("YYYY-MM-DD HH:mm"),
+      date: new Date(obj.date),
+      // moment(obj.date.replace(":00.000Z", "").replace("T", " ")).format("YYYY-MM-DD HH:mm"),
       sendReminder: obj.sendAlert,
       editingObj: obj
     });
@@ -514,7 +515,7 @@ class Reminder extends React.Component {
                   onChange={this.handleNoteChange}
                 />
               </FormGroup>
-              <p>Date & Time</p>
+              <p>Date & Time (PST)</p>
               <DateTimePicker
                 className="date-format"
                 maxDetail="minute"
