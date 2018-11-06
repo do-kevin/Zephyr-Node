@@ -34,7 +34,7 @@ class Profile extends React.Component {
         console.log("Profile component mounted.");
         try {
             const userId = JSON.parse(localStorage.getItem("user")).id;
-            if (userId) this.setState(() => ({id: userId}));
+            if (userId) this.setState(() => ({ id: userId }));
         } catch (err) {
             console.log(err.message);
         }
@@ -46,10 +46,6 @@ class Profile extends React.Component {
 
     deckIdSessionStorage = (id) => {
         sessionStorage.setItem("deckId", id);
-    }
-
-    noteIdSessionStorage = (id) => {
-        sessionStorage.setItem("noteId", id);
     }
 
     // Request data from the database; obtain user id from localStorage
@@ -159,7 +155,7 @@ class Profile extends React.Component {
         if (this.state.decks.length > 1) {
             renderDecks = (
                 <div>
-                    <CardDeck className="deck_note_scroll">
+                    <CardDeck className="deck_scroll">
                         {this.state.decks.map((deck) => {
                             return (
                                 <Col xs="12" sm="6" md="4" lg="3">
@@ -170,7 +166,6 @@ class Profile extends React.Component {
                                         <CardBody>
                                             <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
                                                 <CardText>{deck.subject}</CardText>
-                                                <CardSubtitle>{deck.tags}</CardSubtitle>
                                             </Link>
                                         </CardBody>
                                     </Card>
@@ -183,7 +178,7 @@ class Profile extends React.Component {
         }
         else if (this.state.decks.length === 1) {
             renderDecks = (
-                <div>
+                <div className="oneNote">
                     {this.state.decks.map((deck) => {
                         return (
                             <Col xs="12" sm="6" md="4" lg="3">
@@ -193,8 +188,7 @@ class Profile extends React.Component {
                                     </Link>
                                     <CardBody>
                                         <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
-                                            <CardTitle>{deck.subject}</CardTitle>
-                                            <CardSubtitle>{deck.tags}</CardSubtitle>
+                                            <p>{deck.subject}</p>
                                         </Link>
                                     </CardBody>
                                 </Card>
@@ -217,45 +211,29 @@ class Profile extends React.Component {
         // -------------- Render Notes -------------- 
         if (this.state.notes.length > 1) {
             renderNotes = (
-                <div>
-                    <CardDeck className="deck_note_scroll">
-                        {this.state.notes.map((note) => {
-                            return (
-                                <Col xs="12" sm="6" md="4" lg="3">
-                                    <Card>
-                                        <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
-                                            <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                        </Link>
-                                        <CardBody>
-                                            <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
-                                                <CardTitle>{note.note}</CardTitle>
-                                            </Link>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                            );
-                        })}
-                    </CardDeck>
+                <div className="note_scroll notediv">
+                    {this.state.notes.slice(0, 5).map((note) => {
+                        return (
+                            <Card className="animated zoomInRight note-output">
+                                <CardBody>
+                                    <div className="quill-output" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
+                                </CardBody>
+                            </Card>
+                        );
+                    })}
                 </div>
             )
         }
         else if (this.state.notes.length === 1) {
             renderNotes = (
-                <div>
+                <div style={{ width: "100%" }}>
                     {this.state.notes.map((note) => {
                         return (
-                            <Col xs="12" sm="6" md="4" lg="3">
-                                <Card>
-                                    <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
-                                        <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                    </Link>
-                                    <CardBody>
-                                        <Link to="/note" onClick={() => this.noteIdSessionStorage(note.id)}>
-                                            <CardTitle>{note.note}</CardTitle>
-                                        </Link>
-                                    </CardBody>
-                                </Card>
-                            </Col>
+                            <Card className="animated zoomInRight note-output">
+                                <CardBody>
+                                    <div className="quill-output" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
+                                </CardBody>
+                            </Card>
                         );
                     })}
                 </div>
@@ -334,20 +312,10 @@ class Profile extends React.Component {
                             <Card className="group notes">
                                 <CardTitle>Recent Notes</CardTitle>
                                 <Row>
-                                    {/* DUMMYDATA */}
-                                    <Col sm="6" md="4" lg="3">
-                                        <Card>
-                                            <CardImg top width="100%" src="http://sketchwich.com/wp-content/uploads/2018/07/29-apa-paper-template-new-apa-abstract-template-new-format-the-abstract-page-in-apa-style-6th-of-apa-paper-template-model.jpg" alt="Card image cap" />
-                                            <CardBody>
-                                                <CardTitle>Notes 1</CardTitle>
-                                                <CardSubtitle>Card subtitle</CardSubtitle>
-                                            </CardBody>
-                                        </Card>
-                                    </Col>
                                     {/************** Display existing decks ****************/}
-                                    {/* {renderNotes} */}
+                                    {renderNotes}
                                 </Row>
-                                <Button outline color="info" id="seeall" href="/note">See notes</Button>
+                                <Button outline color="info" id="seeall" href="/notes">See notes</Button>
                             </Card>
                         </Col>
                     </Row>
