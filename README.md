@@ -17,9 +17,10 @@ It's a work-in-progress. Come back later, eh?
 ---------------
 
 ### The technologies we used to make this project:
-- [Twillio]()
-- [Reactstrap]()
-- [bcrypt]()
-- [reactflippy]()
-- [nuka carousel]()
+- [Twillio](https://www.twilio.com/)
+- [Reactstrap](https://reactstrap.github.io/)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [reactflippy](https://github.com/sbayd/react-flippy#readme)
+- [nuka carousel](http://kenwheeler.github.io/nuka-carousel/#/)
+- [node-cron](https://www.npmjs.com/package/node-cron)
 --------------
