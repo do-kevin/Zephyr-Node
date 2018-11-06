@@ -1,4 +1,4 @@
-# TITLE-IN-PROGRESS
+Flash Me
 
 ### Project-Three
 ---------------
@@ -19,9 +19,9 @@ It's a work-in-progress. Come back later, eh?
 ---------------
 
 ### The technologies we used to make this project:
-- []()
-- []()
-- []()
-- []()
-- []()
+- [Twillio]()
+- [Reactstrap]()
+- [bcrypt]()
+- [reactflippy]()
+- [nuka carousel]()
 --------------
