@@ -2,6 +2,10 @@ li {
     text-align: left;
 }
 
+.card-title {
+    margin-bottom: 25px;
+}
+
 .profile {
     height: 300px !important;
     border-radius: 0 !important;
@@ -18,9 +22,22 @@ li {
     overflow-y: scroll;
 }
 
-.deck_note_scroll {
-    height: 420px;
+.deck_scroll {
+    height: 240px;
     overflow-y: scroll;
+}
+
+.note_scroll {
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.oneNote {
+    width: 100%;
+}
+
+.notediv {
+    width: 100%;
 }
 
 #seeall {
@@ -46,4 +63,20 @@ li {
 
 .centerText {
     text-align: center;
+}
+
+.quill-output {
+    padding: 30px;
+}
+
+.note-output {
+    /* border: 1px solid black; */
+    width: 20%;
+    height: 17rem;
+    margin: 20px auto 20px auto;
+    border-radius: 25px 0 0 25px;
+    -webkit-box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
+    background-color: rgb(250, 245, 239);
 }

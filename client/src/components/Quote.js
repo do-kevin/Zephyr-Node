@@ -10,9 +10,9 @@ const Quote = () => {
   axios.get(
     "/quotes"
   ).then((res) => {
-    var random = Math.floor(Math.random() * 5) + 1;
-    quote = res[random].quote;
-    author = res[random].author;
+    var random = Math.floor(Math.random() * res.data.length);
+    quote = res.data[random].quote;
+    author = res.data[random].author;
   });
 
   return (

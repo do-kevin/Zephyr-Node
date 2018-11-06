@@ -91,7 +91,32 @@ INSERT INTO Quotes (quote, author) VALUES
 ("The expert in everything was once a beginner.", "Helen Hayes"),
 ("Start where you are. Use what you have. Do what you can.","Arthur Ashe"),
 ("There are two kinds of people in this world: those who want to get things done and those who don’t want to make mistakes.","John Maxwell"),
-("Your positive action combined with positive thinking results in success.","Shiv Khera")
+("Your positive action combined with positive thinking results in success.","Shiv Khera"),
+("I find that the harder I work, the more luck I seem to have.","Thomas Jefferson"),
+("Success is the sum of small efforts, repeated day in and day out.","Robert Collier"),
+("Self-belief and hard work will always earn you success.","Virat Kohli"),
+("If people only knew how hard I’ve worked to gain my mastery, it wouldn’t seem so wonderful at all.","Michelangelo"),
+("I’ve failed over and over and over again in my life. And that is why I succeed.","Michael Jordan"),
+("Believe in yourself, take on your challenges, dig deep within yourself to conquer fears. Never let anyone bring you down. You got to keep going.","Chantal Sutherland"),
+("Believe you can and you’re halfway there.","Theodore Roosevelt"),
+("It always seems impossible until it’s done.","Nelson Mandela"),
+("Don’t let what you cannot do interfere with what you can do.","John Wooden"),
+("Work gives you meaning and purpose and life is empty without it.","Stephen Hawking"),
+("Good things come to people who wait, but better things come to those who go out and get them.","Anonymous"),
+("Strive for progress, not perfection.","Anonymous"),
+("You don’t have to be great to start, but you have to start to be great.","John Garvens"),
+("Push yourself, because no one else is going to do it for you.","Anonymous"),
+("You don’t always get what you wish for; you get what you work for.","Anonymous"),
+("Challenges are what make life interesting. Overcoming them is what makes life meaningful.","Joshua J. Marine"),
+("If you’re going through hell, keep going.","Winston Churchill"),
+("Don’t let your victories go to your head, or your failures go to your heart.","Bill Cosby"),
+("Failure is the opportunity to begin again more intelligently.","Henry Ford"),
+("You don’t drown by falling in the water; you drown by staying there.","Ed Cole"),
+("I'm not telling you it's going to be easy - I'm telling you it's going to be worth it.","Art Williams"),
+("If you can image it, you can achieve it. If you can dream it, you can become it.","William Arthur Ward"),
+("Do it now. Sometimes 'later' becomes 'never'.","Anonymous"),
+("When you feel like quitting, think about why you started.","Anonymous"),
+("With the new day comes new strength and new thoughts.","Eleanor Roosevelt")
 
 SELECT * FROM Users;
 SELECT * FROM Reminders;
