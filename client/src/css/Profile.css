@@ -10,11 +10,12 @@ li {
     height: 300px !important;
     border-radius: 0 !important;
     margin-bottom: 50px;
-    background-image: url(../img/coffee.jpg);
+    background-image: url(../img/notebook.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     color: white;
     text-align: center;
+    text-shadow: 1px 1px 2px rgb(75, 76, 77);
 }
 
 .rem_todo_scroll {
@@ -23,7 +24,7 @@ li {
 }
 
 .deck_scroll {
-    height: 240px;
+    height: 220px;
     overflow-y: scroll;
 }
 
@@ -79,4 +80,8 @@ li {
     -moz-box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
     box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
     background-color: rgb(250, 245, 239);
+}
+
+.small_font {
+    font-size: 16px;
 }
