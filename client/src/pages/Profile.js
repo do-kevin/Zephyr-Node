@@ -217,7 +217,7 @@ class Profile extends React.Component {
                 <div className="note_scroll notediv">
                     {this.state.notes.slice(0, 5).map((note) => {
                         return (
-                            <Card className="animated zoomInRight note-output">
+                            <Card className="animated zoomInRight note-output recent-notes">
                                 <CardBody>
                                     <div className="quill-output small_font" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
                                 </CardBody>
