@@ -219,7 +219,7 @@ class Profile extends React.Component {
                         return (
                             <Card className="animated zoomInRight note-output">
                                 <CardBody>
-                                    <div className="quill-output small_font recent-notes" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
+                                    <div className="quill-output small_font" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
                                 </CardBody>
                             </Card>
                         );
