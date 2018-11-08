@@ -86,6 +86,7 @@ li {
     font-size: 16px;
 }
 
-div.card-body {
+.recent-notes {
     width: 75vw;
+    text-align: left;
 }

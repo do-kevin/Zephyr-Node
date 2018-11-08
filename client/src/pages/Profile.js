@@ -218,8 +218,8 @@ class Profile extends React.Component {
                     {this.state.notes.slice(0, 5).map((note) => {
                         return (
                             <Card className="animated zoomInRight note-output">
-                                <CardBody className="recent-notes">
-                                    <div className="quill-output small_font" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
+                                <CardBody>
+                                    <div className="quill-output small_font recent-notes" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
                                 </CardBody>
                             </Card>
                         );
