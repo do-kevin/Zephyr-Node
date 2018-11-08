@@ -3,7 +3,13 @@
 
 ## About:
 
-It's a work-in-progress. Come back later, eh?
+A productivity app where you can create:
+* Flashcards
+* Notes
+* Tasks
+* Reminders
+
+### You can send text messages of your reminders and flashcards
 
 ---------------
 ## [Trello](https://trello.com/b/tC7GE5wX/project-three)
