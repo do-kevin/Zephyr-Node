@@ -255,7 +255,21 @@ class PlayCards extends React.Component {
           phoneNumber: this.state.phone.replace(/\D/g, "")
         };
         axios.put("/users/" + this.state.userId, phoneObj).then(data => {
-          console.log(data);
+          // console.log(data);
+          this.setState({
+            phoneNumberSaved: true
+          });
+  
+          let eventDate = moment(Date.now()).format("YYYY-MM-DD HH:mm");
+          let newObj = {
+            date: eventDate,
+            notification: 0,
+            message: "You will be receiving Daily Quizzes to this number. Text STOP to stop.",
+            userId: this.state.userId
+          };
+          axios.post("/appointment", newObj).then(function(data) {
+            console.log(data);
+          });
         });
       }
     });
