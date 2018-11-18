@@ -157,7 +157,7 @@ class Home extends React.Component {
         </nav>
         <div className="jumbotron banner-image animated fadeIn">
           <div className="banner-text">
-            <h1 className="display-1 app-name">Flash Me</h1>
+            <h1 className="display-1 app-name noselect">Zephyr Node</h1>
             <br />
             <Search handleFunction={this.searchTags} />
           </div>
