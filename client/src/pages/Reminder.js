@@ -195,7 +195,11 @@ class Reminder extends React.Component {
           phoneNumberSaved: true
         });
 
+<<<<<<< HEAD
         let eventDate = moment(Date.now()).add(1, "minutes").format("YYYY-MM-DD HH:mm");
+=======
+        let eventDate = moment(Date.now()).format("YYYY-MM-DD HH:mm");
+>>>>>>> db0783b3a5eec40613a001ed630082cd957b134e
         let newObj = {
           date: eventDate,
           notification: 0,

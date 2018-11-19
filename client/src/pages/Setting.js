@@ -6,21 +6,13 @@ import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import {
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Form,
   FormGroup,
   Label,
   Input,
-  Card,
-  CardTitle,
-  CardText,
   Col,
   Row
 } from "reactstrap";
-import DateTimePicker from "react-datetime-picker";
 
 class Setting extends React.Component {
     constructor(props) {
