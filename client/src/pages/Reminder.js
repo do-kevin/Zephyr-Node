@@ -158,7 +158,7 @@ class Reminder extends React.Component {
   };
 
   handlePhoneChange = event => {
-    // console.log(event.target.value.replace(/\D/g, ''))
+    console.log(event.target.value.replace(/\D/g, ''))
     this.setState({
       phone: event.target.value
     });
@@ -195,15 +195,16 @@ class Reminder extends React.Component {
           phoneNumberSaved: true
         });
 
-        let eventDate = moment(Date.now()).format("YYYY-MM-DD HH:mm");
+        let eventDate = moment(Date.now()).add(1, "minutes").format("YYYY-MM-DD HH:mm");
         let newObj = {
           date: eventDate,
           notification: 0,
           message: "You will be receiving event reminders to this number. Text STOP to stop.",
+          type: "initial text",
           userId: this.state.userId
         };
         axios.post("/appointment", newObj).then(function(data) {
-          console.log(data);
+          console.log("phone number set - " + data);
         });
       });
     }
@@ -301,6 +302,31 @@ class Reminder extends React.Component {
           axios.post("/appointment", obj).then(function(data) {
             console.log(data);
           });
+
+          if (!this.state.phoneNumberSaved && this.state.phone !== "") {
+
+            let phoneObj = {
+              phoneNumber: this.state.phone.replace(/\D/g, "")
+            };
+            axios.put("/users/" + this.state.userId, phoneObj).then(data => {
+              // console.log(data);
+              this.setState({
+                phoneNumberSaved: true
+              });
+      
+              let eventDate = moment(Date.now()).add(1, "minutes").format("YYYY-MM-DD HH:mm");
+              let newObj = {
+                date: eventDate,
+                notification: 0,
+                message: "You will be receiving event reminders to this number. Text STOP to stop.",
+                type: "initial text",
+                userId: this.state.userId
+              };
+              axios.post("/appointment", newObj).then(function(data) {
+                // console.log("phone number set - " + data);
+              });
+            });
+          }
         }
 
         this.getReminders();

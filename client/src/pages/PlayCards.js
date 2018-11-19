@@ -260,11 +260,12 @@ class PlayCards extends React.Component {
             phoneNumberSaved: true
           });
   
-          let eventDate = moment(Date.now()).format("YYYY-MM-DD HH:mm");
+          let eventDate = moment(Date.now()).add(1, "minutes").format("YYYY-MM-DD HH:mm");          
           let newObj = {
             date: eventDate,
             notification: 0,
             message: "You will be receiving Daily Quizzes to this number. Text STOP to stop.",
+            type: "initial text",
             userId: this.state.userId
           };
           axios.post("/appointment", newObj).then(function(data) {

@@ -10,6 +10,7 @@ import Todo from "./pages/Todo";
 import ChooseDeck from "./pages/ChooseDeck";
 import PlayCards from "./pages/PlayCards";
 import Notes from "./pages/Notes";
+import Settings from "./pages/Setting";
 
 // Components
 // import Sidebar from "./components/Sidebar";
@@ -135,6 +136,13 @@ class App extends Component {
               user={this.state.user}
               handleUserLogout={this.handleUserLogout}
               handleUserRedirect={this.handleUserRedirect} />}
+          />
+          <Route 
+            exact path="/settings" 
+            render={(props) => <Settings {...props}
+            user={this.state.user}
+            handleUserLogout={this.handleUserLogout}
+            handleUserRedirect={this.handleUserRedirect} />}
           />
         </div>
       </Router>

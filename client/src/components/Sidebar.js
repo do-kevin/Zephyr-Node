@@ -46,13 +46,16 @@ class Sidebar extends React.Component {
               <li>
                 <Link to="/todo">To-Do</Link>
               </li>
-
+              <li
+                style={{marginTop: "30%"}}>
+                <Link to="/settings">Settings</Link>
+              </li>
               <li>
                 <button 
                   className="btn"
                   type="button"
                   onClick={this.props.handleUserLogout}
-                  style={{marginLeft: "22%", marginTop: "70%"}}
+                  style={{marginLeft: "22%", marginTop: "40%"}}
                 >
                   <i className="fas fa-sign-out-alt"></i>{" "}Logout 
                 </button>
