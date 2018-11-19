@@ -91,26 +91,21 @@ class Setting extends React.Component {
           type: "initial text",
           userId: this.state.userId
         };
-        // axios.post("/appointment", newObj).then(function(data) {
-        //   console.log("phone number set - " + data);
+        axios.post("/appointment", newObj).then(function(data) {
+          // console.log("phone number set - " + data);
           this.setState({
               saved: true
           })
-        // });
+        });
       });
     }
 }
 
 
   render() {
-    let style = {
-        color: "red",
-        marginTop: "30px"
-    }
-
     let notification;
     if (this.state.saved) {
-        notification = <div><p style={style}>Changes have been saved</p></div>
+        notification = <div><p style={{color: "red", marginTop: "30px"}}>Changes have been saved</p></div>
     }
 
     return (
