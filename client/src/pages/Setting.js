@@ -79,7 +79,7 @@ class Setting extends React.Component {
         let newObj = {
           date: eventDate,
           notification: 0,
-          message: "You will be receiving event reminders to this number. Text STOP to stop.",
+          message: "You will be receiving text alerts to this number. Text STOP to stop.",
           type: "initial text",
           userId: this.state.userId
         };
