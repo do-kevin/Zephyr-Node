@@ -119,6 +119,7 @@ class Setting extends React.Component {
                   type="text"
                   id="username"
                   value={this.state.username}
+                  disabled
                 //   onChange={this.handleSubjectChange}
                 />
               </FormGroup>
@@ -129,7 +130,9 @@ class Setting extends React.Component {
                   id="phone"
                   value={this.state.currentPhone}
                   onChange={this.handlePhoneChange}
+                  placeholder={this.state.currentPhone}
                 />
+                <p style={{fontSize: "12px"}}>*Leave blank and click <em style={{color: "grey"}}>Save</em> to remove your phone number</p>
               </FormGroup>
                 <Button color="primary" onClick={this.saveChanges}>
                     Save Changes
