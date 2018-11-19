@@ -199,7 +199,7 @@ class Reminder extends React.Component {
         let newObj = {
           date: eventDate,
           notification: 0,
-          message: "You will be receiving event reminders to this number. Text STOP to stop.",
+          message: "You will be receiving event reminders to this number. Text STOP to unsubscribe.",
           type: "initial text",
           userId: this.state.userId
         };
@@ -318,7 +318,7 @@ class Reminder extends React.Component {
               let newObj = {
                 date: eventDate,
                 notification: 0,
-                message: "You will be receiving event reminders to this number. Text STOP to stop.",
+                message: "You will be receiving event reminders to this number. Text STOP to unsubscribe.",
                 type: "initial text",
                 userId: this.state.userId
               };
