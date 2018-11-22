@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import axios from "axios"
 import { Row, Col, Container, Button } from "reactstrap";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
@@ -150,8 +150,8 @@ class Home extends React.Component {
       <div>
         {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
-          <a href="https://github.com/do-kevin/Project-Three" target="_blank">
-            <img id="app-logo" src={"http://now.outsystems.com/OutSystemsNowDocs/img/github.png?862"} alt="github logo"/>
+          <a href="https://github.com/do-kevin/Project-Three" target="_blank" rel="noopener noreferrer">
+            <img id="app-logo" src={require("../img/github.png")} alt="github logo"/>
           </a>
           <Login handleUserLogin={this.props.handleUserLogin} />
         </nav>

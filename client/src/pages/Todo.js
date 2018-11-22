@@ -1,5 +1,4 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
 import {
     Card, CardBody, CardTitle, CardText, Button, ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Form, Input
 } from 'reactstrap';
@@ -30,7 +29,7 @@ class Todo extends React.Component {
     }
 
     componentDidMount() {
-        console.log("To-do component mounted.")
+        // console.log("To-do component mounted.")
         this.getTodos();
     }
 
@@ -47,7 +46,7 @@ class Todo extends React.Component {
         const id = JSON.parse(localStorage.getItem("user")).id;
         axios.get("/todos/users/" + id)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({
                     todos: res.data
                 })
@@ -56,10 +55,10 @@ class Todo extends React.Component {
 
     // Delete task from db when task is completed
     completeToDo = (id) => {
-        console.log("Attempt to complete a task.");
+        // console.log("Attempt to complete a task.");
         axios.delete("/todos/" + id)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.getTodos();
             });
     }
@@ -92,8 +91,8 @@ class Todo extends React.Component {
     // Save new task
     saveToDo = (event) => {
         event.preventDefault();
-        console.log("Attempt to save new task.")
-        console.log(this.state.task)
+        // console.log("Attempt to save new task.")
+        // console.log(this.state.task)
         if (this.state.task !== "") {
             this.setState({
                 modal: !this.state.modal
@@ -107,8 +106,8 @@ class Todo extends React.Component {
             axios.post("/todos/" + toDoObj.userId, toDoObj)
                 .then(res => {
                     if (res) {
-                        console.log(res.data)
-                        console.log("Task '" + this.state.task + "' was saved");
+                        // console.log(res.data)
+                        // console.log("Task '" + this.state.task + "' was saved");
                         this.setState({
                             task: ""
                         });
@@ -121,7 +120,7 @@ class Todo extends React.Component {
                 });
         }
         else {
-            console.log("Invalid new task input.")
+            // console.log("Invalid new task input.")
             this.setState({
                 validationClass: "validation"
             })
@@ -131,7 +130,7 @@ class Todo extends React.Component {
     // Save edit to task
     saveEdit = (event, task, id) => {
         event.preventDefault();
-        console.log("Attempt to edit existing task.")
+        // console.log("Attempt to edit existing task.")
         if (this.state.task !== "") {
             this.setState({
                 modal: !this.state.modal,
@@ -139,7 +138,7 @@ class Todo extends React.Component {
             axios.put("/todos/" + this.state.taskId, { item: this.state.task })
                 .then(res => {
                     if (res.data) {
-                        console.log("Task was edited to '" + this.state.task + "'");
+                        // console.log("Task was edited to '" + this.state.task + "'");
                         this.getTodos();
                     }
                     else {
@@ -148,7 +147,7 @@ class Todo extends React.Component {
                 });
         }
         else {
-            console.log("Invalid edit.")
+            // console.log("Invalid edit.")
             this.setState({
                 validationClass: "validation"
             })
@@ -198,44 +197,46 @@ class Todo extends React.Component {
         }
 
         return (
-            <div className="container">
-                {/* Logout redirection */}
-                {this.props.handleUserRedirect()}
-                
+            <div>
                 <Sidebar handleUserLogout={this.props.handleUserLogout} />
-                {modal}
-                <p className="time_date">{this.state.time_date}</p>
-                <Card className="text-center">
-                    <CardBody>
-                        <CardTitle>To-do List</CardTitle>
-                        <CardText>
-                            {/************* Display Existing Tasks Start *************/}
-                            <div>
-                                {this.state.todos.map((todo) => {
-                                    return (
-                                        <ListGroup>
-                                            <ListGroupItem>
-                                                <span className="task">{todo.item}</span>
-                                                <span className="pull-right">
-                                                    <Button outline color="info" onClick={() => this.editToDo(todo.item, todo.id)} name="edit">
-                                                        <i className="material-icons">edit</i>
-                                                    </Button>
-                                                    <Button outline color="info" onClick={() => this.completeToDo(todo.id)} name="complete">
-                                                        <i className="material-icons">done</i>
-                                                    </Button>
-                                                </span>
-                                            </ListGroupItem>
-                                        </ListGroup>
-                                    )
-                                })}
-                            </div>
-                            {/************* Display Existing Tasks End *************/}
-                        </CardText>
-                        {/************* Create Task/Profile Buttons *************/}
-                        <Button outline color="info" href="/profile">Back</Button>
-                        <Button outline color="info" onClick={this.createToDo} name="create">New Task</Button>
-                    </CardBody>
-                </Card>
+                    <div className="container">
+                        {/* Logout redirection */}
+                        {this.props.handleUserRedirect()}
+                        {modal}
+                        <p className="time_date">{this.state.time_date}</p>
+                        <Card className="text-center">
+                            <CardBody>
+                                <CardTitle>To-do List</CardTitle>
+                                <CardText>
+                                    {/************* Display Existing Tasks Start *************/}
+                                    <div>
+                                        {this.state.todos.map((todo) => {
+                                            return (
+                                                <ListGroup>
+                                                    <ListGroupItem
+                                                        className="animated flipInX"
+                                                    >
+                                                        <span className="task">{todo.item}</span>
+                                                        <span className="pull-right">
+                                                            <Button outline color="info" onClick={() => this.editToDo(todo.item, todo.id)} name="edit">
+                                                                <i className="material-icons">edit</i>
+                                                            </Button>
+                                                            <Button outline color="info" onClick={() => this.completeToDo(todo.id)} name="complete">
+                                                                <i className="material-icons">done</i>
+                                                            </Button>
+                                                        </span>
+                                                    </ListGroupItem>
+                                                </ListGroup>
+                                            )
+                                        })}
+                                    </div>
+                                    {/************* Display Existing Tasks End *************/}
+                                </CardText>
+                                {/************* Create Task/Profile Buttons *************/}
+                                <Button outline color="info" onClick={this.createToDo} name="create">New Task</Button>
+                            </CardBody>
+                        </Card>
+                    </div>
             </div>
         )
     }

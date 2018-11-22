@@ -93,3 +93,13 @@ pre {
     -moz-box-shadow: 1px 6px 14px -5px rgba(0,0,0,0.75);
     box-shadow: 1px 6px 14px -5px rgba(0,0,0,0.75);
 }
+
+#slide-away-notes-btn {
+    font-size: 50px;
+    color: #FFD300;
+}
+
+#slide-away-notes-btn:hover {
+    font-size: 70px;
+    transition: font-size 0.1s ease-out;
+}

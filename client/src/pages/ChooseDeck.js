@@ -1,5 +1,4 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
 import axios from "axios";
 import { Row, Col, Card, Button } from "reactstrap";
 import { Link } from "react-router-dom"
@@ -39,7 +38,7 @@ class ChooseDeck extends React.Component {
         decks: response.data
       });
       // this.getTags();
-      console.log(response.data)
+      // console.log(response.data)
     });
   }
 

@@ -23,9 +23,24 @@ li {
     overflow-y: scroll;
 }
 
+.small-font {
+    animation-duration: 1.15s;
+}
+
+.card-body a p {
+    text-decoration-line: none;
+}
+
 .deck_scroll {
     height: 220px;
     overflow-y: scroll;
+}
+
+.hover-deck:hover {
+    transition: box-shadow 0.2s linear;
+    -moz-box-shadow:    inset 0 0 7px rgb(131, 131, 131);
+    -webkit-box-shadow: inset 0 0 7px rgb(131, 131, 131);
+    box-shadow:   inset 0 0 7px rgb(131, 131, 131);
 }
 
 .note_scroll {
@@ -40,6 +55,14 @@ li {
 .notediv {
     width: 100%;
 }
+#notes-display {
+    /* border: 1px solid rgb(131, 131, 131); */
+border-radius: 3px;
+-moz-box-shadow:    inset 0 0 10px rgb(131, 131, 131);
+-webkit-box-shadow: inset 0 0 10px rgb(131, 131, 131);
+box-shadow:   inset 0 0 10px rgb(131, 131, 131);
+}
+
 
 #seeall {
     margin: 10px auto 10px auto;
