@@ -111,7 +111,7 @@ class Profile extends React.Component {
                         {this.state.reminders.map((reminder) => {
                             var date = moment(reminder.date).format("ddd, MMMM Do YYYY, h:mm:ss a");
                             return (
-                                <ListGroupItem className="small_font animated flipInX">
+                                <ListGroupItem className="small_font animated flipInX" key={reminder.id}>
                                     <span style={{ color: "#17A2B8" }}>{date}</span>
                                     <br />
                                     {reminder.item}
@@ -139,7 +139,7 @@ class Profile extends React.Component {
                     <div>
                         {this.state.todos.map((todo) => {
                             return (
-                                <ListGroupItem className="small_font animated flipInX">{todo.item}</ListGroupItem>
+                                <ListGroupItem className="small_font animated flipInX" key={todo.id}>{todo.item}</ListGroupItem>
                             );
                         })}
                     </div>
@@ -167,9 +167,7 @@ class Profile extends React.Component {
                                                 <CardImg top src={require("../img/flashcards.jpg")} alt="Card image cap" />
                                             
                                             <CardBody>
-                                                <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
                                                     <CardText className="small_font">{deck.subject}</CardText>
-                                                </Link>
                                             </CardBody>
                                         </Card>
                                     </Link>
