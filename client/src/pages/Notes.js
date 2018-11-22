@@ -68,7 +68,7 @@ class Note extends React.Component {
 
   getNotes = () => {
     axios.get(`/notes/users/${this.state.userId}`).then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       this.setState({
         notesArr: [...response.data]
       })
@@ -76,10 +76,10 @@ class Note extends React.Component {
   }
 
   createNote = () => {
-    console.log("Creating Note");
+    // console.log("Creating Note");
     // this.setState({ note: this.state.text });
     axios.post(`/notes/${this.state.userId}`, { note: this.state.text }).then((response) => {
-      console.log(response);
+      // console.log(response);
       this.getNotes();
     });
     
@@ -103,7 +103,15 @@ class Note extends React.Component {
       
         <Sidebar handleUserLogout={this.props.handleUserLogout} />
         <Link smooth to="/notes#save-note-btn">
-          <a style={{marginLeft: "90%"}}><i className="fas fa-chevron-circle-down animated slideInDown" style={{fontSize: "50px", color: "#FFD300"}}></i></a>
+          <button 
+          style={{
+            marginLeft: "90%", background: "transparent", 
+            border: "none", borderRadius: "50%", 
+            outline: "none", cursor: "pointer"}}>
+              <i id="slide-away-notes-btn"
+              className="fas fa-chevron-circle-down animated slideInDown" 
+              ></i>
+          </button>
         </Link>
         {this.state.notesArr.map((item, index) => {
           return (
