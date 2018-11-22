@@ -1,5 +1,4 @@
 import React from "react";
-// import {Redirect} from "react-router-dom";
 import moment from "moment-timezone";
 import axios from "axios";
 
@@ -9,9 +8,7 @@ import {
   Form,
   FormGroup,
   Label,
-  Input,
-  Col,
-  Row
+  Input
 } from "reactstrap";
 
 class Setting extends React.Component {

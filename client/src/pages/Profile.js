@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import {
-    Card, CardBody, CardTitle, CardImg, CardSubtitle, CardText, CardDeck, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
+    Card, CardBody, CardTitle, CardImg, CardText, CardDeck, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem
 } from 'reactstrap';
 import moment from "moment";
 import axios from "axios";
@@ -31,7 +31,7 @@ class Profile extends React.Component {
     };
 
     componentDidMount() {
-        console.log("Profile component mounted.");
+        // console.log("Profile component mounted.");
         try {
             const userId = JSON.parse(localStorage.getItem("user")).id;
             if (userId) this.setState(() => ({ id: userId }));
@@ -54,7 +54,7 @@ class Profile extends React.Component {
         let id = JSON.parse(localStorage.getItem("user")).id;
         axios.get("/reminders/users/" + id)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({
                     reminders: res.data
                 });
@@ -65,7 +65,7 @@ class Profile extends React.Component {
         let id = JSON.parse(localStorage.getItem("user")).id;
         axios.get("/todos/users/" + id)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({
                     todos: res.data
                 });
@@ -76,7 +76,7 @@ class Profile extends React.Component {
         let id = JSON.parse(localStorage.getItem("user")).id;
         axios.get("/decks/users/" + id)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({
                     decks: res.data
                 });
@@ -87,7 +87,7 @@ class Profile extends React.Component {
         let id = JSON.parse(localStorage.getItem("user")).id;
         axios.get("/notes/users/" + id)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({
                     notes: res.data
                 });
@@ -164,7 +164,7 @@ class Profile extends React.Component {
                                 <Col xs="12" sm="6" md="4" lg="3">
                                     <Card>
                                         <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
-                                            <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                            <CardImg top width="100%" src={require("../img/flashcards.jpg")} alt="Card image cap" />
                                         </Link>
                                         <CardBody>
                                             <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
@@ -187,7 +187,8 @@ class Profile extends React.Component {
                             <Col xs="12" sm="6" md="4" lg="3">
                                 <Card>
                                     <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
-                                        <CardImg top width="100%" src="https://www.math.utah.edu/~jasonu/flash-cards/flash-card-front.png" alt="Card image cap" />
+                                        <CardImg top width="100%" 
+                                        src={require("../img/flashcards.jpg")}alt="Card image cap" />
                                     </Link>
                                     <CardBody>
                                         <Link to="/deck" onClick={() => this.deckIdSessionStorage(deck.id)}>
@@ -281,7 +282,9 @@ class Profile extends React.Component {
                                         {/************** Display existing reminders ****************/}
                                         {renderReminders}
                                     </CardText>
-                                    <Button outline color="info" id="reminder" href="/reminder">See More</Button>
+                                    <Link to="/reminder">
+                                        <Button outline color="info" id="reminder">See More</Button>
+                                    </Link>
                                 </CardBody>
                             </Card>
                         </Col>
@@ -293,7 +296,9 @@ class Profile extends React.Component {
                                         {/************** Display existing to-dos ****************/}
                                         {renderToDos}
                                     </CardText>
-                                    <Button outline color="info" id="todo" href="/todo">See More</Button>
+                                    <Link to="/todo">
+                                        <Button outline color="info" id="todo">See More</Button>
+                                    </Link>
                                 </CardBody>
                             </Card>
                         </Col>
@@ -305,8 +310,10 @@ class Profile extends React.Component {
                                 <Row>
                                     {/************** Display existing decks ****************/}
                                     {renderDecks}
-                                </Row>
-                                <Button outline color="info" id="seeall" href="/choose">View All</Button>
+                                </Row>                           
+                                <Link to="/choose">
+                                    <Button outline color="info" id="seeall">View All</Button>
+                                </Link>
                             </Card>
                         </Col>
                     </Row>
@@ -318,7 +325,9 @@ class Profile extends React.Component {
                                     {/************** Display existing decks ****************/}
                                     {renderNotes}
                                 </Row>
-                                <Button outline color="info" id="seeall" href="/notes">View All</Button>
+                                <Link to="/notes">
+                                    <Button outline color="info" id="seeall">View All</Button>
+                                </Link>
                             </Card>
                         </Col>
                     </Row>

@@ -1,8 +1,9 @@
 import React from "react";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import {Button} from "reactstrap";
 import moment from "moment";
 import axios from "axios";
+import { HashLink as Link } from "react-router-hash-link";
 
 // Components
 import Sidebar from "../components/Sidebar";
@@ -101,7 +102,9 @@ class Note extends React.Component {
         {this.props.handleUserRedirect()}
       
         <Sidebar handleUserLogout={this.props.handleUserLogout} />
-        <a href="#save-note-btn" style={{marginLeft: "90%"}}><i className="fas fa-chevron-circle-down animated slideInDown" style={{fontSize: "50px", color: "#FFD300"}}></i></a>
+        <Link smooth to="/notes#save-note-btn">
+          <a style={{marginLeft: "90%"}}><i className="fas fa-chevron-circle-down animated slideInDown" style={{fontSize: "50px", color: "#FFD300"}}></i></a>
+        </Link>
         {this.state.notesArr.map((item, index) => {
           return (
               <div key={item.id} className="animated zoomInRight note-output" style={{ overflowY: "scroll"}}>

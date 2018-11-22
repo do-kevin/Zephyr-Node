@@ -3,7 +3,6 @@
 // Flashcards --> Decks --> Cards
 
 import React from "react";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
@@ -17,16 +16,11 @@ import {
   CardBody,
   CardTitle,
   CardText,
-  CardSubtitle,
   Modal,
   ModalHeader,
   ModalBody,
-  Form,
-  FormGroup,
   Label,
-  Input,
-  FormText,
-  Container
+  Input
 } from "reactstrap";
 
 // Components
@@ -292,8 +286,8 @@ class PlayCards extends React.Component {
   // };
 
   createAppointments = () => {
-    console.log("creating appts");
-    console.log(this.state.flashcards)
+    // console.log("creating appts");
+    // console.log(this.state.flashcards)
     this.state.flashcards.map((item, index) => {
       let eventDate = moment(this.state.alertTime, "HH:mm")
         .add(index, "days")
