@@ -38,7 +38,7 @@ class ChooseDeck extends React.Component {
         decks: response.data
       });
       // this.getTags();
-      console.log(response.data)
+      // console.log(response.data)
     });
   }
 
