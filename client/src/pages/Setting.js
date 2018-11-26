@@ -63,13 +63,14 @@ class Setting extends React.Component {
   handlePhoneChange = event => {
     console.log(event.target.value.replace(/\D/g, ''))
     this.setState({
-      currentPhone: event.target.value
+      currentPhone: event.target.value,
+      saved: false
     });
   };
 
   //saves any edits done to the selected event
   saveChanges = () => {
-    if (this.state.phone !== this.state.currentPhone) {
+    if (this.state.phone !== this.state.currentPhone && this.state.currentPhone.replace(/\D/g, "") !== "") {
 
       let phoneObj = {
         phoneNumber: this.state.currentPhone.replace(/\D/g, "")
@@ -83,7 +84,7 @@ class Setting extends React.Component {
           type: "initial text",
           userId: this.state.userId
         };
-        axios.post("/appointment", newObj).then(function(data) {
+        axios.post("/appointment", newObj).then(data => {
           // console.log("phone number set - " + data);
           this.setState({
               saved: true

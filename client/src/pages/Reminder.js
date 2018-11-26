@@ -203,7 +203,7 @@ class Reminder extends React.Component {
           type: "initial text",
           userId: this.state.userId
         };
-        axios.post("/appointment", newObj).then(function(data) {
+        axios.post("/appointment", newObj).then(data => {
           console.log("phone number set - " + data);
         });
       });
@@ -322,7 +322,7 @@ class Reminder extends React.Component {
                 type: "initial text",
                 userId: this.state.userId
               };
-              axios.post("/appointment", newObj).then(function(data) {
+              axios.post("/appointment", newObj).then(data => {
                 // console.log("phone number set - " + data);
               });
             });
