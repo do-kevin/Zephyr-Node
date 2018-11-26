@@ -67,6 +67,9 @@ const notificationWorkerFactory = function () {
             .then(function (response) {
 
             })
+              .catch(function (err) {
+                return console.log(err);
+              })
             .done();
         });
       };
