@@ -130,7 +130,7 @@ class Setting extends React.Component {
                   onChange={this.handlePhoneChange}
                   placeholder="Ex: (555) 555-0100"
                 />
-                <p style={{fontSize: "1.5vh"}}>*If you do not get a text message after saving your phone number, you number may have previously opted out from the service. 
+                <p style={{fontSize: "1.5vh"}}>*If you do not get a text message after saving your phone number, your number may have previously opted out from the service. 
                 <br /><br />
                 Please re-subscribe by sending the text message&nbsp; 
                 <span style={{
