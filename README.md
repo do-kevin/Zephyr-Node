@@ -1,6 +1,5 @@
 # Zephyr Node
 ---------------
-Web game is best played on Google Chrome.
 
 ## About
 A productivity app meant to help users organize their notes, to-dos, reminders, and decks of flashcards. Its unique feature is giving users the option to send reminders and flashcards as text messages. The app was build using React, Sequelize, and Bootstrap.
