@@ -68,6 +68,7 @@ const notificationWorkerFactory = function () {
 
             })
               .catch(function (err) {
+                console.log(err.code)
                 return console.log(err);
               })
             .done();
