@@ -112,7 +112,7 @@ class Setting extends React.Component {
         <Form
                 className="modal-form">
               <FormGroup>
-                <Label for="username">Username:</Label>
+                <Label for="username">Username</Label>
                 <Input
                   type="text"
                   id="username"
@@ -122,15 +122,22 @@ class Setting extends React.Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="phone">Phone number:</Label>
+                <Label for="phone">Phone number</Label>
                 <Input
                   type="text"
                   id="phone"
                   value={this.state.currentPhone}
                   onChange={this.handlePhoneChange}
-                  placeholder={this.state.currentPhone}
+                  placeholder="Ex: (555) 555-0100"
                 />
-                <p style={{fontSize: "12px"}}>*Leave blank and click <em style={{color: "grey"}}>Save</em> to remove your phone number</p>
+                <p style={{fontSize: "1.5vh"}}>*If you do not get a text message after saving your phone number, you number may have previously opted out from the service. 
+                <br /><br />
+                Please re-subscribe by sending the text message&nbsp; 
+                <span style={{
+                  background: "rgb(220,220,220)",
+                  padding: "2.5px",
+                  borderRadius: "5px"
+                }}>START</span> to <strong>1(858) 264-3579</strong>.</p>
               </FormGroup>
                 <Button color="primary" onClick={this.saveChanges}>
                     Save Changes
