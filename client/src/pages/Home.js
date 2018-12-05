@@ -168,7 +168,7 @@ class Home extends React.Component {
           </Row>
         </div>
         
-        <div className="container text-center" style={{border: "2px solid red"}}>
+        <div className="container text-center">
         <h1 className="text-center display-3">Features</h1>
           <div className="row" style={{margin: "30px auto 0 auto"}}>
           <Container className="feature-containers">

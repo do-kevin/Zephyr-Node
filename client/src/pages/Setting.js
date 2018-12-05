@@ -130,14 +130,28 @@ class Setting extends React.Component {
                   onChange={this.handlePhoneChange}
                   placeholder="Ex: (555) 555-0100"
                 />
-                <p style={{fontSize: "1.5vh"}}>*If you do not get a text message after saving your phone number, your number may have previously opted out from the service. 
-                <br /><br />
-                Please re-subscribe by sending the text message&nbsp; 
-                <span style={{
-                  background: "rgb(220,220,220)",
-                  padding: "2.5px",
-                  borderRadius: "5px"
-                }}>START</span> to <strong>1(858) 264-3579</strong>.</p>
+                <div id="text-info-box" 
+                  style={{
+                    padding: "7px 7px 7px 7px", 
+                    background: `repeating-linear-gradient(
+                                  -55deg,
+                                  #FFCC00,
+                                  #FFCC00 3px,
+                                  #ffffff 3px,
+                                  #ffffff 6px)`, 
+                    marginTop: "10px",
+                    borderRadius: "10px 10px 10px 10px"}}>
+                <div style={{padding: "10px 10px 10px 10px", background: "white", borderRadius: "10px 10px 10px 10px"}}>
+                  <p style={{fontSize: "1.7vh"}}>If you do not get a text message after saving your phone number, your number may have previously opted out from the service. 
+                  <br /><br />
+                  Please re-subscribe by sending the text message&nbsp; 
+                  <span style={{
+                    background: "rgb(220,220,220)",
+                    padding: "2.5px",
+                    borderRadius: "5px"
+                  }}>START</span> to <strong>1(858) 264-3579</strong>.</p>
+                </div>
+                </div>
               </FormGroup>
                 <Button color="primary" onClick={this.saveChanges}>
                     Save Changes

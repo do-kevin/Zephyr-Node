@@ -19,23 +19,18 @@ class Search extends React.Component {
 
   render() {
   return (
-    <div id="search-bar">
-      <form className="form-inline">
-        <input
-          className="form-control"
+      <form className="search-form" style={{margin: "auto"}}>
+      <input
           type="search"
           aria-label="Search"
           id="search-input"
           onChange={this.handleInputChange}
           placeholder="Search decks"
         />
-        <div className="input-group-append">
-          <button type="submit" className="btn btn-primary" id="search-btn" onClick={(e) => {this.props.handleFunction(e, this.state.searchValue)}}>
+        <button type="submit" className="btn btn-primary" id="search-btn" onClick={(e) => {this.props.handleFunction(e, this.state.searchValue)}}>
             <i className="fa fa-search text-grey" aria-hidden="true" />
           </button>
-        </div>
       </form>
-    </div>
   );
 }
 };

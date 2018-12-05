@@ -272,7 +272,8 @@ class Profile extends React.Component {
                             </Jumbotron>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row
+                        id="reminder-todo-row">
                         <Col>
                             <Card>
                                 <CardBody>

@@ -1,6 +1,12 @@
-#search-bar {
-    width: 700px !important;
-    margin: 0 auto 20px auto;
+#search-bar-container {
+    margin: auto;
+    max-width: 40vw;
+}
+
+@media (max-width: 601px) {
+    #search-bar-container {
+        margin-left: 17%;
+    }
 }
 
 *,
@@ -104,4 +110,8 @@ p {
     font: inherit;
     cursor: pointer;
     font-weight: 500;
+}
+
+.tag-btn:hover {
+    color: orangered;
 }

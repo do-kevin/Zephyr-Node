@@ -120,9 +120,9 @@ class ChooseDeck extends React.Component {
   }
   else {
     renderDecks = 
-    <div>
-      <h3>Decks Not Found</h3>
-      <Button  color="info" onClick={this.showMyDecks}>
+    <div style={{margin: "20px auto 0 auto"}}>
+      <h3 className="animated flipInX" style={{color: "red"}}>Decks Not Found</h3>
+      <Button className="animated flipInX" color="info" onClick={this.showMyDecks} style={{margin: "auto"}}>
         Show My Decks
       </Button>
     </div>
@@ -134,7 +134,9 @@ class ChooseDeck extends React.Component {
         {this.props.handleUserRedirect()}
         
         <Sidebar handleUserLogout={this.props.handleUserLogout} />
-        <Search handleFunction={this.searchTags}/>
+        <div id="search-bar-container">
+          <Search handleFunction={this.searchTags}/>
+        </div>
         <div id="deck-list">
           <div className="row">
             <Card className="add-event-btn">
