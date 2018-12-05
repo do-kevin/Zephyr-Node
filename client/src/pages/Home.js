@@ -157,7 +157,7 @@ class Home extends React.Component {
         </nav>
         <div className="jumbotron banner-image animated fadeIn">
           <div className="banner-text">
-            <h1 className="display-1 app-name noselect">Zephyr Node</h1>
+            <h1 className="app-name noselect">Zephyr Node</h1>
             <br />
             <Search handleFunction={this.searchTags} />
           </div>
@@ -168,7 +168,7 @@ class Home extends React.Component {
           </Row>
         </div>
         
-        <div className="container text-center">
+        <div className="container text-center" style={{border: "2px solid red"}}>
         <h1 className="text-center display-3">Features</h1>
           <div className="row" style={{margin: "30px auto 0 auto"}}>
           <Container className="feature-containers">
@@ -237,7 +237,7 @@ class Home extends React.Component {
             </div>
             </Container>
             </div>
-            <Container className="feature-containers">
+            <Container className="last-container">
             <div className="col">
               <br />
               <div className="card feature-cards animated zoomIn" style={{marginTop: "-40px"}}>

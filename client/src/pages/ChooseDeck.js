@@ -103,7 +103,7 @@ class ChooseDeck extends React.Component {
               <i className="fas fa-trash-alt" />
             </Button>
             <Link to="/deck" onClick={() => this.deckIdSessionStorage(item.id)}>
-            <div className="h1-wrappers container">
+            <div className="container">
               <h1 className="deck-title text-center">{item.subject}</h1>
             </div>
             </Link>

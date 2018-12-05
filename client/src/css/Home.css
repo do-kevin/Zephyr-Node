@@ -8,6 +8,7 @@
 .app-name {
     font-family: "Righteous", Arial, Helvetica, sans-serif;
     text-shadow: 2px 2px rgb(53, 53, 53);
+    font-size: 7vmax;
 }
 
 .navbar-header{
@@ -72,6 +73,11 @@
     margin-left: 65%;
 }
 
+.feature-cards {
+    font-size: 2.3vh;
+    padding: 15px 1.1vw 15px 1.1vw;
+}
+
 #app-logo {
     height: 60px;
     width: 60px;
@@ -125,6 +131,11 @@
 
 .feature-containers {
     width: 520px;
+    margin-bottom: 30px;
+}
+
+.last-container {
+    max-width: 520px;
     margin-bottom: 30px;
 }
 
