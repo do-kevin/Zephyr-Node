@@ -33,7 +33,7 @@ class Search extends React.Component {
           id="search-btn" 
           data-balloon="To find specific decks, enter the associated tag name" 
           data-balloon-pos="left"
-          onClick={(e) => {this.props.handleFunction(e, this.state.searchValue)}}>
+          onClick={this.state.searchValue !== "" ? (e) => {this.props.handleFunction(e, this.state.searchValue)} : this.props.displayPublicDecks }>
             <i className="fa fa-search text-grey" aria-hidden="true" />
           </button>
       </form>

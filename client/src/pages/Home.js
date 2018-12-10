@@ -61,7 +61,8 @@ class Home extends React.Component {
       })
   }
 
-  displayPublicDecks = () => {
+  displayPublicDecks = (event) => {
+    event.preventDefault();
     axios.get("/decks/public")
       .then(response => {
         this.setState({
@@ -169,7 +170,7 @@ class Home extends React.Component {
           <div className="banner-text">
             <h1 className="app-name noselect">Zephyr Node</h1>
             <br />
-            <Search handleFunction={this.searchTags} />
+            <Search handleFunction={this.searchTags} displayPublicDecks={this.displayPublicDecks}/>
           </div>
         </div>
         <div>
