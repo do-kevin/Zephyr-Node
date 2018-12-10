@@ -150,7 +150,13 @@ class Home extends React.Component {
       <div>
         {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
-          <a href="https://github.com/do-kevin/Project-Three" target="_blank" rel="noopener noreferrer">
+          <a 
+            href="https://github.com/do-kevin/Project-Three" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            data-balloon="Link to this project's GitHub repository" 
+            data-balloon-pos="right"
+          >
             <img id="app-logo" src={require("../img/github.png")} alt="github logo"/>
           </a>
           <Login handleUserLogin={this.props.handleUserLogin} />
