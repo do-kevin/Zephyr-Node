@@ -27,7 +27,13 @@ class Search extends React.Component {
           onChange={this.handleInputChange}
           placeholder="Search decks"
         />
-        <button type="submit" className="btn btn-primary" id="search-btn" onClick={(e) => {this.props.handleFunction(e, this.state.searchValue)}}>
+        <button 
+          type="submit" 
+          className="btn btn-primary" 
+          id="search-btn" 
+          data-balloon="To find specific decks, enter the associated tag name" 
+          data-balloon-pos="left"
+          onClick={(e) => {this.props.handleFunction(e, this.state.searchValue)}}>
             <i className="fa fa-search text-grey" aria-hidden="true" />
           </button>
       </form>
