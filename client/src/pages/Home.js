@@ -87,7 +87,7 @@ class Home extends React.Component {
         renderDecks =
           <div className="decks-not-found animated wobble">
           <i className="fas fa-binoculars" style={{fontSize: "200px", marginLeft: "4%", color: "#E34234"}}></i>
-            <h3 style={{color: "#E34234"}}>Decks Not Found</h3>
+            <h3 style={{color: "#E34234"}}>Cannot find a deck</h3>
           </div>
       }
       else if (!this.state.notFound) {
