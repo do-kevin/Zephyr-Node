@@ -140,7 +140,11 @@ class Home extends React.Component {
               );
             })}
           </Carousel>
-          <Button color="warning" onClick={this.displayPublicDecks} style={{ marginLeft: "47%", fontSize: "170%"}}>
+          <Button 
+            color="warning" 
+            onClick={this.displayPublicDecks} 
+            style={{ marginLeft: "47%", fontSize: "170%"}}
+            data-balloon="View all public decks" data-balloon-pos="up">
           <i className="fas fa-sign-out-alt"></i>
           </Button>
         </div>
