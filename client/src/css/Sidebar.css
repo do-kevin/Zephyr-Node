@@ -57,7 +57,6 @@ body {
 
 .sidebar-nav>.sidebar-brand {
     height: 65px;
-    font-size: 18px;
     line-height: 60px;
 }
 
@@ -91,4 +90,41 @@ body {
         position: relative;
         margin-right: 0;
     }
+}
+.sidebar-nav-item {
+    transition: background 0.55s;
+}
+
+.sidebar-nav-span {
+    color: white;
+    transition: 0.55s;
+    font-size: 16px;
+}
+
+.sidebar-nav-item:hover {
+    background: white;
+}
+
+.sidebar-nav-item:hover .sidebar-nav-span {
+    color: black;
+    font-size: 18px;
+}
+
+#profile-span:hover .sidebar-nav-span {
+    font-size: 21px !important;
+}
+
+#settings-span:hover .sidebar-nav-span {
+    font-size: 19px !important;
+}
+
+.log-out-btn {
+    border: 2px solid transparent;
+    transition: background 0.55s;
+}
+
+.log-out-btn:hover {
+    background: black;
+    color: white;
+    border: 2px solid white;
 }

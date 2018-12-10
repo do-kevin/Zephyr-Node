@@ -28,31 +28,44 @@ class Sidebar extends React.Component {
         <div id="wrapper" className="toggled">
           <div id="sidebar-wrapper">
             <ul className="sidebar-nav">
-              <li className="sidebar-brand">
+              {/* <li className="sidebar-brand sidebar-nav-item">
                 <Link to="/">Home</Link>
+              </li> */}
+              <li 
+                className="sidebar-brand sidebar-nav-item"
+                id="profile-span"
+              >
+                <Link to="/profile">
+                <span 
+                  className="sidebar-nav-span"
+                  style={{fontSize: "20px"}}
+                  >Profile</span></Link>
               </li>
-              <li>
-                <Link to="/profile">Profile</Link>
+              <li className="sidebar-nav-item">
+                <Link to="/choose"><span className="sidebar-nav-span">Decks</span></Link>
               </li>
-              <li>
-                <Link to="/choose">Decks</Link>
+              <li className="sidebar-nav-item">
+                <Link to="/notes"><span className="sidebar-nav-span">Notes</span></Link>
               </li>
-              <li>
-                <Link to="/notes">Notes</Link>
+              <li className="sidebar-nav-item">
+                <Link to="/reminder"><span className="sidebar-nav-span">Reminders</span></Link>
               </li>
-              <li>
-                <Link to="/reminder">Reminders</Link>
-              </li>
-              <li>
-                <Link to="/todo">To-Do</Link>
+              <li className="sidebar-nav-item">
+                <Link to="/todo"><span className="sidebar-nav-span">To-Do</span></Link>
               </li>
               <li
-                style={{marginTop: "30%"}}>
-                <Link to="/settings">Settings</Link>
+                style={{marginTop: "30%"}}
+                className="sidebar-nav-item"
+                id="settings-span">
+                <Link to="/settings">
+                <span 
+                  className="sidebar-nav-span"
+                  style={{fontSize: "18px"}}
+                >Settings</span></Link>
               </li>
               <li>
                 <button 
-                  className="btn"
+                  className="btn log-out-btn"
                   type="button"
                   onClick={this.props.handleUserLogout}
                   style={{marginLeft: "22%", marginTop: "40%"}}
