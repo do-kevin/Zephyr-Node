@@ -219,10 +219,11 @@ class Todo extends React.Component {
                                                         <span className="task">{todo.item}</span>
                                                         <span className="pull-right">
                                                             <Button outline color="info" onClick={() => this.editToDo(todo.item, todo.id)} name="edit">
-                                                                <i className="material-icons">edit</i>
+                                                                <i className="fas fa-edit"></i>
                                                             </Button>
+                                                            {" "}
                                                             <Button outline color="info" onClick={() => this.completeToDo(todo.id)} name="complete">
-                                                                <i className="material-icons">done</i>
+                                                                <i class="fas fa-check"></i>
                                                             </Button>
                                                         </span>
                                                     </ListGroupItem>
@@ -233,7 +234,7 @@ class Todo extends React.Component {
                                     {/************* Display Existing Tasks End *************/}
                                 </CardText>
                                 {/************* Create Task/Profile Buttons *************/}
-                                <Button outline color="info" onClick={this.createToDo} name="create">New Task</Button>
+                                <Button outline color="info" onClick={this.createToDo} name="create">Create Task</Button>
                             </CardBody>
                         </Card>
                     </div>
