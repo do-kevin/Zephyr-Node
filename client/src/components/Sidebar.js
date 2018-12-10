@@ -57,7 +57,7 @@ class Sidebar extends React.Component {
                   onClick={this.props.handleUserLogout}
                   style={{marginLeft: "22%", marginTop: "40%"}}
                 >
-                  <i className="fas fa-sign-out-alt"></i>{" "}Logout 
+                  <i className="fas fa-sign-out-alt"></i>{" "}Log Out 
                 </button>
               </li>
             </ul>
