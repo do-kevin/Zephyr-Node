@@ -69,6 +69,11 @@
     box-shadow: 0;
 }
 
+.h1-homepage-wrappers {
+    height: 18vh;
+    margin: auto;
+}
+
 .flippy-card {
     margin-left: 65%;
 }
