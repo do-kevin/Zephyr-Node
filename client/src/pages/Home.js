@@ -97,7 +97,7 @@ class Home extends React.Component {
           return (
             <Col key={item.id}>
               <div className="decks decks-primary animated bounceIn">
-              <div className="h1-wrappers">
+              <div className="h1-homepage-wrappers">
                 <h1 className="deck-title text-center" onClick={() => this.getFlashcards(item.id)}>{item.subject}</h1>
                 </div>
                 <div className="tags-box">
