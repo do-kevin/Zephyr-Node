@@ -189,3 +189,37 @@ div.slider-frame {
   border-bottom: 1px solid rgb(126, 198, 247);
   margin-top: 1%;
 }
+
+#close-deck-setting-container {
+  right: -250px;
+}
+
+#deck-setting-save-btn {
+  margin-left: 90%;
+}
+
+@media (min-width: 490px) and (max-width: 506px) {
+  #close-deck-setting-container {
+    right: -49vw !important;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 489px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+}
+
+@media (max-width: 320px) {
+  #close-deck-setting-container {
+    right: -20vw !important;
+  }
+
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+}

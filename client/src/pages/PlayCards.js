@@ -439,6 +439,7 @@ class PlayCards extends React.Component {
                           margin: "20px 41% 0 41%",
                           borderRadius: "25px"
                         }}
+                        data-balloon="Save flashcard" data-balloon-pos="down"
                       >
                         <i className="fas fa-save" />
                       </Button>
@@ -480,6 +481,8 @@ class PlayCards extends React.Component {
                       marginRight: "41%",
                       borderRadius: "25px"
                     }}
+                    data-balloon="Create flashcard" 
+                    data-balloon-pos="down"
                     onClick={this.createFlashcard}
                   >
                     <i className="fas fa-plus" />
@@ -537,7 +540,7 @@ class PlayCards extends React.Component {
                 <Col>
                   <h1 className="text-center">Settings</h1>
                 </Col>
-                <Col style={{ right: "-250px" }}>
+                <Col id="close-deck-setting-container">
                   <Button onClick={this.toggleSettings}>
                     <i className="fas fa-times" />
                   </Button>
@@ -613,7 +616,7 @@ class PlayCards extends React.Component {
               {phoneRequest}
               <hr />
               <Row>
-                <Button color="primary" onClick={this.saveSettings} style={{ marginLeft: "90%"}}>
+                <Button id="deck-setting-save-btn" color="primary" onClick={this.saveSettings}>
                 <i className="fas fa-save"></i>
                 </Button>
               </Row>
@@ -659,13 +662,14 @@ class PlayCards extends React.Component {
         </Carousel>
         <div id="edit-btns">
           <ButtonGroup>
-            <Button color="primary" id="edit-deck-btn" onClick={this.toggle}>
+            <Button data-balloon="Edit flashcards inside the deck" data-balloon-pos="up" color="primary" id="edit-deck-btn" onClick={this.toggle}>
               Edit
             </Button>
             <Button
               id="settings-btn"
               color="dark"
               onClick={this.toggleSettings}
+              data-balloon="Settings" data-balloon-pos="up"
             >
               <i className="fas fa-cogs" />
             </Button>
