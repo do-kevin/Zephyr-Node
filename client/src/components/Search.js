@@ -25,7 +25,7 @@ class Search extends React.Component {
           aria-label="Search"
           id="search-input"
           onChange={this.handleInputChange}
-          placeholder="Search decks"
+          placeholder="Ex: demo"
         />
         <button 
           type="submit" 
