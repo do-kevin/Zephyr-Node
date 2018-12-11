@@ -8,7 +8,6 @@ import { HashLink as Link } from "react-router-hash-link";
 // Components
 import Sidebar from "../components/Sidebar";
 
-
 // CSS
 import "../css/Notes.css";
 
@@ -93,6 +92,32 @@ class Note extends React.Component {
 
   componentDidMount() {
     this.getNotes();
+    document.querySelector(".ql-bold").setAttribute("data-balloon", "Bold");
+    document.querySelector(".ql-bold").setAttribute("data-balloon-pos", "down");
+    document.querySelector(".ql-italic").setAttribute("data-balloon", "Italicize");
+    document.querySelector(".ql-italic").setAttribute("data-balloon-pos", "down");
+    document.querySelector(".ql-underline").setAttribute("data-balloon", "Underline");
+    document.querySelector(".ql-underline").setAttribute("data-balloon-pos", "down");
+    document.querySelector(".ql-strike").setAttribute("data-balloon", "Strikethrough");
+    document.querySelector(".ql-strike").setAttribute("data-balloon-pos", "down");
+    document.querySelector(".ql-blockquote").setAttribute("data-balloon", "Block quote");
+    document.querySelector(".ql-blockquote").setAttribute("data-balloon-pos", "down");
+    document.querySelectorAll(".ql-list")[0].setAttribute("data-balloon", "Ordered list");
+    document.querySelectorAll(".ql-list")[0].setAttribute("data-balloon-pos", "down");
+    document.querySelectorAll(".ql-list")[1].setAttribute("data-balloon", "Bulleted list");
+    document.querySelectorAll(".ql-list")[1].setAttribute("data-balloon-pos", "down");
+    document.querySelectorAll(".ql-indent")[0].setAttribute("data-balloon", "Indent left");
+    document.querySelectorAll(".ql-indent")[0].setAttribute("data-balloon-pos", "down");
+    document.querySelectorAll(".ql-indent")[1].setAttribute("data-balloon", "Indent right");
+    document.querySelectorAll(".ql-indent")[1].setAttribute("data-balloon-pos", "down");
+    document.querySelector(".ql-link").setAttribute("data-balloon", "Embed URL link");
+    document.querySelector(".ql-link").setAttribute("data-balloon-pos", "down");
+    document.querySelector(".ql-image").setAttribute("data-balloon", "Insert image");
+    document.querySelector(".ql-image").setAttribute("data-balloon-pos", "down");
+    document.querySelector(".ql-video").setAttribute("data-balloon", "Insert video URL");
+    document.querySelector(".ql-video").setAttribute("data-balloon-pos", "down");
+    document.querySelector(".ql-code-block").setAttribute("data-balloon", "Code block");
+    document.querySelector(".ql-code-block").setAttribute("data-balloon-pos", "down");
   }
 
   render() {
@@ -124,7 +149,6 @@ class Note extends React.Component {
 
         <div id="quill-wrapper" className="text-center animated slideInUp">
           <h1>Notes</h1>
-          <p>*To create an <strong>embed link</strong>: Highlight a typed text, click the link button, and save the url</p>
           <ReactQuill
             theme="snow"
             id="quill-input"
@@ -134,7 +158,9 @@ class Note extends React.Component {
             formats={this.formats}
             style={{whiteSpace: "normal !important"}}
           />
-        <Button id="save-note-btn" color="primary" onClick={this.createNote} style={{ margin : "70px 0 30px 0" }}><i className="fas fa-pen-alt"></i></Button>
+        <Button id="save-note-btn" color="primary" onClick={this.createNote} style={{ margin : "70px 0 30px 0" }}>
+          Save{" "}<i className="fas fa-pen-alt"></i>
+        </Button>
         </div>
       </div>
     );

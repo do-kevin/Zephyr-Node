@@ -61,7 +61,8 @@ class Home extends React.Component {
       })
   }
 
-  displayPublicDecks = () => {
+  displayPublicDecks = (event) => {
+    event.preventDefault();
     axios.get("/decks/public")
       .then(response => {
         this.setState({
@@ -86,7 +87,7 @@ class Home extends React.Component {
         renderDecks =
           <div className="decks-not-found animated wobble">
           <i className="fas fa-binoculars" style={{fontSize: "200px", marginLeft: "4%", color: "#E34234"}}></i>
-            <h3 style={{color: "#E34234"}}>Decks Not Found</h3>
+            <h3 style={{color: "#E34234"}}>Cannot find a deck</h3>
           </div>
       }
       else if (!this.state.notFound) {
@@ -97,7 +98,7 @@ class Home extends React.Component {
           return (
             <Col key={item.id}>
               <div className="decks decks-primary animated bounceIn">
-              <div className="h1-wrappers">
+              <div className="h1-homepage-wrappers">
                 <h1 className="deck-title text-center" onClick={() => this.getFlashcards(item.id)}>{item.subject}</h1>
                 </div>
                 <div className="tags-box">
@@ -140,7 +141,11 @@ class Home extends React.Component {
               );
             })}
           </Carousel>
-          <Button color="warning" onClick={this.displayPublicDecks} style={{ marginLeft: "47%", fontSize: "170%"}}>
+          <Button 
+            color="warning" 
+            onClick={this.displayPublicDecks} 
+            style={{ marginLeft: "47%", fontSize: "170%"}}
+            data-balloon="View all public decks" data-balloon-pos="up">
           <i className="fas fa-sign-out-alt"></i>
           </Button>
         </div>
@@ -150,16 +155,22 @@ class Home extends React.Component {
       <div>
         {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
-          <a href="https://github.com/do-kevin/Project-Three" target="_blank" rel="noopener noreferrer">
+          <a 
+            href="https://github.com/do-kevin/Project-Three" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            data-balloon="Link to this project's GitHub repository" 
+            data-balloon-pos="right"
+          >
             <img id="app-logo" src={require("../img/github.png")} alt="github logo"/>
           </a>
           <Login handleUserLogin={this.props.handleUserLogin} />
         </nav>
         <div className="jumbotron banner-image animated fadeIn">
           <div className="banner-text">
-            <h1 className="display-1 app-name noselect">Zephyr Node</h1>
+            <h1 className="app-name noselect">Zephyr Node</h1>
             <br />
-            <Search handleFunction={this.searchTags} />
+            <Search handleFunction={this.searchTags} displayPublicDecks={this.displayPublicDecks}/>
           </div>
         </div>
         <div>
@@ -237,7 +248,7 @@ class Home extends React.Component {
             </div>
             </Container>
             </div>
-            <Container className="feature-containers">
+            <Container className="last-container">
             <div className="col">
               <br />
               <div className="card feature-cards animated zoomIn" style={{marginTop: "-40px"}}>

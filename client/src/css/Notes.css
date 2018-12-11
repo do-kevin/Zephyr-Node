@@ -103,3 +103,9 @@ pre {
     font-size: 70px;
     transition: font-size 0.1s ease-out;
 }
+
+@media (max-width: 700px) {
+    #slide-away-notes-btn {
+        margin-left: -100% !important;
+    }
+}

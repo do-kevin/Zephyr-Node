@@ -8,12 +8,12 @@ import "../css/Login.css";
 // Login/sign up ready styles
 const readyStyles = {
     borderColor: "limeGreen",
-    boxShadow: "0 0 2px 2px limeGreen"
+    boxShadow: "0 0 0 1px limeGreen"
   },
   // Login / sign up NOT ready styles
   notReadyStyles = {
     borderColor: "red",
-    boxShadow: "0 0 2px 2px red"
+    boxShadow: "0 0 0 1px red"
   },
   errorStyles = {
     color: "red"
@@ -185,19 +185,18 @@ class Login extends React.Component {
         <ModalBody selectLogin={this.selectLogin}>
           <form onSubmit={this.handleLogin}>
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username"><strong>Username</strong></label>
               <input
                 style={usernamePattern.test(this.state.username.trim()) ? readyStyles : notReadyStyles}
                 type="text"
                 className="form-control animated fadeIn"
                 id="username"
-                placeholder="alex-doe1234"
                 name="username"
                 value={this.state.username}
                 onChange={this.handleInputChange}
                 required
               />
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password"><strong>Password</strong></label>
               <input
                 style={passwordPattern.test(this.state.password) ? readyStyles : notReadyStyles}
                 type="password"
@@ -225,42 +224,43 @@ class Login extends React.Component {
         <ModalBody selectCreate={this.selectCreate}>
           <form onSubmit={this.handleSignUp}>
             <div className="form-group">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name"><strong>Name</strong></label>
               <input
                 style={namePattern.test(this.state.name.trim()) ? readyStyles : notReadyStyles}
                 type="text"
                 className="form-control animated flipInX"
                 id="name"
-                placeholder="Alex Doe"
+                placeholder="Enter your Name"
                 name="name"
                 value={this.state.name}
                 onChange={this.handleInputChange}
                 required
               />
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username"><strong>Username</strong></label>
               <input
                 style={usernamePattern.test(this.state.username.trim()) ? readyStyles : notReadyStyles}
                 type="text"
                 className="form-control animated flipInX"
                 id="username"
-                placeholder="alex-doe1234"
+                placeholder="Enter your Username"
                 name="username"
                 value={this.state.username}
                 onChange={this.handleInputChange}
                 required
               />
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password"><strong>Password</strong></label>
               <input
                 style={passwordPattern.test(this.state.password) ? readyStyles : notReadyStyles}
                 type="password"
                 className="form-control animated flipInX"
                 id="password"
                 name="password"
+                placeholder="Enter your Password"
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 required
               />
-              <label htmlFor="password">Re-enter Password</label>
+              <label htmlFor="password"><strong>Confirm Password</strong></label>
               <input
                 style={this.state.password === this.state.passwordCheck && 
                   this.state.passwordCheck.length > 0
@@ -269,6 +269,7 @@ class Login extends React.Component {
                 className="form-control animated flipInX"
                 id="passwordCheck"
                 name="passwordCheck"
+                placeholder="Re-enter your Password"
                 value={this.state.passwordCheck}
                 onChange={this.handleInputChange}
                 required
