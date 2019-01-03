@@ -214,16 +214,16 @@ textarea {
   }
 
   .flippy-card {
-    border: 2px solid red;
+    /* border: 2px solid red; */
   }
 
   .flippy-front {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     transform: translateX(-260px);
   }
 
   .flippy-back {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
   }
 }
 
@@ -241,16 +241,16 @@ textarea {
     left: 15px !important;
   }
   .flippy-card {
-    border: 2px solid red;
+    /* border: 2px solid red; */
   }
 
   .flippy-front {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     transform: translateX(-260px);
   }
 
   .flippy-back {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
   }
 }
 
@@ -268,15 +268,15 @@ textarea {
     left: 15px !important;
   }
   .flippy-card {
-    border: 2px solid red;
+    /* border: 2px solid red; */
   }
 
   .flippy-front {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     transform: translateX(-260px);
   }
 
   .flippy-back {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
   }
 }
