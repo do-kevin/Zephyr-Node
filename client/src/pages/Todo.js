@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import axios from "axios";
 import moment from "moment";
+import DOMPurify from "dompurify";
 
 // Components
 import Sidebar from "../components/Sidebar";
@@ -84,7 +85,7 @@ class Todo extends React.Component {
     // Change item state to text input
     handleChange = (event) => {
         this.setState({
-            task: event.target.value
+            task: (DOMPurify.sanitize( event.target.value))
         });
     }
 
@@ -166,7 +167,7 @@ class Todo extends React.Component {
                         <ModalHeader toggle={this.toggle} close={closeBtn}>New Task</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.saveToDo}>
-                                <Input type="textarea" name="text" onChange={this.handleChange} />
+                                <Input type="textarea" name="text" onChange={this.handleChange} maxLength="130" />
                                 <hr />
                                 <p className={this.state.validationClass}>Please fill in required field.</p>
                                 <Button outline color="info" type="submit" value="Submit" className="pull-right">Add</Button>{' '}
@@ -185,7 +186,7 @@ class Todo extends React.Component {
                         <ModalHeader toggle={this.toggle} close={closeBtn}>Edit Task</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.saveEdit}>
-                                <Input type="textarea" name="text" value={this.state.task} onChange={this.handleChange} />
+                                <Input type="textarea" name="text" value={this.state.task} onChange={this.handleChange} maxLength="130" />
                                 <hr />
                                 <p className={this.state.validationClass}>Please fill in required field.</p>
                                 <Button outline color="info" type="submit" value="Submit" className="pull-right">Edit</Button>{' '}
