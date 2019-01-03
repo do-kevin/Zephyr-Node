@@ -4,6 +4,7 @@ import {Button} from "reactstrap";
 import moment from "moment";
 import axios from "axios";
 import { HashLink as Link } from "react-router-hash-link";
+import DOMPurify from "dompurify";
 
 // Components
 import Sidebar from "../components/Sidebar";
@@ -62,7 +63,7 @@ class Note extends React.Component {
   ];
 
   handleChange(value) {
-    this.setState({ text: value });
+    this.setState({ text: (DOMPurify.sanitize(value)) });
   }
 
   getNotes = () => {

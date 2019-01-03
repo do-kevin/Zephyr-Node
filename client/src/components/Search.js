@@ -1,5 +1,6 @@
 import React from "react";
-import "../css/Search.css"
+import "../css/Search.css";
+import DOMPurify from "dompurify";
 
 class Search extends React.Component {
   constructor(props) {
@@ -11,8 +12,8 @@ class Search extends React.Component {
 
   handleInputChange = (event) => {
     this.setState({
-      searchValue: event.target.value
-    })
+      searchValue: (DOMPurify.sanitize(event.target.value))
+    });
     console.log(event.target.value)
   }
 
