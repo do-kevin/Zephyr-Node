@@ -22,12 +22,15 @@ import {
   Label,
   Input
 } from "reactstrap";
+import DOMPurify from "dompurify";
 
 // Components
 import Sidebar from "../components/Sidebar";
 
 // CSS
 import "../css/PlayCards.css";
+
+const inputMaxLength = "228";
 
 class PlayCards extends React.Component {
   constructor(props) {
@@ -321,25 +324,25 @@ class PlayCards extends React.Component {
 
   handleFrontInputChange = event => {
     this.setState({
-      front: event.target.value
+      front: (DOMPurify.sanitize(event.target.value))
     });
   };
 
   handleBackInputChange = event => {
     this.setState({
-      back: event.target.value
+      back: (DOMPurify.sanitize(event.target.value))
     });
   };
 
   handleFrontEdit = (index, event) => {
     let flashcards = [...this.state.flashcards];
-    flashcards[index].front = event.target.value;
+    flashcards[index].front = (DOMPurify.sanitize(event.target.value));
     this.setState({ flashcards });
   };
 
   handleBackEdit = (index, event) => {
     let flashcards = [...this.state.flashcards];
-    flashcards[index].back = event.target.value;
+    flashcards[index].back = (DOMPurify.sanitize(event.target.value));
     this.setState({ flashcards });
   };
 
@@ -360,20 +363,20 @@ class PlayCards extends React.Component {
   handleAlertTimeChange = event => {
     // console.log(moment(event.target.value, "HH:mm").format("YYYY-MM-DD HH:mm"))
     this.setState({
-      alertTime: event.target.value
+      alertTime: (DOMPurify.sanitize(event.target.value))
     });
   };
 
   handleSelectChange = event => {
     this.setState({
-      timeInterval: event.target.value
+      timeInterval: (DOMPurify.sanitize(event.target.value))
     });
   };
 
   handlePhoneChange = event => {
     // console.log(event.target.value.replace(/\D/g, ''))
     this.setState({
-      phone: event.target.value
+      phone: (DOMPurify.sanitize(event.target.value))
     });
   };
 
@@ -420,6 +423,7 @@ class PlayCards extends React.Component {
                         <Input
                           value={this.state.flashcards[index].front}
                           onChange={event => this.handleFrontEdit(index, event)}
+                          maxLength={inputMaxLength}
                         />
                       </CardTitle>
                       <CardText>
@@ -427,6 +431,7 @@ class PlayCards extends React.Component {
                         <Input
                           value={this.state.flashcards[index].back}
                           onChange={event => this.handleBackEdit(index, event)}
+                          maxLength={inputMaxLength}
                         />
                       </CardText>
                       <p className="p_font cardSaved">{this.state.editSaved && this.state.editId === index ? "Flashcard Saved!" : ""}</p>
@@ -461,6 +466,7 @@ class PlayCards extends React.Component {
                       type="textarea"
                       name="text"
                       id="front"
+                      maxLength={inputMaxLength}
                     />
                   </CardTitle>
                   <CardText>
@@ -471,6 +477,7 @@ class PlayCards extends React.Component {
                       type="textarea"
                       name="text"
                       id="back"
+                      maxLength={inputMaxLength}
                     />
                   </CardText>
                   <br />
