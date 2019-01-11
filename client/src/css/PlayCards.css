@@ -219,7 +219,7 @@ textarea {
 
   .flippy-front {
     /* border: 2px solid green; */
-    transform: translateX(-260px);
+    /* transform: translateX(-260px); */
   }
 
   .flippy-back {
