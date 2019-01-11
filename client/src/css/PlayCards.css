@@ -307,7 +307,115 @@ textarea {
   }
 }
 
-@media (min-width: 1091px) and (max-width: 1920px) {
+@media (min-width: 1091px) and (max-width: 1517px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(-17px);
+  }
+}
+
+@media (min-width: 1091px) and (max-width: 1120px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(-145px);
+  }
+}
+
+@media (min-width: 1121px) and (max-width: 1200px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(-110px);
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1300px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(-130px);
+  }
+}
+
+@media (min-width: 1301px) and (max-width: 1400px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(-80px);
+  }
+}
+
+@media (min-width: 1401px) and (max-width: 1600px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(-50px);
+  }
+}
+
+@media (min-width: 1601px) and (max-width: 1634px) {
   #close-deck-setting-container {
     right: -30vw !important;
   }
@@ -325,7 +433,61 @@ textarea {
   }
 }
 
-@media (min-width: 1921px) {
+@media (min-width: 1635px) and (max-width: 1700px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(37px);
+  }
+}
+
+@media (min-width: 1701px) and (max-width: 1830px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(37px);
+  }
+}
+
+@media (min-width: 1831px) and (max-width: 1920px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(100px);
+  }
+}
+
+@media (min-width: 1921px) and (max-width: 1999px) {
   #close-deck-setting-container {
     right: -30vw !important;
   }
@@ -340,5 +502,23 @@ textarea {
   }
   .flippy-front {
     transform: translateX(110px);
+  }
+}
+
+@media (min-width: 2000px) {
+  #close-deck-setting-container {
+    right: -30vw !important;
+  }
+  #deck-setting-save-btn {
+    margin-left: 85%;
+  }
+  .slider-control-centerright {
+    right: 50px !important;
+  }
+  .slider-control-centerleft {
+    left: 15px !important;
+  }
+  .flippy-front {
+    transform: translateX(150px);
   }
 }
