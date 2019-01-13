@@ -21,6 +21,10 @@
     border-radius: 0 !important;
 }
 
+.modal-body {
+    border-radius: 15px;
+}
+
 .banner-image {
     background-image: 
         linear-gradient(rgba(0, 0, 0, 0.5), 

@@ -10,7 +10,7 @@ import DOMPurify from "dompurify";
 import Sidebar from "../components/Sidebar";
 
 // CSS
-import "../css/Notes.css";
+import "../css/Notes/Notes.css";
 
 class Note extends React.Component {
   constructor(props) {
@@ -38,12 +38,7 @@ class Note extends React.Component {
         { indent: "+1" }
       ],
       ["link", "image", "video", "code-block"],
-    ],
-    keyboard:   { 
-        bindings:   [
-            {tab: false}
-        ]
-    }
+    ]
   };
 
   formats = [

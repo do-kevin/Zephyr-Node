@@ -50,7 +50,6 @@ class DeckModal extends React.Component {
         // console.log(response);
 
         if (this.state.deckTags !== "") {
-          // console.log("hithit")
           arr = this.state.deckTags.trim().split(" ");
 
           arr.map(item => {
@@ -103,7 +102,7 @@ class DeckModal extends React.Component {
           className={this.props.className}
         >
           <ModalHeader toggle={this.props.toggle}>Create Deck</ModalHeader>
-          <ModalBody style={{ margin: "0 2% 0 5%" }}>
+          <ModalBody>
             <Form>
               <FormGroup>
                 <Label for="deckname">Deck Name:</Label>

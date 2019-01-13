@@ -12,12 +12,6 @@ import PlayCards from "./pages/PlayCards";
 import Notes from "./pages/Notes";
 import Settings from "./pages/Setting";
 
-// Components
-// import Sidebar from "./components/Sidebar";
-
-// CSS
-import "./css/App.css";
-
 class App extends Component {
   constructor(props) {
     super(props);

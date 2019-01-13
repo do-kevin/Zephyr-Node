@@ -28,7 +28,7 @@ import DOMPurify from "dompurify";
 import Sidebar from "../components/Sidebar";
 
 // CSS
-import "../css/PlayCards.css";
+import '../css/PlayCards/PlayCards.css'
 
 const inputMaxLength = "228";
 
