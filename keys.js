@@ -1,7 +1,6 @@
 var keys = {
     accountSid: process.env.ACCOUNT_ID,
-    authToken: process.env.AUTH_TOKEN,
-    phoneNumber: provess.env.TWILIO_PHONENUMBER
+    authToken: process.env.AUTH_TOKEN
 }
 
 module.exports = keys;

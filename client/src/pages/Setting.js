@@ -11,8 +11,7 @@ import {
   Input
 } from "reactstrap";
 
-import keys from '../../../keys';
-const phoneNumber = keys.phoneNumber;
+const phoneNumber = provess.env.TWILIO_PHONENUMBER;
 
 class Setting extends React.Component {
     constructor(props) {
