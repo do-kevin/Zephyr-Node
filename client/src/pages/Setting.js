@@ -11,6 +11,9 @@ import {
   Input
 } from "reactstrap";
 
+import keys from '../../../keys';
+const phoneNumber = keys.phoneNumber;
+
 class Setting extends React.Component {
     constructor(props) {
         super(props);
@@ -149,7 +152,7 @@ class Setting extends React.Component {
                     background: "rgb(220,220,220)",
                     padding: "2.5px",
                     borderRadius: "5px"
-                  }}>START</span> to <strong>1(858) 264-3579</strong>.</p>
+                  }}>START</span> to <strong>{phoneNumber}</strong>.</p>
                 </div>
                 </div>
               </FormGroup>
