@@ -5,119 +5,71 @@
 .flippy-card {
     min-width: 100px;
     max-width: 500px;
-
-    @media (max-width: 320px) {
-        .flippy-front {
-            transform: translateX(-260px);
-        }
-    }
-
-    @media (min-width: 321px) and (max-width: 489px) {
-        .flippy-front {
-            transform: translateX(-215px);
-        }
-    }
-
-    @media (min-width: 490px) and (max-width: 506px) {
-        .flippy-front {
-            transform: translateX(-233px);
-        }
-    }
-
-    @media (min-width: 507px) and (max-width: 606px) {
-        .flippy-front {
-            transform: translateX(-220px);
-        }
-    }
-
-    @media (min-width: 607px) and (max-width: 720px) {
-        .flippy-front {
-            transform: translateX(-133px);
-        }
-    }
-
-    @media (min-width: 721px) and (max-width: 1090px) {
-        .flippy-front {
-            transform: translateX(-140px);
-        }
-    }
-
-    @media (min-width: 1091px) and (max-width: 1120px) {
-        .flippy-front {
-            transform: translateX(-17px);
-        }
-    }
-
-    @media (min-width: 1120px) and (max-width: 1200px) {
-        .flippy-front {
-            transform: translateX(-110px);
-        }
-    }
-
-    @media (min-width: 1201px) and (max-width: 1300px) {
-        .flippy-front {
-            transform: translateX(-130px);
-        }
-    }
-
-    @media (min-width: 1301px) and (max-width: 1400px) {
-        .flippy-front {
-            transform: translateX(-80px);
-        }
-    }
-
-    @media (min-width: 1401px) and (max-width: 1516px) {
-        .flippy-front {
-            transform: translateX(-17px);
-        }
-    }
-
-    @media (min-width: 1517px) and (max-width: 1600px) {
-        .flippy-front {
-            transform: translateX(-50px);
-        }
-    }
-
-    @media (min-width: 1601px) and (max-width: 1634px) {
-        .flippy-front {
-            transform: translateX(110px);
-        }
-    }
-
-    @media (min-width: 1635px) and (max-width: 1700px) {
-        .flippy-front {
-            transform: translateX(37px);
-        }
-    }
-
-    @media (min-width: 1701px) and (max-width: 1830px) {
-        .flippy-front {
-            transform: translateX(37px);
-        }
-    }
-
-    @media (min-width: 1831px) and (max-width: 1920px) {
-        .flippy-front {
-            transform: translateX(100px);
-        }
-    }
-
-    @media (min-width: 1921px) and (max-width: 1999px) {
-        .flippy-front {
-            transform: translateX(110px);
-        }
-    }
-
-    @media (min-width: 2000px) {
-        .flippy-front {
-            transform: translateX(150px);
-        }
-    }
 }
 
 .flippy-front {
     margin-top: 29%;
     word-wrap: break-word;
+    @media (max-width: 320px) {
+        transform: translateX(-260px);
+    }
+    @media (min-width: 321px) and (max-width: 489px) {
+        transform: translateX(-270px);
+    }
+    @media (min-width: 490px) and (max-width: 506px) {
+        transform: translateX(-233px);
+    }
+    @media (min-width: 507px) and (max-width: 520px) {
+        transform: translateX(-220px);
+    }
+    @media (min-width: 521px) and (max-width: 606px) {
+        transform: translateX(-255px);
+    }
+    @media (min-width: 607px) and (max-width: 720px) {
+        transform: translateX(-260px);
+    }
+    @media (min-width: 721px) and (max-width: 1090px) {
+        transform: translateX(-250px);
+    }
+    @media (min-width: 1091px) and (max-width: 1120px) {
+        transform: translateX(-135px);
+    }
+    @media (min-width: 1121px) and (max-width: 1200px) {
+        transform: translateX(-110px);
+    }
+    @media (min-width: 1201px) and (max-width: 1300px) {
+        transform: translateX(-80px);
+    }
+    @media (min-width: 1301px) and (max-width: 1349px) {
+        transform: translateX(-70px);
+    }
+    @media (min-width: 1350px) and (max-width: 1400px) {
+        transform: translateX(-45px);
+    }
+    @media (min-width: 1401px) and (max-width: 1516px) {
+        transform: translateX(-10px);
+    }
+    @media (min-width: 1517px) and (max-width: 1600px) {
+        transform: translateX(5px);
+    }
+    @media (min-width: 1601px) and (max-width: 1634px) {
+        transform: translateX(20px);
+    }
+    @media (min-width: 1635px) and (max-width: 1700px) {
+        transform: translateX(40px);
+    }
+    @media (min-width: 1701px) and (max-width: 1830px) {
+        transform: translateX(87px);
+    }
+    @media (min-width: 1831px) and (max-width: 1920px) {
+        transform: translateX(110px);
+    }
+    @media (min-width: 1921px) and (max-width: 1999px) {
+        transform: translateX(140px);
+    }
+    @media (min-width: 2000px) {
+        transform: translateX(150px);
+    }
 }
 
 .flippy-back {
@@ -295,109 +247,91 @@ textarea {
 
 #close-deck-setting-container {
     right: -250px;
-
     @media (max-width: 320px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 321px) and (max-width: 489px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 490px) and (max-width: 506px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 507px) and (max-width: 606px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 607px) and (max-width: 720px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 721px) and (max-width: 1090px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1091px) and (max-width: 1120px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1120px) and (max-width: 1200px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1201px) and (max-width: 1300px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1301px) and (max-width: 1400px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1401px) and (max-width: 1516px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1517px) and (max-width: 1600px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1601px) and (max-width: 1634px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1635px) and (max-width: 1700px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1701px) and (max-width: 1830px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1831px) and (max-width: 1920px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 1921px) and (max-width: 1999px) {
         #close-deck-setting-container {
             right: -20vw !important;
         }
     }
-
     @media (min-width: 2000px) {
         #close-deck-setting-container {
             right: -20vw !important;
@@ -407,276 +341,79 @@ textarea {
 
 #deck-setting-save-btn {
     margin-left: 90%;
-
     @media (max-width: 320px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
+        margin-left: 85%;
     }
-
     @media (min-width: 321px) and (max-width: 489px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
+        margin-left: 85%;
     }
-
     @media (min-width: 490px) and (max-width: 506px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
+        margin-left: 85%;
     }
-
     @media (min-width: 507px) and (max-width: 606px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
+        margin-left: 85%;
     }
-
     @media (min-width: 607px) and (max-width: 720px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
+        margin-left: 85%;
     }
+}
 
-    @media (min-width: 721px) and (max-width: 1090px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
+@mixin moveSliders($moveLeftSlider, $moveRightSlider, $moveThemUp) {
+    .slider-control-centerright {
+        right: $moveRightSlider !important;
+        top: $moveThemUp !important;
     }
-
-    @media (min-width: 1091px) and (max-width: 1120px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1120px) and (max-width: 1200px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1201px) and (max-width: 1300px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1301px) and (max-width: 1400px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1401px) and (max-width: 1516px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1517px) and (max-width: 1600px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1601px) and (max-width: 1634px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1635px) and (max-width: 1700px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1701px) and (max-width: 1830px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1831px) and (max-width: 1920px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 1921px) and (max-width: 1999px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
-    }
-
-    @media (min-width: 2000px) {
-        #deck-setting-save-btn {
-            margin-left: 85%;
-        }
+    .slider-control-centerleft {
+        left: $moveLeftSlider !important;
+        top: $moveThemUp !important;
     }
 }
 
 // Nuka Carousel
-
 @media (max-width: 320px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+    @include moveSliders(6vw, 12vw, 50px);
 }
 
-@media (min-width: 321px) and (max-width: 489px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+@media (min-width: 321px) and (max-width: 373px) {
+    @include moveSliders(1vw, 1vw, 50px);
+}
+
+@media (min-width: 374px) and (max-width: 489px) {
+    @include moveSliders(0.5vw, 0.5vw, 50px);
 }
 
 @media (min-width: 490px) and (max-width: 506px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+    @include moveSliders(0.5vw, 0.5vw, 50px);
 }
 
 @media (min-width: 507px) and (max-width: 606px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+    @include moveSliders(0.5vw, 0.5vw, 50px);
 }
 
-@media (min-width: 607px) and (max-width: 720px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+@media (min-width: 607px) and (max-width: 719px) {
+    @include moveSliders(0.5vw, 0.5vw, 50px);
 }
 
-@media (min-width: 721px) and (max-width: 1090px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+@media (min-width: 720px) and (max-width: 1110px) {
+    @include moveSliders(0.5vw, 0.5vw, 50px);
 }
 
-@media (min-width: 1091px) and (max-width: 1120px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+@media (min-width: 1111px) and (max-width: 1200px) {
+    @include moveSliders(4vw, 5vw, null);
 }
 
-@media (min-width: 1120px) and (max-width: 1200px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+@media (min-width: 1201px) and (max-width: 1399px) {
+    @include moveSliders(4vw, 5vw, null);
 }
 
-@media (min-width: 1201px) and (max-width: 1300px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+@media (min-width: 1400px) and (max-width: 1500px) {
+    @include moveSliders(7vw, 8vw, null);
 }
 
-@media (min-width: 1301px) and (max-width: 1400px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+@media (min-width: 1501px) and (max-width: 1800px) {
+    @include moveSliders(9vw, 10vw, null);
 }
 
-@media (min-width: 1401px) and (max-width: 1516px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
-}
-
-@media (min-width: 1517px) and (max-width: 1600px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
-}
-
-@media (min-width: 1601px) and (max-width: 1634px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
-}
-
-@media (min-width: 1635px) and (max-width: 1700px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
-}
-
-@media (min-width: 1701px) and (max-width: 1830px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
-}
-
-@media (min-width: 1831px) and (max-width: 1920px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
-}
-
-@media (min-width: 1921px) and (max-width: 1999px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
-}
-
-@media (min-width: 2000px) {
-    .slider-control-centerright {
-        right: 50px !important;
-    }
-    .slider-control-centerleft {
-        left: 15px !important;
-    }
+@media (min-width: 1801px) {
+    @include moveSliders(12vw, 13vw, null);
 }
