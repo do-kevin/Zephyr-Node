@@ -11,7 +11,7 @@ import {
   Input
 } from "reactstrap";
 
-let phoneNumber = `${process.env.TWILIO_PHONENUMBER}`;
+let phoneNumber = (process.env.TWILIO_PHONENUMBER).toString();
 
 class Setting extends React.Component {
     constructor(props) {
