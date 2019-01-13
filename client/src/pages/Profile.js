@@ -232,7 +232,7 @@ class Profile extends React.Component {
                 <div>
                     {this.state.notes.map((note) => {
                         return (
-                            <Card className="animated zoomInRight note-output">
+                            <Card key={note.id} className="animated zoomInRight note-output">
                                 <CardBody>
                                     <div className="quill-output" dangerouslySetInnerHTML={{ __html: note.note }} style={{ wordBreak: "break-word" }}></div>
                                 </CardBody>
