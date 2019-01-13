@@ -50,7 +50,6 @@ class DeckModal extends React.Component {
         // console.log(response);
 
         if (this.state.deckTags !== "") {
-          // console.log("hithit")
           arr = this.state.deckTags.trim().split(" ");
 
           arr.map(item => {

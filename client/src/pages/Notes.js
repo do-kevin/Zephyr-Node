@@ -38,12 +38,7 @@ class Note extends React.Component {
         { indent: "+1" }
       ],
       ["link", "image", "video", "code-block"],
-    ],
-    keyboard:   { 
-        bindings:   [
-            {tab: false}
-        ]
-    }
+    ]
   };
 
   formats = [
