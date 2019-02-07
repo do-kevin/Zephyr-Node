@@ -7,31 +7,28 @@
     display: inline-block;
     position: relative;
     margin: auto;
+    vertical-align: baseline;
 }
   
 .search-form input {
-    height: 38px;
-    padding-right: 4.6em;
+    height: 40px;
+    padding-right: 10px;
     padding-left: 15px;
-    min-width: 40vw;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    min-width: 32vw;
+    border-radius: 8px;
+    border: transparent;
     outline: none;
-    border-color: opacity 0.5;
+    margin-right: 10px;
+    background: rgb(214, 214, 214);
 }
   
 .search-form button {
-    position: absolute;
-    top: 0;
+    /* position: absolute; */
+    top: -1.9px;
     right: 0;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 8px;
 }
 
-.search-form button:hover i {
+.search-btn__text {
     font-size: 18px;
 }
