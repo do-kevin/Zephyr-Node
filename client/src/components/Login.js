@@ -7,13 +7,12 @@ import "../css/Login.css";
 
 // Login/sign up ready styles
 const readyStyles = {
-    borderColor: "limeGreen",
-    boxShadow: "0 0 0 1px limeGreen"
+  borderRight: "5px solid limeGreen",
   },
   // Login / sign up NOT ready styles
   notReadyStyles = {
-    borderColor: "red",
-    boxShadow: "0 0 0 1px red"
+
+    borderRight: "5px solid red"
   },
   errorStyles = {
     color: "red"
@@ -34,14 +33,6 @@ class Login extends React.Component {
       readyToSignUp: false,
       loginError: null
     };
-
-    this.toggle = this.toggle.bind(this);
-    this.selectLogin = this.selectLogin.bind(this);
-    this.selectCreate = this.selectCreate.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSignUp = this.handleSignUp.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleInputClear = this.handleInputClear.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -68,7 +59,7 @@ class Login extends React.Component {
     if (this.state.readyToSignUp !== readyToSignUp) this.setState(() => ({readyToSignUp}));
   }
 
-  toggle() {    
+  toggle = () => {    
     if (
       this.state.name === "" &&
       this.state.username === "" &&
@@ -81,28 +72,28 @@ class Login extends React.Component {
     }
   }
 
-  selectLogin() {
+  selectLogin = () => {
     this.setState({
       login: true,
       create: false
     });
   }
 
-  selectCreate() {
+  selectCreate = () => {
     this.setState({
       login: false,
       create: true
     });
   }
 
-  handleInputChange(e) {
+  handleInputChange = (e) => {
     const {name, value} = e.target;
     this.setState(() => ({
       [name]: value
     }));
   }
 
-  handleInputClear() {
+  handleInputClear = () => {
     this.setState((prevState) => ({
       name: "",
       username: "",
@@ -113,7 +104,7 @@ class Login extends React.Component {
     }));
   }
 
-  handleSignUp(e) {
+  handleSignUp = (e) => {
     e.preventDefault();
     const user = {
       name: this.state.name.trim(),
@@ -143,7 +134,7 @@ class Login extends React.Component {
     });
   }
 
-  handleLogin(e) {
+  handleLogin = (e) => {
     e.preventDefault();
     const user = {
       username: this.state.username,
@@ -210,7 +201,7 @@ class Login extends React.Component {
               <br />
               <Button 
                 type="submit" 
-                color="primary"
+                color="success"
                 disabled={!this.state.readyToLogin}
               >
                 Login
@@ -230,7 +221,7 @@ class Login extends React.Component {
                 type="text"
                 className="form-control animated flipInX"
                 id="name"
-                placeholder="Enter your Name"
+                placeholder="Enter your name"
                 name="name"
                 value={this.state.name}
                 onChange={this.handleInputChange}
@@ -242,7 +233,7 @@ class Login extends React.Component {
                 type="text"
                 className="form-control animated flipInX"
                 id="username"
-                placeholder="Enter your Username"
+                placeholder="Enter your username"
                 name="username"
                 value={this.state.username}
                 onChange={this.handleInputChange}
@@ -255,7 +246,7 @@ class Login extends React.Component {
                 className="form-control animated flipInX"
                 id="password"
                 name="password"
-                placeholder="Enter your Password"
+                placeholder="Enter your password"
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 required
@@ -269,7 +260,7 @@ class Login extends React.Component {
                 className="form-control animated flipInX"
                 id="passwordCheck"
                 name="passwordCheck"
-                placeholder="Re-enter your Password"
+                placeholder="Re-enter your password"
                 value={this.state.passwordCheck}
                 onChange={this.handleInputChange}
                 required
@@ -277,7 +268,7 @@ class Login extends React.Component {
               <br />
               <Button 
                 type="submit" 
-                color="primary"
+                color="success"
                 onClick={this.toggle}
                 disabled={!this.state.readyToSignUp}
               >
@@ -311,6 +302,7 @@ class Login extends React.Component {
             <div className="col">
               <Button
                 color="light"
+                style={{outline: "none"}}
                 className="login-or-create-btn"
                 size="lg"
                 block
@@ -323,6 +315,7 @@ class Login extends React.Component {
             <div className="col">
               <Button
                 color="light"
+                style={{outline: "none"}}
                 className="login-or-create-btn"
                 size="lg"
                 block
