@@ -12,6 +12,8 @@ import Login from "../components/Login";
 // CSS
 import '../css/Home/Home.css';
 
+let errorIconMargins = "22px";
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -56,20 +58,23 @@ class Home extends React.Component {
           flashcard: response.data,
           showCards: true,
           search: false,
-          notFound: false,
+          notFound: false, // Confusing wording
         })
       })
   }
 
   displayPublicDecks = (event) => {
+    console.log("hit");
     event.preventDefault();
     axios.get("/decks/public")
       .then(response => {
         this.setState({
           decks: response.data,
           showCards: false,
-          search: true, 
+          search: true,
+          notFound: false
         })
+        console.log(this.state.decks);
       })
   }
 
@@ -86,8 +91,19 @@ class Home extends React.Component {
         document.querySelector("#render-decks").style.boxShadow = "";
         renderDecks =
           <div className="decks-not-found animated wobble">
-            <i className="fas fa-binoculars" style={{fontSize: "200px", marginLeft: "4%", color: "#E34234"}}></i>
-            <h3 style={{color: "#E34234"}}>Cannot find a deck</h3>
+            <i className="fas fa-binoculars" 
+              style={{
+                fontSize: "200px", 
+                marginLeft: errorIconMargins,
+                marginRight: errorIconMargins, 
+                color: "#E34234"}}></i>
+            <h3 style={{color: "#E34234", textAlign: "center"}}>Cannot find a deck</h3>
+          <Button 
+            color="warning" 
+            onClick={this.displayPublicDecks} 
+            style={{fontSize: "24px", margin: "auto"}}>
+          <i className="fas fa-sign-out-alt"></i> View Public Decks
+          </Button>
           </div>
       }
       else if (!this.state.notFound) {
@@ -117,7 +133,6 @@ class Home extends React.Component {
       renderDecks =
         <div className="animated fadeIn" id="carousel">
           <Carousel
-            // ref="cardList"
           >
             {this.state.flashcard.map(item => {
               return (
@@ -181,7 +196,9 @@ class Home extends React.Component {
         </div>
         
         <main className="container text-center" style={{marginTop: 0}}>
-        <h1 className="text-center display-3">Features</h1>
+        <h1 className="text-center display-3"
+          style={{fontWeight: 500}}
+          >Features</h1>
           <div className="row" style={{margin: "30px auto 0 auto"}}>
           <Container className="feature-containers">
             <div className="col">
@@ -192,7 +209,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Flashcards</h5>
                   <p className="card-text text-left">
-                    Create decks tied to specific tags. Make your own flashcards with the question on front and anwer on the back. You can set your decks to private or leave them public. Keep your mind sharp for the big exam by quizzing yourself and flipping the flashcard to reveal the correct answer.
+                    Create decks of flashcards with associated tags. Type in the question on the front and the answer on the back of the flashcard. You can set your decks to private or leave them public. Keep your mind sharp for the big exam by quizzing yourself and flipping the flashcard to reveal the answer you created.
                   </p>
                 </div>
               </div>
@@ -207,7 +224,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Notes</h5>
                   <p className="card-text text-left">
-                    Ideas and information swimming around in your head? Capture all of them here. Type and save whatever you want, whether it's business or personal, for future reference. You can include URL, image, and video links.
+                    Ideas and information swimming around in your head? Capture all of them here. Type and save whatever you want, whether it's business or personal, for future reference. You can include URLs, images, and video links.
                   </p>
                 </div>
               </div>
@@ -224,7 +241,7 @@ class Home extends React.Component {
                   </h1>
                   <h5 className="card-title">Lists</h5>
                   <p className="card-text text-left">
-                      Prioritize what you intend to do for the day, week, month or whatever by organizing a list of tasks.
+                      Prioritize what you intend to do for the day, week, month or whenever by organizing a list of tasks.
                   </p>
                 </div>
               </div>
