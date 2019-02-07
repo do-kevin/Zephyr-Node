@@ -10,7 +10,7 @@ import Search from "../components/Search";
 import Login from "../components/Login";
 
 // CSS
-import "../css/Home.css";
+import '../css/Home/Home.css';
 
 class Home extends React.Component {
   constructor(props) {
@@ -86,15 +86,14 @@ class Home extends React.Component {
         document.querySelector("#render-decks").style.boxShadow = "";
         renderDecks =
           <div className="decks-not-found animated wobble">
-          <i className="fas fa-binoculars" style={{fontSize: "200px", marginLeft: "4%", color: "#E34234"}}></i>
+            <i className="fas fa-binoculars" style={{fontSize: "200px", marginLeft: "4%", color: "#E34234"}}></i>
             <h3 style={{color: "#E34234"}}>Cannot find a deck</h3>
           </div>
       }
       else if (!this.state.notFound) {
         document.querySelector("#render-decks").style.height = "700px";
-        document.querySelector("#render-decks").style.boxShadow = "inset 0 0 10px #000000";
+        document.querySelector("#render-decks").style.boxShadow = "inset 0 0 5px #000000";
         renderDecks = this.state.decks.map((item, index) => {
-
           return (
             <Col key={item.id}>
               <div className="decks decks-primary animated bounceIn">
@@ -166,20 +165,22 @@ class Home extends React.Component {
           </a>
           <Login handleUserLogin={this.props.handleUserLogin} />
         </nav>
-        <div className="jumbotron banner-image animated fadeIn">
+        <figure className="jumbotron banner-image animated fadeIn">
           <div className="banner-text">
             <h1 className="app-name noselect">Zephyr Node</h1>
             <br />
-            <Search handleFunction={this.searchTags} displayPublicDecks={this.displayPublicDecks}/>
           </div>
-        </div>
+        </figure>
+        <section className="search-container">
+          <Search handleFunction={this.searchTags} displayPublicDecks={this.displayPublicDecks}/>
+        </section>
         <div>
           <Row id="render-decks" className="animated fadeIn">
             {renderDecks}
           </Row>
         </div>
         
-        <div className="container text-center">
+        <main className="container text-center" style={{marginTop: 0}}>
         <h1 className="text-center display-3">Features</h1>
           <div className="row" style={{margin: "30px auto 0 auto"}}>
           <Container className="feature-containers">
@@ -265,7 +266,7 @@ class Home extends React.Component {
               <br />
             </div>
             </Container>
-          </div>
+          </main>
         </div>
         </div>
     );
