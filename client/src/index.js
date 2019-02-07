@@ -6,4 +6,4 @@ import "./css/balloon.min.css";
 import LogRocket from 'logrocket';
 
 ReactDOM.render(<App />, document.querySelector("#root"));
-LogRocket.init('d6pvgs/zephyr-node');
+// LogRocket.init('d6pvgs/zephyr-node');
