@@ -33,9 +33,10 @@ class Search extends React.Component {
           className="btn btn-primary" 
           id="search-btn" 
           data-balloon="To find specific decks, enter the associated tag name" 
-          data-balloon-pos="left"
+          data-balloon-pos="down"
+          data-balloon-length="medium"
           onClick={this.state.searchValue !== "" ? (e) => {this.props.handleFunction(e, this.state.searchValue)} : this.props.displayPublicDecks }>
-            <i className="fa fa-search text-grey" aria-hidden="true" />
+            <i className="fa fa-search text-grey" aria-hidden="true" /> <span className="search-btn__text">Search</span>
           </button>
       </form>
   );
