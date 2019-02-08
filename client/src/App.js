@@ -111,7 +111,7 @@ class App extends Component {
               handleUserRedirect={this.handleUserRedirect} />}
           />            
           <Route 
-            exact path="/choose" 
+            exact path="/decks" 
             render={(props) => <ChooseDeck {...props}
               user={this.state.user}
               handleUserLogout={this.handleUserLogout}
