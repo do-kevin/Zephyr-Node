@@ -20,7 +20,22 @@ import {
   Row
 } from "reactstrap";
 import DateTimePicker from "react-datetime-picker";
+import styled from 'styled-components';
+
 import "../css/Reminder.css";
+
+const Menu = styled.menu`
+  #sidebar {
+    top: 0;
+  }
+  .sidebar-nav__link--reminders {
+    background: white;
+    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+  }
+  .sidebar-nav__link--reminders .sidebar-nav__text {
+    color: black;
+  }
+`;
 
 class Reminder extends React.Component {
     constructor(props) {
@@ -473,7 +488,7 @@ class Reminder extends React.Component {
         {/* Logout Redirection */}
         {this.props.handleUserRedirect()}
 
-        <Sidebar handleUserLogout={this.props.handleUserLogout} />
+        <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
 
         <div 
             className="container">

@@ -15,12 +15,24 @@ import {
 import axios from "axios";
 import moment from "moment";
 import DOMPurify from "dompurify";
+import styled from 'styled-components';
 
-// Components
 import Sidebar from "../components/Sidebar";
 
-// CSS
 import "../css/Todo.css";
+
+const Menu = styled.menu`
+  #sidebar {
+    top: 0;
+  }
+  .sidebar-nav__link--todo {
+    background: white;
+    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+  }
+  .sidebar-nav__link--todo .sidebar-nav__text {
+    color: black;
+  }
+`;
 
 class Todo extends React.Component {
   constructor(props) {
@@ -253,7 +265,7 @@ class Todo extends React.Component {
 
     return (
       <div>
-        <Sidebar handleUserLogout={this.props.handleUserLogout} />
+        <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
         <div className="container">
           {/* Logout redirection */}
           {this.props.handleUserRedirect()}

@@ -5,12 +5,24 @@ import moment from "moment";
 import axios from "axios";
 import { HashLink as Link } from "react-router-hash-link";
 import DOMPurify from "dompurify";
+import styled from 'styled-components';
 
-// Components
 import Sidebar from "../components/Sidebar";
 
-// CSS
 import "../css/Notes/Notes.css";
+
+const Menu = styled.menu`
+  #sidebar {
+    top: 0;
+  }
+  .sidebar-nav__link--notes {
+    background: white;
+    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+  }
+  .sidebar-nav__link--notes .sidebar-nav__text {
+    color: black;
+  }
+`;
 
 class Note extends React.Component {
   constructor(props) {
@@ -122,7 +134,7 @@ class Note extends React.Component {
         {/* Logout redirection */}
         {this.props.handleUserRedirect()}
       
-        <Sidebar handleUserLogout={this.props.handleUserLogout} />
+        <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
         <Link smooth to="/notes#save-note-btn">
           <button 
           style={{

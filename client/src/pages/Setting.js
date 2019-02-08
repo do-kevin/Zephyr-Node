@@ -1,8 +1,6 @@
 import React from "react";
 import moment from "moment-timezone";
 import axios from "axios";
-
-import Sidebar from "../components/Sidebar";
 import {
   Button,
   Form,
@@ -10,8 +8,24 @@ import {
   Label,
   Input
 } from "reactstrap";
+import styled from 'styled-components';
+
+import Sidebar from "../components/Sidebar";
 
 let phoneNumber = "1(858) 264-3579";
+
+const Menu = styled.menu`
+  #sidebar {
+    top: 0;
+  }
+  .sidebar-nav__link--settings {
+    background: white;
+    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+  }
+  .sidebar-nav__link--settings .sidebar-nav__text {
+    color: black;
+  }
+`;
 
 class Setting extends React.Component {
     constructor(props) {
@@ -105,7 +119,7 @@ class Setting extends React.Component {
         {/* Logout Redirection */}
         {this.props.handleUserRedirect()}
 
-        <Sidebar handleUserLogout={this.props.handleUserLogout} />
+        <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
 
         <div className="container">
         <div className="row">

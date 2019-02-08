@@ -1,15 +1,27 @@
 import React from "react";
 import axios from "axios";
 import { Row, Col, Card, Button } from "reactstrap";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
-// Components
 import Sidebar from "../components/Sidebar";
 import Search from "../components/Search";
 import DeckModal from "../components/DeckModal";
 
-// CSS
 import "../css/ChooseDeck.css";
+
+const Menu = styled.menu`
+  #sidebar {
+    top: 0;
+  }
+  .sidebar-nav__link--decks {
+    background: white;
+    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+  }
+  .sidebar-nav__link--decks .sidebar-nav__text {
+    color: black;
+  }
+`;
 
 class ChooseDeck extends React.Component {
   constructor(props) {
@@ -133,7 +145,9 @@ class ChooseDeck extends React.Component {
         {/* Logout redirection */}
         {this.props.handleUserRedirect()}
         
-        <Sidebar handleUserLogout={this.props.handleUserLogout} />
+        <Menu>
+          <Sidebar handleUserLogout={this.props.handleUserLogout} style={{background: "red"}} />
+        </Menu>
         <div id="search-bar-container">
           <Search handleFunction={this.searchTags}/>
         </div>

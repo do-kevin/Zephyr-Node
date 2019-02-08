@@ -23,12 +23,24 @@ import {
   Input
 } from "reactstrap";
 import DOMPurify from "dompurify";
+import styled from 'styled-components';
 
-// Components
 import Sidebar from "../components/Sidebar";
 
-// CSS
 import '../css/PlayCards/PlayCards.css'
+
+const Menu = styled.menu`
+  #sidebar {
+    top: 0;
+  }
+  .sidebar-nav__link--decks {
+    background: white;
+    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+  }
+  .sidebar-nav__link--decks .sidebar-nav__text {
+    color: black;
+  }
+`;
 
 const inputMaxLength = "228";
 
@@ -638,7 +650,7 @@ class PlayCards extends React.Component {
         {/* Logout redirection */}
         {this.props.handleUserRedirect()}
         
-        <Sidebar handleUserLogout={this.props.handleUserLogout} />
+        <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
 
         <h1 className="text-center">{this.state.deckName}</h1>
         <hr />

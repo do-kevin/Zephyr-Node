@@ -5,13 +5,25 @@ import {
 } from 'reactstrap';
 import moment from "moment";
 import axios from "axios";
+import styled from 'styled-components';
 
-// Components
 import Quote from "../components/Quote";
 import Sidebar from "../components/Sidebar";
 
-// CSS
 import "../css/Profile.css";
+
+const Menu = styled.menu`
+  #sidebar {
+    top: 0;
+  }
+  .sidebar-nav__link--profile {
+    background: white;
+    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+  }
+  .sidebar-nav__link--profile .sidebar-nav__text {
+    color: black;
+  }
+`;
 
 class Profile extends React.Component {
 
@@ -257,7 +269,7 @@ class Profile extends React.Component {
                 {/* Logout redirection */}
                 {this.props.handleUserRedirect()}
 
-                <Sidebar handleUserLogout={this.props.handleUserLogout} />
+                <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
                 <Container className="text-center">
                     <Row>
                         <Col>
