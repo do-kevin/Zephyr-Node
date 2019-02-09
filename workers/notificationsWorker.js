@@ -12,7 +12,7 @@ const client = require('twilio')(accountSid, authToken);
 const notificationWorkerFactory = function () {
   return {
     run: function () {
-      console.log("start");
+      // console.log("start");
       db.Appointment.findAll({
         include: [{
           model: db.User

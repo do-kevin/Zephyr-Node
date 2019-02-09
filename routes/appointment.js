@@ -108,7 +108,7 @@ module.exports = (router) => {
 
     // Delete reminder appointment by id
     router.delete("/appointments/reminders/:id", (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
         db.Appointment
             .destroy({
                 where: {
@@ -125,7 +125,7 @@ module.exports = (router) => {
 
     // Delete single flashcard appointment by flashcardId
     router.delete("/appointments/decks/:id", (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
         db.Appointment
             .destroy({
                 where: {
@@ -142,7 +142,7 @@ module.exports = (router) => {
 
     // Delete daily quiz appointment by deckId and userId
     router.delete("/appointments/decks/:deckId/:userId", (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
         db.Appointment
             .destroy({
                 where: {
@@ -160,7 +160,7 @@ module.exports = (router) => {
 
       // get appointments by deckId and userId
       router.get("/appointments/decks/:id/:userId", (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
         db.Appointment
             .findAll({
                 where: {
