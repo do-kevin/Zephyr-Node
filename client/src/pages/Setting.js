@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import Sidebar from '../components/Sidebar';
 
-import '../css/UserSettings/Settings.css';
+import '../css/Settings.scss';
 
 let phoneNumber = '1(858) 264-3579';
 

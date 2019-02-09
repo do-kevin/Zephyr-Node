@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import Sidebar from "../components/Sidebar";
 
-import "../css/Notes/Notes.css";
+import "../css/Notes.scss";
 
 const Menu = styled.menu`
   #sidebar {

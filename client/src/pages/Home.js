@@ -10,7 +10,7 @@ import Search from "../components/Search";
 import Login from "../components/Login";
 
 // CSS
-import '../css/Home/Home.css';
+import '../css/Home.scss';
 
 let errorIconMargins = "22px";
 

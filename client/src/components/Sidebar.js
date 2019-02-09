@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // CSS
-import "../css/Sidebar/Sidebar.css";
+import "../css/Sidebar.scss";
 
 class Sidebar extends React.Component {
   constructor(props) {

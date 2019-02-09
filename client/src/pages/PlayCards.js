@@ -27,7 +27,7 @@ import styled from 'styled-components';
 
 import Sidebar from "../components/Sidebar";
 
-import '../css/PlayCards/PlayCards.css'
+import '../css/PlayCards.scss'
 
 const Menu = styled.menu`
   #sidebar {
