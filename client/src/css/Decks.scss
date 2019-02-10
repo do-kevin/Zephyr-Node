@@ -1,0 +1,126 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+p {
+	margin: 0 0 1.4em;
+	color: black;
+}
+
+#decks-page {
+
+}
+
+#decks-page__search-wrapper {
+	display: flex;
+	margin: auto;
+	max-width: 736px;
+}
+
+.deck-list {
+	&__add-deck-container {
+		top: -12px;
+		position: relative;
+		margin-bottom: 15px;
+	}
+	&__card {
+		margin: auto;
+	}
+}
+
+.deck-title {
+	margin: 10% auto 0 auto;
+	color: black;
+	cursor: pointer;
+	font-size: 5vmin;
+	margin-bottom: 1vh;
+	&:hover,
+	&:active {
+		color: orangered;
+	}
+}
+
+.decks a {
+	text-decoration: none;
+}
+
+.h1-wrappers {
+	width: 11vw;
+	height: 18vh;
+	margin: auto;
+	display: inline-block;
+}
+
+.tags-box {
+	width: 220px;
+	height: 23%;
+	overflow-y: scroll;
+}
+
+.tags-box::-webkit-scrollbar {
+	background: rgba(135, 207, 235, 0.911);
+}
+
+.tags-box::-webkit-scrollbar-thumb {
+	background: rgba(135, 207, 235, 0.911);
+	border-radius: 20px;
+}
+
+#deck-list {
+	width: 90%;
+	padding: 4%;
+	margin: 20px auto 0 auto;
+}
+
+.decks {
+	position: relative;
+	margin: 0 auto 2rem;
+	padding: 1rem;
+	background-color: white;
+	word-wrap: break-word;
+    background-color: skyblue;
+	text-shadow: 0 0.0625em 0 rgba(0, 0, 0, 0.25);
+	box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 0.5em 0 -0.25em rgba(135, 207, 235, 0.911),
+		0 0.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1em 0 -0.5em rgba(135, 207, 235, 0.911),
+		0 1em 0.1875em -0.5em rgba(0, 0, 0, 0.1), 0 9px 14px rgb(124, 124, 124), 0 10px 50px rgb(187, 187, 187);
+	height: 250px;
+	width: 400px;
+	@media (max-width: 478px) {
+		width: 250px;
+		height: 400px;
+    }
+}
+
+.decks > :last-child {
+	margin-bottom: 0;
+}
+
+.trash-btn {
+    margin-left: 99%;
+    margin-top: -16%;
+    border-radius: 50%;
+    @media (max-width: 478px) {
+        margin-left: 98%;
+        margin-top: -26%;
+    }
+}
+
+.deck-create {
+	margin-top: 15%;
+}
+
+.tag-btn {
+	background: none !important;
+	color: black;
+	border: none;
+	padding: 5px;
+	font: inherit;
+	cursor: pointer;
+	font-weight: 500;
+}
+
+.tag-btn:hover {
+	color: orangered;
+}
