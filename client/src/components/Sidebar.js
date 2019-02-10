@@ -83,11 +83,11 @@ class Sidebar extends React.Component {
         <div id="wrapper__content">
           <div className="container-fluid">
             {/* Where we would insert our pages */}
-
             <Link
               to="#menu-toggle"
-              className="btn btn-secondary"
+              className="btn"
               id="menu-toggle"
+              style={{right: "1000px"}}
               onClick={this.toggle}
             >
               <i className="fas fa-bars"></i>
