@@ -4,8 +4,18 @@ body {
 }
 
 #menu-toggle {
-	margin-right: 15%;
 	margin-bottom: 20px;
+	border-radius: 50%;
+	width: 70px;
+	font-size: 36px;
+	color: hsl(0, 0%, 17%);
+	@media (max-width: 768px) {
+		left: -40px;
+		position: relative;
+	}
+	&:hover, &:active {
+		color: hsl(211, 99%, 43%);
+	}
 }
 
 #sidebar {
