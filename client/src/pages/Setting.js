@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input, Container, Col } from 'reactstrap';
+import { Button,Label, Input } from 'reactstrap';
 import styled from 'styled-components';
 
 import Sidebar from '../components/Sidebar';
@@ -116,97 +116,60 @@ class Setting extends React.Component {
 
 		return (
 			<div>
-				{/* Logout Redirection */}
-				{this.props.handleUserRedirect()}
-
+				{this.props.handleUserRedirect()} {/* Logout Redirection */}
 				<Menu>
 					<Sidebar handleUserLogout={this.props.handleUserLogout} />
 				</Menu>
-
-				<div className="container" style={{ border: '1px solid blue' }}>
-					<h1>Account Settings</h1>
-					<hr />
-					<div className="settings-content">
-						<Form>
-							<Container>
-								<FormGroup>
-									<main className="settings-content__username">
-										<Col>
-											<aside className="settings-content__username__info">
-												<h6 className="settings-content__heading">Profile</h6>
-												<p>
-													The username you registered for this account; it cannot be changed.
-												</p>
-											</aside>
-										</Col>
-										<Col>
-											<section className="settings-content__username__form">
-												<Label for="username">Username</Label>
-												<Input
-													type="text"
-													id="username"
-													value={this.state.username}
-													disabled
-													//   onChange={this.handleSubjectChange}
-												/>
-											</section>
-										</Col>
-										<hr />
-									</main>
-								</FormGroup>
-							</Container>
-							<Container>
-								<FormGroup>
-									<main className="settings-content__phonenumber">
-										<Col>
-											<aside className="settings-content__phonenumber__info">
-												<h6 className="settings-content__heading">
-													Adding/Changing Your Phone Number
-												</h6>
-												<section className="settings-content__phonenumber__warning">
-													<p>
-														If you do not get a text message after saving your phone number,
-														your number may have previously opted out from the service.
-														<br />
-														<br />
-														Please re-subscribe by sending the text message&nbsp;
-														<span
-															style={{
-																background: 'rgb(220,220,220)',
-																padding: '2.5px',
-																borderRadius: '5px'
-															}}
-														>
-															START
-														</span>{' '}
-														to <strong>{phoneNumber}</strong>.
-													</p>
-												</section>
-											</aside>
-										</Col>
-										<Col>
-											<section className="settings-content__phonenumber__form">
-												<Label for="phone">Phone number</Label>
-												<Input
-													type="text"
-                          id="phone"
-                          style={{marginBottom: "10px"}}
-													value={this.state.currentPhone}
-													onChange={this.handlePhoneChange}
-													placeholder="Ex: (555) 555-0100"
-												/>
-												<Button color="primary" onClick={this.saveChanges}>
-													Save your phone number
-												</Button>
-											</section>
-										</Col>
-									</main>
-								</FormGroup>
-							</Container>
-						</Form>
-						{notification}
-					</div>
-				</div>
+				<h1 className="settings__heading1">Account Settings</h1>
+				<main className="settings">
+					<form>
+						<section className="username settings__username">
+							<aside className="username__info">
+								<h6 className="settings__heading6">Profile</h6>
+								<p>The username you registered for this account; it cannot be changed.</p>
+							</aside>
+							<div className="username__form">
+								<Label for="username">Username</Label>
+								<Input
+									type="text"
+									style={{ background: 'hsl(0, 0%, 70%)', cursor: "not-allowed" }}
+									value={this.state.username}
+									disabled
+									//   onChange={this.handleSubjectChange}
+								/>
+							</div>
+						</section>
+						<hr/>
+						<section className="phonenumber settings__phonenumber">
+							<aside className="phonenumber__info">
+								<h6 className="settings__heading6">Saving/Changing Your Phone Number</h6>
+								<p className="phonenumber__warning">
+									If you do not get a text message after saving your phone number, your number may
+									have previously opted out from the service.
+									<br />
+									<br />
+									Please re-subscribe by sending the text message&nbsp;
+									<span className="phonenumber__info__span">START</span> to{' '}
+									<strong>{phoneNumber}</strong>.
+								</p>
+							</aside>
+							<div className="phonenumber__form">
+								<Label for="phone">Phone number</Label>
+								<Input
+									type="text"
+									style={{ marginBottom: '10px' }}
+									value={this.state.currentPhone}
+									onChange={this.handlePhoneChange}
+									placeholder="Ex: (555) 555-0100"
+								/>
+								{notification}
+								<Button color="primary" onClick={this.saveChanges}>
+									Save your phone number
+								</Button>
+							</div>
+						</section>
+					</form>
+				</main>
 			</div>
 		);
 	}

@@ -8,7 +8,9 @@ $borderRadius: 15px;
     border-radius: $borderRadius;
     box-shadow:  0 4.5px 7px rgb(124, 124, 124), 0 1px 10px rgb(187, 187, 187);
 	&__heading1 {
-		text-align: center;
+        text-align: center;
+        margin-bottom: 25px;
+        color: hsl(0, 1%, 64%);
     }
     @media (max-width: 900px) {
 		margin-left: 5px;
