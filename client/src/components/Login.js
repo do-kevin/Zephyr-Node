@@ -284,7 +284,7 @@ class Login extends React.Component {
       <div>
         <Button color="primary" onClick={this.toggle}>
           {this.props.buttonLabel}
-          Login
+          Login{" "}<i className="fas fa-sign-in-alt"/>
         </Button>
         <Modal
           isOpen={this.state.modal}
