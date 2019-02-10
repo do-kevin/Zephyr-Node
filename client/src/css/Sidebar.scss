@@ -9,6 +9,7 @@ body {
 	width: 70px;
 	font-size: 36px;
 	color: hsl(0, 0%, 17%);
+	box-shadow:  0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
 	@media (max-width: 768px) {
 		left: -40px;
 		position: relative;
