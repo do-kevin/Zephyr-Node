@@ -1,0 +1,45 @@
+.feature-cards {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.search-form {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    vertical-align: baseline;
+}
+  
+.search-form input {
+    height: 40px;
+    padding-right: 10px;
+    padding-left: 15px;
+    min-width: 32vw;
+    border-radius: 8px;
+    border: transparent;
+    outline: none;
+    background: rgb(214, 214, 214);
+}
+  
+.search-form__btn {
+    right: 0;
+    border-radius: 8px;
+    &--primary {
+        top: -1.9px;
+        margin: 5px;
+        @media (max-width: 584px) {
+            margin: 0 3px 0 6px;
+        }
+    }
+    &--warning {
+        position: relative;
+        top: -1.9px;
+    }
+}
+
+.search-btn__text {
+    font-size: 18px;
+    @media (max-width: 584px) {
+        display: none;
+    }
+}
