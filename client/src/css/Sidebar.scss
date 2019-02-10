@@ -9,12 +9,13 @@ body {
 	width: 70px;
 	font-size: 36px;
 	color: hsl(0, 0%, 17%);
-	box-shadow:  0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+	box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
 	@media (max-width: 768px) {
 		left: -40px;
 		position: relative;
 	}
-	&:hover, &:active {
+	&:hover,
+	&:active {
 		color: hsl(211, 99%, 43%);
 	}
 }
@@ -29,7 +30,6 @@ body {
 	margin-left: -250px;
 	overflow-y: auto;
 	background: hsl(0, 0%, 17%);
-	/* box-shadow: 4px 0 5px -2px #888; */
 }
 
 .sidebar-nav {
@@ -100,16 +100,17 @@ body {
 }
 
 .log-out-btn {
-    background: transparent;
-    color: hsl(0, 0%, 84%);
+	background: transparent;
+	color: hsl(0, 0%, 84%);
 	border: 2px solid transparent;
-    transition: color 200ms;
-    font-weight: 500;
-    left: -5px;
-    cursor: pointer;
-    margin: 40% 50px 0 50px;
-    bottom: 0;
-    &:hover, &:active {
-        color: hsl(355, 70%, 46%);
-    }
+	transition: color 200ms;
+	font-weight: 500;
+	left: -5px;
+	cursor: pointer;
+	margin: 40% 50px 0 50px;
+	bottom: 0;
+	&:hover,
+	&:active {
+		color: hsl(355, 70%, 46%);
+	}
 }
