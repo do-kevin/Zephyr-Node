@@ -107,8 +107,8 @@ class Home extends React.Component {
           </div>
       }
       else if (!this.state.notFound) {
-        document.querySelector("#render-decks").style.height = "700px";
-        document.querySelector("#render-decks").style.boxShadow = "inset 0 0 5px #000000";
+        // document.querySelector("#render-decks").style.height = "700px";
+        // document.querySelector("#render-decks").style.boxShadow = "inset 0 0 5px #000000";
         renderDecks = this.state.decks.map((item, index) => {
           return (
             <Col key={item.id}>
@@ -129,7 +129,7 @@ class Home extends React.Component {
     }
     else if (this.state.showCards) {
       document.querySelector("#render-decks").style.height = "auto";
-      document.querySelector("#render-decks").style.boxShadow = "";
+      // document.querySelector("#render-decks").style.boxShadow = "";
       renderDecks =
         <div className="animated fadeIn" id="carousel">
           <Carousel
@@ -165,8 +165,7 @@ class Home extends React.Component {
         </div>
     }
     return (
-      <div>
-      <div>
+      <div style={{background: "hsla(211, 43%, 79%, .2)", height: "100%"}}>
         {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
           <a 
@@ -187,7 +186,7 @@ class Home extends React.Component {
           </div>
         </figure>
         <section className="search-container">
-          <Search handleFunction={this.searchTags} displayPublicDecks={this.displayPublicDecks}/>
+          <Search handleFunction={this.searchTags} displayPublicDecks={this.displayPublicDecks} viewPublicDecks={this.displayPublicDecks}/>
         </section>
         <div>
           <Row id="render-decks" className="animated fadeIn">
@@ -284,7 +283,6 @@ class Home extends React.Component {
             </div>
             </Container>
           </main>
-        </div>
         </div>
     );
   }
