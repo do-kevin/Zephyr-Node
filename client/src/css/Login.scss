@@ -1,0 +1,53 @@
+#login-modal {
+	margin-top: 13%;
+	position: relative;
+}
+
+.modal-backdrop.show {
+	background: white !important;
+	opacity: 0.7 !important;
+}
+
+.modal-content {
+    box-shadow: 0 2px 10px rgb(194, 194, 194), 0 2px 10px rgb(194, 194, 194);
+}
+
+#login-modal ~ .modal-backdrop.show {
+	background: white !important;
+	opacity: 0.7 !important;
+}
+
+.login-or-create-btn {
+	border-radius: 0 !important;
+	border: 3.5px solid #f8f9fa;
+}
+
+.login-btns:disabled {
+	background: gray !important;
+}
+
+.btn-light:not(:disabled):not(.disabled).active {
+	outline: none;
+	background: rgb(0, 140, 255);
+	border-top: 5px solid rgb(0, 71, 129);
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 2px solid rgb(0, 140, 255);
+}
+
+#login-modal .modal-content .row .col:nth-child(1) {
+	padding-right: 0;
+}
+
+#login-modal .modal-content .row .col:nth-child(2) {
+	padding-left: 0;
+}
+
+.form-control {
+	background: rgb(235, 235, 235);
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border-top: 0;
+	border-bottom: 0;
+	border-left: 0;
+}
