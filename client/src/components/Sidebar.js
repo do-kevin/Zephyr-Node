@@ -27,6 +27,7 @@ class Sidebar extends React.Component {
         <div id="wrapper">
           <div id="sidebar">
             <ul className="sidebar-nav">
+              <li className="sidebar-nav__link" style={{height: "100px"}}/>
               <li 
                 className="sidebar-nav__brand sidebar-nav__link sidebar-nav__link--profile"
                 id="profile-span"
@@ -80,17 +81,18 @@ class Sidebar extends React.Component {
     return (
       <div>
         {showMenu}
-        <div id="wrapper__content">
+        <div id="wrapper__content" style={{zIndex: "2"}}>
           <div className="container-fluid">
             {/* Where we would insert our pages */}
             <Link
               to="#menu-toggle"
               className="btn"
               id="menu-toggle"
-              style={{right: "1000px"}}
+              // style={{right: "1000px"}}
               onClick={this.toggle}
             >
-              <i className="fas fa-bars"></i>
+              {/* <i className="fas fa-bars"></i> */}
+              {this.state.isOpen ? <i className="fas fa-times animated fadeIn"/> : <i className="fas fa-bars animated fadeIn"/>}
             </Link>
           </div>
         </div>
