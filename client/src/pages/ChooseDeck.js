@@ -168,19 +168,19 @@ class ChooseDeck extends React.Component {
 					<div id="decks-page__search-wrapper">
 						<Search handleFunction={this.searchTags} viewPublicDecks={this.showMyDecks} />
 					</div>
-					<div id="deck-list">
-						<div className="row deck-list__add-deck-container">
+					<main id="deck-list">
+						<section className="row deck-list__add-deck-container" style={{marginBottom: "50px"}}>
 							<Card className="deck-list__card">
 								<Button color="warning" onClick={this.toggle}>
 									<i className="fas fa-plus" /> Add Deck
 								</Button>
 							</Card>
-						</div>
+						</section>
 
 						{/* //=================== Render Decks ==================// */}
 
 						<Row>{renderDecks}</Row>
-					</div>
+					</main>
 					<DeckModal
 						openCreate={this.state.openCreate}
 						toggle={this.toggle}
