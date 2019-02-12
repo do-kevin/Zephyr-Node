@@ -99,8 +99,12 @@ div.slider-frame {
 
 .flashcard {
     margin: 10px auto 10px auto;
-    height: 400px;
-    width: 300px;
+    height: 330px;
+	width: 400px;
+	@media (max-width: 600px) {
+		width: 300px;
+		height: 400px;
+    }
 }
 
 #flashcard-grid {
@@ -119,19 +123,8 @@ div.slider-frame {
 
 #edit-btns {
     border: 1px solid border;
-    margin-left: 47%;
-    margin-right: 47%;
-}
-
-#edit-deck-btn {
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
-
-#settings-btn {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    width: 50px;
+    width: 248px;
+    margin: auto;
 }
 
 /* Toggle Switches */

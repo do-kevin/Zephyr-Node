@@ -7,8 +7,8 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Reminder from "./pages/Reminder";
 import Todo from "./pages/Todo";
-import ChooseDeck from "./pages/ChooseDeck";
-import PlayCards from "./pages/PlayCards";
+import Decks from "./pages/Decks";
+import Flashcards from "./pages/Flashcards";
 import Notes from "./pages/Notes";
 import Settings from "./pages/Setting";
 
@@ -112,14 +112,14 @@ class App extends Component {
           />            
           <Route 
             exact path="/decks" 
-            render={(props) => <ChooseDeck {...props}
+            render={(props) => <Decks {...props}
               user={this.state.user}
               handleUserLogout={this.handleUserLogout}
               handleUserRedirect={this.handleUserRedirect} />}
           />
           <Route 
             exact path="/deck" 
-            render={(props) => <PlayCards {...props}
+            render={(props) => <Flashcards {...props}
               user={this.state.user}
               handleUserLogout={this.handleUserLogout}
               handleUserRedirect={this.handleUserRedirect} />}

@@ -27,7 +27,7 @@ import styled from 'styled-components';
 
 import Sidebar from "../components/Sidebar";
 
-import '../css/PlayCards.scss'
+import '../css/Flashcards.scss'
 
 const Menu = styled.menu`
   #sidebar {
@@ -67,10 +67,6 @@ class PlayCards extends React.Component {
       userId: JSON.parse(localStorage.getItem("user")).id,
       deckId: JSON.parse(sessionStorage.getItem("deckId"))
     };
-
-    // this.refs.cardList;
-    this.toggle = this.toggle.bind(this);
-    this.toggleSettings = this.toggleSettings.bind(this);
   }
 
   componentDidMount() {
@@ -78,7 +74,7 @@ class PlayCards extends React.Component {
     this.getDeckInfo();
     this.getUserInfo();
     this.getDeckAppts();
-    console.log(this.props.user);
+    // console.log(this.props.user);
   }
 
   getFlashcards = () => {
@@ -392,13 +388,13 @@ class PlayCards extends React.Component {
     });
   };
 
-  toggle() {
+  toggle = () => {
     this.setState({
       edit: !this.state.edit
     });
   }
 
-  toggleSettings() {
+  toggleSettings = () => {
     this.setState({
       openSettings: !this.state.openSettings
     });
@@ -682,7 +678,7 @@ class PlayCards extends React.Component {
         <div id="edit-btns">
           <ButtonGroup>
             <Button data-balloon="Edit flashcards inside the deck" data-balloon-pos="up" color="primary" id="edit-deck-btn" onClick={this.toggle}>
-              Edit
+              Edit Flashcards
             </Button>
             <Button
               id="settings-btn"
@@ -690,7 +686,7 @@ class PlayCards extends React.Component {
               onClick={this.toggleSettings}
               data-balloon="Settings" data-balloon-pos="up"
             >
-              <i className="fas fa-cogs" />
+              <i className="fas fa-cogs" /> Settings
             </Button>
           </ButtonGroup>
         </div>
