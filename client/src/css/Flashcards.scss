@@ -1,4 +1,4 @@
-.p_font {
+.flippy-text {
     font-size: 20px;
 }
 
@@ -238,98 +238,15 @@ textarea {
     margin-top: 1%;
 }
 
-#close-deck-setting-container {
-    right: -250px;
-    @media (max-width: 320px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 321px) and (max-width: 489px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 490px) and (max-width: 506px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 507px) and (max-width: 606px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 607px) and (max-width: 720px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 721px) and (max-width: 1090px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1091px) and (max-width: 1120px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1120px) and (max-width: 1200px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1201px) and (max-width: 1300px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1301px) and (max-width: 1400px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1401px) and (max-width: 1516px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1517px) and (max-width: 1600px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1601px) and (max-width: 1634px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1635px) and (max-width: 1700px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1701px) and (max-width: 1830px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1831px) and (max-width: 1920px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 1921px) and (max-width: 1999px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
-    @media (min-width: 2000px) {
-        #close-deck-setting-container {
-            right: -20vw !important;
-        }
-    }
+.grid-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 40px;
+}
+
+.settings-modal__close-btn {
+    height: 40px;
+    // position: relative;
+    width: 40px;
 }
 
 #deck-setting-save-btn {
