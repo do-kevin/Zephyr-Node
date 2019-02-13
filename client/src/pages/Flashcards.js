@@ -643,7 +643,7 @@ class PlayCards extends React.Component {
             {this.state.flashcards.map((item) => {
               return (
                 <main className="carousel__items">
-                  <div style={{border: "5px dotted limeGreen"}}></div>
+                  <div style={{border: "5px dotted limeGreen", cursor: "none !important"}}/>
                   <Flippy
                     key={item.id}
                     flipOnHover={false}
@@ -660,7 +660,7 @@ class PlayCards extends React.Component {
                       <p className="flippy-text">{item.back}</p>
                     </BackSide>
                   </Flippy>
-                  <div style={{border: "5px dotted limeGreen"}}></div>
+                  <div style={{border: "5px dotted limeGreen", cursor: "none !important"}}/>
                 </main>
               );
             })}

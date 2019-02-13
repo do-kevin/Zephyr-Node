@@ -1,5 +1,43 @@
+.carousel {
+    max-width: 900px !important;
+    height: 400px !important;
+    border: 2px solid red;
+    margin: 0 auto 50px;
+    cursor: none !important;
+    @media (max-width: 425px) {
+        height: 600px !important;
+    }
+}
+
+.carousel__items {
+    padding: 100px 0 100px 0; 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.slider-control-bottomcenter button {
+    // display: inline-block;
+    margin: 5px;
+    background: rgb(58, 58, 58) !important;
+    color: transparent !important;
+    height: 20px !important;
+    width: 20px !important;
+    border-radius: 50% !important;
+    outline: none !important;
+    box-shadow:  0 3px 7px rgb(124, 124, 124), 0 5px 20px rgb(187, 187, 187);
+    cursor: pointer;
+    &:focus {
+        color: transparent !important;
+        background: dodgerblue !important;
+        border: 5px solid black !important;
+    }
+}
+
 .flippy-text {
-    font-size: 20px;
+    font-size: 18px;
+    @media (max-width: 425px) {
+        font-size: 14px;
+    }
 }
 
 #search-bar {
@@ -10,23 +48,40 @@
     border: 3px solid blue;
     width: 400px;
     margin: auto;
+    @media (min-width: 359px) and (max-width: 425px) {
+        height: 375px;
+        width: 200px;
+    }
+    @media (max-width: 358px) {
+        height: 375px;
+        width: 200px;
+        left: -17vw;
+    }
 }
 
 .flippy-card {
     left: -256px;
+    @media (min-width: 359px) and (max-width: 425px) {
+        left: -29.6vw;
+    }
+    @media (max-width: 358px) {
+        left: -39.5vw;
+    }
 }
 
-.carousel {
-    max-width: 900px !important;
-    height: 400px !important;
-    border: 2px solid red;
-    margin: 0 auto 50px;
+.flippy-front, .flippy-back {
+    background: white !important;
+    box-shadow:  0 3px 7px rgb(22, 22, 22), 0 5px 20px rgb(100, 100, 100);
+    overflow-y: scroll;
+    word-break: break-all;
 }
 
-.carousel__items {
-    padding: 100px 0 100px 0; 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+.flippy-front {
+    border-top: 4px solid dodgerblue;
+}
+
+.flippy-back {
+    border-top: 4px solid crimson;
 }
 
 .flashcard {
