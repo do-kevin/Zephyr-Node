@@ -638,28 +638,32 @@ class PlayCards extends React.Component {
 
 				<h1 className="text-center">{this.state.deckName}</h1>
 				<hr />
-				<Carousel // ref="cardList"
-				id="carousel">
-					{this.state.flashcards.map((item) => {
-						return (
-							<Flippy
-								key={item.id}
-								flipOnHover={false}
-								flipOnClick={true}
-								flipDirection="horizontal"
-								ref={(r) => (this.Flippy = r)}
-								style={{ width: '400px', height: '200px' }}
-							>
-								<FrontSide style={{ backgroundColor: '#93bbde' }}>
-									<p className="flippy-text">{item.front}</p>
-								</FrontSide>
+				<Carousel
+			    className="carousel">
+            {this.state.flashcards.map((item) => {
+              return (
+                <main className="carousel__items">
+                  <div style={{border: "5px dotted limeGreen"}}></div>
+                  <Flippy
+                    key={item.id}
+                    flipOnHover={false}
+                    flipOnClick={true}
+                    flipDirection="horizontal"
+                    ref={(r) => (this.Flippy = r)}
+                    style={{ width: '400px', height: '200px' }}
+                  >
+                    <FrontSide style={{ backgroundColor: '#93bbde' }}>
+                      <p className="flippy-text">{item.front}</p>
+                    </FrontSide>
 
-								<BackSide style={{ backgroundColor: '#66b361' }}>
-									<p className="flippy-text">{item.back}</p>
-								</BackSide>
-							</Flippy>
-						);
-					})}
+                    <BackSide style={{ backgroundColor: '#66b361' }}>
+                      <p className="flippy-text">{item.back}</p>
+                    </BackSide>
+                  </Flippy>
+                  <div style={{border: "5px dotted limeGreen"}}></div>
+                </main>
+              );
+            })}
 				</Carousel>
 				<div id="edit-btns">
 					<ButtonGroup>

@@ -2,99 +2,31 @@
     font-size: 20px;
 }
 
-.flippy-card {
-    min-width: 100px;
-    max-width: 500px;
-}
-
-.flippy-front {
-    margin-top: 29%;
-    word-wrap: break-word;
-    @media (max-width: 320px) {
-        transform: translateX(-260px);
-    }
-    @media (min-width: 321px) and (max-width: 489px) {
-        transform: translateX(-270px);
-    }
-    @media (min-width: 490px) and (max-width: 506px) {
-        transform: translateX(-233px);
-    }
-    @media (min-width: 507px) and (max-width: 520px) {
-        transform: translateX(-220px);
-    }
-    @media (min-width: 521px) and (max-width: 606px) {
-        transform: translateX(-255px);
-    }
-    @media (min-width: 607px) and (max-width: 720px) {
-        transform: translateX(-260px);
-    }
-    @media (min-width: 721px) and (max-width: 1090px) {
-        transform: translateX(-250px);
-    }
-    @media (min-width: 1091px) and (max-width: 1120px) {
-        transform: translateX(-135px);
-    }
-    @media (min-width: 1121px) and (max-width: 1200px) {
-        transform: translateX(-110px);
-    }
-    @media (min-width: 1201px) and (max-width: 1300px) {
-        transform: translateX(-80px);
-    }
-    @media (min-width: 1301px) and (max-width: 1349px) {
-        transform: translateX(-70px);
-    }
-    @media (min-width: 1350px) and (max-width: 1400px) {
-        transform: translateX(-45px);
-    }
-    @media (min-width: 1401px) and (max-width: 1516px) {
-        transform: translateX(-10px);
-    }
-    @media (min-width: 1517px) and (max-width: 1600px) {
-        transform: translateX(5px);
-    }
-    @media (min-width: 1601px) and (max-width: 1634px) {
-        transform: translateX(20px);
-    }
-    @media (min-width: 1635px) and (max-width: 1700px) {
-        transform: translateX(40px);
-    }
-    @media (min-width: 1701px) and (max-width: 1830px) {
-        transform: translateX(87px);
-    }
-    @media (min-width: 1831px) and (max-width: 1920px) {
-        transform: translateX(110px);
-    }
-    @media (min-width: 1921px) and (max-width: 1999px) {
-        transform: translateX(140px);
-    }
-    @media (min-width: 2000px) {
-        transform: translateX(150px);
-    }
-}
-
-.flippy-back {
-    word-wrap: break-word;
-    position: absolute;
-    right: 500px;
-}
-
-div.slider {
-    height: 450px !important;
-    width: 60vmax !important;
-    margin: auto;
-    padding-left: 0;
-}
-
-div.slider-frame {
-    height: 450px !important;
-    margin: auto;
-    padding: 50px;
-    text-align: center;
-    justify-content: center;
-}
-
 #search-bar {
     width: 800px;
+}
+
+.flippy-cardContainer-wrapper {
+    border: 3px solid blue;
+    width: 400px;
+    margin: auto;
+}
+
+.flippy-card {
+    left: -256px;
+}
+
+.carousel {
+    max-width: 900px !important;
+    height: 400px !important;
+    border: 2px solid red;
+    margin: 0 auto 50px;
+}
+
+.carousel__items {
+    padding: 100px 0 100px 0; 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .flashcard {
@@ -327,3 +259,96 @@ textarea {
 @media (min-width: 1801px) {
     @include moveSliders(12vw, 13vw, null);
 }
+
+// ====================== BACKUP =====================
+
+// .flippy-front {
+//     margin-top: 29%;
+//     word-wrap: break-word;
+//     @media (max-width: 320px) {
+//         transform: translateX(-260px);
+//     }
+//     @media (min-width: 321px) and (max-width: 489px) {
+//         transform: translateX(-270px);
+//     }
+//     @media (min-width: 490px) and (max-width: 506px) {
+//         transform: translateX(-233px);
+//     }
+//     @media (min-width: 507px) and (max-width: 520px) {
+//         transform: translateX(-220px);
+//     }
+//     @media (min-width: 521px) and (max-width: 606px) {
+//         transform: translateX(-255px);
+//     }
+//     @media (min-width: 607px) and (max-width: 720px) {
+//         transform: translateX(-260px);
+//     }
+//     @media (min-width: 721px) and (max-width: 1090px) {
+//         transform: translateX(-250px);
+//     }
+//     @media (min-width: 1091px) and (max-width: 1120px) {
+//         transform: translateX(-135px);
+//     }
+//     @media (min-width: 1121px) and (max-width: 1200px) {
+//         transform: translateX(-110px);
+//     }
+//     @media (min-width: 1201px) and (max-width: 1300px) {
+//         transform: translateX(-80px);
+//     }
+//     @media (min-width: 1301px) and (max-width: 1349px) {
+//         transform: translateX(-70px);
+//     }
+//     @media (min-width: 1350px) and (max-width: 1400px) {
+//         transform: translateX(-45px);
+//     }
+//     @media (min-width: 1401px) and (max-width: 1516px) {
+//         transform: translateX(-10px);
+//     }
+//     @media (min-width: 1517px) and (max-width: 1600px) {
+//         transform: translateX(5px);
+//     }
+//     @media (min-width: 1601px) and (max-width: 1634px) {
+//         transform: translateX(20px);
+//     }
+//     @media (min-width: 1635px) and (max-width: 1700px) {
+//         transform: translateX(40px);
+//     }
+//     @media (min-width: 1701px) and (max-width: 1830px) {
+//         transform: translateX(87px);
+//     }
+//     @media (min-width: 1831px) and (max-width: 1920px) {
+//         transform: translateX(110px);
+//     }
+//     @media (min-width: 1921px) and (max-width: 1999px) {
+//         transform: translateX(140px);
+//     }
+//     @media (min-width: 2000px) {
+//         transform: translateX(150px);
+//     }
+// }
+
+// .flippy-card {
+//     min-width: 100px;
+//     max-width: 500px;
+// }
+
+// .flippy-back {
+//     word-wrap: break-word;
+//     position: absolute;
+//     right: 500px;
+// }
+
+// div.slider {
+//     height: 450px !important;
+//     width: 60vmax !important;
+//     margin: auto;
+//     padding-left: 0;
+// }
+
+// div.slider-frame {
+//     height: 450px !important;
+//     margin: auto;
+//     padding: 50px;
+//     text-align: center;
+//     justify-content: center;
+// }
