@@ -90,7 +90,7 @@ class Home extends React.Component {
         document.querySelector("#render-decks").style.height = "auto";
         document.querySelector("#render-decks").style.boxShadow = "";
         renderDecks =
-          <div className="decks-not-found animated wobble">
+          <section className="decks-not-found animated pulse">
             <i className="fas fa-binoculars" 
               style={{
                 fontSize: "200px", 
@@ -98,13 +98,7 @@ class Home extends React.Component {
                 marginRight: errorIconMargins, 
                 color: "#E34234"}}></i>
             <h3 style={{color: "#E34234", textAlign: "center"}}>Cannot find a deck</h3>
-          <Button 
-            color="warning" 
-            onClick={this.displayPublicDecks} 
-            style={{fontSize: "24px", margin: "auto"}}>
-          <i className="fas fa-sign-out-alt"></i> View Public Decks
-          </Button>
-          </div>
+          </section>
       }
       else if (!this.state.notFound) {
         // document.querySelector("#render-decks").style.height = "700px";
@@ -165,7 +159,7 @@ class Home extends React.Component {
         </div>
     }
     return (
-      <div style={{background: "hsla(211, 43%, 79%, .2)", height: "100%"}}>
+      <div style={{height: "100%"}}>
         {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
           <a 
