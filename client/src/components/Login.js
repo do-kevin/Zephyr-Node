@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import axios from 'axios';
+import styled from 'styled-components';
 
 // CSS
 import '../css/Login.scss';
@@ -16,6 +17,14 @@ const readyStyles = {
 	errorStyles = {
 		color: 'red'
 	};
+
+const Tab = styled.div`
+	.modal-body {
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		background: rgb(0, 140, 255) !important;
+	}
+`;
 
 class Login extends React.Component {
 	constructor(props) {
@@ -166,6 +175,7 @@ class Login extends React.Component {
 
 		if (login === true && create === false) {
 			inputBody = (
+				<Tab>
 				<ModalBody selectLogin={this.selectLogin}>
 					<form onSubmit={this.handleLogin}>
 						<div className="form-group">
@@ -207,9 +217,11 @@ class Login extends React.Component {
 						</div>
 					</form>
 				</ModalBody>
+				</Tab>
 			);
 		} else if (login === false && create === true) {
 			inputBody = (
+				<Tab>
 				<ModalBody selectCreate={this.selectCreate}>
 					<form onSubmit={this.handleSignUp}>
 						<div className="form-group">
@@ -296,6 +308,7 @@ class Login extends React.Component {
 						</div>
 					</form>
 				</ModalBody>
+				</Tab>
 			);
 		}
 
