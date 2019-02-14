@@ -35,7 +35,8 @@ const Menu = styled.menu`
 	}
 	.sidebar-nav__link--decks {
 		background: white;
-		box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+    border-left: 5px solid dodgerblue;
 	}
 	.sidebar-nav__link--decks .sidebar-nav__text {
 		color: black;
@@ -394,65 +395,7 @@ class PlayCards extends React.Component {
 			showCardStack = (
 				// isOpen=""
 				<div className="animated slideInUp" id="flashcard-grid">
-					<Row>
-						{this.state.flashcards.map((item, index) => {
-							return (
-								<Col key={item.id}>
-									<Card className="flashcard animated flip">
-										<Button
-											color="danger"
-											type="button"
-											style={{
-												margin: '20px 10% 0 70%',
-												borderRadius: '25px'
-											}}
-											onClick={() => this.deleteFlashcard(item.id)}
-										>
-											<i className="fas fa-trash-alt" />
-										</Button>
-										<CardBody>
-											<CardTitle>
-												Front
-												<Input
-													value={this.state.flashcards[index].front}
-													onChange={(event) => this.handleFrontEdit(index, event)}
-													maxLength={inputMaxLength}
-												/>
-											</CardTitle>
-											<CardText>
-												Back
-												<Input
-													value={this.state.flashcards[index].back}
-													onChange={(event) => this.handleBackEdit(index, event)}
-													maxLength={inputMaxLength}
-												/>
-											</CardText>
-											<p className="p_font cardSaved">
-												{this.state.editSaved && this.state.editId === index ? (
-													'Flashcard Saved!'
-												) : (
-													''
-												)}
-											</p>
-											<Button
-												onClick={() => this.saveFlashcardChanges(item.id, index)}
-												type="button"
-												style={{
-													margin: '20px 41% 0 41%',
-													borderRadius: '25px'
-												}}
-												data-balloon="Save flashcard"
-												data-balloon-pos="down"
-											>
-												<i className="fas fa-save" />
-											</Button>
-										</CardBody>
-									</Card>
-								</Col>
-							);
-						})}
-					</Row>
-					<Row>
+        	<Row>
 						<Col>
 							<Card className="flashcard animated bounceInUp">
 								<CardBody>
@@ -478,23 +421,77 @@ class PlayCards extends React.Component {
 											maxLength={inputMaxLength}
 										/>
 									</CardText>
-									<br />
-									<Button
-										type="submit"
-										style={{
-											marginLeft: '41%',
-											marginRight: '41%',
-											borderRadius: '25px'
-										}}
-										data-balloon="Create flashcard"
-										data-balloon-pos="down"
-										onClick={this.createFlashcard}
-									>
-										<i className="fas fa-plus" />
-									</Button>
 								</CardBody>
+                <Button
+										type="submit"
+                    onClick={this.createFlashcard}
+                    className="flashcard__create-btn"
+                    color="success"
+									>
+										<i className="fas fa-plus" /> Create Flashcard
+								</Button>
 							</Card>
 						</Col>
+					</Row>
+					<Row>
+						{this.state.flashcards.map((item, index) => {
+							return (
+								<Col key={item.id}>
+									<Card className="flashcard animated flip">
+                    <section className="delete-btn-grid">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <Button
+                          className="flashcard__delete-btn"
+                          style={{outline: "none"}}
+                          color="danger"
+                          type="button"
+                          onClick={() => this.deleteFlashcard(item.id)}
+                        >
+                          <span className="flashcard__delete-span">Delete</span> <i className="fas fa-trash-alt" /> 
+                        </Button>
+                    </section>
+										<CardBody>
+											<CardTitle>
+												Front
+												<Input
+													value={this.state.flashcards[index].front}
+													onChange={(event) => this.handleFrontEdit(index, event)}
+													maxLength={inputMaxLength}
+												/>
+											</CardTitle>
+											<CardText>
+												Back
+												<Input
+													value={this.state.flashcards[index].back}
+													onChange={(event) => this.handleBackEdit(index, event)}
+													maxLength={inputMaxLength}
+												/>
+											</CardText>
+											<p style={{color: "green"}}>
+												{this.state.editSaved && this.state.editId === index ? (
+													'Flashcard Saved!'
+												) : (
+													''
+												)}
+											</p>
+                      <section style={{textAlign: "center"}}>
+                        <Button
+                          className="flashcard__save-changes-btn"
+                          onClick={() => this.saveFlashcardChanges(item.id, index)}
+                          color="primary"
+                          type="button"
+                        >
+                          <i className="fas fa-save" /> Save Changes
+                        </Button>
+                      </section>
+										</CardBody>
+									</Card>
+								</Col>
+							);
+						})}
 					</Row>
 				</div>
 			);
@@ -643,7 +640,9 @@ class PlayCards extends React.Component {
             {this.state.flashcards.map((item) => {
               return (
                 <main className="carousel__items">
-                  <div style={{border: "5px dotted limeGreen", cursor: "none !important"}}/>
+                  <div 
+                    // style={{border: "5px dotted limeGreen", cursor: "none !important"}}
+                  />
                   <Flippy
                     key={item.id}
                     flipOnHover={false}
@@ -660,28 +659,32 @@ class PlayCards extends React.Component {
                       <p className="flippy-text">{item.back}</p>
                     </BackSide>
                   </Flippy>
-                  <div style={{border: "5px dotted limeGreen", cursor: "none !important"}}/>
+                  <div 
+                    // style={{border: "5px dotted limeGreen", cursor: "none !important"}}
+                  />
                 </main>
               );
             })}
 				</Carousel>
-				<div id="edit-btns">
+				<div className="deck-options">
 					<ButtonGroup>
 						<Button
+              className="deck-options__edit-flashcards-btn"
 							data-balloon="Edit flashcards inside the deck"
-							data-balloon-pos="up"
+              data-balloon-pos="up"
+              style={{outline: "none"}}
 							color="primary"
-							id="edit-deck-btn"
 							onClick={this.toggle}
 						>
 							Edit Flashcards
 						</Button>
 						<Button
-							id="settings-btn"
+              className="deck-options__deck-settings-btn"
 							color="dark"
 							onClick={this.toggleSettings}
 							data-balloon="Settings"
-							data-balloon-pos="up"
+              data-balloon-pos="up"
+              style={{outline: "none"}}
 						>
 							<i className="fas fa-cogs" /> Settings
 						</Button>

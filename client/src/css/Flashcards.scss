@@ -1,7 +1,6 @@
 .carousel {
     max-width: 900px !important;
     height: 400px !important;
-    border: 2px solid red;
     margin: 0 auto 50px;
     cursor: none !important;
     @media (max-width: 425px) {
@@ -18,13 +17,13 @@
 .slider-control-bottomcenter button {
     // display: inline-block;
     margin: 5px;
-    background: rgb(58, 58, 58) !important;
+    background: hsl(0, 0%, 30%) !important;
     color: transparent !important;
     height: 20px !important;
     width: 20px !important;
     border-radius: 50% !important;
     outline: none !important;
-    box-shadow:  0 3px 7px rgb(124, 124, 124), 0 5px 20px rgb(187, 187, 187);
+    box-shadow:  0 3px 7px rgb(124, 124, 124), 0 5px 20px hsl(0, 0%, 73%);
     cursor: pointer;
     &:focus {
         color: transparent !important;
@@ -45,14 +44,33 @@
 }
 
 .flippy-cardContainer-wrapper {
-    border: 3px solid blue;
     width: 400px;
     margin: auto;
-    @media (min-width: 359px) and (max-width: 425px) {
+    @media (min-width: 400px) and (max-width: 425px) {
         height: 375px;
         width: 200px;
     }
-    @media (max-width: 358px) {
+    @media (min-width: 370px) and (max-width: 399px) {
+        height: 375px;
+        width: 200px;
+        left: -5vw;
+    }
+    @media (min-width: 361px) and (max-width: 369px) {
+        height: 375px;
+        width: 200px;
+        left: -13vw;
+    }
+    @media (min-width: 331px) and (max-width: 360px) {
+        height: 375px;
+        width: 200px;
+        left: -3vw;
+    }
+    @media (min-width: 321px) and (max-width: 330px) {
+        height: 375px;
+        width: 200px;
+        left: -13vw;
+    }
+    @media (max-width: 320px) {
         height: 375px;
         width: 200px;
         left: -17vw;
@@ -85,33 +103,94 @@
 }
 
 .flashcard {
-    margin: 10px auto 10px auto;
+    margin: 25px auto;
     height: 330px;
-	width: 400px;
-	@media (max-width: 600px) {
+    width: 400px;
+    box-shadow:  0 3px 4px rgb(22, 22, 22), 0 2px 10px rgb(100, 100, 100);
+	@media (min-width: 359px) and (max-width: 600px) {
 		width: 300px;
 		height: 400px;
     }
+    @media (max-width: 358px) {
+		width: 250px;
+		height: 400px;
+    }
+    &__create-btn {
+        width: 100%;
+        height: 90px;
+        position: relative;
+        border-top: 2px solid green;
+        border-left: 0;
+        border-right: 0;
+        box-shadow:  0 0 4px rgb(22, 22, 22), 0 2px 10px rgb(100, 100, 100);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        &:active {
+            outline: none;
+            border-top: 0;
+            box-shadow: inset 0 0 10px hsl(113, 72%, 10%);
+            border-bottom: 3px solid green;
+        }
+    }
+    &__delete-btn {
+        width: 100px;
+        position: relative;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 0;
+        outline: none !important;
+        color: hsl(354, 90%, 54%);
+        background: white;
+        border-color: white;
+        &:active {
+            box-shadow: inset 0 0 5px hsl(354, 70%, 10%);
+            border-bottom: 2px solid hsl(354, 70%, 34%)
+        }
+        @media (max-width: 600px) {
+            width: 50px;
+            height: 50px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 3px;
+        }
+     }
+    &__delete-span {
+       @media (max-width: 600px) {
+           display: none;
+       }
+    }
+    &__save-changes-btn {
+        margin: auto;
+        color: hsl(210, 100%, 46%);
+        background: white;
+    }
+}
+
+.delete-btn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 #flashcard-grid {
     height: 500px;
     width: 75%;
     margin: 50px auto 50px auto;
-    padding: 10px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    border: 1px solid rgb(131, 131, 131);
-    border-radius: 3px;
-    -moz-box-shadow: inset 0 0 10px #000000;
-    -webkit-box-shadow: inset 0 0 10px #000000;
-    box-shadow: inset 0 0 10px #000000;
+    padding: 10px 0;
 }
 
-#edit-btns {
-    border: 1px solid border;
+.deck-options {
     width: 248px;
     margin: auto;
+    &__edit-flashcards-btn, &__deck-settings-btn {
+        box-shadow:  0 3px 7px rgb(22, 22, 22), 0 3px 20px rgb(100, 100, 100);
+        &:focus {
+            outline: none !important;
+        }
+        &:active {
+            box-shadow: inset 0 2px 20px 2px hsla(0, 0%, 0%, 0.7);
+            border-bottom: 2px solid hsla(0, 0%, 0%, 0.35);
+            outline: none !important;
+        }
+    }
 }
 
 /* Toggle Switches */
@@ -219,12 +298,6 @@ textarea {
     color: red;
 }
 
-.tags-box {
-    border-top: 1px solid rgb(126, 198, 247);
-    border-bottom: 1px solid rgb(126, 198, 247);
-    margin-top: 1%;
-}
-
 .grid-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 40px;
@@ -267,8 +340,21 @@ textarea {
 }
 
 // Nuka Carousel
+.slider-control-centerright, .slider-control-centerleft {
+    &:active {
+        box-shadow: inset 0 2px 20px 2px hsla(0, 0%, 0%, 0.7);
+        border-bottom: 2px solid hsla(0, 0%, 0%, 0.35);
+    }
+    & button:disabled {
+        box-shadow: none;
+    }
+    & button {
+        box-shadow:  0 2px 3px rgb(22, 22, 22), 0 1px 5px rgb(100, 100, 100);
+        outline: none !important;
+    }
+}
 @media (max-width: 320px) {
-    @include moveSliders(6vw, 12vw, 50px);
+    @include moveSliders(6vw, 6vw, 50px);
 }
 
 @media (min-width: 321px) and (max-width: 373px) {
@@ -314,96 +400,3 @@ textarea {
 @media (min-width: 1801px) {
     @include moveSliders(12vw, 13vw, null);
 }
-
-// ====================== BACKUP =====================
-
-// .flippy-front {
-//     margin-top: 29%;
-//     word-wrap: break-word;
-//     @media (max-width: 320px) {
-//         transform: translateX(-260px);
-//     }
-//     @media (min-width: 321px) and (max-width: 489px) {
-//         transform: translateX(-270px);
-//     }
-//     @media (min-width: 490px) and (max-width: 506px) {
-//         transform: translateX(-233px);
-//     }
-//     @media (min-width: 507px) and (max-width: 520px) {
-//         transform: translateX(-220px);
-//     }
-//     @media (min-width: 521px) and (max-width: 606px) {
-//         transform: translateX(-255px);
-//     }
-//     @media (min-width: 607px) and (max-width: 720px) {
-//         transform: translateX(-260px);
-//     }
-//     @media (min-width: 721px) and (max-width: 1090px) {
-//         transform: translateX(-250px);
-//     }
-//     @media (min-width: 1091px) and (max-width: 1120px) {
-//         transform: translateX(-135px);
-//     }
-//     @media (min-width: 1121px) and (max-width: 1200px) {
-//         transform: translateX(-110px);
-//     }
-//     @media (min-width: 1201px) and (max-width: 1300px) {
-//         transform: translateX(-80px);
-//     }
-//     @media (min-width: 1301px) and (max-width: 1349px) {
-//         transform: translateX(-70px);
-//     }
-//     @media (min-width: 1350px) and (max-width: 1400px) {
-//         transform: translateX(-45px);
-//     }
-//     @media (min-width: 1401px) and (max-width: 1516px) {
-//         transform: translateX(-10px);
-//     }
-//     @media (min-width: 1517px) and (max-width: 1600px) {
-//         transform: translateX(5px);
-//     }
-//     @media (min-width: 1601px) and (max-width: 1634px) {
-//         transform: translateX(20px);
-//     }
-//     @media (min-width: 1635px) and (max-width: 1700px) {
-//         transform: translateX(40px);
-//     }
-//     @media (min-width: 1701px) and (max-width: 1830px) {
-//         transform: translateX(87px);
-//     }
-//     @media (min-width: 1831px) and (max-width: 1920px) {
-//         transform: translateX(110px);
-//     }
-//     @media (min-width: 1921px) and (max-width: 1999px) {
-//         transform: translateX(140px);
-//     }
-//     @media (min-width: 2000px) {
-//         transform: translateX(150px);
-//     }
-// }
-
-// .flippy-card {
-//     min-width: 100px;
-//     max-width: 500px;
-// }
-
-// .flippy-back {
-//     word-wrap: break-word;
-//     position: absolute;
-//     right: 500px;
-// }
-
-// div.slider {
-//     height: 450px !important;
-//     width: 60vmax !important;
-//     margin: auto;
-//     padding-left: 0;
-// }
-
-// div.slider-frame {
-//     height: 450px !important;
-//     margin: auto;
-//     padding: 50px;
-//     text-align: center;
-//     justify-content: center;
-// }
