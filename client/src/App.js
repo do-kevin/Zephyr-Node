@@ -12,6 +12,8 @@ import Flashcards from "./pages/Flashcards";
 import Notes from "./pages/Notes";
 import Settings from "./pages/Setting";
 
+import './css/Global.scss';
+
 class App extends Component {
   constructor(props) {
     super(props);
