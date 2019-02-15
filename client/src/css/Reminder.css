@@ -21,7 +21,7 @@
 }
 
 #wrapper {
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
 }
 
 .add-event-btn {
@@ -38,9 +38,9 @@
 }
 
 #modal-position {
-    margin: 10% auto 10% auto;
+    margin: 10% auto;
     position: relative;
-    width: 500px
+    max-width: 500px;
 }
 
 .select-dropdown {

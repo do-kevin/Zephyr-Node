@@ -22,13 +22,13 @@
     height: 20px !important;
     width: 20px !important;
     border-radius: 50% !important;
-    outline: none !important;
     box-shadow:  0 3px 7px rgb(124, 124, 124), 0 5px 20px hsl(0, 0%, 73%);
     cursor: pointer;
     &:focus {
         color: transparent !important;
         background: dodgerblue !important;
         border: 5px solid black !important;
+        outline: none !important;
     }
 }
 
@@ -190,6 +190,9 @@
             border-bottom: 2px solid hsla(0, 0%, 0%, 0.35);
             outline: none !important;
         }
+    }
+    &__edit-flashcards-btn {
+        outline: none !important;
     }
 }
 

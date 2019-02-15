@@ -1,5 +1,8 @@
 body {
-    background: hsla(211, 43%, 79%, .2);
+    background: hsl(211, 100%, 97%);
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+    transition: margin-left 150ms linear;
 }
 .modal-body {
     border-bottom-left-radius: 5px;

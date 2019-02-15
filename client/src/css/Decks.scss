@@ -9,10 +9,6 @@ p {
 	color: black;
 }
 
-#decks-page {
-
-}
-
 #decks-page__search-wrapper {
 	display: flex;
 	margin: auto;
@@ -38,7 +34,7 @@ p {
 	margin-bottom: 1vh;
 	&:hover,
 	&:active {
-		color: orangered;
+		color: hsl(180, 100%, 45%);
 	}
 }
 
@@ -102,9 +98,11 @@ p {
 }
 
 .trash-btn {
+	background-image: linear-gradient(175deg, rgb(252, 121, 121), rgb(219, 39, 39));
     margin-left: 99%;
     margin-top: -16%;
-    border-radius: 50%;
+	border-radius: 50%;
+	border-color: rgb(252, 121, 121);
     @media (max-width: 478px) {
         margin-left: 98%;
         margin-top: -26%;
@@ -123,8 +121,11 @@ p {
 	font: inherit;
 	cursor: pointer;
 	font-weight: 500;
-}
-
-.tag-btn:hover {
-	color: orangered;
+	&:hover, &:active {
+		color: hsl(180, 100%, 45%);
+		border-bottom: 3px solid hsl(180, 100%, 45%);
+	}
+	&:focus {
+		outline: none !important;
+	}
 }

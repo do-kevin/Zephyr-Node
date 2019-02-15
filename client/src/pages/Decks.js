@@ -10,16 +10,22 @@ import DeckModal from '../components/DeckModal';
 
 import '../css/Decks.scss';
 
-const Menu = styled.menu`
+const Menu = styled.div`
 	#sidebar {
 		top: 0;
 	}
 	.sidebar-nav__link--decks {
-		background: white;
+		background: hsl(211, 100%, 97%);;
 		box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
 	}
 	.sidebar-nav__link--decks .sidebar-nav__text {
 		color: black;
+	}
+	.toggle-btn {
+		@media (max-width: 900px) {
+			left: 0;
+			margin-bottom: 30px;
+		}
 	}
 `;
 
@@ -145,16 +151,8 @@ class ChooseDeck extends React.Component {
 			renderDecks = (
 				<div style={{ margin: '20px auto 0 auto' }}>
 					<h3 className="animated flipInX" style={{ color: 'red' }}>
-						Decks Not Found
+						Deck not found
 					</h3>
-					<Button
-						className="animated flipInX"
-						color="info"
-						onClick={this.showMyDecks}
-						style={{ margin: 'auto' }}
-					>
-						Show My Decks
-					</Button>
 				</div>
 			);
 		}

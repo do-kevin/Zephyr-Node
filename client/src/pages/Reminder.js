@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import moment from "moment-timezone";
 import axios from "axios";
 
@@ -24,20 +24,112 @@ import styled from 'styled-components';
 
 import "../css/Reminder.css";
 
-const Menu = styled.menu`
+const Menu = styled.div`
   #sidebar {
     top: 0;
   }
   .sidebar-nav__link--reminders {
-    background: white;
+    background: hsl(211, 100%, 97%);
     box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
   }
   .sidebar-nav__link--reminders .sidebar-nav__text {
     color: black;
   }
+  .toggle-btn {
+		@media (max-width: 900px) {
+			left: 0;
+			margin-bottom: 15px;
+		}
+  }
 `;
 
-class Reminder extends React.Component {
+const Title = styled.section`
+  .card-title {
+    font-size: 36px;
+    margin-bottom: -25px;
+  }
+`;
+
+let dateInputPx = 364;
+
+const Calendar = styled.section`
+  .react-datetime-picker__wrapper {
+    width: 320px;
+    border: none;
+    @media (max-width: ${dateInputPx}px) {
+      position: relative;
+      left: -46px;
+    }
+  }
+  .react-datetime-picker__inputGroup__input {
+    background: hsl(0, 0%, 99%);
+    border-bottom: 2px solid hsl(0, 0%, 77%);
+    margin: 0 1px;
+    box-shadow: inset 0 1px 10px 2px hsl(0, 0%, 90%);
+    outline: none !important;
+    border-radius: 2px;
+    font-weight: 500;
+    padding: 0 5px;
+    @media (max-width: ${dateInputPx}px) {
+      font-weight: 400;
+    }
+  }
+  .react-datetime-picker__clear-button {
+    box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+    border: 1px solid red;
+    border-top: 3px solid red;
+    outline: none !important;
+    border-radius: 5px;
+    margin-left: 7px;
+  }
+  .react-datetime-picker__clear-button:hover, .react-datetime-picker__clear-button:active {
+    outline: none !important;
+    border: 0;
+    background: #fde7e7;
+    border-bottom: 2px solid hsl(0, 100%, 62%);
+    border-radius: 5px;
+    box-shadow: inset 0 2px 10px 2px hsl(0, 100%, 62%);
+  } 
+  .react-datetime-picker__calendar-button {
+    box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+    border: 1px solid dodgerblue;
+    border-top: 3px solid dodgerblue;
+    outline: none !important;
+    border-radius: 5px;
+    margin-left: 7px;
+  }
+  .react-datetime-picker__calendar-button:hover, .react-datetime-picker__calendar-button:active {
+    outline: none !important;
+    border: 0;
+    border-bottom: 4px solid dodgerblue;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 10px 2px hsl(0, 0%, 70%);
+  } 
+  .react-datetime-picker--open .react-datetime-picker__calendar-button {
+    outline: none !important;
+    border-top: 0;
+    border-bottom: 4px solid dodgerblue;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 10px 2px hsl(0, 0%, 70%);
+  }
+  .react-calendar {
+    box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+    margin-top: 7px;
+    margin-bottom: 15px;
+    @media (max-width: 430px) {
+      left: -46px;
+      top: 7px;
+      position: relative;
+      margin: auto;
+      width: 300px;
+    }
+  .react-calendar__navigation {
+      border-top: 5px solid dodgerblue;
+    }
+  }
+`;
+
+class Reminder extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,8 +147,6 @@ class Reminder extends React.Component {
             editingObj: {}, 
             userId: null
         };
-    
-        this.toggle = this.toggle.bind(this);
       }
     
     componentDidMount() {
@@ -99,7 +189,7 @@ class Reminder extends React.Component {
       });
     };
 
-    toggle() {
+    toggle = () => {
         this.setState({
             modal: !this.state.modal
         });
@@ -388,7 +478,7 @@ class Reminder extends React.Component {
       );
     } else if (this.state.modal && this.state.currentModal === "edit") {
       modalDisplay = (
-        <ModalFooter>
+        <ModalFooter style={{justifyContent: "center"}}>
           <Button color="primary" onClick={this.saveEventChanges}>
             Save Changes
           </Button>
@@ -490,17 +580,16 @@ class Reminder extends React.Component {
 
         <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
 
-        <div 
+        <main 
             className="container">
           <div className="row">
             <Card className="add-event-btn">
             <Button color="warning" onClick={this.createEvent}>
-            <i className="fas fa-plus"></i>{" "}Event
+            <i className="fas fa-plus"></i>{" "}Add Event
             </Button>
             </Card>
           </div>
           <br />
-          {/* <div className="row"> */}
             <div id="wrapper">
               {/**************Display of existing events****************/}
               {this.state.events.map((item, index) => {
@@ -510,7 +599,11 @@ class Reminder extends React.Component {
                       <Card 
                       body
                       className="event-item animated lightSpeedIn">
-                        <CardTitle>{item.item}</CardTitle>
+                        <Title>
+                          <CardTitle>
+                            {item.item}
+                          </CardTitle>
+                        </Title>
                         <hr />
                         <CardText>
                           <p>{item.note}</p>
@@ -524,14 +617,14 @@ class Reminder extends React.Component {
                             color="primary"
                             onClick={() => this.editEvent(item.id, index)}
                           >
-                            <i className="fas fa-edit"></i>
+                            <i className="fas fa-edit"/> Edit
                           </Button>
                           {" "}
                           <Button
                             color="danger"
                             onClick={() => this.deleteEvent(item.id)}
                           >
-                            <i className="fas fa-trash-alt"></i>
+                            <i className="fas fa-trash-alt"/> Delete
                           </Button>
                         </div>
                       </Card>
@@ -540,9 +633,7 @@ class Reminder extends React.Component {
                 );
               })}
             </div>
-            
-          {/* </div> */}
-        </div>
+        </main>
 
         <Modal 
             isOpen={this.state.modal} 
@@ -553,7 +644,7 @@ class Reminder extends React.Component {
             <Form
                 className="modal-form">
               <FormGroup>
-                <Label for="item">Title*</Label>
+                <Label for="item">Title (required)</Label>
                 <Input
                   type="text"
                   id="item"
@@ -570,13 +661,16 @@ class Reminder extends React.Component {
                   onChange={this.handleNoteChange}
                 />
               </FormGroup>
-              <p>Date & Time (PST)</p>
-              <DateTimePicker
-                className="date-format"
-                maxDetail="minute"
-                onChange={this.handleDateChange}
-                value={this.state.date}
-              />
+              <hr/>
+              <p style={{marginBottom: 0}}>Date & Time (PST)</p>
+              <Calendar>
+                <DateTimePicker
+                  className="date-format"
+                  maxDetail="minute"
+                  onChange={this.handleDateChange}
+                  value={this.state.date}
+                />
+              </Calendar>
               <Row className="alert-format">
                 <Col>
                   Send Alert

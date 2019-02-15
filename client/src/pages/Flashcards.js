@@ -34,9 +34,9 @@ const Menu = styled.menu`
 		top: 0;
 	}
 	.sidebar-nav__link--decks {
-		background: white;
-    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
-    border-left: 5px solid dodgerblue;
+		background: hsl(211, 100%, 97%);;
+		box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+		border-left: 5px solid dodgerblue;
 	}
 	.sidebar-nav__link--decks .sidebar-nav__text {
 		color: black;
@@ -669,10 +669,10 @@ class PlayCards extends React.Component {
 				<div className="deck-options">
 					<ButtonGroup>
 						<Button
-              className="deck-options__edit-flashcards-btn"
+							className="deck-options__edit-flashcards-btn"
 							data-balloon="Edit flashcards inside the deck"
-              data-balloon-pos="up"
-              style={{outline: "none"}}
+							data-balloon-pos="up"
+							style={{outline: "none !important"}}
 							color="primary"
 							onClick={this.toggle}
 						>

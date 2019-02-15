@@ -17,7 +17,7 @@ const Menu = styled.menu`
     top: 0;
   }
   .sidebar-nav__link--profile {
-    background: white;
+    background: hsl(211, 100%, 97%);;
     box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
   }
   .sidebar-nav__link--profile .sidebar-nav__text {
