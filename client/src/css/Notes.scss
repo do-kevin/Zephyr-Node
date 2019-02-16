@@ -1,53 +1,53 @@
+.delete-note-btn {
+    border-radius: 0 0 5px 0;
+    height: 40px;
+    position: relative;
+}
+
+$noteWidth: 70vw;
+
+.note-output {
+    display: flex;
+    flex-wrap: wrap;
+    width: $noteWidth;
+    height: 500px;
+    border-radius: 0;
+    margin: 20px auto 20px auto;
+    box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
+    background-color: rgb(253, 252, 250);
+
+    .quill-output {
+        padding: 30px;
+        width: $noteWidth;
+        text-align: left;
+    }
+}
+
 #quill-wrapper {
     width: 70%;
     height: 70%;
     margin: auto;
 }
 
-.ql-editor {
-    white-space: normal !important;
+.ql-toolbar, .ql-editor {
+    background: white;
 }
 
-.quill-output {
-    padding: 30px;
-    width: 75vw;
-    text-align: left;
+.ql-toolbar {
+    border: 1px solid white !important;
+}
+
+.ql-editor {
+    white-space: normal !important;
+    box-shadow: inset 0 0 10px hsl(0, 0%, 67%);
 }
 
 #quill-input {
-    height: 13rem;
+    height: 300px;
     margin-top: 30px;
     margin-bottom: 52px;
 }
 
-@mixin noteWidth($width, $marginLeft, $marginRight) {
-    width: $width;
-    margin-left: $marginLeft;
-    margin-right: $marginRight;
-}
-
-.note-output {
-    width: 70%;
-    height: 17rem;
-    margin: 20px auto 20px auto;
-    border-radius: 25px 0 0 25px;
-    -webkit-box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
-    box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
-    background-color: rgb(250, 245, 239);
-
-    @media (max-width: 320px) {
-        @include noteWidth(295px, auto, auto);
-    }
-
-    @media (min-width: 321px) and (max-width: 768px) {
-        @include noteWidth(90%, 20px, 15px);
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) {
-        @include noteWidth(70%, auto, auto);
-    }
-}
 
 blockquote {
     display: block;
@@ -99,12 +99,6 @@ pre {
 
 .ql-indent-9 {
     padding-left: 27em;
-}
-
-.delete-note-btn {
-    -webkit-box-shadow: 1px 6px 14px -5px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 6px 14px -5px rgba(0,0,0,0.75);
-    box-shadow: 1px 6px 14px -5px rgba(0,0,0,0.75);
 }
 
 #slide-away-notes-btn {
