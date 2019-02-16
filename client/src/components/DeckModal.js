@@ -101,7 +101,7 @@ class DeckModal extends React.Component {
           toggle={this.props.toggle}
           className={this.props.className}
         >
-          <ModalHeader toggle={this.props.toggle}>Create Deck</ModalHeader>
+          <ModalHeader toggle={this.props.toggle}></ModalHeader>
           <ModalBody>
             <Form>
               <FormGroup>
@@ -136,7 +136,7 @@ class DeckModal extends React.Component {
               color="primary"
               onClick={this.createTagsForDeck}
             >
-              <i className="fas fa-save" />
+              <i className="fas fa-layer-group" /> Create Deck
             </Button>
           </ModalFooter>
         </Modal>
