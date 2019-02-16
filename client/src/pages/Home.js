@@ -1,16 +1,34 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios"
-import { Row, Col, Container, Button } from "reactstrap";
+import { Row, Col, Container } from "reactstrap";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import Carousel from "nuka-carousel";
+import styled from 'styled-components';
 
-// Components
 import Search from "../components/Search";
 import Login from "../components/Login";
 
-// CSS
 import '../css/Home.scss';
+
+const HomeCarousel = styled.main`
+  .flippy-card {
+    @media (min-width: 426px) and (max-width: 472px) {
+      left: -5vw;
+  }
+    @media (min-width: 359px) and (max-width: 425px) {
+        left: -7vw;
+    }
+    @media (max-width: 358px) {
+        left: -6vw;
+    }
+  }
+  .flippy-cardContainer-wrapper {
+    @media (min-width: 426px) and (max-width: 472px) {
+        // height: 375px;
+        width: 350px;
+    }
+`;
 
 let errorIconMargins = "22px";
 
@@ -124,39 +142,61 @@ class Home extends React.Component {
     else if (this.state.showCards) {
       document.querySelector("#render-decks").style.height = "auto";
       // document.querySelector("#render-decks").style.boxShadow = "";
-      renderDecks =
-        <div className="animated fadeIn" id="carousel">
-          <Carousel
-          >
-            {this.state.flashcard.map(item => {
-              return (
+      renderDecks = (
+        <Carousel className="carousel">
+        {this.state.flashcard.map(item => {
+          return (
+            <HomeCarousel>
+              <main className="carousel__items">
+                <div/>
                 <Flippy
                   key={item.id}
                   flipOnHover={false}
                   flipOnClick={true}
                   flipDirection="horizontal"
-                  ref={r => (this.Flippy = r)}
-                  style={{ width: "400px", height: "200px" }}
+                  ref={(r) => (this.Flippy = r)}
+                  style={{ width: '400px', height: '200px' }}
                 >
-                  <FrontSide style={{ backgroundColor: "#93bbde" }}>
-                    <p>{item.front}</p>
+                  <FrontSide style={{ backgroundColor: '#93bbde' }}>
+                    <p className="flippy-text">{item.front}</p>
                   </FrontSide>
 
-                  <BackSide style={{ backgroundColor: "#66b361" }}>
-                    <p>{item.back}</p>
+                  <BackSide style={{ backgroundColor: '#66b361' }}>
+                    <p className="flippy-text">{item.back}</p>
                   </BackSide>
                 </Flippy>
-              );
-            })}
-          </Carousel>
-          <Button 
-            color="warning" 
-            onClick={this.displayPublicDecks} 
-            style={{ marginLeft: "47%", fontSize: "170%"}}
-            data-balloon="View all public decks" data-balloon-pos="up">
-          <i className="fas fa-sign-out-alt"></i>
-          </Button>
-        </div>
+                <div/>
+              </main>
+            </HomeCarousel> 
+          );
+        })}
+      </Carousel>
+      );
+        // <main className="animated fadeIn" className="nuka-flippy-container">
+        //   <Carousel className="nuka-flippy-container__carousel">
+        //     {this.state.flashcard.map(item => {
+        //       return (
+        //         <Flippy
+        //           key={item.id}
+        //           flipOnHover={false}
+        //           flipOnClick={true}
+        //           flipDirection="horizontal"
+        //           ref={r => (this.Flippy = r)}
+        //           style={{ width: "400px", height: "200px" }}
+        //         >
+        //           <FrontSide style={{ backgroundColor: "#93bbde" }}>
+        //             <p>{item.front}</p>
+        //           </FrontSide>
+
+        //           <BackSide style={{ backgroundColor: "#66b361" }}>
+        //             <p>{item.back}</p>
+        //           </BackSide>
+        //         </Flippy>
+        //       );
+        //     })}
+        //   </Carousel>
+        // </main>
+
     }
     return (
       <div style={{height: "100%"}}>
@@ -182,11 +222,11 @@ class Home extends React.Component {
         <section className="search-container">
           <Search handleFunction={this.searchTags} displayPublicDecks={this.displayPublicDecks} viewPublicDecks={this.displayPublicDecks}/>
         </section>
-        <div>
+        <section>
           <Row id="render-decks" className="animated fadeIn">
             {renderDecks}
           </Row>
-        </div>
+        </section>
         
         <main className="container text-center" style={{marginTop: 0}}>
         <h1 className="text-center display-3"
