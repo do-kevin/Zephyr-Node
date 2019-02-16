@@ -140,7 +140,6 @@ class ChooseDeck extends React.Component {
 											#{elem.tags}{' '}
 										</button>
 									);
-									// <p key={elem.id}>#{elem.tags}</p>
 								})}
 							</div>
 						</div>
