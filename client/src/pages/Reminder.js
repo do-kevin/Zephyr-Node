@@ -490,7 +490,7 @@ class Reminder extends Component {
     let alertOpts;
     if (this.state.sendReminder) {
       alertOpts = (
-        <FormGroup>
+        <FormGroup className="select-time-group">
           <Input
             type="select"
             name="select"
@@ -500,35 +500,30 @@ class Reminder extends Component {
             <option
               value="0"
               selected={this.state.alertTime === 0 ? "selected" : ""}
-              className="select-dropdown"
             >
               At time of the event
             </option>
             <option
               value="15"
               selected={this.state.alertTime === 15 ? "selected" : ""}
-              className="select-dropdown"
             >
               15 mins before event
             </option>
             <option
               value="30"
               selected={this.state.alertTime === 30 ? "selected" : ""}
-              className="select-dropdown"
             >
               30 mins before event
             </option>
             <option
               value="60"
               selected={this.state.alertTime === 60 ? "selected" : ""}
-              className="select-dropdown"
             >
               1 hour before event
             </option>
             <option
               value="120"
               selected={this.state.alertTime === 120 ? "selected" : ""}
-              className="select-dropdown"
             >
               2 hours before event
             </option>
@@ -555,11 +550,9 @@ class Reminder extends Component {
     let phoneRequest;
     if (!this.state.phoneNumberSaved && this.state.sendReminder) {
       phoneRequest = (
-        <Row style={{ margin: "auto" }}>
+      <Row style={{ margin: "auto", maxWidth: "425px", position: "relative", left: "5px" }}>
           <Col>
             <label>Enter Phone Number:</label>
-          </Col>
-          <Col>
             <input
               type="tel"
               className="phone-input"
@@ -673,7 +666,10 @@ class Reminder extends Component {
               </Calendar>
               <Row className="alert-format">
                 <Col>
-                  Send Alert
+                  <span style={{
+                    position: "relative",
+                    top: "5px"
+                  }}>Send Alert</span>
                 </Col>
                 <Col className="toggle-format">
                   <Label className="switch">
