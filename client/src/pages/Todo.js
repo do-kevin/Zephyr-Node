@@ -19,7 +19,7 @@ import styled from 'styled-components';
 
 import Sidebar from "../components/Sidebar";
 
-import "../css/Todo.css";
+import "../css/Todo.scss";
 
 const Menu = styled.menu`
   #sidebar {
@@ -45,7 +45,7 @@ class Todo extends React.Component {
       modalMode: "",
       validationClass: "novalidation",
       backdrop: "static",
-      time_date: moment().format("ddd, MMMM Do YYYY, h:mm:ss a")
+      time_date: moment().format("ddd, MMMM Do YYYY")
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -266,14 +266,14 @@ class Todo extends React.Component {
     return (
       <div>
         <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
-        <div className="container">
+        <main className="container">
           {/* Logout redirection */}
           {this.props.handleUserRedirect()}
           {modal}
           <p className="time_date">{this.state.time_date}</p>
-          <Card className="text-center">
+          <Card className="text-center todo-list">
             <CardBody>
-              <CardTitle>To-do List</CardTitle>
+              <CardTitle><h3>To-do List</h3></CardTitle>
               <div className="card-text">
                 {/************* Display Existing Tasks Start *************/}
                 <div>
@@ -281,20 +281,21 @@ class Todo extends React.Component {
                       console.log(todo.id);
                     return (
                       <ListGroup>
-                        <ListGroupItem className="animated flipInX" key={todo.id}>
+                        <ListGroupItem className="animated flipInX todo-list__item" key={todo.id}>
                           <span className="task">{todo.item}</span>
                           <span className="pull-right">
                             <Button
                               outline
                               color="info"
+                              style={{border: "none"}}
                               onClick={() => this.editToDo(todo.item, todo.id)}
                               name="edit"
                             >
-                              <i className="fas fa-edit" />
+                              <i className="fas fa-edit" /> Edit Task
                             </Button>{" "}
                             <Button
-                              outline
-                              color="info"
+                              color="success"
+                              style={{borderRadius: "50%", height: "41px"}}
                               onClick={() => this.completeToDo(todo.id)}
                               name="complete"
                             >
@@ -310,16 +311,16 @@ class Todo extends React.Component {
               </div>
               {/************* Create Task/Profile Buttons *************/}
               <Button
-                outline
-                color="info"
+                color="primary"
                 onClick={this.createToDo}
+                style={{marginTop: "25px"}}
                 name="create"
               >
                 Create Task
               </Button>
             </CardBody>
           </Card>
-        </div>
+        </main>
       </div>
     );
   }
