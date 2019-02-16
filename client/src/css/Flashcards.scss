@@ -78,12 +78,11 @@
 }
 
 .flippy-card {
-    left: -256px;
     @media (min-width: 359px) and (max-width: 425px) {
-        left: -29.6vw;
+        left: 7vw;
     }
     @media (max-width: 358px) {
-        left: -39.5vw;
+        left: 5vw;
     }
 }
 
