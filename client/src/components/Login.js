@@ -24,6 +24,14 @@ const Tab = styled.div`
 		border-bottom-right-radius: 5px;
 		background: rgb(0, 140, 255) !important;
 	}
+	.form-control {
+		background: rgb(235, 235, 235);
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		border-top: 0;
+		border-bottom: 0;
+		border-left: 0;
+	}
 `;
 
 class Login extends React.Component {
