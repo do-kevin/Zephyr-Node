@@ -1,0 +1,118 @@
+#profile {
+    padding-bottom: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+#reminders-todos {
+    display: flex;
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+}
+
+.page-block {
+    padding: 50px 15px 25px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    &__reminders, &__todos {
+        padding: 25px 0;
+        width: 50%;
+        margin: auto;
+        @media (max-width: 767px) {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+    }
+    &__reminders {
+        @media (max-width: 767px) {
+            width: 100%;
+        }
+    }
+    &__todos {
+        @media (max-width: 767px) {
+            width: 100%;
+        }
+    }
+}
+
+.page-block--default {
+    background: hsl(0, 0%, 90%);
+    border: 1px solid hsl(240, 4%, 70%);
+    border-radius: 7px;
+}
+
+.card-title {
+    margin-bottom: 25px;
+}
+
+$pictureHeight: 420px; 
+
+.profile__banner {
+    height: $pictureHeight !important;
+    border-radius: 0 !important;
+    background-image: url(../img/notebook.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    text-shadow: 1px 2px 1px hsl(210, 1%, 20%);
+    margin-bottom: 50px;
+    background-position: left center;
+    @media (max-width: 991px) {
+        background-size: auto $pictureHeight;
+    }
+}
+
+.quote {
+    color: white;
+    font-size: 36px;
+    @media (max-width: 999px) {
+        font-size: 32px;
+    }
+    @media (max-width: 767px) {
+        font-size: 28px;
+    }
+    @media (max-width: 392px) {
+        font-size: 20px;
+    }
+}
+
+.todo-listgroup {
+    height: 250px;
+    overflow-y: scroll;
+    padding: 5px;
+}
+
+.small-font {
+    animation-duration: 1.15s;
+}
+
+.card-body a p {
+    text-decoration-line: none;
+}
+
+.one-deck {
+    width: 100%;
+}
+
+.group {
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.noDisplay {
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.profile-btns {
+    margin-top: 25px;
+}

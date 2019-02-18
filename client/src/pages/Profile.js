@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 import {
 	Card,
 	CardBody,
-	CardTitle,
-	CardImg,
-	CardText,
-	CardDeck,
 	Jumbotron,
 	Container,
 	Row,
@@ -22,7 +18,7 @@ import styled from 'styled-components';
 import Quote from '../components/Quote';
 import Sidebar from '../components/Sidebar';
 
-import '../css/Profile.css';
+import '../css/Profile.scss';
 
 const Menu = styled.menu`
 	#sidebar {
@@ -48,7 +44,7 @@ class Profile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			time_date: moment().format('ddd, MMMM Do YYYY, h:mm:ss a'),
+			time_date: moment().format('ddd, MMMM Do YYYY'),
 			reminders: [],
 			todos: [],
 			decks: [],
@@ -131,7 +127,7 @@ class Profile extends React.Component {
 		// -------------- Render Reminders --------------
 		if (this.state.reminders.length > 0) {
 			renderReminders = (
-				<ListGroup className="rem_todo_scroll">
+				<ListGroup className="todo-listgroup">
 					<div>
 						{this.state.reminders.map((reminder) => {
 							var date = moment(reminder.date).format('ddd, MMMM Do YYYY, h:mm:ss a');
@@ -148,7 +144,7 @@ class Profile extends React.Component {
 			);
 		} else {
 			renderReminders = (
-				<ListGroup className="rem_todo_scroll animated flipInX">
+				<ListGroup className="todo-listgroup animated flipInX">
 					<ListGroupItem className="small_font centerText animated fadeIn">No important dates.</ListGroupItem>
 				</ListGroup>
 			);
@@ -157,11 +153,14 @@ class Profile extends React.Component {
 		// -------------- Render To-Do List --------------
 		if (this.state.todos.length > 0) {
 			renderToDos = (
-				<ListGroup className="rem_todo_scroll">
+				<ListGroup className="todo-listgroup">
 					<div>
 						{this.state.todos.map((todo) => {
 							return (
-								<ListGroupItem className="small_font animated flipInX" key={todo.id}>
+								<ListGroupItem 
+									className="animated flipInX todo-list__item" 
+									key={todo.id}
+									style={{borderRadius: "5px"}}>
 									{todo.item}
 								</ListGroupItem>
 							);
@@ -171,8 +170,8 @@ class Profile extends React.Component {
 			);
 		} else {
 			renderToDos = (
-				<ListGroup className="rem_todo_scroll">
-					<ListGroupItem className="small_font centerText animated flipInX">
+				<ListGroup className="todo-listgroup">
+					<ListGroupItem className="animated flipInX todo-list__item" style={{borderRadius: "5px"}}>
 						All tasks completed.
 					</ListGroupItem>
 				</ListGroup>
@@ -201,7 +200,7 @@ class Profile extends React.Component {
 			);
 		} else if (this.state.decks.length === 1) {
 			renderDecks = (
-				<div className="oneNote">
+				<div className="one-deck">
 					{this.state.decks.map((deck) => {
 						return (
 							<Col key={deck.id}>
@@ -233,15 +232,17 @@ class Profile extends React.Component {
 				<div>
 					{this.state.notes.slice(Math.max(this.state.decks.length - 2, 1)).map((note) => {
 						return (
-							<Card key={note.id} className="animated zoomInRight note-output">
-								<CardBody>
-									<div
-										className="quill-output small_font"
-										dangerouslySetInnerHTML={{ __html: note.note }}
-										style={{ wordBreak: 'break-word' }}
-									/>
-								</CardBody>
-							</Card>
+							<section
+								key={note.id}
+								className="animated zoomInRight note-output"
+								style={{ overflowY: 'scroll' }}
+							>
+								<div
+									className="quill-output animated zoomInRight"
+									dangerouslySetInnerHTML={{ __html: note.note }}
+									style={{ wordBreak: 'break-word' }}
+								/>
+							</section>
 						);
 					})}
 				</div>
@@ -251,15 +252,17 @@ class Profile extends React.Component {
 				<div>
 					{this.state.notes.map((note) => {
 						return (
-							<Card key={note.id} className="animated zoomInRight note-output">
-								<CardBody>
-									<div
-										className="quill-output"
-										dangerouslySetInnerHTML={{ __html: note.note }}
-										style={{ wordBreak: 'break-word' }}
-									/>
-								</CardBody>
-							</Card>
+							<section
+								key={note.id}
+								className="animated zoomInRight note-output"
+								style={{ overflowY: 'scroll' }}
+							>
+								<div
+									className="quill-output animated zoomInRight"
+									dangerouslySetInnerHTML={{ __html: note.note }}
+									style={{ wordBreak: 'break-word' }}
+								/>
+							</section>
 						);
 					})}
 				</div>
@@ -268,14 +271,14 @@ class Profile extends React.Component {
 			renderNotes = (
 				<Col>
 					<ListGroup>
-						<ListGroupItem className="small_font noDisplay">No notes to display.</ListGroupItem>
+						<ListGroupItem className="noDisplay">No notes to display.</ListGroupItem>
 					</ListGroup>
 				</Col>
 			);
 		}
 
 		return (
-			<div>
+			<main id="profile">
 				{/* Logout redirection */}
 				{this.props.handleUserRedirect()}
 
@@ -286,7 +289,7 @@ class Profile extends React.Component {
 					<Main>
 						<Row>
 							<Col>
-								<Jumbotron className="profile animated fadeIn">
+								<Jumbotron className="profile__banner animated fadeIn">
 									<Container>
 										<h1 className="display-4">
 											Hello,{' '}
@@ -294,49 +297,59 @@ class Profile extends React.Component {
 										</h1>
 										<br />
 										<Quote />
-										<hr className="my-2" />
 										{this.state.time_date}
 									</Container>
 								</Jumbotron>
 							</Col>
 						</Row>
-						<section style={{ marginTop: '40px', background: 'white', paddingTop: '20px' }}>
-							{renderReminders}
-							<Link to="/reminder">
-								<Button outline color="info" id="reminder">
-									View Reminders
-								</Button>
-							</Link>
-						</section>
-						<section style={{ marginTop: '40px', background: 'white', paddingTop: '20px' }}>
-							{renderToDos}
-							<Link to="/todo">
-								<Button outline color="info" id="todo">
-									View Tasks
-								</Button>
-							</Link>
-						</section>
-						<section style={{ marginTop: '40px', background: 'white', paddingTop: '20px' }}>
+                        <div id="reminders-todos" className="page-block">
+							<h2 style={{    
+								top: "25px",
+								position: "relative"
+							}}>Reminders</h2>
+                            <section className="page-block__reminders page-block--default">
+                                {renderReminders}
+                                <Link to="/reminder">
+                                    <Button className="profile-btns" color="info">
+                                        View Reminders
+                                    </Button>
+                                </Link>
+                            </section>
+							<h2 style={{
+								top: "25px",
+								position: "relative"
+							}}>To-Dos</h2>
+                            <section className="page-block__todos page-block--default">
+                                {renderToDos}
+                                <Link to="/todo">
+                                    <Button className="profile-btns" color="info">
+                                        View Tasks
+                                    </Button>
+                                </Link>
+                            </section>
+                        </div>
+						<h2>Recent Decks</h2>
+						<section className="page-block page-block--default">
 							<Link to="/decks">
 								{renderDecks}
-								<Button outline color="info" id="seeall">
+								<Button className="profile-btns" color="info">
 									View Decks
 								</Button>
 							</Link>
 						</section>
-						<section style={{ marginTop: '40px', background: 'white', paddingTop: '20px' }}>
-							<h2>Recent Note</h2>
+						<h2>Recent Notes</h2>
+						<section className="page-block page-block--default">
 							{/************** Display existing decks ****************/}
 							{renderNotes}
 							<Link to="/notes">
-								<Button outline color="info" id="seeall">
+								<Button className="profile-btns" color="info">
 									View Notes
 								</Button>
 							</Link>
 						</section>
 					</Main>
 				</Container>
-			</div>
+			</main>
 		);
 	}
 }
