@@ -9,8 +9,8 @@ $noteWidth: 70vw;
 .note-output {
     display: flex;
     flex-wrap: wrap;
-    width: $noteWidth;
-    height: 500px;
+    max-width: $noteWidth;
+    max-height: 500px;
     border-radius: 0;
     margin: 20px auto 20px auto;
     box-shadow: 1px 6px 14px -4px rgba(0, 0, 0, 0.75);
@@ -20,6 +20,15 @@ $noteWidth: 70vw;
         padding: 30px;
         width: $noteWidth;
         text-align: left;
+        @media (max-width: 767px) {
+            font-size: 14px;
+        }
+        @media (max-width: 479px) {
+            font-size: 13px;
+        }
+        @media (max-width: 399px) {
+            font-size: 12px;
+        }
     }
 }
 
