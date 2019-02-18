@@ -17,6 +17,7 @@ const Menu = styled.menu`
 	.sidebar-nav__link--settings {
 		background: hsl(211, 100%, 97%);
 		box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+		border-left: 5px solid dodgerblue;
 	}
 	.sidebar-nav__link--settings .sidebar-nav__text {
 		color: black;

@@ -17,15 +17,10 @@ const Menu = styled.div`
 	.sidebar-nav__link--decks {
 		background: hsl(211, 100%, 97%);;
 		box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+		border-left: 5px solid dodgerblue;
 	}
 	.sidebar-nav__link--decks .sidebar-nav__text {
 		color: black;
-	}
-	.toggle-btn {
-		@media (max-width: 900px) {
-			left: 0;
-			margin-bottom: 30px;
-		}
 	}
 `;
 
@@ -156,7 +151,7 @@ class ChooseDeck extends React.Component {
 			);
 		}
 		return (
-			<div>
+			<div style={{paddingTop: "80px"}}>
 				{this.props.handleUserRedirect()} {/* Logout redirection */}
 				<Menu>
 					<Sidebar handleUserLogout={this.props.handleUserLogout} style={{ background: 'red' }} />

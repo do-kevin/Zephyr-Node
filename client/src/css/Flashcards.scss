@@ -360,45 +360,55 @@ textarea {
 }
 
 @media (min-width: 321px) and (max-width: 373px) {
+    .slider-control-centerright {
+        margin-right: 5px;
+    } 
+    .slider-control-centerleft {
+        margin-left: 5px;
+    }
     @include moveSliders(1vw, 1vw, 50px);
 }
 
 @media (min-width: 374px) and (max-width: 489px) {
+    .slider-control-centerright {
+        margin-right: 5px;
+    } 
+    .slider-control-centerleft {
+        margin-left: 5px;
+    }
     @include moveSliders(0.5vw, 0.5vw, 50px);
 }
 
 @media (min-width: 490px) and (max-width: 506px) {
+    .slider-control-centerright {
+        margin-right: 5px;
+    } 
+    .slider-control-centerleft {
+        margin-left: 5px;
+    }
     @include moveSliders(0.5vw, 0.5vw, 50px);
 }
 
 @media (min-width: 507px) and (max-width: 606px) {
+    .slider-control-centerright {
+        margin-right: 10px;
+    } 
+    .slider-control-centerleft {
+        margin-left: 10px;
+    }
     @include moveSliders(0.5vw, 0.5vw, 50px);
 }
 
-@media (min-width: 607px) and (max-width: 719px) {
+@media (min-width: 607px) and (max-width: 859px) {
+    .slider-control-centerright {
+        margin-right: 10px;
+    } 
+    .slider-control-centerleft {
+        margin-left: 10px;
+    }
     @include moveSliders(0.5vw, 0.5vw, 50px);
 }
 
-@media (min-width: 720px) and (max-width: 1110px) {
-    @include moveSliders(0.5vw, 0.5vw, 50px);
-}
-
-@media (min-width: 1111px) and (max-width: 1200px) {
-    @include moveSliders(4vw, 5vw, null);
-}
-
-@media (min-width: 1201px) and (max-width: 1399px) {
-    @include moveSliders(4vw, 5vw, null);
-}
-
-@media (min-width: 1400px) and (max-width: 1500px) {
-    @include moveSliders(7vw, 8vw, null);
-}
-
-@media (min-width: 1501px) and (max-width: 1800px) {
-    @include moveSliders(9vw, 10vw, null);
-}
-
-@media (min-width: 1801px) {
-    @include moveSliders(12vw, 13vw, null);
+@media (min-width: 860px) {
+    @include moveSliders(100px, 100px, null);
 }

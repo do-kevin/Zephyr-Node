@@ -27,6 +27,7 @@ const Menu = styled.menu`
 	.sidebar-nav__link--profile {
 		background: hsl(211, 100%, 97%);
 		box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+		border-left: 5px solid dodgerblue;
 	}
 	.sidebar-nav__link--profile .sidebar-nav__text {
 		color: black;
@@ -128,13 +129,16 @@ class Profile extends React.Component {
 		if (this.state.reminders.length > 0) {
 			renderReminders = (
 				<ListGroup className="todo-listgroup">
-					<div>
+					<div style={{overflowY: "scroll"}}>
 						{this.state.reminders.map((reminder) => {
-							var date = moment(reminder.date).format('ddd, MMMM Do YYYY, h:mm:ss a');
+							var date = moment(reminder.date).format('ddd, MMMM Do, YYYY at h:mma');
 							return (
-								<ListGroupItem className="small_font animated flipInX" key={reminder.id}>
-									<span style={{ color: '#17A2B8' }}>{date}</span>
-									<h6>{reminder.item}</h6>
+								<ListGroupItem className="profile-reminders animated flipInX" key={reminder.id}>
+									<span style={{ color: '#17A2B8', fontWeight: 500 }}>{date}</span>
+									<h5 style={{
+										textDecoration: "underline",
+										marginBottom: 0
+									}}>{reminder.item}</h5>
 									<p>{reminder.note}</p>
 								</ListGroupItem>
 							);
@@ -145,7 +149,7 @@ class Profile extends React.Component {
 		} else {
 			renderReminders = (
 				<ListGroup className="todo-listgroup animated flipInX">
-					<ListGroupItem className="small_font centerText animated fadeIn">No important dates.</ListGroupItem>
+					<ListGroupItem className="profile-reminders centerText animated fadeIn">No important dates.</ListGroupItem>
 				</ListGroup>
 			);
 		}
@@ -154,7 +158,7 @@ class Profile extends React.Component {
 		if (this.state.todos.length > 0) {
 			renderToDos = (
 				<ListGroup className="todo-listgroup">
-					<div>
+					<div style={{overflowY: "scroll"}}>
 						{this.state.todos.map((todo) => {
 							return (
 								<ListGroupItem 
@@ -289,7 +293,7 @@ class Profile extends React.Component {
 					<Main>
 						<Row>
 							<Col>
-								<Jumbotron className="profile__banner animated fadeIn">
+								<Jumbotron className="profile__banner animated fadeIn" style={{backgroundColor: 'transparent'}}>
 									<Container>
 										<h1 className="display-4">
 											Hello,{' '}
@@ -303,11 +307,11 @@ class Profile extends React.Component {
 							</Col>
 						</Row>
                         <div id="reminders-todos" className="page-block">
-							<h2 style={{    
-								top: "25px",
-								position: "relative"
-							}}>Reminders</h2>
                             <section className="page-block__reminders page-block--default">
+								<h2 style={{    
+									top: "-75px",
+									position: "relative"
+								}}>Reminders</h2>
                                 {renderReminders}
                                 <Link to="/reminder">
                                     <Button className="profile-btns" color="info">
@@ -315,11 +319,11 @@ class Profile extends React.Component {
                                     </Button>
                                 </Link>
                             </section>
-							<h2 style={{
-								top: "25px",
-								position: "relative"
-							}}>To-Dos</h2>
                             <section className="page-block__todos page-block--default">
+								<h2 style={{
+									top: "-75px",
+									position: "relative"
+								}}>To-Dos</h2>
                                 {renderToDos}
                                 <Link to="/todo">
                                     <Button className="profile-btns" color="info">

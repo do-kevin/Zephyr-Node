@@ -18,6 +18,7 @@ const Menu = styled.menu`
 	.sidebar-nav__link--notes {
 		background: hsl(211, 100%, 97%);
 		box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+		border-left: 5px solid dodgerblue;
 	}
 	.sidebar-nav__link--notes .sidebar-nav__text {
 		color: black;
@@ -130,43 +131,57 @@ class Note extends React.Component {
 				<Menu>
 					<Sidebar handleUserLogout={this.props.handleUserLogout} />
 				</Menu>
+				<nav style={{
+					width: "50px",  
+					position: "relative",
+					right: "-80%"}}>
 				<Link smooth to="/notes#save-note-btn">
 					<button
 						style={{
-							marginLeft: '90%',
 							background: 'transparent',
-							border: 'none',
+							padding: 0,
 							borderRadius: '50%',
+							border: 'none',
 							outline: 'none',
-							cursor: 'pointer'
+							cursor: 'pointer',
+							position: 'relative',
+							left: '-6px'
 						}}
 					>
 						<i id="slide-away-notes-btn" className="fas fa-chevron-circle-down animated slideInDown" />
 					</button>
 				</Link>
+				</nav>
+				<br/>
 				{this.state.notesArr.map((item, index) => {
 					return (
-						<main>
-							<section
+						<div>
+							<main
 								key={item.id}
 								className="animated zoomInRight note-output"
 								style={{ overflowY: 'scroll' }}
 							>
-								<Button
-									className="delete-note-btn"
-									color="danger"
-									type="button"
-									onClick={() => this.deleteNote(item.id)}
-								>
-									<i className="fas fa-trash-alt" /> DELETE
-								</Button>
+								<section className="grid-align-btn">
+									<div/>
+									<div/>
+									<div/>
+									<div/>
+									<Button
+										className="delete-note-btn"
+										color="danger"
+										type="button"
+										onClick={() => this.deleteNote(item.id)}
+									>
+										<i className="fas fa-trash-alt" /> DELETE
+									</Button>
+								</section>
 								<div
 									className="quill-output"
 									dangerouslySetInnerHTML={{ __html: item.note }}
 									style={{ wordBreak: 'break-word' }}
 								/>
-							</section>
-						</main>
+							</main>
+						</div>
 					);
 				})}
 

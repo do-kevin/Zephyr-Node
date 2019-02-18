@@ -1,4 +1,5 @@
 #profile {
+    padding-top: 80px; 
     padding-bottom: 50px;
     max-width: 1200px;
     margin: auto;
@@ -25,12 +26,14 @@
         }
     }
     &__reminders {
+        margin-right: 15px;
         @media (max-width: 767px) {
             width: 100%;
         }
     }
     &__todos {
         @media (max-width: 767px) {
+            margin-top: 50px;
             width: 100%;
         }
     }
@@ -50,8 +53,9 @@ $pictureHeight: 420px;
 
 .profile__banner {
     height: $pictureHeight !important;
-    border-radius: 0 !important;
+    border-radius: 7px !important;
     background-image: url(../img/notebook.jpg);
+    border: 1px solid hsl(240, 4%, 70%);
     background-size: 100%;
     background-repeat: no-repeat;
     color: white;
@@ -84,8 +88,10 @@ $pictureHeight: 420px;
     padding: 5px;
 }
 
-.small-font {
-    animation-duration: 1.15s;
+.profile-reminders {
+    word-wrap: break-word;
+    margin: 7px auto;
+    box-shadow: 5px 7px 5px -5px #888;
 }
 
 .card-body a p {

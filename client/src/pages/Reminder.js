@@ -31,15 +31,10 @@ const Menu = styled.div`
   .sidebar-nav__link--reminders {
     background: hsl(211, 100%, 97%);
     box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+    border-left: 5px solid dodgerblue;
   }
   .sidebar-nav__link--reminders .sidebar-nav__text {
     color: black;
-  }
-  .toggle-btn {
-		@media (max-width: 900px) {
-			left: 0;
-			margin-bottom: 15px;
-		}
   }
 `;
 
@@ -597,27 +592,28 @@ class Reminder extends Component {
                             {item.item}
                           </CardTitle>
                         </Title>
-                        <hr />
+                        <hr style={{marginBottom: "-2px"}}/>
                         <CardText>
-                          <p>{item.note}</p>
-                          <p>
-                            {moment(item.date).format("MMMM D")} at{" "}
-                            {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mm A")}
+                          <p style={{color: 'hsl(192, 100%, 43%)'}}>
+                            {moment(item.date).format("ddd, MMMM D")} at{" "}
+                            {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mma")}
                           </p>
+                          <p>{item.note}</p>
                         </CardText>
                         <div>
                           <Button
+                            style={{marginRight: "5px"}}
                             color="primary"
                             onClick={() => this.editEvent(item.id, index)}
                           >
-                            <i className="fas fa-edit"/> Edit
+                            <i className="fas fa-edit"/> EDIT
                           </Button>
-                          {" "}
                           <Button
+                            outline
                             color="danger"
                             onClick={() => this.deleteEvent(item.id)}
                           >
-                            <i className="fas fa-trash-alt"/> Delete
+                            <i className="fas fa-trash-alt"/> DELETE
                           </Button>
                         </div>
                       </Card>

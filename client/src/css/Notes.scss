@@ -1,7 +1,18 @@
+.grid-align-btn {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 100%;
+}
+
 .delete-note-btn {
-    border-radius: 0 0 5px 0;
+    border-radius: 0 0 0 5px;
     height: 40px;
     position: relative;
+    left: 1px;
+    @media (max-width: 411px) {
+        height: 30px;
+        font-size: 13px;
+    }
 }
 
 $noteWidth: 70vw;
@@ -112,13 +123,8 @@ pre {
 
 #slide-away-notes-btn {
     font-size: 50px;
-    color: #FFD300;
-
-    @media (max-width: 700px) {
-        #slide-away-notes-btn {
-            margin-left: -100% !important;
-        }
-    }
+    color: hsl(50, 100%, 50%);
+    position: relative;
 }
 
 #slide-away-notes-btn:hover {
