@@ -164,7 +164,7 @@ class ChooseDeck extends React.Component {
 						<section className="row deck-list__add-deck-container" style={{marginBottom: "50px"}}>
 							<Card className="deck-list__card">
 								<Button color="warning" onClick={this.toggle}>
-									<i className="fas fa-plus" /> Add Deck
+									<i className="fas fa-plus" /> Add deck
 								</Button>
 							</Card>
 						</section>

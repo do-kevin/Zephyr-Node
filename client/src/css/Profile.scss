@@ -88,6 +88,15 @@ $pictureHeight: 420px;
     padding: 5px;
 }
 
+.scrolldown-cards {
+    outline: 2px solid hsl(0, 0%, 90%);
+    border-bottom: 2px solid hsl(0, 0%, 90%);
+    border-radius: 7px;
+    padding: 3px 13px 10px;
+    overflow-y: scroll;
+    box-shadow: inset 0 0 5px hsl(113, 72%, 10%); 
+}
+
 .profile-reminders {
     word-wrap: break-word;
     margin: 7px auto;

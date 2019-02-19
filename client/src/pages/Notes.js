@@ -166,14 +166,14 @@ class Note extends React.Component {
 									<div/>
 									<div/>
 									<div/>
-									<Button
+									<button
 										className="delete-note-btn"
 										color="danger"
 										type="button"
 										onClick={() => this.deleteNote(item.id)}
 									>
 										<i className="fas fa-trash-alt" /> DELETE
-									</Button>
+									</button>
 								</section>
 								<div
 									className="quill-output"

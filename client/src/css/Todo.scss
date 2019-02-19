@@ -5,6 +5,28 @@
         margin-top: 10px;
         margin-bottom: 10px;
         box-shadow:  0 0 10px hsl(0, 0%, 90%), 0 2px 5px hsl(0, 0%, 60%);
+        word-break: break-word;
+    }
+}
+
+.edit-span {
+    @media (max-width: 500px) {
+        display: none;
+    }
+}
+
+.edit-task-btn {
+    @media (max-width: 500px) {
+        border-radius: 75%; 
+        height: 40px;
+        width: 40px;
+        &:hover, &:active {
+            background: hsl(188, 78%, 60%);
+        }
+        &:focus {
+            color: white;
+            background: hsl(188, 78%, 40%)
+        }
     }
 }
 

@@ -46,7 +46,7 @@ class Todo extends React.Component {
       modalMode: "",
       validationClass: "novalidation",
       backdrop: "static",
-      time_date: moment().format("ddd, MMMM Do YYYY")
+      time_date: moment().format("ddd, MMMM, Do YYYY")
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -288,11 +288,12 @@ class Todo extends React.Component {
                             <Button
                               outline
                               color="info"
+                              className="edit-task-btn"
                               style={{border: "none"}}
                               onClick={() => this.editToDo(todo.item, todo.id)}
                               name="edit"
                             >
-                              <i className="fas fa-edit" /> Edit Task
+                              <i className="fas fa-edit" /> <span className="edit-span">Edit task</span>
                             </Button>{" "}
                             <Button
                               color="success"

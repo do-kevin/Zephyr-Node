@@ -1,17 +1,26 @@
 .grid-align-btn {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr) 80px;
     width: 100%;
+    position: relative;
+    top: 13px;
+    padding-right: 20px; 
 }
 
 .delete-note-btn {
-    border-radius: 0 0 0 5px;
-    height: 40px;
-    position: relative;
-    left: 1px;
-    @media (max-width: 411px) {
-        height: 30px;
-        font-size: 13px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: red;
+    cursor: pointer;
+    &:hover, &:active {
+        top: -3px;
+        position: relative;
+        text-shadow: 1px 3px 1px hsla(0, 100%, 30%, 0.3);
+        transition: text-shadow 150ms;
+    }
+    &:focus {
+        outline: none;
     }
 }
 

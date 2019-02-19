@@ -22,7 +22,7 @@ import {
 import DateTimePicker from "react-datetime-picker";
 import styled from 'styled-components';
 
-import "../css/Reminder.css";
+import "../css/Reminder.scss";
 
 const Menu = styled.div`
   #sidebar {
@@ -62,8 +62,8 @@ const Calendar = styled.section`
     margin: 0 1px;
     box-shadow: inset 0 1px 10px 2px hsl(0, 0%, 90%);
     outline: none !important;
-    border-radius: 2px;
-    font-weight: 500;
+    border-radius: 5px;
+    font-weight: 400;
     padding: 0 5px;
     @media (max-width: ${dateInputPx}px) {
       font-weight: 400;
@@ -79,11 +79,11 @@ const Calendar = styled.section`
   }
   .react-datetime-picker__clear-button:hover, .react-datetime-picker__clear-button:active {
     outline: none !important;
-    border: 0;
-    background: #fde7e7;
-    border-bottom: 2px solid hsl(0, 100%, 62%);
     border-radius: 5px;
-    box-shadow: inset 0 2px 10px 2px hsl(0, 100%, 62%);
+    transition: box-shadow 150ms;
+    box-shadow: 0 7px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+    position: relative;
+    top: -1px;
   } 
   .react-datetime-picker__calendar-button {
     box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
@@ -95,17 +95,21 @@ const Calendar = styled.section`
   }
   .react-datetime-picker__calendar-button:hover, .react-datetime-picker__calendar-button:active {
     outline: none !important;
-    border: 0;
-    border-bottom: 4px solid dodgerblue;
     border-radius: 5px;
-    box-shadow: inset 0 2px 10px 2px hsl(0, 0%, 70%);
+    transition: box-shadow 150ms;
+    position: relative;
+    top: -1px;
+    box-shadow: 0 7px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
   } 
   .react-datetime-picker--open .react-datetime-picker__calendar-button {
     outline: none !important;
-    border-top: 0;
+    border-top: 1px solid dodgerblue;
     border-bottom: 4px solid dodgerblue;
     border-radius: 5px;
-    box-shadow: inset 0 2px 10px 2px hsl(0, 0%, 70%);
+    transition: box-shadow 150ms;
+    position: relative;
+    top: -1px;
+    box-shadow: 0 7px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
   }
   .react-calendar {
     box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
@@ -467,7 +471,7 @@ class Reminder extends Component {
       modalDisplay = (
         <ModalFooter>
           <Button color="primary" onClick={this.saveEvent}>
-            Save
+            Save reminder
           </Button>
         </ModalFooter>
       );
@@ -475,7 +479,7 @@ class Reminder extends Component {
       modalDisplay = (
         <ModalFooter style={{justifyContent: "center"}}>
           <Button color="primary" onClick={this.saveEventChanges}>
-            Save Changes
+            Save changes
           </Button>
         </ModalFooter>
       );
@@ -534,7 +538,7 @@ class Reminder extends Component {
     if (this.state.item === "" && this.state.saveClicked) {
       validation = (
         <div>
-          <p className="validation">Please fill required(*) fields</p>
+          <p className="validation">The reminder requires a title</p>
         </div>
       );
     } else {
@@ -545,9 +549,9 @@ class Reminder extends Component {
     let phoneRequest;
     if (!this.state.phoneNumberSaved && this.state.sendReminder) {
       phoneRequest = (
-      <Row style={{ margin: "auto", maxWidth: "425px", position: "relative", left: "5px" }}>
+      <Row style={{ margin: "auto", maxWidth: "421px", position: "relative", left: "9px" }}>
           <Col>
-            <label>Enter Phone Number:</label>
+            <label>Enter phone number</label>
             <input
               type="tel"
               className="phone-input"
@@ -602,19 +606,18 @@ class Reminder extends Component {
                         </CardText>
                         <div>
                           <Button
-                            style={{marginRight: "5px"}}
+                            style={{marginRight: "10px"}}
                             color="primary"
                             onClick={() => this.editEvent(item.id, index)}
                           >
                             <i className="fas fa-edit"/> EDIT
                           </Button>
-                          <Button
-                            outline
-                            color="danger"
+                          <button
+                            className="delete-reminder-btn"
                             onClick={() => this.deleteEvent(item.id)}
                           >
                             <i className="fas fa-trash-alt"/> DELETE
-                          </Button>
+                          </button>
                         </div>
                       </Card>
                     </Col>
@@ -633,16 +636,17 @@ class Reminder extends Component {
             <Form
                 className="modal-form">
               <FormGroup>
-                <Label for="item">Title (required)</Label>
+                <Label for="item">Title</Label>
                 <Input
                   type="text"
                   id="item"
                   value={this.state.item}
                   onChange={this.handleSubjectChange}
                 />
+                {validation}
               </FormGroup>
               <FormGroup>
-                <Label for="notes">Description</Label>
+                <Label for="notes">Description (optional)</Label>
                 <Input
                   type="textarea"
                   id="notes"
@@ -681,7 +685,6 @@ class Reminder extends Component {
             </Form>
             {alertOpts}
             {phoneRequest}
-            {validation}
           </ModalBody>
           {modalDisplay}
         </Modal>

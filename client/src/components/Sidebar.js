@@ -48,7 +48,7 @@ class Sidebar extends React.Component {
                 <Link to="/reminder"><span className="sidebar-nav__text">Reminders</span></Link>
               </li>
               <li className="sidebar-nav__link sidebar-nav__link--todo">
-                <Link to="/todo"><span className="sidebar-nav__text">To-Do</span></Link>
+                <Link to="/todo"><span className="sidebar-nav__text">To-dos</span></Link>
               </li>
               <li
                 style={{marginTop: "30%"}}

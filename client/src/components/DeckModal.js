@@ -105,7 +105,7 @@ class DeckModal extends React.Component {
           <ModalBody>
             <Form>
               <FormGroup>
-                <Label for="deckname">Deck Name:</Label>
+                <Label for="deckname">Deck name:</Label>
                 <Input
                   type="text"
                   name="deckname"
@@ -136,7 +136,7 @@ class DeckModal extends React.Component {
               color="primary"
               onClick={this.createTagsForDeck}
             >
-              <i className="fas fa-layer-group" /> Create Deck
+              <i className="fas fa-layer-group" /> Create deck
             </Button>
           </ModalFooter>
         </Modal>

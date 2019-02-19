@@ -129,15 +129,16 @@ class Profile extends React.Component {
 		if (this.state.reminders.length > 0) {
 			renderReminders = (
 				<ListGroup className="todo-listgroup">
-					<div style={{overflowY: "scroll"}}>
+					<div className="scrolldown-cards">
 						{this.state.reminders.map((reminder) => {
-							var date = moment(reminder.date).format('ddd, MMMM Do, YYYY at h:mma');
+							var date = moment(reminder.date).format('ddd, MMMM Do, YYYY');
+							var time =moment(reminder.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mma")
 							return (
 								<ListGroupItem className="profile-reminders animated flipInX" key={reminder.id}>
-									<span style={{ color: '#17A2B8', fontWeight: 500 }}>{date}</span>
+									<span style={{ color: '#17A2B8', fontWeight: 500 }}>{date} at {time}</span>
 									<h5 style={{
 										textDecoration: "underline",
-										marginBottom: 0
+										marginBottom: "10px"
 									}}>{reminder.item}</h5>
 									<p>{reminder.note}</p>
 								</ListGroupItem>
@@ -158,7 +159,7 @@ class Profile extends React.Component {
 		if (this.state.todos.length > 0) {
 			renderToDos = (
 				<ListGroup className="todo-listgroup">
-					<div style={{overflowY: "scroll"}}>
+					<div className="scrolldown-cards">
 						{this.state.todos.map((todo) => {
 							return (
 								<ListGroupItem 
@@ -315,7 +316,7 @@ class Profile extends React.Component {
                                 {renderReminders}
                                 <Link to="/reminder">
                                     <Button className="profile-btns" color="info">
-                                        View Reminders
+                                        View reminders
                                     </Button>
                                 </Link>
                             </section>
@@ -327,7 +328,7 @@ class Profile extends React.Component {
                                 {renderToDos}
                                 <Link to="/todo">
                                     <Button className="profile-btns" color="info">
-                                        View Tasks
+                                        View tasks
                                     </Button>
                                 </Link>
                             </section>
@@ -337,7 +338,7 @@ class Profile extends React.Component {
 							<Link to="/decks">
 								{renderDecks}
 								<Button className="profile-btns" color="info">
-									View Decks
+									View decks
 								</Button>
 							</Link>
 						</section>
@@ -347,7 +348,7 @@ class Profile extends React.Component {
 							{renderNotes}
 							<Link to="/notes">
 								<Button className="profile-btns" color="info">
-									View Notes
+									View notes
 								</Button>
 							</Link>
 						</section>
