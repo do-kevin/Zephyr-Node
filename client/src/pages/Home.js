@@ -230,17 +230,17 @@ class Home extends React.Component {
         
         <main className="container text-center" style={{marginTop: 0}}>
         <h1 className="text-center display-3"
-          style={{fontWeight: 500}}
+          style={{fontWeight: 500, color: "hsla(220, 15%, 23%, 1)"}}
           >Features</h1>
           <div className="row" style={{margin: "30px auto 0 auto"}}>
           <Container className="feature-containers">
             <div className="col">
-              <div className="card feature-cards animated slideInLeft">
+              <div className="card animated slideInLeft">
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="fas fa-layer-group" />
                   </h1>
-                  <h5 className="card-title">Flashcards</h5>
+                  <h5 className="feature-cards__title">Flashcards</h5>
                   <p className="card-text text-left">
                     Create decks of flashcards with associated tags. Type in the question on the front and the answer on the back of the flashcard. You can set your decks to private or leave them public. Keep your mind sharp for the big exam by quizzing yourself and flipping the flashcard to reveal the answer you created.
                   </p>
@@ -250,12 +250,12 @@ class Home extends React.Component {
             </Container>
             <Container className="feature-containers">
             <div className="col">
-              <div className="card feature-cards animated slideInRight">
+              <div className="card animated slideInRight">
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="fas fa-feather" />
                   </h1>
-                  <h5 className="card-title">Notes</h5>
+                  <h5 className="feature-cards__title">Notes</h5>
                   <p className="card-text text-left">
                     Ideas and information swimming around in your head? Capture all of them here. Type and save whatever you want, whether it's business or personal, for future reference. You can include URLs, images, and video links.
                   </p>
@@ -267,12 +267,12 @@ class Home extends React.Component {
             <div className="row" style={{margin: "30px auto 0 auto"}}>
             <Container className="feature-containers">
             <div className="col">
-              <div className="card feature-cards animated slideInLeft">
+              <div className="card animated slideInLeft">
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="fas fa-list" />
                   </h1>
-                  <h5 className="card-title">Lists</h5>
+                  <h5 className="feature-cards__title">Lists</h5>
                   <p className="card-text text-left">
                       Prioritize what you intend to do for the day, week, month or whenever by organizing a list of tasks.
                   </p>
@@ -284,12 +284,12 @@ class Home extends React.Component {
             <Container className="feature-containers">
             <div className="col">
               <br />
-              <div className="card feature-cards animated slideInRight" style={{marginTop: "-23px"}}>
+              <div className="card animated slideInRight" style={{marginTop: "-23px"}}>
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="far fa-calendar-alt" />
                   </h1>
-                  <h5 className="card-title">Reminders</h5>
+                  <h5 className="feature-cards__title">Reminders</h5>
                   <p className="card-text text-left">
                       Select a time and day to send yourself a reminder of an upcoming event, so you don't panick and miss it.
                   </p>
@@ -302,12 +302,12 @@ class Home extends React.Component {
             <Container className="last-container">
             <div className="col">
               <br />
-              <div className="card feature-cards animated zoomIn" style={{marginTop: "-40px"}}>
+              <div className="card animated zoomIn" style={{marginTop: "-40px"}}>
                 <div className="card-body feature-cards">
                   <h1>
                     <i className="far fa-comment" />
                   </h1>
-                  <h5 className="card-title">SMS</h5>
+                  <h5 className="feature-cards__title">SMS</h5>
                   <p className="card-text text-left">
                       Provides a text messaging feature for both decks and reminders. Need to remind yourself about an event? Turn on the option to send yourself an alert. Want to keep your memory sharp? Our app will send you each question with an answer following after, depending on which deck you choose.
                   </p>

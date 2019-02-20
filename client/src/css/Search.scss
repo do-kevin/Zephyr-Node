@@ -9,6 +9,9 @@
     margin: auto;
     vertical-align: baseline;
 }
+
+$grey5: hsla(220, 15%, 23%, 1); $grey4: hsla(220, 15%, 42%, 1); $grey3: hsla(220, 17%, 61%, 1); $grey2: hsla(220, 17%, 80%, 1); 
+$grey1: hsla(220, 20%, 98%, 1);
   
 .search-form input {
     height: 40px;
@@ -18,10 +21,10 @@
     border-radius: 8px;
     border: transparent;
     outline: none;
-    background: #d6d6d6;
-    box-shadow: inset 0 0 5px hsl(0, 0%, 60%);
-    border-bottom: 1px solid hsl(0, 0%, 70%);
-    color: #003a3a;
+    background: $grey1;
+    box-shadow: inset 0 0 7px $grey3;
+    border-bottom: 1px solid hsla(220, 17%, 70%, 1);
+    color: $grey5;
 }
   
 .search-form__btn {
