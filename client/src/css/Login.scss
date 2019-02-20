@@ -1,29 +1,69 @@
+$grey5: hsla(220, 15%, 23%, 1);
+$grey4: hsla(220, 15%, 42%, 1);
+$grey3: hsla(220, 17%, 61%, 1);
+$grey2: hsla(220, 17%, 80%, 1);
+$grey1: hsla(220, 20%, 98%, 1);
+
+$primary5: hsla(214, 100%, 50%, 1);
+
+$success6: hsla(134, 61%, 40%, 1);
+$success5: hsla(123, 61%, 50%, 1);
+
+$primary5: hsla(214, 100%, 50%, 1);
+$primary4: hsla(214, 100%, 60%, 1);
+$primary3: hsla(214, 100%, 70%, 1);
+$primary2: hsla(214, 100%, 80%, 1);
+$primary1: hsla(214, 100%, 90%, 1);
+$primary0: hsla(214, 100%, 96%, 1);
+
 #login-modal {
 	margin-top: 13%;
 	position: relative;
 }
 
 #login-modal ~ .modal-backdrop.show {
-	background: white !important;
+	background: hsl(0, 0%, 100%) !important;
 	opacity: 0.7 !important;
 }
 
 .login-or-create-btn {
 	border-radius: 0 !important;
-	border: 3.5px solid #f8f9fa;
+	border: 3.5px solid $grey1;
 }
 
-.login-btns:disabled {
-	background: gray !important;
+.login-btns {
+	background: $success5;
+	border-width: 0;
+	border-top: 2px solid hsla(123, 61%, 47%, 1);
+	box-shadow: 0 0 5px $success6;
+	font-size: 1rem;
+	padding: .375rem .75rem;
+	border-radius: 0.25rem;
+	color: white;
+	&:active {
+		border: none;
+		box-shadow: inset 0 0 5px $grey5;
+		border-bottom: 1px solid hsla(220, 15%, 23%, 0.5);
+	}
+	&:disabled {
+		cursor: disabled;
+		background: $grey2 !important;
+		border: 1px solid $grey3;
+		color: $grey4;
+		box-shadow: none;
+	}
+	&:focus {
+		outline: none;
+	}
 }
 
 .btn-light:not(:disabled):not(.disabled).active {
 	outline: none;
-	background: rgb(0, 140, 255);
-	border-top: 5px solid rgb(0, 71, 129);
+	background: $grey2;
+	border-top: 5px solid $primary5;
 	border-left: 0;
 	border-right: 0;
-	border-bottom: 2px solid rgb(0, 140, 255);
+	border-bottom: 2px solid $grey2;
 }
 
 #login-modal .modal-content .row .col:nth-child(1) {

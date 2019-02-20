@@ -8,11 +8,11 @@ import '../css/Login.scss';
 
 // Login/sign up ready styles
 const readyStyles = {
-		borderRight: '5px solid limeGreen'
+		borderRight: '5px solid hsla(123, 61%, 50%, 1)'
 	},
 	// Login / sign up NOT ready styles
 	notReadyStyles = {
-		borderRight: '5px solid red'
+		borderRight: '5px solid hsla(3, 100%, 50%, 1)'
 	},
 	errorStyles = {
 		color: 'red'
@@ -22,15 +22,16 @@ const Tab = styled.div`
 	.modal-body {
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
-		background: rgb(0, 140, 255) !important;
+		background: hsla(220, 17%, 80%, 1)!important;
 	}
 	.form-control {
-		background: rgb(235, 235, 235);
+		background: hsla(220, 20%, 98%, 1);
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 		border-top: 0;
 		border-bottom: 0;
 		border-left: 0;
+		box-shadow: inset 0 0 7px hsla(220, 17%, 61%, 1);
 	}
 `;
 
@@ -214,14 +215,14 @@ class Login extends React.Component {
 								required
 							/>
 							<br />
-							<Button
+							<button
 								className="login-btns"
 								type="submit"
 								color="success"
 								disabled={!this.state.readyToLogin}
 							>
 								Login
-							</Button>
+							</button>
 						</div>
 					</form>
 				</ModalBody>
@@ -304,15 +305,14 @@ class Login extends React.Component {
 								required
 							/>
 							<br />
-							<Button
+							<button
 								className="login-btns"
 								type="submit"
-								color="success"
 								onClick={this.toggle}
 								disabled={!this.state.readyToSignUp}
 							>
 								Create
-							</Button>
+							</button>
 						</div>
 					</form>
 				</ModalBody>
@@ -339,7 +339,7 @@ class Login extends React.Component {
 							<div className="col">
 								<Button
 									color="light"
-									style={{ outline: 'none' }}
+									style={{ outline: 'none', color: 'hsla(220, 15%, 23%, 1)' }}
 									className="login-or-create-btn"
 									size="lg"
 									block
@@ -352,7 +352,7 @@ class Login extends React.Component {
 							<div className="col">
 								<Button
 									color="light"
-									style={{ outline: 'none' }}
+									style={{ outline: 'none', color: 'hsla(220, 15%, 23%, 1)' }}
 									className="login-or-create-btn"
 									size="lg"
 									block
