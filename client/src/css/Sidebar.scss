@@ -1,15 +1,35 @@
+$primary8: hsla(214, 100%, 30%, 1);
+$primary7: hsla(214, 100%, 35%, 1);
+$primary6: hsla(214, 100%, 40%, 1);
+$primary5: hsla(214, 100%, 50%, 1);
+$primary4: hsla(214, 100%, 60%, 1);
+$primary3: hsla(214, 100%, 70%, 1);
+$primary2: hsla(214, 100%, 80%, 1);
+$primary1: hsla(214, 100%, 90%, 1);
+$primary0: hsla(214, 100%, 96%, 1);
+
+$alternate7: hsla(180, 85%, 35%, 1);
+$alternate6: hsla(180, 85%, 45%, 1);
+$alternate5: hsla(180, 85%, 50%, 1);
+$alternate4: hsla(180, 85%, 68%, 1);
+$alternate3: hsla(180, 87%, 75%, 1);
+$alternate2: hsla(180, 100%, 87%, 1);
+$alternate1: hsla(180, 100%, 92%, 1);
+
+$danger5: hsla(3, 100%, 50%, 1);
+
 .toggle-btn {
 	position: fixed;
 	top: 13px;
 	left: 89px;
-	background: whitesmoke;
+	background: hsl(0, 0%, 96%);
 	z-index: 2;
 	margin-bottom: 20px;
 	border-radius: 50%;
 	width: 70px;
 	font-size: 36px;
 	color: hsl(0, 0%, 17%);
-	box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+	box-shadow: 0 2px 8px hsl(0, 0%, 49%), 0 2px 2px hsl(0, 0%, 73%);
 	@media (max-width: 900px) {
 		left: 25px;
 		// position: relative;
@@ -32,7 +52,7 @@
 	height: 100%;
 	margin-left: -250px;
 	overflow-y: auto;
-	background: hsl(0, 0%, 17%);
+	background: $primary8;
 }
 
 .sidebar-nav {
@@ -46,7 +66,7 @@
 	}
 	&__link:hover .sidebar-nav__text,
 	&__link:active .sidebar-nav__text {
-		color: hsl(240, 81%, 65%);
+		color: $alternate5;
 		font-size: 18px;
 	}
 	&__text {
@@ -114,6 +134,6 @@
 	bottom: 0;
 	&:hover,
 	&:active {
-		color: hsl(355, 70%, 46%);
+		color: $danger5;
 	}
 }

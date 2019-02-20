@@ -16,9 +16,9 @@ const Menu = styled.menu`
 		top: 0;
 	}
 	.sidebar-nav__link--notes {
-		background: hsl(211, 100%, 97%);
+		background: hsla(214, 100%, 96%, 1);
 		box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
-		border-left: 5px solid dodgerblue;
+		border-left: 5px solid hsla(220, 15%, 23%, 1);
 	}
 	.sidebar-nav__link--notes .sidebar-nav__text {
 		color: black;
