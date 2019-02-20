@@ -23,13 +23,13 @@ class Search extends React.Component {
 				<input
 					type="search"
 					aria-label="Search"
-					id="search-input"
+					className="search-form__input"
 					onChange={this.handleInputChange}
 					placeholder="Ex: demo"
 				/>
 				<button
 					type="submit"
-					className="btn btn-primary search-form__btn search-form__btn--primary"
+					className="search-form__btn search-form__btn--primary"
 					data-balloon="To find specific decks, enter the associated tag name"
 					data-balloon-pos="down"
 					data-balloon-length="medium"
@@ -43,11 +43,11 @@ class Search extends React.Component {
 						)
 					}
 				>
-					<i className="fa fa-search text-grey" aria-hidden="true" />{' '}
+					<i className="fa fa-search search-btn__icon" aria-hidden="true" />{' '}
 					<span className="search-btn__text">Search</span>
 				</button>
-				<button className="btn btn-warning search-form__btn search-form__btn--warning" onClick={this.props.viewPublicDecks}>
-					<i className="fas fa-layer-group" /> <span className="search-btn__text">Public Decks</span>
+				<button className="search-form__btn search-form__btn--alternate" onClick={this.props.viewPublicDecks}>
+					<i className="fas fa-layer-group search-btn__icon" /> <span className="search-btn__text">Public Decks</span>
 				</button>
 			</form>
 		);

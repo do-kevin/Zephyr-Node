@@ -22,15 +22,15 @@ const Tab = styled.div`
 	.modal-body {
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
-		background: hsla(220, 17%, 80%, 1)!important;
+		background: hsla(220, 17%, 80%, 1) !important;
 	}
 	.form-control {
 		background: hsla(220, 20%, 98%, 1);
+		border-top: 1px solid hsla(220, 17%, 61%, 1) !important;
+		border-left: 1px solid hsla(220, 17%, 61%, 1) !important;
+		border-bottom: 1px solid hsla(220, 17%, 61%, 1) !important;
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
-		border-top: 0;
-		border-bottom: 0;
-		border-left: 0;
 		box-shadow: inset 0 0 7px hsla(220, 17%, 61%, 1);
 	}
 `;
@@ -185,186 +185,194 @@ class Login extends React.Component {
 		if (login === true && create === false) {
 			inputBody = (
 				<Tab>
-				<ModalBody selectLogin={this.selectLogin}>
-					<form onSubmit={this.handleLogin}>
-						<div className="form-group">
-							<label htmlFor="username">
-								<strong>Username</strong>
-							</label>
-							<input
-								style={usernamePattern.test(this.state.username.trim()) ? readyStyles : notReadyStyles}
-								type="text"
-								className="form-control animated fadeIn"
-								id="username"
-								name="username"
-								value={this.state.username}
-								onChange={this.handleInputChange}
-								required
-							/>
-							<label htmlFor="password">
-								<strong>Password</strong>
-							</label>
-							<input
-								style={passwordPattern.test(this.state.password) ? readyStyles : notReadyStyles}
-								type="password"
-								className="form-control animated fadeIn"
-								id="password"
-								name="password"
-								value={this.state.password}
-								onChange={this.handleInputChange}
-								required
-							/>
-							<br />
-							<button
-								className="login-btns"
-								type="submit"
-								color="success"
-								disabled={!this.state.readyToLogin}
-							>
-								Login
-							</button>
-						</div>
-					</form>
-				</ModalBody>
+					<ModalBody selectLogin={this.selectLogin}>
+						<form onSubmit={this.handleLogin}>
+							<div className="form-group login-form">
+								<label className="login-form__labels" htmlFor="username">
+									Username
+								</label>
+								<input
+									style={
+										usernamePattern.test(this.state.username.trim()) ? readyStyles : notReadyStyles
+									}
+									type="text"
+									className="form-control animated fadeIn"
+									id="username"
+									name="username"
+									value={this.state.username}
+									onChange={this.handleInputChange}
+									required
+								/>
+								<label className="login-labels" htmlFor="password">
+									Password
+								</label>
+								<input
+									style={passwordPattern.test(this.state.password) ? readyStyles : notReadyStyles}
+									type="password"
+									className="form-control animated fadeIn"
+									id="password"
+									name="password"
+									value={this.state.password}
+									onChange={this.handleInputChange}
+									required
+								/>
+								<br />
+								<button
+									className="login-form__btn"
+									type="submit"
+									color="success"
+									disabled={!this.state.readyToLogin}
+								>
+									Login
+								</button>
+							</div>
+						</form>
+					</ModalBody>
 				</Tab>
 			);
 		} else if (login === false && create === true) {
 			inputBody = (
 				<Tab>
-				<ModalBody selectCreate={this.selectCreate}>
-					<form onSubmit={this.handleSignUp}>
-						<div className="form-group">
-							<label htmlFor="name">
-								<strong>Name</strong>
-							</label>
-							<input
-								style={namePattern.test(this.state.name.trim()) ? readyStyles : notReadyStyles}
-								type="text"
-								className="form-control animated flipInX"
-								id="name"
-								placeholder="Enter your name"
-								name="name"
-								value={this.state.name}
-								onChange={this.handleInputChange}
-								required
-							/>
-							<label htmlFor="username">
-								<strong>Username</strong>
-							</label>
-							<input
-								style={usernamePattern.test(this.state.username.trim()) ? readyStyles : notReadyStyles}
-								type="text"
-								className="form-control animated flipInX"
-								id="username"
-								placeholder="Enter your username"
-								name="username"
-								value={this.state.username}
-								onChange={this.handleInputChange}
-								required
-							/>
-							<label htmlFor="password">
-								<strong>Password</strong>
-							</label>
-							<input
-								style={
-									passwordPattern.test(this.state.password) &&
-									this.state.password === this.state.passwordCheck ? (
-										readyStyles
-									) : (
-										notReadyStyles
-									)
-								}
-								type="password"
-								className="form-control animated flipInX"
-								id="password"
-								name="password"
-								placeholder="Enter your password"
-								value={this.state.password}
-								onChange={this.handleInputChange}
-								required
-							/>
-							<label htmlFor="password">
-								<strong>Confirm Password</strong>
-							</label>
-							<input
-								style={
-									this.state.password === this.state.passwordCheck &&
-									this.state.passwordCheck.length > 0 ? (
-										readyStyles
-									) : (
-										notReadyStyles
-									)
-								}
-								type="password"
-								className="form-control animated flipInX"
-								id="passwordCheck"
-								name="passwordCheck"
-								placeholder="Re-enter your password"
-								value={this.state.passwordCheck}
-								onChange={this.handleInputChange}
-								required
-							/>
-							<br />
-							<button
-								className="login-btns"
-								type="submit"
-								onClick={this.toggle}
-								disabled={!this.state.readyToSignUp}
-							>
-								Create
-							</button>
-						</div>
-					</form>
-				</ModalBody>
+					<ModalBody selectCreate={this.selectCreate}>
+						<form onSubmit={this.handleSignUp}>
+							<div className="form-group login-form">
+								<label className="login-form__labels" htmlFor="name">
+									Name
+								</label>
+								<input
+									style={namePattern.test(this.state.name.trim()) ? readyStyles : notReadyStyles}
+									type="text"
+									className="form-control animated flipInX"
+									id="name"
+									placeholder="Enter your name"
+									name="name"
+									value={this.state.name}
+									onChange={this.handleInputChange}
+									required
+								/>
+								<label className="login-form__labels" htmlFor="username">
+									Username
+								</label>
+								<input
+									style={
+										usernamePattern.test(this.state.username.trim()) ? readyStyles : notReadyStyles
+									}
+									type="text"
+									className="form-control animated flipInX"
+									id="username"
+									placeholder="Enter your username"
+									name="username"
+									value={this.state.username}
+									onChange={this.handleInputChange}
+									required
+								/>
+								<label className="login-form__labels" htmlFor="password">
+									Password
+								</label>
+								<input
+									style={
+										passwordPattern.test(this.state.password) &&
+										this.state.password === this.state.passwordCheck ? (
+											readyStyles
+										) : (
+											notReadyStyles
+										)
+									}
+									type="password"
+									className="form-control animated flipInX"
+									id="password"
+									name="password"
+									placeholder="Enter your password"
+									value={this.state.password}
+									onChange={this.handleInputChange}
+									required
+								/>
+								<label className="login-form__labels" htmlFor="password">
+									Confirm password
+								</label>
+								<input
+									style={
+										this.state.password === this.state.passwordCheck &&
+										this.state.passwordCheck.length > 0 ? (
+											readyStyles
+										) : (
+											notReadyStyles
+										)
+									}
+									type="password"
+									className="form-control animated flipInX"
+									id="passwordCheck"
+									name="passwordCheck"
+									placeholder="Re-enter your password"
+									value={this.state.passwordCheck}
+									onChange={this.handleInputChange}
+									required
+								/>
+								<br />
+								<button
+									className="login-form__btn"
+									type="submit"
+									onClick={this.toggle}
+									disabled={!this.state.readyToSignUp}
+								>
+									Create
+								</button>
+							</div>
+						</form>
+					</ModalBody>
 				</Tab>
 			);
 		}
 
 		return (
 			<main>
-				<Button color="primary" onClick={this.toggle}>
+				<button 
+					className="login-form__btn" 
+					color="primary" 
+					onClick={this.toggle}
+					style={{boxShadow: "0 0 5px hsla(220, 15%, 21%, 1)"}}>
 					{this.props.buttonLabel}
 					Login <i className="fas fa-sign-in-alt" />
-				</Button>
-					<Modal
-						isOpen={this.state.modal}
-						toggle={this.toggle}
-						className={this.props.className && "custom-modal"}
-						id="login-modal"
-					>
-						<ModalHeader toggle={this.handleInputClear} style={errorStyles}>
-							{this.state.loginError}
-						</ModalHeader>
-						<section className="row">
-							<div className="col">
-								<Button
-									color="light"
-									style={{ outline: 'none', color: 'hsla(220, 15%, 23%, 1)' }}
-									className="login-or-create-btn"
-									size="lg"
-									block
-									onClick={this.selectLogin}
-									active={this.state.login}
-								>
-									Sign In
-								</Button>
-							</div>
-							<div className="col">
-								<Button
-									color="light"
-									style={{ outline: 'none', color: 'hsla(220, 15%, 23%, 1)' }}
-									className="login-or-create-btn"
-									size="lg"
-									block
-									onClick={this.selectCreate}
-									active={this.state.create}
-								>
-									Sign Up
-								</Button>
-							</div>
-						</section>
-            {inputBody}
-					</Modal>
+				</button>
+				<Modal
+					isOpen={this.state.modal}
+					toggle={this.toggle}
+					className={this.props.className && 'custom-modal'}
+					id="login-modal"
+				>
+					<ModalHeader toggle={this.handleInputClear} style={errorStyles}>
+						{this.state.loginError}
+					</ModalHeader>
+					<section className="row">
+						<div className="col">
+							<Button
+								color="light"
+								style={{ outline: 'none', color: 'hsla(220, 15%, 23%, 1)' }}
+								className="login-form__tab-btn"
+								size="lg"
+								block
+								onClick={this.selectLogin}
+								active={this.state.login}
+							>
+								Sign In
+							</Button>
+						</div>
+						<div className="col">
+							<Button
+								color="light"
+								style={{ outline: 'none', color: 'hsla(220, 15%, 23%, 1)' }}
+								className="login-form__tab-btn"
+								size="lg"
+								block
+								onClick={this.selectCreate}
+								active={this.state.create}
+							>
+								Sign Up
+							</Button>
+						</div>
+					</section>
+					{inputBody}
+				</Modal>
 			</main>
 		);
 	}

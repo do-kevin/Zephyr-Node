@@ -203,13 +203,14 @@ class Home extends React.Component {
         {this.props.user && <Redirect to="/profile" />}
         <nav className="navbar justify-content-between">
           <a 
+            className="github-btn"
             href="https://github.com/do-kevin/Project-Three" 
             target="_blank" 
             rel="noopener noreferrer"
-            data-balloon="Link to this project's GitHub repository" 
+            data-balloon="GitHub repository" 
             data-balloon-pos="right"
           >
-            <img id="app-logo" src={require("../img/github.png")} alt="github logo"/>
+            <img className="github-btn__logo" src={require("../img/github.png")} alt="github logo"/>
           </a>
           <Login handleUserLogin={this.props.handleUserLogin} />
         </nav>
@@ -232,7 +233,7 @@ class Home extends React.Component {
         <h1 className="text-center display-3"
           style={{fontWeight: 500, color: "hsla(220, 15%, 23%, 1)"}}
           >Features</h1>
-          <div className="row" style={{margin: "30px auto 0 auto"}}>
+          <div className="row feature-containers-row">
           <Container className="feature-containers">
             <div className="col">
               <div className="card animated slideInLeft">
@@ -264,7 +265,7 @@ class Home extends React.Component {
             </div>
             </Container>
             </div>
-            <div className="row" style={{margin: "30px auto 0 auto"}}>
+            <div className="row feature-containers-row">
             <Container className="feature-containers">
             <div className="col">
               <div className="card animated slideInLeft">
