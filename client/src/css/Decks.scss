@@ -1,13 +1,36 @@
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
+$grey5: hsla(220, 15%, 23%, 1);
+$grey4: hsla(220, 15%, 42%, 1);
+$grey3: hsla(220, 17%, 61%, 1);
+$grey2: hsla(220, 17%, 80%, 1);
+$grey1: hsla(220, 20%, 98%, 1);
 
-p {
-	margin: 0 0 1.4em;
-	color: black;
-}
+$primary2: hsla(214, 100%, 80%, 1);
+$primary1: hsla(214, 100%, 90%, 1);
+$primary0: hsla(214, 100%, 96%, 1);
+
+$alternate7: hsla(180, 85%, 35%, 1);
+$alternate6: hsla(180, 85%, 45%, 1);
+$alternate5: hsla(180, 85%, 50%, 1);
+$alternate4: hsla(180, 85%, 68%, 1);
+$alternate3: hsla(180, 87%, 75%, 1);
+$alternate2: hsla(180, 100%, 87%, 1);
+$alternate1: hsla(180, 100%, 92%, 1);
+
+$danger5: hsla(3, 100%, 50%, 1);
+$danger4: hsla(3, 100%, 57%, 1);
+$danger3: hsla(3, 100%, 70%, 1);
+$danger2: hsla(3, 100%, 78%, 1);
+$danger1: hsla(3, 100%, 90%, 1);
+
+$primary8: hsla(214, 100%, 30%, 1);
+$primary7: hsla(214, 100%, 35%, 1);
+$primary6: hsla(214, 100%, 40%, 1);
+$primary5: hsla(214, 100%, 50%, 1);
+$primary4: hsla(214, 100%, 60%, 1);
+$primary3: hsla(214, 100%, 70%, 1);
+$primary2: hsla(214, 100%, 80%, 1);
+$primary1: hsla(214, 100%, 90%, 1);
+$primary0: hsla(214, 100%, 96%, 1);
 
 #decks-page__search-wrapper {
 	display: flex;
@@ -28,13 +51,17 @@ p {
 
 .deck-title {
 	margin: 10% auto 0 auto;
-	color: black;
+	position: relative;
+	color: $grey5;
 	cursor: pointer;
 	font-size: 40px;
 	margin-bottom: 1vh;
-	&:hover,
-	&:active {
-		color: hsl(180, 100%, 45%);
+	&:hover, &:active {
+		color: $alternate5;
+		top: -3px;
+		position: relative;
+		text-shadow: 1px 4px 1px hsla(180, 85%, 35%, 0.3);
+		transition: text-shadow 200ms;
 	}
 }
 
@@ -98,12 +125,12 @@ p {
 }
 
 .trash-btn {
-	background-image: linear-gradient(175deg, rgb(252, 121, 121), rgb(219, 39, 39));
+	background-image: linear-gradient(175deg, $danger2, $danger5);
     margin-left: 99%;
     margin-top: -16%;
 	border-radius: 50%;
-	border-color: rgb(252, 121, 121);
-	box-shadow:  0 0 5px hsl(0, 20%, 50%);
+	border: 1px solid $danger2 !important;
+	box-shadow: 1px 2px 3px hsla(3, 100%, 20%, 1);
     @media (max-width: 478px) {
         margin-left: 98%;
         margin-top: -26%;
@@ -124,9 +151,66 @@ p {
 	font-weight: 500;
 	&:hover, &:active {
 		color: hsl(180, 100%, 45%);
-		border-bottom: 3px solid hsl(180, 100%, 45%);
+		border-bottom: 3px solid $alternate5;
 	}
 	&:focus {
 		outline: none !important;
+	}
+}
+
+.deck-list__create-btn {
+	margin: auto;
+	box-shadow: 0 0 10px $grey2;
+	cursor: pointer;
+	border-top: 2px solid $grey3;
+	padding: 7px 18px;
+	font-size: 16px;
+	color: $grey1;
+	background: $grey5;
+	border-radius: 7px;
+	&:active {
+		border-top: 0;
+		box-shadow: inset 0 0 10px $grey3;
+		border-bottom: 2px solid $grey3;
+	}
+	&:focus {
+		outline: none;
+	}
+}
+
+.create-deck-input {
+	width: 100%;
+	border-radius: 7px;
+	border: transparent;
+	background: $grey1;
+	box-shadow: inset 0 0 7px $grey3;
+	border-bottom: 1px solid hsla(220, 17%, 70%, 1);
+    color: $grey5;
+    position: relative;
+    top: -5px;
+	margin-bottom: 5px;
+	padding: 6px 12px;
+	&:focus {
+		outline: none;
+	}
+}
+
+.create-deck-modal-btn {
+	cursor: pointer;
+	border-width: 0;
+	box-shadow: 0 0 5px $grey3;
+	font-size: 16px;
+	padding: 7px 18px;
+	border-radius: 5px;
+	color: white;
+	background: $primary5;
+	border-top: 2px solid $primary6;
+	&:focus {
+		outline: none;
+	}
+	&:active {
+		background: $primary7;
+		border-top: 0;
+		box-shadow: inset 0 0 5px $primary8;
 	}
 }

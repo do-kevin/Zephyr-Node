@@ -162,11 +162,9 @@ class ChooseDeck extends React.Component {
 					</div>
 					<main id="deck-list">
 						<section className="row deck-list__add-deck-container" style={{marginBottom: "50px"}}>
-							<Card className="deck-list__card">
-								<Button color="warning" onClick={this.toggle}>
+								<button className="deck-list__create-btn" onClick={this.toggle}>
 									<i className="fas fa-plus" /> Add deck
-								</Button>
-							</Card>
+								</button>
 						</section>
 
 						{/* //=================== Render Decks ==================// */}

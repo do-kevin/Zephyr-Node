@@ -8,8 +8,7 @@ import {
   ModalFooter,
   Form,
   FormGroup,
-  Label,
-  Input
+  Label
 } from "reactstrap";
 
 class DeckModal extends React.Component {
@@ -91,7 +90,7 @@ class DeckModal extends React.Component {
     if (this.state.showTagsValidation === false) {
       displayTagValid = "";
     } else {
-      displayTagValid = (<p style={{color: "red"}}>One minimum character required.</p>);
+      displayTagValid = (<p style={{color: "red"}}>Minimum one character is required.</p>);
     }
 
     return (
@@ -105,24 +104,28 @@ class DeckModal extends React.Component {
           <ModalBody>
             <Form>
               <FormGroup>
-                <Label for="deckname">Deck name:</Label>
-                <Input
+                <Label 
+                  style={{fontWeight: 500}}
+                  for="deckname">Deck name</Label><br/>
+                <input
                   type="text"
                   name="deckname"
-                  id="deckname"
+                  className="create-deck-input"
                   value={this.state.deckName}
                   onChange={this.handleName}
                   maxLength="25"
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="decktags">Tags:</Label>
-                <Input
+                <Label 
+                  style={{fontWeight: 500}}
+                  for="decktags">Tags</Label><br/>
+                <input
                   pattern=".{1,}"
                   required title="1 character minimum"
                   type="text"
                   name="decktags"
-                  id="decktags"
+                  className="create-deck-input"
                   value={this.state.deckTags}
                   onChange={this.handleTags}
                 />
@@ -131,13 +134,13 @@ class DeckModal extends React.Component {
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button
+            <button
               type="submit"
-              color="primary"
+              className="create-deck-modal-btn"
               onClick={this.createTagsForDeck}
             >
               <i className="fas fa-layer-group" /> Create deck
-            </Button>
+            </button>
           </ModalFooter>
         </Modal>
       </div>
