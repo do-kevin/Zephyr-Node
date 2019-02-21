@@ -26,6 +26,7 @@ $alternate5: hsla(180, 85%, 50%, 1);
 }
 
 .carousel__items {
+    cursor: default;
     padding: 100px 0 100px 0; 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -58,6 +59,10 @@ $alternate5: hsla(180, 85%, 50%, 1);
 
 #search-bar {
     width: 800px;
+}
+
+.slider-frame {
+    cursor: default;
 }
 
 .flippy-cardContainer-wrapper {
@@ -104,6 +109,7 @@ $alternate5: hsla(180, 85%, 50%, 1);
 }
 
 .flippy-front, .flippy-back {
+    cursor: pointer;
     background: hsl(0, 0%, 100%) !important;
     box-shadow:  0 3px 7px hsl(0, 0%, 9%), 0 5px 20px hsl(0, 0%, 39%);
     overflow-y: scroll;
