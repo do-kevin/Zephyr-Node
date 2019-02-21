@@ -19,7 +19,6 @@ import {
 	Modal,
 	ModalHeader,
 	ModalBody,
-	Label,
 	Input
 } from 'reactstrap';
 import DOMPurify from 'dompurify';
@@ -401,7 +400,8 @@ class PlayCards extends React.Component {
 								<CardBody>
 									<CardTitle>
 										<label htmlFor="front">Front</label>
-										<Input
+										<input
+											className="flashcard__input"
 											value={this.state.front}
 											onChange={this.handleFrontInputChange}
 											type="textarea"
@@ -412,7 +412,8 @@ class PlayCards extends React.Component {
 									</CardTitle>
 									<CardText>
 										<label htmlFor="back">Back</label>
-										<Input
+										<input
+											className="flashcard__input"
 											value={this.state.back}
 											onChange={this.handleBackInputChange}
 											type="textarea"
@@ -443,21 +444,20 @@ class PlayCards extends React.Component {
 											<div />
 											<div />
 											<div />
-											<Button
+											<button
 												className="flashcard__delete-btn"
-												style={{ outline: 'none' }}
-												color="danger"
 												type="button"
 												onClick={() => this.deleteFlashcard(item.id)}
 											>
 												<span className="flashcard__delete-span">Delete</span>{' '}
 												<i className="fas fa-trash-alt" />
-											</Button>
+											</button>
 										</section>
 										<CardBody>
 											<CardTitle>
 												Front
-												<Input
+												<input
+													className="flashcard__input"
 													value={this.state.flashcards[index].front}
 													onChange={(event) => this.handleFrontEdit(index, event)}
 													maxLength={inputMaxLength}
@@ -465,7 +465,8 @@ class PlayCards extends React.Component {
 											</CardTitle>
 											<CardText>
 												Back
-												<Input
+												<input
+													className="flashcard__input"
 													value={this.state.flashcards[index].back}
 													onChange={(event) => this.handleBackEdit(index, event)}
 													maxLength={inputMaxLength}
@@ -479,14 +480,13 @@ class PlayCards extends React.Component {
 												)}
 											</p>
 											<section style={{ textAlign: 'center' }}>
-												<Button
+												<button
 													className="flashcard__save-changes-btn"
 													onClick={() => this.saveFlashcardChanges(item.id, index)}
-													color="primary"
 													type="button"
 												>
-													<i className="fas fa-save" /> Save Changes
-												</Button>
+													<i className="fas fa-save" /> Save changes
+												</button>
 											</section>
 										</CardBody>
 									</Card>
@@ -509,12 +509,13 @@ class PlayCards extends React.Component {
 			phoneRequest = (
 				<Row style={{ margin: 'auto' }}>
 					<Col>
-						<label>Enter Phone Number:</label>
+						<label>Enter phone number:</label>
 					</Col>
 					<Col>
 						<input
 							type="tel"
 							className="phone-input"
+							maxLength="15"
 							value={this.state.phone}
 							onChange={this.handlePhoneChange}
 						/>
@@ -550,25 +551,25 @@ class PlayCards extends React.Component {
 						<ModalBody>
 							<Row style={{ margin: 'auto' }}>
 								<Col>
-									<p className="p_font">Make deck private</p>
+									<p>Make deck private</p>
 								</Col>
 								<Col>
-									<Label className="switch">
+									<label className="switch" style={{position: 'relative', top: '-4px'}}>
 										<Input
 											type="checkbox"
 											onChange={this.handlePrivacyChange}
 											checked={this.state.privacy ? 'checked' : ''}
 										/>
 										<span className="toggle-slider round" />
-									</Label>
+									</label>
 								</Col>
 							</Row>
 							<Row style={{ margin: 'auto' }}>
 								<Col>
-									<p className="p_font">Send text message</p>
+									<p>Send text message</p>
 								</Col>
 								<Col>
-									<label className="switch">
+									<label className="switch" style={{position: 'relative', top: '-4px'}}>
 										<input
 											type="checkbox"
 											onChange={this.handleAlertChange}
@@ -580,7 +581,7 @@ class PlayCards extends React.Component {
 							</Row>
 							<Row style={{ margin: 'auto' }}>
 								<Col>
-									<p className="p_font" style={{ textAlign: 'left' }}>
+									<p style={{ textAlign: 'left' }}>
 										Starting tomorrow, send Daily Questions at{' '}
 									</p>
 								</Col>
@@ -588,7 +589,7 @@ class PlayCards extends React.Component {
 									<div className="control">
 										<input
 											type="time"
-											id="appt-time"
+											id="appt-time-input"
 											name="appt-time"
 											onChange={this.handleAlertTimeChange}
 											value={this.state.alertTime}
@@ -599,11 +600,11 @@ class PlayCards extends React.Component {
 							</Row>
 							<Row style={{ margin: 'auto' }}>
 								<Col>
-									<p className="p_font" style={{ textAlign: 'left' }}>
+									<p style={{ textAlign: 'left'}}>
 										Send the answers every
 									</p>
 								</Col>
-								<select defaultValue={this.state.timeInterval} onChange={this.handleSelectChange}>
+								<select className="minutes-select" defaultValue={this.state.timeInterval} onChange={this.handleSelectChange}>
 									<option value="1">1</option>
 									<option value="5">5</option>
 									<option value="10">10</option>
@@ -611,15 +612,15 @@ class PlayCards extends React.Component {
 									<option value="30">30</option>
 								</select>
 								<Col>
-									<p className="p_font">minutes.</p>
+									<p>minute(s).</p>
 								</Col>
 							</Row>
 							{phoneRequest}
 							<hr />
 							<Row>
-								<Button id="deck-setting-save-btn" color="primary" onClick={this.saveSettings}>
-									<i className="fas fa-save" />
-								</Button>
+								<button id="deck-setting-save-btn" onClick={this.saveSettings}>
+									<i className="fas fa-save" /> Save changes
+								</button>
 							</Row>
 						</ModalBody>
 					</Modal>
