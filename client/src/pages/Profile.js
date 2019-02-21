@@ -1,16 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-	Card,
-	CardBody,
-	Jumbotron,
-	Container,
-	Row,
-	Col,
-	Button,
-	ListGroup,
-	ListGroupItem
-} from 'reactstrap';
+import { Card, CardBody, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem } from 'reactstrap';
 import moment from 'moment';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -128,29 +118,37 @@ class Profile extends React.Component {
 		// -------------- Render Reminders --------------
 		if (this.state.reminders.length > 0) {
 			renderReminders = (
-				<ListGroup className="todo-listgroup">
-					<div className="scrolldown-cards">
+				<div className="scrolldown-cards">
+					<ListGroup className="todo-listgroup">
 						{this.state.reminders.map((reminder) => {
 							var date = moment(reminder.date).format('ddd, MMMM Do, YYYY');
-							var time =moment(reminder.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mma")
+							var time = moment(reminder.date.replace(':00.000Z', '').replace('T', ' ')).format('hh:mma');
 							return (
 								<ListGroupItem className="profile-reminders animated flipInX" key={reminder.id}>
-									<span style={{ color: '#17A2B8', fontWeight: 500 }}>{date} at {time}</span>
-									<h5 style={{
-										textDecoration: "underline",
-										marginBottom: "10px"
-									}}>{reminder.item}</h5>
+									<span style={{ color: '#17A2B8', fontWeight: 500 }}>
+										{date} at {time}
+									</span>
+									<h5
+										style={{
+											textDecoration: 'underline',
+											marginBottom: '10px'
+										}}
+									>
+										{reminder.item}
+									</h5>
 									<p>{reminder.note}</p>
 								</ListGroupItem>
 							);
 						})}
-					</div>
-				</ListGroup>
+					</ListGroup>
+				</div>
 			);
 		} else {
 			renderReminders = (
 				<ListGroup className="todo-listgroup animated flipInX">
-					<ListGroupItem className="profile-reminders centerText animated fadeIn">No important dates.</ListGroupItem>
+					<ListGroupItem className="profile-reminders centerText animated fadeIn">
+						No important dates
+					</ListGroupItem>
 				</ListGroup>
 			);
 		}
@@ -158,26 +156,27 @@ class Profile extends React.Component {
 		// -------------- Render To-Do List --------------
 		if (this.state.todos.length > 0) {
 			renderToDos = (
-				<ListGroup className="todo-listgroup">
-					<div className="scrolldown-cards">
+				<div className="scrolldown-cards">
+					<ListGroup className="todo-listgroup">
 						{this.state.todos.map((todo) => {
 							return (
-								<ListGroupItem 
-									className="animated flipInX todo-list__item" 
+								<ListGroupItem
+									className="profile-todos animated flipInX todo-list__item"
 									key={todo.id}
-									style={{borderRadius: "5px"}}>
+									style={{ borderRadius: '5px' }}
+								>
 									{todo.item}
 								</ListGroupItem>
 							);
 						})}
-					</div>
-				</ListGroup>
+					</ListGroup>
+				</div>
 			);
 		} else {
 			renderToDos = (
 				<ListGroup className="todo-listgroup">
-					<ListGroupItem className="animated flipInX todo-list__item" style={{borderRadius: "5px"}}>
-						All tasks completed.
+					<ListGroupItem className="profile-todos animated flipInX todo-list__item" style={{ borderRadius: '5px', textAlign: 'center' }}>
+						All tasks completed
 					</ListGroupItem>
 				</ListGroup>
 			);
@@ -200,7 +199,6 @@ class Profile extends React.Component {
 							</Col>
 						);
 					})}
-					{/* </Row> */}
 				</div>
 			);
 		} else if (this.state.decks.length === 1) {
@@ -225,7 +223,7 @@ class Profile extends React.Component {
 			renderDecks = (
 				<Col>
 					<ListGroup>
-						<ListGroupItem className="small_font noDisplay">No decks to display.</ListGroupItem>
+						<ListGroupItem className="noDisplay">You haven't created any decks</ListGroupItem>
 					</ListGroup>
 				</Col>
 			);
@@ -276,7 +274,7 @@ class Profile extends React.Component {
 			renderNotes = (
 				<Col>
 					<ListGroup>
-						<ListGroupItem className="noDisplay">No notes to display.</ListGroupItem>
+						<ListGroupItem className="noDisplay">You haven't created any notes</ListGroupItem>
 					</ListGroup>
 				</Col>
 			);
@@ -294,7 +292,10 @@ class Profile extends React.Component {
 					<Main>
 						<Row>
 							<Col>
-								<Jumbotron className="profile__banner animated fadeIn" style={{backgroundColor: 'transparent'}}>
+								<Jumbotron
+									className="profile__banner animated fadeIn"
+									style={{ backgroundColor: 'transparent' }}
+								>
 									<Container>
 										<h1 className="display-4">
 											Hello,{' '}
@@ -307,39 +308,33 @@ class Profile extends React.Component {
 								</Jumbotron>
 							</Col>
 						</Row>
-                        <div id="reminders-todos" className="page-block">
-                            <section className="page-block__reminders page-block--default">
-								<h2 style={{    
-									top: "-75px",
-									position: "relative"
-								}}>Reminders</h2>
-                                {renderReminders}
-                                <Link to="/reminder">
-                                    <Button className="profile-btns" color="info">
-                                        View reminders
-                                    </Button>
-                                </Link>
-                            </section>
-                            <section className="page-block__todos page-block--default">
-								<h2 style={{
-									top: "-75px",
-									position: "relative"
-								}}>To-Dos</h2>
-                                {renderToDos}
-                                <Link to="/todo">
-                                    <Button className="profile-btns" color="info">
-                                        View tasks
-                                    </Button>
-                                </Link>
-                            </section>
-                        </div>
+						<div id="reminders-todos" className="page-block">
+							<section className="page-block__reminders page-block--clear">
+								<h2>Reminders</h2>
+								{renderReminders}
+								<Link to="/reminder">
+									<button className="profile-btns">
+										View reminders
+									</button>
+								</Link>
+							</section>
+							<section className="page-block__todos page-block--clear">
+								<h2>To-Dos</h2>
+								{renderToDos}
+								<Link to="/todo">
+									<button className="profile-btns">
+										View tasks
+									</button>
+								</Link>
+							</section>
+						</div>
 						<h2>Recent Decks</h2>
 						<section className="page-block page-block--default">
+							{renderDecks}
 							<Link to="/decks">
-								{renderDecks}
-								<Button className="profile-btns" color="info">
+								<button className="profile-btns" style={{marginTop: "25px"}}>
 									View decks
-								</Button>
+								</button>
 							</Link>
 						</section>
 						<h2>Recent Notes</h2>
@@ -347,9 +342,9 @@ class Profile extends React.Component {
 							{/************** Display existing decks ****************/}
 							{renderNotes}
 							<Link to="/notes">
-								<Button className="profile-btns" color="info">
+								<button className="profile-btns" style={{marginTop: "25px"}}>
 									View notes
-								</Button>
+								</button>
 							</Link>
 						</section>
 					</Main>
