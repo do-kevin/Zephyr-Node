@@ -1,6 +1,12 @@
 $primary0: hsla(214, 100%, 96%, 1);
 $grey5: hsla(220, 15%, 23%, 1);
 
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 html {
 	overflow: hidden;
 	height: 100%;
