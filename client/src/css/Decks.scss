@@ -201,9 +201,9 @@ $primary5: hsla(214, 100%, 50%, 1);
 .decks-not-found-wrapper {
 	max-width: 500px;
 	min-width: 180px;
-	margin: 20px auto 20px auto;
+	margin: 20px auto;
 	.decks-not-found {
-		padding: 50px 50px;
+		padding: 50px;
 		border: 1px solid $danger5;
 		border-bottom: 2px solid $danger5;
 		border-radius: 10px;
