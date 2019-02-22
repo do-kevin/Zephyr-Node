@@ -598,7 +598,7 @@ class Reminder extends Component {
                         </Title>
                         <hr style={{marginBottom: "-2px"}}/>
                         <CardText>
-                          <p style={{color: 'hsla(180, 85%, 35%, 1)'}}>
+                          <p style={{color: 'hsla(180, 85%, 35%, 1)', fontWeight: 500}}>
                             {moment(item.date).format("ddd, MMMM D")} at{" "}
                             {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mma")}
                           </p>
