@@ -12,6 +12,8 @@ const db = require("./models"),
 
 // Setup ---------------------------------------- /
 
+require('dotenv').config();
+
 // Server port
 const PORT = process.env.PORT || 3001,
   // Express app

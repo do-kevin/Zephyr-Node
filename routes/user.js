@@ -28,7 +28,7 @@ module.exports = (router) => {
             .then((user) => {
                 const { dataValues: userData } = user,
                     { id, name, username, password: passwordHash } = userData;
-                console.log("Password Hash:", passwordHash);
+                // console.log("Password Hash:", passwordHash);
                 bcrypt.compare(password, passwordHash, (err, compareRes) => {
                     if (compareRes) {                        
                         res.status(200).json({ id, name, username });

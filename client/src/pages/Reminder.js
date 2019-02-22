@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import moment from "moment-timezone";
 import axios from "axios";
 
@@ -20,9 +20,115 @@ import {
   Row
 } from "reactstrap";
 import DateTimePicker from "react-datetime-picker";
-import "../css/Reminder.css";
+import styled from 'styled-components';
 
-class Reminder extends React.Component {
+import "../css/Reminder.scss";
+
+const Menu = styled.div`
+  #sidebar {
+    top: 0;
+  }
+  .sidebar-nav__link--reminders {
+    background: hsla(214, 100%, 96%, 1);
+    box-shadow: 0px 2px 1px #888, 0px -2px 1px #888;
+    border-left: 5px solid hsla(220, 15%, 23%, 1);
+  }
+  .sidebar-nav__link--reminders .sidebar-nav__text {
+    color: black;
+  }
+`;
+
+const Title = styled.section`
+  .card-title {
+    font-size: 36px;
+    margin-bottom: -25px;
+  }
+`;
+
+let dateInputPx = 364;
+
+const Calendar = styled.section`
+  .react-datetime-picker__wrapper {
+    width: 320px;
+    border: none;
+    @media (max-width: ${dateInputPx}px) {
+      position: relative;
+      left: -46px;
+    }
+  }
+  .react-datetime-picker__inputGroup__input {
+    background: hsl(0, 0%, 99%);
+    border-bottom: 2px solid hsl(0, 0%, 77%);
+    margin: 0 1px;
+    box-shadow: inset 0 1px 10px 2px hsl(0, 0%, 90%);
+    outline: none !important;
+    border-radius: 5px;
+    font-weight: 400;
+    padding: 0 5px;
+    @media (max-width: ${dateInputPx}px) {
+      font-weight: 400;
+    }
+  }
+  .react-datetime-picker__clear-button {
+    box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+    border: 1px solid red;
+    border-top: 3px solid red;
+    outline: none !important;
+    border-radius: 5px;
+    margin-left: 7px;
+  }
+  .react-datetime-picker__clear-button:hover, .react-datetime-picker__clear-button:active {
+    outline: none !important;
+    border-radius: 5px;
+    transition: box-shadow 150ms;
+    box-shadow: 0 7px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+    position: relative;
+    top: -1px;
+  } 
+  .react-datetime-picker__calendar-button {
+    box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+    border: 1px solid dodgerblue;
+    border-top: 3px solid dodgerblue;
+    outline: none !important;
+    border-radius: 5px;
+    margin-left: 7px;
+  }
+  .react-datetime-picker__calendar-button:hover, .react-datetime-picker__calendar-button:active {
+    outline: none !important;
+    border-radius: 5px;
+    transition: box-shadow 150ms;
+    position: relative;
+    top: -1px;
+    box-shadow: 0 7px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+  } 
+  .react-datetime-picker--open .react-datetime-picker__calendar-button {
+    outline: none !important;
+    border-top: 1px solid dodgerblue;
+    border-bottom: 4px solid dodgerblue;
+    border-radius: 5px;
+    transition: box-shadow 150ms;
+    position: relative;
+    top: -1px;
+    box-shadow: 0 7px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+  }
+  .react-calendar {
+    box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
+    margin-top: 7px;
+    margin-bottom: 15px;
+    @media (max-width: 430px) {
+      left: -46px;
+      top: 7px;
+      position: relative;
+      margin: auto;
+      width: 300px;
+    }
+  .react-calendar__navigation {
+      border-top: 5px solid dodgerblue;
+    }
+  }
+`;
+
+class Reminder extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -40,8 +146,6 @@ class Reminder extends React.Component {
             editingObj: {}, 
             userId: null
         };
-    
-        this.toggle = this.toggle.bind(this);
       }
     
     componentDidMount() {
@@ -84,7 +188,7 @@ class Reminder extends React.Component {
       });
     };
 
-    toggle() {
+    toggle = () => {
         this.setState({
             modal: !this.state.modal
         });
@@ -366,17 +470,17 @@ class Reminder extends React.Component {
     if (this.state.modal && this.state.currentModal === "create") {
       modalDisplay = (
         <ModalFooter>
-          <Button color="primary" onClick={this.saveEvent}>
-            Save
-          </Button>
+          <button className="reminders-btn reminders-btn--primary" color="primary" onClick={this.saveEvent}>
+            Save reminder
+          </button>
         </ModalFooter>
       );
     } else if (this.state.modal && this.state.currentModal === "edit") {
       modalDisplay = (
-        <ModalFooter>
-          <Button color="primary" onClick={this.saveEventChanges}>
-            Save Changes
-          </Button>
+        <ModalFooter style={{justifyContent: "center"}}>
+          <button className="reminders-btn reminders-btn--primary" color="primary" onClick={this.saveEventChanges}>
+            Save changes
+          </button>
         </ModalFooter>
       );
     }
@@ -385,7 +489,7 @@ class Reminder extends React.Component {
     let alertOpts;
     if (this.state.sendReminder) {
       alertOpts = (
-        <FormGroup>
+        <FormGroup className="select-time-group">
           <Input
             type="select"
             name="select"
@@ -395,35 +499,30 @@ class Reminder extends React.Component {
             <option
               value="0"
               selected={this.state.alertTime === 0 ? "selected" : ""}
-              className="select-dropdown"
             >
               At time of the event
             </option>
             <option
               value="15"
               selected={this.state.alertTime === 15 ? "selected" : ""}
-              className="select-dropdown"
             >
               15 mins before event
             </option>
             <option
               value="30"
               selected={this.state.alertTime === 30 ? "selected" : ""}
-              className="select-dropdown"
             >
               30 mins before event
             </option>
             <option
               value="60"
               selected={this.state.alertTime === 60 ? "selected" : ""}
-              className="select-dropdown"
             >
               1 hour before event
             </option>
             <option
               value="120"
               selected={this.state.alertTime === 120 ? "selected" : ""}
-              className="select-dropdown"
             >
               2 hours before event
             </option>
@@ -439,7 +538,7 @@ class Reminder extends React.Component {
     if (this.state.item === "" && this.state.saveClicked) {
       validation = (
         <div>
-          <p className="validation">Please fill required(*) fields</p>
+          <p className="validation">The reminder requires a title</p>
         </div>
       );
     } else {
@@ -450,11 +549,9 @@ class Reminder extends React.Component {
     let phoneRequest;
     if (!this.state.phoneNumberSaved && this.state.sendReminder) {
       phoneRequest = (
-        <Row style={{ margin: "auto" }}>
+      <Row style={{ margin: "auto", maxWidth: "421px", position: "relative", left: "9px" }}>
           <Col>
-            <label>Enter Phone Number:</label>
-          </Col>
-          <Col>
+            <label>Enter phone number</label>
             <input
               type="tel"
               className="phone-input"
@@ -473,19 +570,18 @@ class Reminder extends React.Component {
         {/* Logout Redirection */}
         {this.props.handleUserRedirect()}
 
-        <Sidebar handleUserLogout={this.props.handleUserLogout} />
+        <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
 
-        <div 
+        <main 
             className="container">
           <div className="row">
-            <Card className="add-event-btn">
-            <Button color="warning" onClick={this.createEvent}>
-            <i className="fas fa-plus"></i>{" "}Event
-            </Button>
+            <Card className="event-btn-container">
+            <button className="reminders-btn reminders-btn--dark" onClick={this.createEvent}>
+            <i className="fas fa-plus"></i>{" "}Add Event
+            </button>
             </Card>
           </div>
           <br />
-          {/* <div className="row"> */}
             <div id="wrapper">
               {/**************Display of existing events****************/}
               {this.state.events.map((item, index) => {
@@ -495,29 +591,33 @@ class Reminder extends React.Component {
                       <Card 
                       body
                       className="event-item animated lightSpeedIn">
-                        <CardTitle>{item.item}</CardTitle>
-                        <hr />
+                        <Title>
+                          <CardTitle>
+                            {item.item}
+                          </CardTitle>
+                        </Title>
+                        <hr style={{marginBottom: "-2px"}}/>
                         <CardText>
-                          <p>{item.note}</p>
-                          <p>
-                            {moment(item.date).format("MMMM D")} at{" "}
-                            {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mm A")}
+                          <p style={{color: 'hsla(180, 85%, 35%, 1)', fontWeight: 500}}>
+                            {moment(item.date).format("ddd, MMMM D")} at{" "}
+                            {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mma")}
                           </p>
+                          <p>{item.note}</p>
                         </CardText>
                         <div>
-                          <Button
-                            color="primary"
+                          <button
+                            style={{marginRight: "10px"}}
+                            className="reminders-btn reminders-btn--primary"
                             onClick={() => this.editEvent(item.id, index)}
                           >
-                            <i className="fas fa-edit"></i>
-                          </Button>
-                          {" "}
-                          <Button
-                            color="danger"
+                            <i className="fas fa-edit"/> EDIT
+                          </button>
+                          <button
+                            className="delete-reminder-btn"
                             onClick={() => this.deleteEvent(item.id)}
                           >
-                            <i className="fas fa-trash-alt"></i>
-                          </Button>
+                            <i className="fas fa-trash-alt"/> DELETE
+                          </button>
                         </div>
                       </Card>
                     </Col>
@@ -525,9 +625,7 @@ class Reminder extends React.Component {
                 );
               })}
             </div>
-            
-          {/* </div> */}
-        </div>
+        </main>
 
         <Modal 
             isOpen={this.state.modal} 
@@ -538,33 +636,40 @@ class Reminder extends React.Component {
             <Form
                 className="modal-form">
               <FormGroup>
-                <Label for="item">Title*</Label>
-                <Input
+                <Label for="item">Title</Label>
+                <input
                   type="text"
-                  id="item"
+                  className="create-reminder-input"
                   value={this.state.item}
                   onChange={this.handleSubjectChange}
                 />
+                {validation}
               </FormGroup>
               <FormGroup>
-                <Label for="notes">Description</Label>
-                <Input
+                <Label for="notes">Description (optional)</Label>
+                <input
                   type="textarea"
-                  id="notes"
+                  className="create-reminder-input"
                   value={this.state.note}
                   onChange={this.handleNoteChange}
                 />
               </FormGroup>
-              <p>Date & Time (PST)</p>
-              <DateTimePicker
-                className="date-format"
-                maxDetail="minute"
-                onChange={this.handleDateChange}
-                value={this.state.date}
-              />
+              <hr/>
+              <p style={{marginBottom: 0}}>Date & Time (PST)</p>
+              <Calendar>
+                <DateTimePicker
+                  className="date-format"
+                  maxDetail="minute"
+                  onChange={this.handleDateChange}
+                  value={this.state.date}
+                />
+              </Calendar>
               <Row className="alert-format">
                 <Col>
-                  Send Alert
+                  <span style={{
+                    position: "relative",
+                    top: "5px"
+                  }}>Send Alert</span>
                 </Col>
                 <Col className="toggle-format">
                   <Label className="switch">
@@ -580,7 +685,6 @@ class Reminder extends React.Component {
             </Form>
             {alertOpts}
             {phoneRequest}
-            {validation}
           </ModalBody>
           {modalDisplay}
         </Modal>
