@@ -156,17 +156,18 @@ class Setting extends React.Component {
 							</aside>
 							<div className="phonenumber__form">
 								<Label for="phone">Phone number</Label>
-								<Input
+								<input
 									type="text"
+									className="settings-phonenumber-input"
 									style={{ marginBottom: '10px' }}
 									value={this.state.currentPhone}
 									onChange={this.handlePhoneChange}
 									placeholder="Ex: (555) 555-0100"
 								/>
 								{notification}
-								<Button color="primary" onClick={this.saveChanges}>
+								<button className="save-phonenumber-btn"onClick={this.saveChanges}>
 									Save your phone number
-								</Button>
+								</button>
 							</div>
 						</section>
 					</form>
