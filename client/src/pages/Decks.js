@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Row, Col, Card, Button } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 

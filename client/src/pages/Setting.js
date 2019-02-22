@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import axios from 'axios';
-import { Button,Label, Input } from 'reactstrap';
+import { Label, Input } from 'reactstrap';
 import styled from 'styled-components';
 
 import Sidebar from '../components/Sidebar';
