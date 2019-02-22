@@ -137,10 +137,12 @@ class Note extends React.Component {
 					right: "-80%"}}>
 				<Link smooth to="/notes#save-note-btn">
 					<button
+						className="scrolldown-btn"
 						style={{
 							background: 'transparent',
 							padding: 0,
 							borderRadius: '50%',
+    						boxShadow: "0 0 10px hsla(220, 17%, 80%, 1)",
 							border: 'none',
 							outline: 'none',
 							cursor: 'pointer',
@@ -148,7 +150,7 @@ class Note extends React.Component {
 							left: '-6px'
 						}}
 					>
-						<i id="slide-away-notes-btn" className="fas fa-chevron-circle-down animated slideInDown" />
+						<i id="scrolldown-btn__icon" className="fas fa-chevron-circle-down animated slideInDown" />
 					</button>
 				</Link>
 				</nav>
@@ -195,14 +197,14 @@ class Note extends React.Component {
 						formats={this.formats}
 						style={{ whiteSpace: 'normal !important' }}
 					/>
-					<Button
+					<button
 						id="save-note-btn"
 						color="primary"
 						onClick={this.createNote}
 						style={{ margin: '70px 0 30px 0' }}
 					>
-						Save <i className="fas fa-pen-alt" />
-					</Button>
+						<i className="fas fa-pen-alt" /> Save note
+					</button>
 				</div>
 			</div>
 		);
