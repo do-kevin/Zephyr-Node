@@ -143,15 +143,18 @@ class ChooseDeck extends React.Component {
 			});
 		} else {
 			renderDecks = (
-				<div style={{ margin: '20px auto 0 auto' }}>
-					<h3 className="animated flipInX" style={{ color: 'red' }}>
-						Deck not found
-					</h3>
+				<div className="decks-not-found-wrapper">
+					<section className="decks-not-found animated fadeIn">
+						<i className="decks-not-found__icon fas fa-binoculars animated delay-2s pulse" />{' '}
+						<span className="decks-not-found__text">
+							Deck was not found. You have entered an invalid tag name.
+						</span>
+					</section>
 				</div>
 			);
 		}
 		return (
-			<div style={{paddingTop: "80px"}}>
+			<div style={{ paddingTop: '80px' }}>
 				{this.props.handleUserRedirect()} {/* Logout redirection */}
 				<Menu>
 					<Sidebar handleUserLogout={this.props.handleUserLogout} style={{ background: 'red' }} />
@@ -161,10 +164,10 @@ class ChooseDeck extends React.Component {
 						<Search handleFunction={this.searchTags} viewPublicDecks={this.showMyDecks} />
 					</div>
 					<main id="deck-list">
-						<section className="row deck-list__add-deck-container" style={{marginBottom: "50px"}}>
-								<button className="deck-list__create-btn" onClick={this.toggle}>
-									<i className="fas fa-plus" /> Add deck
-								</button>
+						<section className="row deck-list__add-deck-container" style={{ marginBottom: '50px' }}>
+							<button className="deck-list__create-btn" onClick={this.toggle}>
+								<i className="fas fa-plus" /> Add deck
+							</button>
 						</section>
 
 						{/* //=================== Render Decks ==================// */}

@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import {
-  Button,
   Modal,
   ModalHeader,
   ModalBody,
@@ -90,7 +89,12 @@ class DeckModal extends React.Component {
     if (this.state.showTagsValidation === false) {
       displayTagValid = "";
     } else {
-      displayTagValid = (<p style={{color: "red"}}>Minimum one character is required.</p>);
+      displayTagValid = (<p 
+        style={{
+          color: 'hsla(3, 100%, 50%, 1)'
+        }}>
+          Tags field needs minimum one character.
+        </p>);
     }
 
     return (
@@ -128,7 +132,16 @@ class DeckModal extends React.Component {
                   className="create-deck-input"
                   value={this.state.deckTags}
                   onChange={this.handleTags}
+                  maxLength="50"
+                  placeholder="Ex: tag_name tag_name2"
                 />
+                <p
+                  style={{
+                    lineHeight: 1.2, 
+                    fontSize: '14px'
+                  }}>
+                  No hashtags are required. <br/>To make multiple tags, include a space between each word. 
+                </p>
                 {displayTagValid}
               </FormGroup>
             </Form>
