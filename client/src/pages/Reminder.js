@@ -470,17 +470,17 @@ class Reminder extends Component {
     if (this.state.modal && this.state.currentModal === "create") {
       modalDisplay = (
         <ModalFooter>
-          <Button color="primary" onClick={this.saveEvent}>
+          <button className="reminders-btn reminders-btn--primary" color="primary" onClick={this.saveEvent}>
             Save reminder
-          </Button>
+          </button>
         </ModalFooter>
       );
     } else if (this.state.modal && this.state.currentModal === "edit") {
       modalDisplay = (
         <ModalFooter style={{justifyContent: "center"}}>
-          <Button color="primary" onClick={this.saveEventChanges}>
+          <button className="reminders-btn reminders-btn--primary" color="primary" onClick={this.saveEventChanges}>
             Save changes
-          </Button>
+          </button>
         </ModalFooter>
       );
     }
@@ -575,10 +575,10 @@ class Reminder extends Component {
         <main 
             className="container">
           <div className="row">
-            <Card className="add-event-btn">
-            <Button color="warning" onClick={this.createEvent}>
+            <Card className="event-btn-container">
+            <button className="reminders-btn reminders-btn--dark" onClick={this.createEvent}>
             <i className="fas fa-plus"></i>{" "}Add Event
-            </Button>
+            </button>
             </Card>
           </div>
           <br />
@@ -598,20 +598,20 @@ class Reminder extends Component {
                         </Title>
                         <hr style={{marginBottom: "-2px"}}/>
                         <CardText>
-                          <p style={{color: 'hsl(192, 100%, 43%)'}}>
+                          <p style={{color: 'hsla(180, 85%, 35%, 1)'}}>
                             {moment(item.date).format("ddd, MMMM D")} at{" "}
                             {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mma")}
                           </p>
                           <p>{item.note}</p>
                         </CardText>
                         <div>
-                          <Button
+                          <button
                             style={{marginRight: "10px"}}
-                            color="primary"
+                            className="reminders-btn reminders-btn--primary"
                             onClick={() => this.editEvent(item.id, index)}
                           >
                             <i className="fas fa-edit"/> EDIT
-                          </Button>
+                          </button>
                           <button
                             className="delete-reminder-btn"
                             onClick={() => this.deleteEvent(item.id)}
@@ -637,9 +637,9 @@ class Reminder extends Component {
                 className="modal-form">
               <FormGroup>
                 <Label for="item">Title</Label>
-                <Input
+                <input
                   type="text"
-                  id="item"
+                  className="create-reminder-input"
                   value={this.state.item}
                   onChange={this.handleSubjectChange}
                 />
@@ -647,9 +647,9 @@ class Reminder extends Component {
               </FormGroup>
               <FormGroup>
                 <Label for="notes">Description (optional)</Label>
-                <Input
+                <input
                   type="textarea"
-                  id="notes"
+                  className="create-reminder-input"
                   value={this.state.note}
                   onChange={this.handleNoteChange}
                 />
