@@ -191,29 +191,28 @@ class Todo extends React.Component {
             backdrop={this.state.backdrop}
           >
             <ModalHeader toggle={this.toggle} close={closeBtn}>
-              New Task
+              Creating to-do
             </ModalHeader>
             <ModalBody>
               <Form onSubmit={this.saveToDo}>
-                <Input
+                <textarea
+                  className="todo-input"
                   type="textarea"
                   name="text"
                   onChange={this.handleChange}
-                  maxLength="130"
+                  maxLength="136"
                 />
                 <hr />
-                <p className={this.state.validationClass}>
-                  Please fill in required field.
+                <p className={this.state.validationClass} style={{width: '214px !important'}}>
+                  Please fill in the required field.
                 </p>
-                <Button
-                  outline
-                  color="info"
+                <button
+                  className="todo-btn todo-btn--primary push-right"
                   type="submit"
                   value="Submit"
-                  className="pull-right"
                 >
-                  Add
-                </Button>{" "}
+                  Save task
+                </button>{" "}
               </Form>
             </ModalBody>
           </Modal>
@@ -233,30 +232,29 @@ class Todo extends React.Component {
             backdrop={this.state.backdrop}
           >
             <ModalHeader toggle={this.toggle} close={closeBtn}>
-              Edit Task
+              Edit task
             </ModalHeader>
             <ModalBody>
               <Form onSubmit={this.saveEdit}>
-                <Input
+                <textarea
                   type="textarea"
+                  className="todo-input"
                   name="text"
                   value={this.state.task}
                   onChange={this.handleChange}
-                  maxLength="130"
+                  maxLength="126"
                 />
                 <hr />
                 <p className={this.state.validationClass}>
-                  Please fill in required field.
+                  Please fill in the required field.
                 </p>
-                <Button
-                  outline
-                  color="info"
+                <button
                   type="submit"
                   value="Submit"
-                  className="pull-right"
+                  className="todo-btn todo-btn--primary push-right"
                 >
-                  Edit
-                </Button>{" "}
+                  Save changes
+                </button>{" "}
               </Form>
             </ModalBody>
           </Modal>
@@ -274,7 +272,14 @@ class Todo extends React.Component {
           <p className="time_date">{this.state.time_date}</p>
           <Card className="text-center todo-list">
             <CardBody>
-              <CardTitle><h3>To-do List</h3></CardTitle>
+              <button
+                className="todo-btn todo-btn--dark"
+                onClick={this.createToDo}
+                name="create"
+                style={{marginBottom: '25px'}}
+              >
+                <i className="fas fa-plus" /> Add to-do
+              </button>
               <div className="card-text">
                 {/************* Display Existing Tasks Start *************/}
                 <div>
@@ -284,25 +289,22 @@ class Todo extends React.Component {
                       <ListGroup>
                         <ListGroupItem className="animated flipInX todo-list__item" key={todo.id}>
                           <span className="task">{todo.item}</span>
-                          <span className="pull-right">
-                            <Button
-                              outline
-                              color="info"
+                          <span className="push-right">
+                            <button
                               className="edit-task-btn"
                               style={{border: "none"}}
                               onClick={() => this.editToDo(todo.item, todo.id)}
                               name="edit"
                             >
                               <i className="fas fa-edit" /> <span className="edit-span">Edit task</span>
-                            </Button>{" "}
-                            <Button
-                              color="success"
-                              style={{borderRadius: "50%", height: "41px"}}
+                            </button>{" "}
+                            <button
+                              className="check-btn"
                               onClick={() => this.completeToDo(todo.id)}
                               name="complete"
                             >
                               <i className="fas fa-check" />
-                            </Button>
+                            </button>
                           </span>
                         </ListGroupItem>
                       </ListGroup>
@@ -312,14 +314,6 @@ class Todo extends React.Component {
                 {/************* Display Existing Tasks End *************/}
               </div>
               {/************* Create Task/Profile Buttons *************/}
-              <Button
-                color="primary"
-                onClick={this.createToDo}
-                style={{marginTop: "25px"}}
-                name="create"
-              >
-                Create Task
-              </Button>
             </CardBody>
           </Card>
         </main>
