@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
-import { Button } from 'reactstrap';
 import moment from 'moment';
 import axios from 'axios';
 import { HashLink as Link } from 'react-router-hash-link';

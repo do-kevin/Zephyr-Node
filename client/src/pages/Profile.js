@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardBody, Jumbotron, Container, Row, Col, Button, ListGroup, ListGroupItem } from 'reactstrap';
+import { Jumbotron, Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
 import moment from 'moment';
 import axios from 'axios';
 import styled from 'styled-components';
