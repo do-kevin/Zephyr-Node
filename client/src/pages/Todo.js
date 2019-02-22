@@ -269,7 +269,7 @@ class Todo extends React.Component {
           {/* Logout redirection */}
           {this.props.handleUserRedirect()}
           {modal}
-          <p className="time_date">{this.state.time_date}</p>
+          <p style={{color: 'hsla(180, 85%, 35%, 1)', fontWeight: 500}}className="time_date">{this.state.time_date}</p>
           <Card className="text-center todo-list">
             <CardBody>
               <button
