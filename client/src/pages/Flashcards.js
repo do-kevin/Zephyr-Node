@@ -400,7 +400,7 @@ class PlayCards extends React.Component {
 								<CardBody>
 									<CardTitle>
 										<label htmlFor="front">Front</label>
-										<input
+										<textarea
 											className="flashcard__input"
 											value={this.state.front}
 											onChange={this.handleFrontInputChange}
@@ -412,7 +412,7 @@ class PlayCards extends React.Component {
 									</CardTitle>
 									<CardText>
 										<label htmlFor="back">Back</label>
-										<input
+										<textarea
 											className="flashcard__input"
 											value={this.state.back}
 											onChange={this.handleBackInputChange}
@@ -456,7 +456,8 @@ class PlayCards extends React.Component {
 										<CardBody>
 											<CardTitle>
 												Front
-												<input
+												<textarea
+													type="textarea"
 													className="flashcard__input"
 													value={this.state.flashcards[index].front}
 													onChange={(event) => this.handleFrontEdit(index, event)}
@@ -465,7 +466,8 @@ class PlayCards extends React.Component {
 											</CardTitle>
 											<CardText>
 												Back
-												<input
+												<textarea
+													type="textarea"
 													className="flashcard__input"
 													value={this.state.flashcards[index].back}
 													onChange={(event) => this.handleBackEdit(index, event)}
