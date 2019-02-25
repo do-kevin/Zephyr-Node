@@ -103,6 +103,7 @@ $primary5: hsla(214, 100%, 50%, 1);
 }
 
 .phone-input {
+    border: transparent !important;
 	border-radius: 5px !important;
 	border-bottom: 2px solid hsla(220, 17%, 60%, 1);
 	box-shadow: inset 0 0 10px $grey4;
@@ -149,7 +150,7 @@ $primary5: hsla(214, 100%, 50%, 1);
 .create-reminder-input {
 	width: 100%;
 	border-radius: 7px;
-	border: transparent;
+	border: transparent !important;
 	background: $greyAlt;
 	box-shadow: inset 0 0 10px $grey4;
 	border-bottom: 2px solid hsla(220, 17%, 60%, 1);

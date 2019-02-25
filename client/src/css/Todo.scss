@@ -123,7 +123,7 @@ $greyAlt: hsla(220, 17%, 95%, 1);
     width: 100%;
     height: 70px;
 	border-radius: 7px;
-	border: transparent;
+	border: transparent !important;
 	background: $greyAlt;
 	border-bottom: 2px solid hsla(220, 17%, 60%, 1);
 	box-shadow: inset 0 0 10px $grey4;
