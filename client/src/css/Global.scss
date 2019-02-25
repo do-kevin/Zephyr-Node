@@ -7,8 +7,8 @@ html {
 }
 
 body {
-    height: 100%;
-    color: $grey5;
+	height: 100%;
+	color: $grey5;
 	background: $primary0;
 	transition: all 0.3s ease;
 	transition: margin-left 150ms linear;
@@ -58,4 +58,17 @@ body {
 
 li {
 	text-align: left;
+}
+
+$grey5: hsla(220, 15%, 23%, 1);
+$grey4: hsla(220, 15%, 42%, 1);
+
+.custom-footer {
+	background-color: hsl(0, 0%, 17%) !important;
+	height: 74px;
+	background-image: linear-gradient(235deg, $grey4, $grey5);
+	text-align: center;
+	padding-top: 8px;
+	padding-bottom: 2px;
+	box-shadow: 0 0 4px black;
 }
