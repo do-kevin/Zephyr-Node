@@ -19,7 +19,7 @@ class Search extends React.Component {
 
 	render() {
 		return (
-			<form className="search-form" style={{ margin: 'auto' }}>
+			<form className="search-form animated fadeIn" style={{ margin: 'auto' }}>
 				<input
 					type="search"
 					aria-label="Search"

@@ -2,6 +2,7 @@ $grey5: hsla(220, 15%, 23%, 1);
 $grey4: hsla(220, 15%, 42%, 1);
 $grey3: hsla(220, 17%, 61%, 1);
 $grey2: hsla(220, 17%, 80%, 1);
+$grey2half: hsla(220, 17%, 90%, 1);
 $grey1: hsla(220, 20%, 98%, 1);
 $alternate5: hsla(180, 85%, 50%, 1);
 
@@ -12,7 +13,66 @@ $alternate5: hsla(180, 85%, 50%, 1);
 	box-shadow: 0 2px 8px black;
     z-index: 3;
     padding-top: 8px;
-    padding-bottom: 10px;
+	padding-bottom: 10px;
+	
+	&__right-side {
+		display: grid;
+		grid-template-columns: 49px 70px 1fr; 
+		grid-column-gap: 45px;
+	}
+	&__btns-home {
+		transition: border-bottom 200ms;
+		width: 49px;
+		padding: 0 0;
+		cursor: pointer;
+		background: transparent;
+		color: $grey2half;
+		border: none;
+		&:focus {
+			outline: none;
+		}
+	}
+	&__btns-features {
+		width: 70px;
+		cursor: pointer;
+		transition: border-bottom 200ms;
+		text-align: center;
+		padding-top: 8px;
+		text-decoration: none !important;
+		color: $grey2half;
+		&:hover {
+			color: $grey2half;
+		}
+	}
+}
+
+.features-call-action-btn {
+	font-size: 32px;
+	text-decoration: none !important;
+	color: $grey5;
+	text-shadow: 1px 1px 5px $grey3;
+	&:hover {
+		color: inherit;
+	}
+	i {
+		font-size: 50px;
+		vertical-align: bottom;
+		position: relative;
+		top: 3px;
+		animation: pointRight 1500ms ease-in-out infinite;
+	}
+	&:active {
+		color: $grey1;
+	}
+}
+
+@keyframes pointRight {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(3px);
+	}
 }
 
 .navbar-header {
@@ -65,9 +125,9 @@ $alternate5: hsla(180, 85%, 50%, 1);
 	@media (max-width: 850px) {
 		margin: 0 20px 0 20px;
 	}
-	@media (max-width: 414px) {
+	@media (max-width: 459px) {
 		padding: 30px;
-		top: -87px;
+		top: -104px;
 	}
 }
 

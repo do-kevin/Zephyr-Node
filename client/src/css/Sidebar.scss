@@ -136,4 +136,7 @@ $danger5: hsla(3, 100%, 50%, 1);
 	&:active {
 		color: $danger5;
 	}
+	&:focus {
+		outline: none;
+	}
 }
