@@ -126,7 +126,7 @@ $greyAlt: hsla(220, 17%, 95%, 1);
 	border: transparent !important;
 	background: $greyAlt;
 	border-bottom: 2px solid hsla(220, 17%, 60%, 1);
-	box-shadow: inset 0 0 10px $grey4;
+	box-shadow: inset 0 2px 7px $grey3 !important;
 	color: $grey5;
     position: relative;
     font-size: 16px;

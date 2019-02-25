@@ -3,6 +3,7 @@ $grey5: hsla(220, 15%, 23%, 1);
 $grey4: hsla(220, 15%, 42%, 1);
 $grey3: hsla(220, 17%, 61%, 1);
 $grey1: hsla(220, 20%, 98%, 1);
+$greyAlt: hsla(220, 17%, 95%, 1);
 $primary8: hsla(214, 100%, 30%, 1);
 $primary7: hsla(214, 100%, 35%, 1);
 $primary6: hsla(214, 100%, 40%, 1);
@@ -10,16 +11,17 @@ $primary5: hsla(214, 100%, 50%, 1);
 
 .settings {
 	margin: 0 auto 15px;
+	color: $grey5;
 	height: 100%;
 	min-width: 310px;
 	max-width: 900px;
-	background: $grey1;
+	background: $greyAlt;
 	border-radius: $borderRadius;
 	box-shadow: 0 1px 7px hsl(0, 0%, 49%), 0 1px 1px hsl(0, 0%, 73%);
 	&__heading1 {
 		text-align: center;
 		margin-bottom: 25px;
-		color: $grey3;
+		color: $grey4;
 	}
 	@media (max-width: 900px) {
 		margin-left: 5px;
@@ -113,7 +115,7 @@ $primary5: hsla(214, 100%, 50%, 1);
 	border-radius: 7px;
 	border: transparent;
 	background: $grey1;
-	box-shadow: inset 0 0 10px $grey4;
+	box-shadow: inset 0 2px 7px $grey3 !important;
 	border-bottom: 1px solid hsla(220, 17%, 70%, 1);
 	color: $grey5;
 	position: relative;
