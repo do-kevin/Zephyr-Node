@@ -152,6 +152,7 @@ class Home extends Component {
 				renderDecks = this.state.decks.map((item, index) => {
 					return (
 						<Col key={item.id}>
+							<a style={{textDecoration: "none"}} href="#render-decks">
 							<div className="decks decks-primary animated bounceIn">
 								<div className="h1-homepage-wrappers">
 									<h1 className="deck-title text-center" onClick={() => this.getFlashcards(item.id)}>
@@ -172,6 +173,7 @@ class Home extends Component {
 									})}
 								</div>
 							</div>
+							</a>
 						</Col>
 					);
 				});
