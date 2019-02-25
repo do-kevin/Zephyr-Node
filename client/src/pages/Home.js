@@ -190,7 +190,6 @@ class Home extends Component {
 				});
 			}
 		} else if (this.state.showCards) {
-			// document.querySelector('#render-decks').style.height = 'auto';
 			renderDecks = (
 				<Carousel className="carousel">
 					{this.state.flashcard.map((item) => {
@@ -273,8 +272,7 @@ class Home extends Component {
 						/>
 					) : (
 						<h1
-							className="text-center display-3 animated fadeIn"
-							style={{ fontWeight: 500, color: 'hsla(220, 15%, 23%, 1)', margin: 'auto' }}
+							className="text-center display-3 animated fadeIn features-title"
 						>
 							Features
 						</h1>
@@ -285,13 +283,14 @@ class Home extends Component {
 						<Row id="render-decks" className="animated fadeIn">
 							{renderDecks}
 						</Row>
-						<div style={{ textAlign: 'center', marginBottom: '50px'}}>
+						<div style={{ textAlign: 'center', marginBottom: '50px' }}>
 							<a
 								className="features-call-action-btn"
 								onClick={this.showFeatures}
 								href="#features-heading"
+								style={!this.state.search ? { position: 'relative', top: '-70px' } : { position: 'static' }}
 							>
-								Features<i className="fas fa-angle-double-right"/>
+								Features<i className="fas fa-angle-double-right" />
 							</a>
 						</div>
 					</Tags>

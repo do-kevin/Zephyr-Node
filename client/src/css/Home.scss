@@ -171,20 +171,6 @@ $alternate5: hsla(180, 85%, 50%, 1);
 	}
 }
 
-.github-btn {
-	height: 59px;
-	width: 58px;
-	border-radius: 50%;
-	&__logo {
-		height: 55px;
-		width: 55px;
-		border-radius: 50%;
-		&:hover {
-			box-shadow: inset 0 0 50px $alternate5;
-		}
-	}
-}
-
 .feature-containers {
 	width: 520px;
 	margin-bottom: 30px;
@@ -203,4 +189,10 @@ $alternate5: hsla(180, 85%, 50%, 1);
 .last-container {
 	max-width: 520px;
 	margin-bottom: 15px;
+}
+
+.features-title {
+	font-weight: 500;
+	color: hsla(220, 15%, 23%, 1);
+	margin: auto; 
 }
