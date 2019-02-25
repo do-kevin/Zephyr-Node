@@ -7,6 +7,7 @@ $primary4: hsla(214, 100%, 60%, 1);
 $success6: hsla(134, 61%, 40%, 1);
 
 $grey5: hsla(220, 15%, 23%, 1);
+$grey4: hsla(220, 15%, 42%, 1);
 $grey3: hsla(220, 17%, 61%, 1);
 $grey2: hsla(220, 17%, 80%, 1);
 $grey1: hsla(220, 20%, 98%, 1);
@@ -238,9 +239,9 @@ $warning5: hsla(44, 98%, 63%, 1);
         border: none !important;
         background-color: $grey1;
         border-radius: 7px !important;
-        border-bottom: 2px solid $grey2 !important;
         position: relative;
-        box-shadow: inset 0 0 7px $grey3;
+        border-bottom: 2px solid hsla(220, 17%, 60%, 1);
+        box-shadow: inset 0 0 10px $grey4 !important;
         height: 70px;
         &:focus {
             outline: none !important;
@@ -376,9 +377,9 @@ textarea {
     border: none !important;
     background-color: $greyAlt;
     border-radius: 7px !important;
-    border-bottom: 2px solid $grey2 !important;
+    border-bottom: 2px solid hsla(220, 17%, 60%, 1);
+	box-shadow: inset 0 0 10px $grey4;
     position: relative;
-    box-shadow: inset 0 0 7px $grey3;
     top: -5px;
 }
 
@@ -393,9 +394,9 @@ textarea {
     border: none !important;
     background-color: $greyAlt;
     border-radius: 7px !important;
-    border-bottom: 2px solid $grey2 !important;
     position: relative;
-    box-shadow: inset 0 0 7px $grey3;
+    border-bottom: 2px solid hsla(220, 17%, 60%, 1);
+	box-shadow: inset 0 0 10px $grey4;
     top: -10px;
 }
 
