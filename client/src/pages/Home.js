@@ -33,7 +33,7 @@ const HomeCarousel = styled.main`
 const Tags = styled.section`
 	.tags-box {
 		@media (min-width: 479px) {
-			margin-top: -30px;
+			top: -75px;
 		}
 	}
 `;
