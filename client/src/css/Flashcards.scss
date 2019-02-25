@@ -99,6 +99,15 @@ $alternate5: hsla(180, 85%, 50%, 1);
     }
 }
 
+.empty-deck .flippy-card {
+    @media (min-width: 359px) and (max-width: 425px) {
+        left: -7vw;
+    }
+    @media (max-width: 358px) {
+        left: 5vw;
+    }
+}
+
 .flippy-card {
     @media (min-width: 359px) and (max-width: 425px) {
         left: 7vw;
