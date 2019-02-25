@@ -82,7 +82,7 @@ class App extends Component {
 		return (
 			<main>
 				<Router>
-					<div>
+					<div style={{clear: "both"}}>
 						<Route
 							exact
 							path="/"
@@ -188,7 +188,7 @@ class App extends Component {
 						target="_blank"
 						rel="noopener noreferrer"
 						data-balloon="GitHub repository"
-						data-balloon-pos="up"
+						data-balloon-pos="left"
 					>
 						<img className="github-btn__logo" src={require('./img/github.png')} alt="github logo" />
 					</a>

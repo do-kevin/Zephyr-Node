@@ -1,3 +1,26 @@
+$danger5: hsla(3, 100%, 50%, 1);
+
+$success6: hsla(134, 61%, 40%, 1);
+$success5: hsla(123, 61%, 50%, 1);
+$success4: hsla(134, 55%, 54%, 1);
+$success3: hsla(134, 80%, 65%, 1);
+$success2: hsla(134, 70%, 77%, 1);
+$success1: hsla(134, 90%, 90%, 1);
+
+$primary8: hsla(214, 100%, 30%, 1);
+$primary7: hsla(214, 100%, 35%, 1);
+$primary6: hsla(214, 100%, 40%, 1);
+$primary5: hsla(214, 100%, 50%, 1);
+$primary4: hsla(214, 100%, 60%, 1);
+
+$grey5: hsla(220, 15%, 23%, 1);
+$grey4: hsla(220, 15%, 42%, 1);
+$grey3: hsla(220, 17%, 61%, 1);
+$grey2: hsla(220, 17%, 80%, 1);
+$grey1: hsla(220, 20%, 98%, 1);
+$greyAlt: hsla(220, 17%, 95%, 1);
+
+
 .todo-list {
 	border: none;
 	background: transparent;
@@ -32,8 +55,6 @@
 	padding-top: 10px;
 }
 
-$danger5: hsla(3, 100%, 50%, 1);
-
 .validation {
 	color: $danger5;
 	visibility: visible;
@@ -43,18 +64,8 @@ $danger5: hsla(3, 100%, 50%, 1);
 	visibility: hidden;
 }
 
-$primary8: hsla(214, 100%, 30%, 1);
-$primary7: hsla(214, 100%, 35%, 1);
-$primary6: hsla(214, 100%, 40%, 1);
-$primary5: hsla(214, 100%, 50%, 1);
-
-$grey5: hsla(220, 15%, 23%, 1);
-$grey4: hsla(220, 15%, 42%, 1);
-$grey3: hsla(220, 17%, 61%, 1);
-$grey2: hsla(220, 17%, 80%, 1);
-$grey1: hsla(220, 20%, 98%, 1);
-
 .todo-btn {
+	border: none;
 	margin: auto;
 	cursor: pointer;
 	padding: 7px 18px;
@@ -69,7 +80,7 @@ $grey1: hsla(220, 20%, 98%, 1);
 	}
 	&--primary {
 		background: $primary5;
-		border-top: 2px solid $primary6;
+		border-top: 3px solid $primary6;
 		&:active {
 			background: $primary7;
 			box-shadow: inset 0 0 5px $primary8;
@@ -86,13 +97,6 @@ $grey1: hsla(220, 20%, 98%, 1);
 		}
 	}
 }
-
-$success6: hsla(134, 61%, 40%, 1);
-$success5: hsla(123, 61%, 50%, 1);
-$success4: hsla(134, 55%, 54%, 1);
-$success3: hsla(134, 80%, 65%, 1);
-$success2: hsla(134, 70%, 77%, 1);
-$success1: hsla(134, 90%, 90%, 1);
 
 .check-btn {
     margin: auto;
@@ -120,7 +124,7 @@ $success1: hsla(134, 90%, 90%, 1);
     height: 70px;
 	border-radius: 7px;
 	border: transparent;
-	background: $grey1;
+	background: $greyAlt;
 	box-shadow: inset 0 0 7px $grey3;
 	border-bottom: 1px solid hsla(220, 17%, 70%, 1);
 	color: $grey5;

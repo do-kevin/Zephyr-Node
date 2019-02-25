@@ -56,7 +56,7 @@ const Calendar = styled.section`
     }
   }
   .react-datetime-picker__inputGroup__input {
-    background: hsl(0, 0%, 99%);
+    background: hsla(220, 17%, 95%, 1);
     border-bottom: 2px solid hsl(0, 0%, 77%);
     margin: 0 1px;
     box-shadow: inset 0 1px 10px 2px hsl(0, 0%, 90%);
@@ -556,6 +556,7 @@ class Reminder extends Component {
               className="phone-input"
               value={this.state.phone}
               onChange={this.handlePhoneChange}
+              style={{background: "hsla(220, 17%, 95%, 1)"}}
             />
           </Col>
         </Row>
