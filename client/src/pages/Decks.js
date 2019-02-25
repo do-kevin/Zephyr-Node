@@ -132,7 +132,7 @@ class ChooseDeck extends React.Component {
 											className="tag-btn"
 											onClick={(e) => this.searchTags(e, elem.tags)}
 										>
-											#{elem.tags}{' '}
+											{elem.tags}{' '}
 										</button>
 									);
 								})}
