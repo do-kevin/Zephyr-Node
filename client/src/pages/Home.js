@@ -213,7 +213,7 @@ class Home extends Component {
 			);
 		}
 		return (
-			<div style={{ height: '100%', overflow: "hidden" }}>
+			<div style={{ height: '100%', overflowX: "hidden" }}>
 				{this.props.user && <Redirect to="/profile" />}
 				<nav className="navbar justify-content-between">
 					<a
