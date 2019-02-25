@@ -99,6 +99,15 @@ $alternate5: hsla(180, 85%, 50%, 1);
     }
 }
 
+.empty-deck .flippy-card {
+    @media (min-width: 359px) and (max-width: 425px) {
+        left: -7vw;
+    }
+    @media (max-width: 358px) {
+        left: -5vw;
+    }
+}
+
 .flippy-card {
     @media (min-width: 359px) and (max-width: 425px) {
         left: 7vw;
@@ -113,7 +122,17 @@ $alternate5: hsla(180, 85%, 50%, 1);
     background: hsl(0, 0%, 100%) !important;
     box-shadow:  0 3px 7px hsl(0, 0%, 9%), 0 5px 20px hsl(0, 0%, 39%);
     overflow-y: scroll;
-    word-break: break-all;
+    word-break: break-word;
+}
+
+$warning5: hsla(44, 98%, 63%, 1);
+
+.empty-deck .flippy-front {
+    border-top: 4px solid $danger5;
+}
+
+.empty-deck .flippy-back {
+    border-top: 4px solid $warning5;
 }
 
 .flippy-front {
