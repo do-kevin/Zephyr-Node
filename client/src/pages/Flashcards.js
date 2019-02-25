@@ -388,7 +388,34 @@ class PlayCards extends React.Component {
 	render() {
 		//============== Card Stack==============//
 		const edit = this.state.edit;
-		let showCardStack;
+		let showCardStack,
+			emptyDeckValidation;
+
+		if (!this.state.flashcards.length) {
+			emptyDeckValidation = (
+				<main className="carousel__items empty-deck">
+					<div/>
+					<Flippy
+						flipOnHover={false}
+						flipOnClick={true}
+						flipDirection="horizontal"
+						ref={(r) => (this.Flippy = r)}
+						style={{ width: '400px', height: '200px' }}
+					>
+						<FrontSide style={{ backgroundColor: '#93bbde' }}>
+							<p className="flippy-text">
+								This deck currently has no flashcards.<br/>
+								Click on the <strong>Show flashcards</strong> button to start creating flashcards.
+							</p>
+						</FrontSide>
+						<BackSide style={{ backgroundColor: '#66b361' }}>
+							<p className="flippy-text">If you do not want your deck to be public, click on the <strong>Settings</strong> button next to <em>Show flashcards</em> and set the deck to private.</p>
+						</BackSide>
+					</Flippy>
+					<div/>
+			</main>
+			);
+		}
 
 		if (edit === true) {
 			showCardStack = (
@@ -429,7 +456,7 @@ class PlayCards extends React.Component {
 									className="flashcard__create-btn"
 									color="success"
 								>
-									<i className="fas fa-plus" /> Create Flashcard
+									<i className="fas fa-plus" /> Create flashcard
 								</Button>
 							</Card>
 						</Col>
@@ -639,7 +666,13 @@ class PlayCards extends React.Component {
 					<Sidebar handleUserLogout={this.props.handleUserLogout} />
 				</Menu>
 
-				<h1 className="text-center">{this.state.deckName}</h1>
+				<h1 
+					className="text-center"
+					style={{
+						marginTop: "70px"
+					}}>
+					{this.state.deckName}
+				</h1>
 				<hr />
 				<Carousel className="carousel">
 					{this.state.flashcards.map((item) => {
@@ -670,6 +703,7 @@ class PlayCards extends React.Component {
 							</main>
 						);
 					})}
+					{emptyDeckValidation}
 				</Carousel>
 				<div className="deck-options">
 					<ButtonGroup>
@@ -681,7 +715,7 @@ class PlayCards extends React.Component {
 							color="primary"
 							onClick={this.toggle}
 						>
-							Edit Flashcards
+							Show flashcards
 						</Button>
 						<Button
 							className="deck-options__deck-settings-btn"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Row, Col, Container } from 'reactstrap';
@@ -31,14 +31,14 @@ const HomeCarousel = styled.main`
 `;
 
 const Tags = styled.section`
-  .tags-box {
-    @media(min-width: 479px) {
-      margin-top: -50px;
-    }
-  }
+	.tags-box {
+		@media (min-width: 479px) {
+			margin-top: -30px;
+		}
+	}
 `;
 
-class Home extends React.Component {
+class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -102,8 +102,37 @@ class Home extends React.Component {
 		if (this.props.user) {
 			return <Redirect to="/profile" />;
 		}
+		let renderDecks, emptyDeckValidation;
+		console.log(!this.state.flashcard.length);
 
-		let renderDecks;
+		if (!this.state.flashcard.length) {
+			emptyDeckValidation = (
+				<main className="carousel__items empty-deck">
+					<div />
+					<Flippy
+						flipOnHover={false}
+						flipOnClick={true}
+						flipDirection="horizontal"
+						ref={(r) => (this.Flippy = r)}
+						style={{ width: '400px', height: '200px' }}
+					>
+						<FrontSide style={{ backgroundColor: '#93bbde' }}>
+							<p className="flippy-text">
+								This deck currently has no flashcards.<br />
+								If you're the creator, you could add some flashcards by logging in and going to the{' '}
+								<strong>Decks</strong> page.
+							</p>
+						</FrontSide>
+						<BackSide style={{ backgroundColor: '#66b361' }}>
+							<p className="flippy-text">
+								Alternatively, you can set the deck to private and the deck will not show up in public.
+							</p>
+						</BackSide>
+					</Flippy>
+					<div />
+				</main>
+			);
+		}
 		if (this.state.search) {
 			if (this.state.notFound) {
 				document.querySelector('#render-decks').style.height = 'auto';
@@ -118,9 +147,8 @@ class Home extends React.Component {
 						</section>
 					</div>
 				);
-			} else if (!this.state.notFound) {
-				// document.querySelector("#render-decks").style.height = "700px";
-				// document.querySelector("#render-decks").style.boxShadow = "inset 0 0 5px #000000";
+			} 
+			else if (!this.state.notFound) {
 				renderDecks = this.state.decks.map((item, index) => {
 					return (
 						<Col key={item.id}>
@@ -138,7 +166,7 @@ class Home extends React.Component {
 												className="tag-btn"
 												onClick={(e) => this.searchTags(e, elem.tags)}
 											>
-												#{elem.tags}{' '}
+												{elem.tags}{' '}
 											</button>
 										);
 									})}
@@ -150,7 +178,6 @@ class Home extends React.Component {
 			}
 		} else if (this.state.showCards) {
 			document.querySelector('#render-decks').style.height = 'auto';
-			// document.querySelector("#render-decks").style.boxShadow = "";
 			renderDecks = (
 				<Carousel className="carousel">
 					{this.state.flashcard.map((item) => {
@@ -179,35 +206,12 @@ class Home extends React.Component {
 							</HomeCarousel>
 						);
 					})}
+					{emptyDeckValidation}
 				</Carousel>
 			);
-			// <main className="animated fadeIn" className="nuka-flippy-container">
-			//   <Carousel className="nuka-flippy-container__carousel">
-			//     {this.state.flashcard.map(item => {
-			//       return (
-			//         <Flippy
-			//           key={item.id}
-			//           flipOnHover={false}
-			//           flipOnClick={true}
-			//           flipDirection="horizontal"
-			//           ref={r => (this.Flippy = r)}
-			//           style={{ width: "400px", height: "200px" }}
-			//         >
-			//           <FrontSide style={{ backgroundColor: "#93bbde" }}>
-			//             <p>{item.front}</p>
-			//           </FrontSide>
-
-			//           <BackSide style={{ backgroundColor: "#66b361" }}>
-			//             <p>{item.back}</p>
-			//           </BackSide>
-			//         </Flippy>
-			//       );
-			//     })}
-			//   </Carousel>
-			// </main>
 		}
 		return (
-			<div style={{ height: '100%' }}>
+			<div style={{ height: '100%', overflow: "hidden" }}>
 				{this.props.user && <Redirect to="/profile" />}
 				<nav className="navbar justify-content-between">
 					<a
@@ -236,9 +240,9 @@ class Home extends React.Component {
 					/>
 				</section>
 				<Tags>
-          <Row id="render-decks" className="animated fadeIn">
-            {renderDecks}
-          </Row>
+					<Row id="render-decks" className="animated fadeIn">
+						{renderDecks}
+					</Row>
 				</Tags>
 
 				<main className="container text-center" style={{ marginTop: 0 }}>
