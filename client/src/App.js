@@ -17,11 +17,9 @@ class App extends Component {
 		super(props);
 		this.state = {
 			user: null,
-			redirect: false
+			redirect: false,
+			paidDyno: false
 		};
-		this.handleUserLogin = this.handleUserLogin.bind(this);
-		this.handleUserLogout = this.handleUserLogout.bind(this);
-		this.handleUserRedirect = this.handleUserRedirect.bind(this);
 	}
 
 	componentDidMount() {
@@ -52,11 +50,11 @@ class App extends Component {
 		}
 	}
 
-	handleUserLogin(user) {
+	handleUserLogin = user => {
 		this.setState(() => ({ user }));
 	}
 
-	handleUserLogout() {
+	handleUserLogout = () => {
 		axios({
 			url: '/users/logout',
 			method: 'GET'
@@ -70,7 +68,7 @@ class App extends Component {
 			});
 	}
 
-	handleUserRedirect() {
+	handleUserRedirect = () => {
 		if (this.state.redirect) {
 			this.setState(() => ({ redirect: false }));
 			document.body.style.marginLeft = '0px';
@@ -191,6 +189,21 @@ class App extends Component {
 						data-balloon-pos="left"
 					>
 						<img className="github-btn__logo" src={require('./img/github.png')} alt="github logo" />
+					</a>
+					{' '}
+					<a
+						className="heroku-dyno-status"
+						target="_blank"
+						rel="noopener noreferrer"
+						data-balloon-length="xlarge"
+						data-balloon="Heroku Dyno: If it's yellow, then this website is currently using a free dyno which makes the server sleep and the text messaging will not be fully functional."
+						data-balloon-pos="left"
+					>
+						<img 
+							className="heroku-dyno-status__logo" 
+							style={{backgroundColor: this.state.paidDyno ? 'hsla(134, 55%, 54%, 1)s' : 'hsla(44, 98%, 63%, 1)'}}
+							src={require('./img/heroku-logo.png')} 
+							alt="Heroku dyno status" />
 					</a>
 				</footer>
 			</main>

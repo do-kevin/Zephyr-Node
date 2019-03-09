@@ -89,4 +89,15 @@ $alternate5: hsla(180, 85%, 50%, 1);
 			}
 		}
 	}
+	.heroku-dyno-status {
+		cursor: default;
+		height: 38px;
+		width: 37px;
+		border-radius: 50%;
+		&__logo {
+			height: 37px;
+			width: 37px;
+			border-radius: 50%;
+		}
+	}
 }
