@@ -47,7 +47,8 @@ class Home extends Component {
 			search: false,
 			notFound: false,
 			showCards: false,
-			showFeatures: false
+			showFeatures: false,
+			showDisclaimer: true
 		};
 	}
 
@@ -108,11 +109,30 @@ class Home extends Component {
 	};
 
 	render() {
+		let renderDecks, emptyDeckValidation, disclaimer;
 		if (this.props.user) {
 			return <Redirect to="/profile" />;
 		}
-		let renderDecks, emptyDeckValidation;
-		console.log(!this.state.flashcard.length);
+
+		if (this.state.showDisclaimer) {
+			disclaimer = (
+				<div className="disclaimer">
+					<p>
+						This website records user interactions to address issues and improve the experience{' '}
+						<button
+							onClick={(e) => {
+								e.preventDefault();
+								this.setState({
+									showDisclaimer: false
+								});
+							}}
+						>
+							I understand
+						</button>
+					</p>
+				</div>
+			);
+		}
 
 		if (!this.state.flashcard.length) {
 			emptyDeckValidation = (
@@ -271,11 +291,7 @@ class Home extends Component {
 							viewPublicDecks={this.displayPublicDecks}
 						/>
 					) : (
-						<h1
-							className="text-center display-3 animated fadeIn features-title"
-						>
-							Features
-						</h1>
+						<h1 className="text-center display-3 animated fadeIn features-title">Features</h1>
 					)}
 				</section>
 				{!this.state.showFeatures ? (
@@ -288,7 +304,9 @@ class Home extends Component {
 								className="features-call-action-btn"
 								onClick={this.showFeatures}
 								href="#features-heading"
-								style={!this.state.search ? { position: 'relative', top: '-70px' } : { position: 'static' }}
+								style={
+									!this.state.search ? { position: 'relative', top: '-70px' } : { position: 'static' }
+								}
 							>
 								Features<i className="fas fa-angle-double-right" />
 							</a>
@@ -297,6 +315,8 @@ class Home extends Component {
 				) : (
 					''
 				)}
+
+				{disclaimer}
 
 				{this.state.showFeatures ? (
 					<main className="container text-center" style={{ marginTop: 0 }}>

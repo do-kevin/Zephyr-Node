@@ -59,7 +59,7 @@ $alternate5: hsla(180, 85%, 50%, 1);
 		vertical-align: bottom;
 		position: relative;
 		top: 3px;
-		animation: pointRight 1500ms ease-in-out infinite;
+		animation: pointRight 1500ms ease-out infinite;
 	}
 	&:active {
 		color: $grey1;
@@ -67,11 +67,14 @@ $alternate5: hsla(180, 85%, 50%, 1);
 }
 
 @keyframes pointRight {
-	from {
+	33% {
 		transform: translateX(0);
 	}
-	to {
+	66% {
 		transform: translateX(3px);
+	}
+	100% {
+		transform: translateX(0)
 	}
 }
 
@@ -195,4 +198,57 @@ $alternate5: hsla(180, 85%, 50%, 1);
 	font-weight: 500;
 	color: hsla(220, 15%, 23%, 1);
 	margin: auto; 
+}
+
+$success6: hsla(134, 61%, 40%, 1);
+$success5: hsla(123, 61%, 50%, 1);
+$success4: hsla(134, 55%, 54%, 1);
+$success3: hsla(134, 80%, 65%, 1);
+$success2: hsla(134, 70%, 77%, 1);
+$success1: hsla(134, 90%, 90%, 1);
+
+.disclaimer {
+	position: fixed;
+	max-height: 200px;
+	background-color: $grey2;
+	box-shadow: 0 0 2px $grey4;
+	color: $grey5;
+	width: 99%;
+	padding: 17px 15px 5px;
+	bottom: 0;
+	z-index: 1;
+	line-height: 1.5;
+	text-align: center;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	margin-left: 6px;
+	@media (max-width: 870px) {
+		font-size: 14px;
+	}
+	@media (max-width: 400px) {
+		font-size: 13px;
+	}
+	button {
+		cursor: pointer;
+		background-image: linear-gradient(175deg, $success4, $success5);;
+		border-width: 0;
+		font-size: 16px;
+		padding: 6px 15px;
+		border-radius: 5px;
+		color: inherit;
+		margin-top: 7px;
+		&:active, &:hover {
+			background: $success6;
+			color: $grey2;
+		}
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+.heroku-dyno {
+	background: blue;
+	width: 10px;
+	height: 10px;
 }
