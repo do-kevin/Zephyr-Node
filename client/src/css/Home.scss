@@ -5,6 +5,9 @@ $grey2: hsla(220, 17%, 80%, 1);
 $grey2half: hsla(220, 17%, 90%, 1);
 $grey1: hsla(220, 20%, 98%, 1);
 $alternate5: hsla(180, 85%, 50%, 1);
+$success6: hsla(134, 61%, 40%, 1);
+$success5: hsla(123, 61%, 50%, 1);
+$success4: hsla(134, 55%, 54%, 1);
 
 .navbar {
 	background-color: hsl(0, 0%, 17%) !important;
@@ -200,13 +203,6 @@ $alternate5: hsla(180, 85%, 50%, 1);
 	margin: auto; 
 }
 
-$success6: hsla(134, 61%, 40%, 1);
-$success5: hsla(123, 61%, 50%, 1);
-$success4: hsla(134, 55%, 54%, 1);
-$success3: hsla(134, 80%, 65%, 1);
-$success2: hsla(134, 70%, 77%, 1);
-$success1: hsla(134, 90%, 90%, 1);
-
 .disclaimer {
 	position: fixed;
 	max-height: 200px;
@@ -245,10 +241,4 @@ $success1: hsla(134, 90%, 90%, 1);
 			outline: none;
 		}
 	}
-}
-
-.heroku-dyno {
-	background: blue;
-	width: 10px;
-	height: 10px;
 }
