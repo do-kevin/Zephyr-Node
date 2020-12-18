@@ -6,7 +6,7 @@
   "proxy": "http://127.0.0.1:3001/",
   "dependencies": {
     "axios": "^0.16.2",
-    "dompurify": "^1.0.8",
+    "dompurify": "^2.0.17",
     "logrocket": "^0.6.19",
     "moment": "^2.22.2",
     "node-sass": "^4.11.0",
