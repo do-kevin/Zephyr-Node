@@ -28,7 +28,7 @@
     "express-session": "1.15.6",
     "if-env": "1.0.4",
     "moment": "2.22.2",
-    "moment-timezone": "0.5.23",
+    "moment-timezone": "0.5.35",
     "mysql2": "1.6.1",
     "sequelize": "4.41.0",
     "twilio": "3.23.2"
