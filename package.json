@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "zephyr-node",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "Zephyr Node: Full Stack web application",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
