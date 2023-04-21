@@ -1,9 +1,9 @@
 {
-  "name": "Zephyr-Node",
+  "name": "zephyr-node",
   "version": "0.1.0",
   "description": "Productibity app that creates flashcard decks and sends SMS messages",
   "private": true,
-  "proxy": "http://127.0.0.1:3001/",
+  "proxy": "http://0.0.0.0:$PORT/",
   "dependencies": {
     "axios": "^0.16.2",
     "dompurify": "^1.0.8",
