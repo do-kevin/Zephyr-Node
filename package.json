@@ -1,24 +1,35 @@
 {
   "name": "zephyr-node",
-  "version": "1.0.0",
-  "description": "Zephyr Node: Full Stack web application",
+  "version": "1.2.0",
+  "description": "Full stack productivity application where users can organize their notes, flashcards, to-dos, and reminders. Flashcards and reminders can be sent as text messages.",
   "main": "server.js",
+  "contributors": [
+    {
+      "name": "Ana Arakaki",
+      "url": "https://github.com/aparakaki"
+    },
+    {
+      "name": "Chris Armendarez",
+      "url": "https://github.com/chrisArmo"
+    },
+    {
+      "name": "Kevin Do",
+      "url": "https://github.com/do-kevin"
+    },
+    {
+      "name": "Pauline Bantayan",
+      "url": "https://github.com/pauline-ann"
+    }
+  ],
   "scripts": {
+    "heroku-postbuild": "npm run build",
+    "railway:build": "cd client && yarn install && yarn build",
+    "railway:start": "node server.js",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm run start",
-    "install": "cd client && yarn install",
-    "heroku-postbuild": "npm run build",
-    "railway:build": "yarn"
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\""
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "3.5.0",
-    "corepack": "^0.17.2",
-    "nodemon": "1.11.0"
-  },
+  "license": "GNU GPLv3",
   "dependencies": {
     "axios": "0.18.0",
     "bcryptjs": "2.4.0",
@@ -35,5 +46,10 @@
     "mysql2": "^3.2.3",
     "sequelize": "4.41.0",
     "twilio": "3.23.2"
+  },
+  "devDependencies": {
+    "concurrently": "3.5.0",
+    "corepack": "^0.17.2",
+    "nodemon": "1.11.0"
   }
 }

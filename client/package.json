@@ -1,9 +1,29 @@
 {
   "name": "zephyr-node",
-  "version": "0.1.0",
-  "description": "Productibity app that creates flashcard decks and sends SMS messages",
+  "version": "1.2.0",
+  "description": "Full stack productivity application where users can organize their notes, flashcards, to-dos, and reminders. Flashcards and reminders can be sent as text messages.",
+  "main": "server.js",
+  "contributors": [
+    {
+      "name": "Ana Arakaki",
+      "url": "https://github.com/aparakaki"
+    },
+    {
+      "name": "Chris Armendarez",
+      "url": "https://github.com/chrisArmo"
+    },
+    {
+      "name": "Kevin Do",
+      "url": "https://github.com/do-kevin"
+    },
+    {
+      "name": "Pauline Bantayan",
+      "url": "https://github.com/pauline-ann"
+    }
+  ],
   "private": true,
   "proxy": "http://0.0.0.0:$PORT/",
+  "license": "GNU GPLv3",
   "dependencies": {
     "axios": "^0.16.2",
     "dompurify": "^1.0.8",
