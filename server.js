@@ -1,3 +1,6 @@
+require("dotenv").config();
+const bodyParser = require("body-parser");
+const cors = require("cors");
 /**
  * Flashcard Application Server
  */
@@ -10,14 +13,11 @@ const express = require("express"),
 const db = require("./models"),
   router = require("./routes");
 
-// Setup ---------------------------------------- /
-
-require('dotenv').config();
-
 // Server port
 const PORT = process.env.PORT || 3001,
   // Express app
   app = express();
+app.use(cors());
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
@@ -25,12 +25,14 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // User parsers
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Mount Router ---------------------------------------- /
 
 app.use(router);
+
+console.log("HIT: ", path.join(__dirname, "./client/build/index.html"));
 
 // Send every other request to the React app
 // Define any API routes before this runs
@@ -40,7 +42,7 @@ app.get("*", (req, res) => {
 
 // Listen ---------------------------------------- /
 
-db.sequelize.sync({ force: false }).then(function() {
+db.sequelize.sync({ force: false }).then(function () {
   app.listen(PORT, () => {
     console.log("------------------------------------------------------------");
     console.log(`Flashcard application running on port ${PORT}...`);
@@ -50,7 +52,7 @@ db.sequelize.sync({ force: false }).then(function() {
 // Scheduler Start ---------------------------------------- /
 
 //runs cron to check for notifications to be sent
-const scheduler = require('./scheduler');
+const scheduler = require("./scheduler");
 scheduler.start();
 
 // var moment = require('moment-timezone');

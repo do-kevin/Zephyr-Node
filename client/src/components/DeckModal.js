@@ -7,7 +7,7 @@ import {
   ModalFooter,
   Form,
   FormGroup,
-  Label
+  Label,
 } from "reactstrap";
 
 class DeckModal extends React.Component {
@@ -17,24 +17,24 @@ class DeckModal extends React.Component {
       deckName: "",
       deckTags: "",
       showTagsValidation: false,
-      userId: JSON.parse(localStorage.getItem("user")).id
+      userId: JSON.parse(localStorage.getItem("user")).id,
     };
   }
 
   // handleName & handleTags cannot read property of undefn.
-  handleName = event => {
+  handleName = (event) => {
     this.setState({ deckName: event.target.value });
   };
 
-  handleTags = event => {
-    this.setState({ 
-      deckTags: event.target.value
+  handleTags = (event) => {
+    this.setState({
+      deckTags: event.target.value,
     });
 
     if (event.target.value === "") {
-      this.setState({ showTagsValidation: true })
+      this.setState({ showTagsValidation: true });
     } else {
-      this.setState({ showTagsValidation: false })
+      this.setState({ showTagsValidation: false });
     }
   };
 
@@ -43,41 +43,45 @@ class DeckModal extends React.Component {
 
     if (this.state.deckTags !== "") {
       axios
-      .post("/decks/" + this.state.userId, { subject: this.state.deckName })
-      .then(response => {
-        // console.log(response);
+        .post("/decks/" + this.state.userId, { subject: this.state.deckName })
+        .then((response) => {
+          // console.log(response);
 
-        if (this.state.deckTags !== "") {
-          arr = this.state.deckTags.trim().split(" ");
+          if (this.state.deckTags !== "") {
+            arr = this.state.deckTags.trim().split(" ");
 
-          arr.map(item => {
-            let obj = {
-              deckId: response.data.id,
-              tags: item
-            };
+            arr.map((item) => {
+              let obj = {
+                deckId: response.data.id,
+                tags: item,
+              };
 
-            axios.post("/tags", obj).then(response => {
-              this.props.getDecks();
+              axios.post("/tags", obj).then((response) => {
+                this.props.getDecks();
+              });
+
+              return null;
             });
-          });
-          this.props.toggle();
-          // this.props.getDecks();
-          this.setState({
-            deckName: "",
-            deckTags: ""
-          });
-        }
-      });
+            this.props.toggle();
+            // this.props.getDecks();
+            this.setState({
+              deckName: "",
+              deckTags: "",
+            });
+          }
+        });
     } else {
-      this.setState({ showTagsValidation: true});
+      this.setState({ showTagsValidation: true });
     }
+
+    return null;
   };
 
   componentDidMount() {
     var { openCreate } = this.props;
 
     this.setState({
-      openCreate
+      openCreate,
     });
   }
 
@@ -89,12 +93,15 @@ class DeckModal extends React.Component {
     if (this.state.showTagsValidation === false) {
       displayTagValid = "";
     } else {
-      displayTagValid = (<p 
-        style={{
-          color: 'hsla(3, 100%, 50%, 1)'
-        }}>
+      displayTagValid = (
+        <p
+          style={{
+            color: "hsla(3, 100%, 50%, 1)",
+          }}
+        >
           Tags field needs minimum one character.
-        </p>);
+        </p>
+      );
     }
 
     return (
@@ -108,9 +115,10 @@ class DeckModal extends React.Component {
           <ModalBody>
             <Form>
               <FormGroup>
-                <Label 
-                  style={{fontWeight: 500}}
-                  for="deckname">Deck name</Label><br/>
+                <Label style={{ fontWeight: 500 }} for="deckname">
+                  Deck name
+                </Label>
+                <br />
                 <input
                   type="text"
                   name="deckname"
@@ -121,12 +129,14 @@ class DeckModal extends React.Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label 
-                  style={{fontWeight: 500}}
-                  for="decktags">Tags</Label><br/>
+                <Label style={{ fontWeight: 500 }} for="decktags">
+                  Tags
+                </Label>
+                <br />
                 <input
                   pattern=".{1,}"
-                  required title="1 character minimum"
+                  required
+                  title="1 character minimum"
                   type="text"
                   name="decktags"
                   className="create-deck-input"
@@ -137,10 +147,12 @@ class DeckModal extends React.Component {
                 />
                 <p
                   style={{
-                    lineHeight: 1.2, 
-                    fontSize: '14px'
-                  }}>
-                  No hashtags are required. <br/>To make multiple tags, include a space between each word. 
+                    lineHeight: 1.2,
+                    fontSize: "14px",
+                  }}
+                >
+                  No hashtags are required. <br />
+                  To make multiple tags, include a space between each word.
                 </p>
                 {displayTagValid}
               </FormGroup>

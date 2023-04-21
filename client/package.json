@@ -1,15 +1,36 @@
 {
-  "name": "Zephyr-Node",
-  "version": "0.1.0",
-  "description": "Productibity app that creates flashcard decks and sends SMS messages",
+  "name": "zephyr-node",
+  "version": "1.2.0",
+  "description": "Full stack productivity application where users can organize their notes, flashcards, to-dos, and reminders. Flashcards and reminders can be sent as text messages.",
+  "main": "server.js",
+  "contributors": [
+    {
+      "name": "Ana Arakaki",
+      "url": "https://github.com/aparakaki"
+    },
+    {
+      "name": "Chris Armendarez",
+      "url": "https://github.com/chrisArmo"
+    },
+    {
+      "name": "Kevin Do",
+      "url": "https://github.com/do-kevin"
+    },
+    {
+      "name": "Pauline Bantayan",
+      "url": "https://github.com/pauline-ann"
+    }
+  ],
   "private": true,
-  "proxy": "http://127.0.0.1:3001/",
+  "proxy": "http://0.0.0.0:$PORT/",
+  "license": "GNU GPLv3",
   "dependencies": {
     "axios": "^0.16.2",
     "dompurify": "^1.0.8",
     "logrocket": "^0.6.19",
     "moment": "^2.22.2",
-    "node-sass": "^4.11.0",
+    "node-pre-gyp": "^0.17.0",
+    "node-sass": "npm:sass",
     "nuka-carousel": "^4.4.5",
     "react": "^16.6.0",
     "react-datetime-picker": "^2.0.0",
@@ -20,11 +41,12 @@
     "react-router-hash-link": "^1.2.1",
     "react-scripts": "2.0.3",
     "reactstrap": "^7.0.2",
+    "sass": "^1.62.0",
     "styled-components": "^4.1.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
