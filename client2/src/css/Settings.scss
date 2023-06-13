@@ -1,0 +1,147 @@
+$borderRadius: 15px;
+$grey5: hsla(220, 15%, 23%, 1);
+$grey4: hsla(220, 15%, 42%, 1);
+$grey3: hsla(220, 17%, 61%, 1);
+$grey1: hsla(220, 20%, 98%, 1);
+$greyAlt: hsla(220, 17%, 95%, 1);
+$primary8: hsla(214, 100%, 30%, 1);
+$primary7: hsla(214, 100%, 35%, 1);
+$primary6: hsla(214, 100%, 40%, 1);
+$primary5: hsla(214, 100%, 50%, 1);
+
+.settings {
+	margin: 0 auto 15px;
+	color: $grey5;
+	height: 100%;
+	min-width: 310px;
+	max-width: 900px;
+	background: $greyAlt;
+	border-radius: $borderRadius;
+	box-shadow: 0 1px 7px hsl(0, 0%, 49%), 0 1px 1px hsl(0, 0%, 73%);
+	&__heading1 {
+		text-align: center;
+		margin-bottom: 25px;
+		color: $grey4;
+	}
+	@media (max-width: 900px) {
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+}
+
+.username {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	justify-content: space-between;
+	height: 100%;
+	width: 100%;
+	&__info,
+	&__form {
+		padding: 15px;
+	}
+	&__info {
+		height: 100%;
+		width: 50%;
+	}
+	&__form {
+		height: 100%;
+		width: 50%;
+		&__input:disabled {
+			background: $grey5 !important;
+		}
+	}
+	@media (max-width: 850px) {
+		flex-direction: column;
+		&__info,
+		&__form {
+			width: 100%;
+		}
+	}
+}
+
+.phonenumber {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	justify-content: space-between;
+	height: 100%;
+	width: 100%;
+	border-bottom-left-radius: $borderRadius;
+	border-bottom-right-radius: $borderRadius;
+	&__info,
+	&__form {
+		padding: 15px;
+	}
+	&__info {
+		height: 100%;
+		width: 50%;
+		border-bottom-left-radius: $borderRadius;
+		&__span {
+			background: rgb(220, 220, 220);
+			padding: 2.5px;
+			border-radius: 5px;
+		}
+	}
+	&__form {
+		height: 100%;
+		width: 50%;
+		border-bottom-right-radius: $borderRadius;
+	}
+	&__warning {
+		border: 1.4px solid hsl(44, 98%, 63%);
+		padding: 15px;
+		border-radius: 7px;
+		background: hsl(44, 100%, 92%);
+	}
+	@media (max-width: 850px) {
+		flex-direction: column;
+		&__info,
+		&__form {
+			width: 100%;
+		}
+		&__info {
+			border-bottom-left-radius: 0;
+		}
+		&__form {
+			border-bottom-left-radius: $borderRadius;
+			border-bottom-right-radius: $borderRadius;
+		}
+	}
+}
+
+.settings-phonenumber-input {
+	width: 100%;
+	border-radius: 7px;
+	border: transparent;
+	background: $grey1;
+	box-shadow: inset 0 2px 7px $grey3 !important;
+	border-bottom: 1px solid hsla(220, 17%, 70%, 1);
+	color: $grey5;
+	position: relative;
+	font-size: 16px;
+	padding: 6px 12px;
+	&:focus {
+		outline: none;
+	}
+}
+
+.save-phonenumber-btn {
+	margin: auto;
+	cursor: pointer;
+	padding: 7px 18px;
+	font-size: 16px;
+	border-radius: 7px;
+	color: $grey1;
+	background: $primary5;
+	border-top: 2px solid $primary6;
+	&:focus {
+		outline: none;
+	}
+	&:active {
+		border-top: 0;
+		background: $primary7;
+		box-shadow: inset 0 0 5px $primary8;
+		border-bottom: 2px solid $primary7;
+	}
+}

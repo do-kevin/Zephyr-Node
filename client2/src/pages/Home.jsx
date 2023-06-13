@@ -6,8 +6,8 @@ import Flippy, { FrontSide, BackSide } from "react-flippy";
 import Carousel from "nuka-carousel";
 import styled from "styled-components";
 
-import Search from "../components/Search";
-import Login from "../components/Login";
+import Search from "../components/Search.jsx";
+import Login from "../components/Login.jsx";
 
 import "../css/Home.scss";
 
@@ -59,24 +59,26 @@ class Home extends Component {
       notFound: false,
     });
     // console.log("input: " +tagInput.replace(/\s/g, ''))
-    axios.get("/decks/tags/" + tagInput.replace(/\s/g, "")).then((response) => {
-      console.log(response.data);
-      if (response.data === null || response.data.length === 0) {
-        this.setState({
-          notFound: true,
-          decks: [],
-        });
-      } else {
+    axios
+      .get("/api/decks/tags/" + tagInput.replace(/\s/g, ""))
+      .then((response) => {
         console.log(response.data);
-        this.setState({
-          decks: response.data,
-        });
-      }
-    });
+        if (response.data === null || response.data.length === 0) {
+          this.setState({
+            notFound: true,
+            decks: [],
+          });
+        } else {
+          console.log(response.data);
+          this.setState({
+            decks: response.data,
+          });
+        }
+      });
   };
 
   getFlashcards = (id) => {
-    axios.get("/flashcard/" + id).then((response) => {
+    axios.get("/api/flashcard/" + id).then((response) => {
       this.setState({
         flashcard: response.data,
         showCards: true,
@@ -89,14 +91,14 @@ class Home extends Component {
   displayPublicDecks = (event) => {
     console.log("hit");
     event.preventDefault();
-    axios.get("/decks/public").then((response) => {
+    axios.get("/api/decks/public").then((response) => {
+      console.log(response);
       this.setState({
-        decks: response.data,
+        decks: response.data || [],
         showCards: false,
         search: true,
         notFound: false,
       });
-      console.log(this.state.decks);
     });
   };
 
@@ -180,37 +182,38 @@ class Home extends Component {
           </div>
         );
       } else if (!this.state.notFound) {
-        renderDecks = this.state.decks.map((item, index) => {
-          return (
-            <Col key={item.id}>
-              <a style={{ textDecoration: "none" }} href="#render-decks">
-                <div className="decks decks-primary animated bounceIn">
-                  <div className="h1-homepage-wrappers">
-                    <h1
-                      className="deck-title text-center"
-                      onClick={() => this.getFlashcards(item.id)}
-                    >
-                      {item.subject}
-                    </h1>
+        renderDecks =
+          this.state.decks.map((item) => {
+            return (
+              <Col key={item.id}>
+                <a style={{ textDecoration: "none" }} href="#render-decks">
+                  <div className="decks decks-primary animated bounceIn">
+                    <div className="h1-homepage-wrappers">
+                      <h1
+                        className="deck-title text-center"
+                        onClick={() => this.getFlashcards(item.id)}
+                      >
+                        {item.subject}
+                      </h1>
+                    </div>
+                    <div className="tags-box">
+                      {item.Tags.map((elem) => {
+                        return (
+                          <button
+                            key={elem.id}
+                            className="tag-btn"
+                            onClick={(e) => this.searchTags(e, elem.tags)}
+                          >
+                            {elem.tags}{" "}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                  <div className="tags-box">
-                    {item.Tags.map((elem) => {
-                      return (
-                        <button
-                          key={elem.id}
-                          className="tag-btn"
-                          onClick={(e) => this.searchTags(e, elem.tags)}
-                        >
-                          {elem.tags}{" "}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </a>
-            </Col>
-          );
-        });
+                </a>
+              </Col>
+            );
+          }) || null;
       }
     } else if (this.state.showCards) {
       renderDecks = (

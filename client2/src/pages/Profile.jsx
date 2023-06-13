@@ -12,8 +12,8 @@ import moment from "moment";
 import axios from "axios";
 import styled from "styled-components";
 
-import Quote from "../components/Quote";
-import Sidebar from "../components/Sidebar";
+import Quote from "../components/Quote.jsx";
+import Sidebar from "../components/Sidebar.jsx";
 
 import "../css/Profile.scss";
 
@@ -76,7 +76,7 @@ class Profile extends React.Component {
 
   getReminders = () => {
     let id = JSON.parse(localStorage.getItem("user")).id;
-    axios.get("/reminders/users/" + id).then((res) => {
+    axios.get("/api/reminders/users/" + id).then((res) => {
       // console.log(res.data);
       this.setState({
         reminders: res.data,
@@ -86,7 +86,7 @@ class Profile extends React.Component {
 
   getToDos = () => {
     let id = JSON.parse(localStorage.getItem("user")).id;
-    axios.get("/todos/users/" + id).then((res) => {
+    axios.get("/api/todos/users/" + id).then((res) => {
       // console.log(res.data);
       this.setState({
         todos: res.data,
@@ -106,7 +106,7 @@ class Profile extends React.Component {
 
   getNotes = () => {
     let id = JSON.parse(localStorage.getItem("user")).id;
-    axios.get("/notes/users/" + id).then((res) => {
+    axios.get("/api/notes/users/" + id).then((res) => {
       // console.log(res.data);
       this.setState({
         notes: res.data,
@@ -314,7 +314,7 @@ class Profile extends React.Component {
     return (
       <main id="profile">
         {/* Logout redirection */}
-        {/* {this.props.handleUserRedirect()} */}
+        {this.props.handleUserRedirect()}
 
         <Menu>
           <Sidebar handleUserLogout={this.props.handleUserLogout} />

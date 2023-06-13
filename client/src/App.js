@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  redirect as _redirect,
+} from "react-router-dom";
 import axios from "axios";
 import GithubIcon from "./img/github.png";
 
@@ -73,7 +77,7 @@ class App extends Component {
     if (this.state.redirect) {
       this.setState(() => ({ redirect: false }));
       document.body.style.marginLeft = "0px";
-      return <Redirect to="/" />;
+      return _redirect("/");
     }
   };
 
@@ -83,7 +87,6 @@ class App extends Component {
         <Router>
           <div style={{ clear: "both" }}>
             <Route
-              exact
               path="/"
               render={(props) => (
                 <Home
@@ -95,7 +98,6 @@ class App extends Component {
               )}
             />
             <Route
-              exact
               path="/reminder"
               render={(props) => (
                 <Reminder
@@ -107,7 +109,6 @@ class App extends Component {
               )}
             />
             <Route
-              exact
               path="/profile"
               render={(props) => (
                 <Profile
@@ -119,7 +120,6 @@ class App extends Component {
               )}
             />
             <Route
-              exact
               path="/todo"
               render={(props) => (
                 <Todo
@@ -131,7 +131,6 @@ class App extends Component {
               )}
             />
             <Route
-              exact
               path="/decks"
               render={(props) => (
                 <Decks
@@ -143,7 +142,6 @@ class App extends Component {
               )}
             />
             <Route
-              exact
               path="/deck"
               render={(props) => (
                 <Flashcards
@@ -155,7 +153,6 @@ class App extends Component {
               )}
             />
             <Route
-              exact
               path="/notes"
               render={(props) => (
                 <Notes
@@ -167,7 +164,6 @@ class App extends Component {
               )}
             />
             <Route
-              exact
               path="/settings"
               render={(props) => (
                 <Settings

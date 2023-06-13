@@ -131,7 +131,7 @@ class Login extends React.Component {
       password: this.state.password,
     };
     axios({
-      url: "/users/signUp",
+      url: "/api/users/signUp",
       method: "POST",
       data: user,
     })
@@ -160,7 +160,7 @@ class Login extends React.Component {
       password: this.state.password,
     };
     axios({
-      url: "/users/login",
+      url: "/api/users/login",
       method: "POST",
       data: user,
     })
