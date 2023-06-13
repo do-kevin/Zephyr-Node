@@ -114,26 +114,26 @@ class Home extends Component {
       return <Redirect to="/profile" />;
     }
 
-    if (this.state.showDisclaimer) {
-      disclaimer = (
-        <div className="disclaimer">
-          <p>
-            This website records user interactions to address issues and improve
-            the experience{" "}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                this.setState({
-                  showDisclaimer: false,
-                });
-              }}
-            >
-              I understand
-            </button>
-          </p>
-        </div>
-      );
-    }
+    // if (this.state.showDisclaimer) {
+    //   disclaimer = (
+    //     <div className="disclaimer">
+    //       <p>
+    //         This website records user interactions to address issues and improve
+    //         the experience{" "}
+    //         <button
+    //           onClick={(e) => {
+    //             e.preventDefault();
+    //             this.setState({
+    //               showDisclaimer: false,
+    //             });
+    //           }}
+    //         >
+    //           I understand
+    //         </button>
+    //       </p>
+    //     </div>
+    //   );
+    // }
 
     if (!this.state.flashcard.length) {
       emptyDeckValidation = (
