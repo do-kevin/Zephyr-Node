@@ -32,10 +32,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "inversify": "^6.0.1",
+    "inversify-inject-decorators": "^3.1.0",
     "million": "^2.4.6-beta.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.13.0"
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.13.0",
+    "redux": "^4.2.1",
+    "redux-bootstrap": "^1.0.0",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",

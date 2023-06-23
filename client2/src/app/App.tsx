@@ -3,6 +3,9 @@ import "./App.css";
 import { DiscoverFlashcardPage } from "src/flashcard/DiscoverFlashcardPage";
 import { FlashcardDataLayer } from "src/flashcard/FlashcardDataLayer";
 import { useState } from "react";
+import { Provider } from "react-redux";
+import { store } from "src/state/store";
+import { DeckContainer } from "src/flashcard/DeckContainer";
 
 function App() {
   const [decks, setDecks] = useState([]);
@@ -12,11 +15,15 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <DiscoverFlashcardPage dal={flashcardDal} />,
+      element: <DeckContainer dal={flashcardDal} />,
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />;
+    </Provider>
+  );
 }
 
 export default App;
