@@ -1,4 +1,8 @@
-export default class FlashcardDataLayer {
+export type FlashcardDataLayerInstance = InstanceType<
+  typeof FlashcardDataLayer
+>;
+
+export class FlashcardDataLayer {
   decks: unknown[];
   setDecks: (param: any) => void;
 

@@ -1,4 +1,4 @@
-import FlashcardDataLayer from "./FlashcardDataLayer";
+import { FlashcardDataLayer } from "./FlashcardDataLayer";
 
 let decks: unknown[] = [];
 

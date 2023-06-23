@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import FlashcardDataLayer from "./FlashcardDataLayer/FlashcardDataLayer";
+import { FlashcardDataLayerInstance } from "./FlashcardDataLayer";
 
 interface DiscoverFlashcardPageProps {
-  dal: InstanceType<typeof FlashcardDataLayer>;
+  dal: FlashcardDataLayerInstance;
 }
 
 export function DiscoverFlashcardPage(props: DiscoverFlashcardPageProps) {

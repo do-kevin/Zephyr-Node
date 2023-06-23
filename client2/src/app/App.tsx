@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { DiscoverFlashcardPage } from "src/flashcard/DiscoverFlashcardPage";
-import FlashcardDataLayer from "src/flashcard/FlashcardDataLayer/FlashcardDataLayer";
+import { FlashcardDataLayer } from "src/flashcard/FlashcardDataLayer";
 import { useState } from "react";
 
 function App() {
