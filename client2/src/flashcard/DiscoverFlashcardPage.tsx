@@ -1,40 +1,34 @@
 import { useEffect } from "react";
-import { FlashcardDataLayerInstance } from "./FlashcardDataLayer";
-import { rootReducer } from "src/state/root.reducer";
-import { store } from "src/state/store";
+import { DeckPresenter } from "./DeckPresenter";
+import { observer } from "mobx-react";
+import { withInjection } from "src/core/providers/inversify-context";
+import { DeckList } from "./DeckList";
 
-interface DiscoverFlashcardPageProps {
-  dal: FlashcardDataLayerInstance;
-  fetchPublicDecks: () => void;
-  decks: any[];
+interface Props {
+  presenter: any;
 }
 
-export function DiscoverFlashcardPage(props: DiscoverFlashcardPageProps) {
-  const {
-    dal,
-
-    fetchPublicDecks,
-    decks,
-  } = props;
-
-  // console.log(store);
+const component = observer((props: Props) => {
+  const { presenter } = props;
 
   useEffect(() => {
-    fetchPublicDecks();
-    dal.getPublicDecks();
-    console.log(props);
-  }, []);
+    const list = async () => {
+      await presenter.list();
+    };
+
+    list();
+  }, [presenter]);
 
   return (
     <div>
       <div>Search bar here</div>
       <main>
-        {decks && decks.length
-          ? decks.map((d: any) => {
-              return <p key={d.id}>{d.subject}</p>;
-            })
-          : null}
+        <DeckList presenter={presenter} />
       </main>
     </div>
   );
-}
+});
+
+export const DiscoverFlashcardPage = withInjection({
+  presenter: DeckPresenter,
+})(component);

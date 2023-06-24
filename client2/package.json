@@ -32,21 +32,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.5",
     "inversify": "^6.0.1",
     "inversify-inject-decorators": "^3.1.0",
+    "magic-regexp": "^0.7.0",
     "million": "^2.4.6-beta.0",
+    "mobx": "^6.9.0",
+    "mobx-react": "^7.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.13.0",
-    "redux": "^4.2.1",
-    "redux-bootstrap": "^1.0.0",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -59,7 +57,6 @@
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "@vitejs/plugin-react": "^4.0.0",
-    "babel-jest": "^29.5.0",
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",

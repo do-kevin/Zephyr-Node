@@ -1,27 +1,29 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { DiscoverFlashcardPage } from "src/flashcard/DiscoverFlashcardPage";
-import { FlashcardDataLayer } from "src/flashcard/FlashcardDataLayer";
-import { useState } from "react";
-import { Provider } from "react-redux";
-import { store } from "src/state/store";
-import { DeckContainer } from "src/flashcard/DeckContainer";
+import { Provider } from "src/core/providers/inversify-context";
+import { configure } from "mobx";
+import { container } from "src/inversion-of-control/ioc";
+
+configure({
+  enforceActions: "never",
+  computedRequiresReaction: false,
+  reactionRequiresObservable: false,
+  observableRequiresReaction: false,
+  disableErrorBoundaries: false,
+});
 
 function App() {
-  const [decks, setDecks] = useState([]);
-
-  const flashcardDal = new FlashcardDataLayer(decks, setDecks);
-
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <DeckContainer dal={flashcardDal} />,
+      element: <DiscoverFlashcardPage />,
     },
   ]);
 
   return (
-    <Provider store={store}>
-      <RouterProvider router={router} />;
+    <Provider container={container}>
+      <RouterProvider router={router} />
     </Provider>
   );
 }
