@@ -1,31 +1,10 @@
-import { injectable, inject } from "inversify";
-import { DeckRepository } from "./DeckRepository";
-import { makeObservable, observable } from "mobx";
+import { RootState } from "src/core/store";
+import * as repository from "./DeckRepository";
 
-@injectable()
-export class DeckPresenter {
-  @inject(DeckRepository) deckRepository!: DeckRepository;
-  statusMessage: null | string = null;
+export const loadPublicDecks = repository.loadPublicDecks;
 
-  get decks() {
-    return this.deckRepository.decks;
-  }
+export const selectDecks = (state: RootState) => {
+  const decksPM = repository.selectDecks(state);
 
-  async list() {
-    const programmersModel = await this.deckRepository.list();
-    console.log(programmersModel);
-    if (!programmersModel.success) {
-      this.statusMessage = programmersModel.message;
-    }
-  }
-
-  reset() {
-    this.statusMessage = null;
-  }
-
-  constructor() {
-    makeObservable(this, {
-      statusMessage: observable,
-    });
-  }
-}
+  return decksPM || [];
+};

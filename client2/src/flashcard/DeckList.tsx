@@ -1,15 +1,15 @@
-import { observer } from "mobx-react";
+import { Deck } from "./flashcard";
 
 interface Props {
-  presenter: any;
+  viewModel: Deck[];
 }
 
-export const DeckList = observer((props: Props) => {
+export const DeckList = (props: Props) => {
   return (
     <div>
-      {props.presenter.decks?.map((d: any) => {
+      {props.viewModel?.map((d) => {
         return <p key={d.id}>{d.subject}</p>;
       })}
     </div>
   );
-});
+};

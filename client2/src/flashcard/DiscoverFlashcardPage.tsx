@@ -1,34 +1,22 @@
 import { useEffect } from "react";
-import { DeckPresenter } from "./DeckPresenter";
-import { observer } from "mobx-react";
-import { withInjection } from "src/react-ui/providers/withInjection";
+import * as presenter from "./DeckPresenter";
 import { DeckList } from "./DeckList";
+import { useAppDispatch, useAppSelector } from "./DeckRepository";
 
-interface Props {
-  presenter: InstanceType<typeof DeckPresenter>;
-}
-
-const component = observer((props: Props) => {
-  const { presenter } = props;
+export const DiscoverFlashcardPage = () => {
+  const dispatch = useAppDispatch();
+  const decksViewModel = useAppSelector(presenter.selectDecks);
 
   useEffect(() => {
-    const list = async () => {
-      await presenter.list();
-    };
-
-    list();
-  }, [presenter]);
+    dispatch<any>(presenter.loadPublicDecks());
+  }, [dispatch]);
 
   return (
     <div>
       <div>Search bar here</div>
       <main>
-        <DeckList presenter={presenter} />
+        <DeckList viewModel={decksViewModel} />
       </main>
     </div>
   );
-});
-
-export const DiscoverFlashcardPage = withInjection({
-  presenter: DeckPresenter,
-})(component);
+};

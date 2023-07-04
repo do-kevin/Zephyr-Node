@@ -31,8 +31,7 @@
       "node",
       "@types/node",
       "@types/testing-library__jest-dom",
-      "@types/react",
-      "reflect-metadata"
+      "@types/react"
     ]
   },
   "include": ["src", "src/jest.config.ts"],

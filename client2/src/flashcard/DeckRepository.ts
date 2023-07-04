@@ -1,49 +1,75 @@
-import { makeObservable, observable } from "mobx";
-import { injectable, inject } from "inversify";
-import { Deck } from "./flashcard";
-import { Config } from "src/core/config";
 import { HttpGateway } from "src/core/http-gateway";
+import { AppDispatch, AppGetState, RootState } from "src/core/store";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-@injectable()
-export class DeckRepository {
-  @inject(Config) config!: Config;
-  @inject(Symbol.for("IDataGateway")) dataGateway!: HttpGateway;
+const DECKS_LOADED_PUBLIC = "DECKS_LOADED_PUBLIC";
 
-  //   Our DeckModel
-  decks: Deck[] = [];
+export interface LoadPublicDeckAction {
+  type: "DECKS_LOADED_PUBLIC";
+  payload: {
+    decksPM: unknown[];
+  };
+}
 
-  list = async () => {
+export type AppAction = LoadPublicDeckAction;
+
+export const loadPublicDecks =
+  () =>
+  async (
+    dispatch: AppDispatch,
+    _getState: AppGetState,
+    { http }: { http: HttpGateway }
+  ) => {
     const url = `/decks/public`;
 
-    const deckDto = await this.dataGateway.get(url);
-    const data = await deckDto.json();
+    const decksDTO = await http.get(url);
+    const decksProgrammersModel = await decksDTO.json();
 
-    const programmersModel = {
-      success: false,
-      message: null,
-    };
+    console.log(decksProgrammersModel);
 
-    if (deckDto.ok) {
-      programmersModel.success = true;
-      this.decks = data;
-      return programmersModel;
-    }
-
-    programmersModel.success = false;
-    programmersModel.message = data.message;
-
-    return programmersModel;
-  };
-
-  reset = async () => {
-    this.decks = [];
-  };
-
-  constructor() {
-    makeObservable(this, {
-      decks: observable,
+    dispatch({
+      type: DECKS_LOADED_PUBLIC,
+      payload: {
+        decksPM: decksProgrammersModel,
+      },
     });
+  };
 
-    this.reset();
+type DispatchFunc = () => AppDispatch;
+export const useAppDispatch: DispatchFunc = useDispatch;
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export const selectDecks = (state: RootState) => {
+  return state.decksState.decksPM;
+};
+
+type Deck = {
+  id: number;
+  subject: string;
+};
+
+interface DecksState {
+  decksPM: Deck[] | null;
+}
+
+const initialState = {
+  decksPM: null,
+};
+
+export default function reducer(
+  decksState: DecksState = initialState,
+  action: AppAction
+) {
+  switch (action.type) {
+    case DECKS_LOADED_PUBLIC: {
+      return {
+        ...decksState,
+        decksPM: action.payload.decksPM,
+      };
+    }
+    default: {
+      return decksState;
+    }
   }
 }

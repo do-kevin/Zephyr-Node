@@ -1,19 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { DiscoverFlashcardPage } from "src/flashcard/DiscoverFlashcardPage";
-import { Provider } from "src/react-ui/providers/Provider";
-import { configure } from "mobx";
-import { container } from "src/inversion-of-control/ioc";
-
-configure({
-  enforceActions: "never",
-  computedRequiresReaction: false,
-  reactionRequiresObservable: false,
-  observableRequiresReaction: false,
-  disableErrorBoundaries: false,
-});
+import { Provider } from "react-redux";
+import { HttpGateway } from "src/core/http-gateway";
+import createStore from "src/core/store";
+import { Config } from "src/core/config";
 
 function App() {
+  const config = new Config();
+  const httpGateway = new HttpGateway(config);
+
+  const store = createStore(httpGateway);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -22,7 +20,7 @@ function App() {
   ]);
 
   return (
-    <Provider container={container}>
+    <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
   );
