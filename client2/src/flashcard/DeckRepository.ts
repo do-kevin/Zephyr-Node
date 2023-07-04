@@ -7,7 +7,7 @@ const DECKS_LOADED_PUBLIC = "DECKS_LOADED_PUBLIC";
 export interface LoadPublicDeckAction {
   type: "DECKS_LOADED_PUBLIC";
   payload: {
-    decksPM: unknown[];
+    decksPM: Deck[];
   };
 }
 
@@ -44,23 +44,24 @@ export const selectDecks = (state: RootState) => {
   return state.decksState.decksPM;
 };
 
-type Deck = {
+interface Deck {
   id: number;
+  userId: number;
   subject: string;
-};
+  Tags: string[];
+  private: boolean;
+  alertInterval: number;
+}
 
 interface DecksState {
   decksPM: Deck[] | null;
 }
 
-const initialState = {
+const initialState: DecksState = {
   decksPM: null,
 };
 
-export default function reducer(
-  decksState: DecksState = initialState,
-  action: AppAction
-) {
+const reducer = (decksState = initialState, action: AppAction): DecksState => {
   switch (action.type) {
     case DECKS_LOADED_PUBLIC: {
       return {
@@ -72,4 +73,6 @@ export default function reducer(
       return decksState;
     }
   }
-}
+};
+
+export default reducer;
