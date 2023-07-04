@@ -5,8 +5,7 @@ export class IocBase {
   container: Container;
 
   init = () => {
-    this.container.bind(DeckRepository).to(DeckRepository).inSingletonScope();
-    console.log(this.container);
+    this.container.bind(DeckRepository).toSelf().inSingletonScope();
     return this.container;
   };
 

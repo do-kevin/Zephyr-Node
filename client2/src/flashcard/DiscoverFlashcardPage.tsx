@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { DeckPresenter } from "./DeckPresenter";
 import { observer } from "mobx-react";
-import { withInjection } from "src/core/providers/inversify-context";
+import { withInjection } from "src/react-ui/providers/withInjection";
 import { DeckList } from "./DeckList";
 
 interface Props {
-  presenter: any;
+  presenter: InstanceType<typeof DeckPresenter>;
 }
 
 const component = observer((props: Props) => {

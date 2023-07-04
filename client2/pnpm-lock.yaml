@@ -84,6 +84,9 @@ devDependencies:
   identity-obj-proxy:
     specifier: ^3.0.0
     version: 3.0.0
+  inversify-dts:
+    specifier: ^3.0.0
+    version: 3.0.0
   jest:
     specifier: ^29.5.0
     version: 29.5.0(@types/node@20.3.1)(ts-node@10.9.1)
@@ -2765,6 +2768,11 @@ packages:
       get-intrinsic: 1.2.1
       has: 1.0.3
       side-channel: 1.0.4
+    dev: true
+
+  /inversify-dts@3.0.0:
+    resolution: {integrity: sha512-PZk/8701Nj0uwnRbYQRlPokVltTxLHaYrTSQ7DMpXjS5KZXhhBalq4yv1OAgxyIo9ycVyxJppdy7wNt1/eKaQg==}
+    deprecated: Type definitions are included in the inversify npm releases since the release of inversify@2.0.0. Learn more at https://github.com/inversify/InversifyJS#installation
     dev: true
 
   /inversify-inject-decorators@3.1.0:

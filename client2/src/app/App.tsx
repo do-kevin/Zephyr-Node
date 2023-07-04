@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { DiscoverFlashcardPage } from "src/flashcard/DiscoverFlashcardPage";
-import { Provider } from "src/core/providers/inversify-context";
+import { Provider } from "src/react-ui/providers/Provider";
 import { configure } from "mobx";
 import { container } from "src/inversion-of-control/ioc";
 
