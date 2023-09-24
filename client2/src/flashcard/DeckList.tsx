@@ -1,7 +1,8 @@
-import { Deck } from "./flashcard";
-
 interface Props {
-  viewModel: Deck[];
+  viewModel: Array<{
+    id: number;
+    subject: string;
+  }>;
 }
 
 export const DeckList = (props: Props) => {

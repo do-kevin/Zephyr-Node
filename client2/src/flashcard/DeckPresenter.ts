@@ -6,5 +6,12 @@ export const loadPublicDecks = repository.loadPublicDecks;
 export const selectDecks = (state: RootState) => {
   const decksPM = repository.selectDecks(state);
 
-  return decksPM || [];
+  const decksVM = decksPM?.map((d) => {
+    return {
+      id: d.id,
+      subject: d.subject,
+    };
+  });
+
+  return decksVM || [];
 };

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "./DeckRepository";
 
 export const DiscoverFlashcardPage = () => {
   const dispatch = useAppDispatch();
-  const decksViewModel = useAppSelector(presenter.selectDecks);
+  const decksVM = useAppSelector(presenter.selectDecks);
 
   useEffect(() => {
     dispatch<any>(presenter.loadPublicDecks());
@@ -15,7 +15,7 @@ export const DiscoverFlashcardPage = () => {
     <div>
       <div>Search bar here</div>
       <main>
-        <DeckList viewModel={decksViewModel} />
+        <DeckList viewModel={decksVM} />
       </main>
     </div>
   );
