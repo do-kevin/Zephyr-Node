@@ -1,8 +1,17 @@
+import { FakeHttpGateway } from "src/core/fake-http-gateway";
+import { getDeckListStub } from "src/tests/stubs/FlashcardDeckStubs";
 import { dispatch, initStore, select } from "src/tests/tools/testable-store";
+
 import * as deckPresenter from "./DeckPresenter";
 
 beforeEach(async () => {
-  await initStore();
+  const httpGateway = new FakeHttpGateway();
+
+  httpGateway.get = jest.fn().mockImplementation((_path) => {
+    return Promise.resolve({ json: () => getDeckListStub() });
+  });
+
+  await initStore(httpGateway);
 });
 
 afterEach(() => jest.restoreAllMocks());

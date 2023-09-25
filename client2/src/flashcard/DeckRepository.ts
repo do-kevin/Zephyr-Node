@@ -23,9 +23,8 @@ export const loadPublicDecks =
     const url = `/decks/public`;
 
     const decksDTO = await http.get(url);
-    const decksProgrammersModel = await decksDTO.json();
 
-    console.log(decksProgrammersModel);
+    const decksProgrammersModel = await decksDTO.json();
 
     dispatch({
       type: DECKS_LOADED_PUBLIC,

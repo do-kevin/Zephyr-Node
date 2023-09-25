@@ -1,8 +1,10 @@
-import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-import decksReducer, { AppAction } from "../flashcard/DeckRepository";
-import { HttpGateway } from "./http-gateway";
+import { combineReducers } from "redux";
 import { ThunkDispatch } from "redux-thunk";
+
+import decksReducer, { AppAction } from "../flashcard/DeckRepository";
+import { FakeHttpGateway } from "./fake-http-gateway";
+import { HttpGateway } from "./http-gateway";
 
 const rootReducer = combineReducers({
   decksState: decksReducer,
@@ -10,7 +12,11 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-const store = (httpGateway: InstanceType<typeof HttpGateway>) => {
+const store = (
+  httpGateway:
+    | InstanceType<typeof HttpGateway>
+    | InstanceType<typeof FakeHttpGateway>
+) => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>

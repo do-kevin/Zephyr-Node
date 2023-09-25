@@ -26,7 +26,7 @@ export function getDeckListStub() {
       ],
       alertInterval: null,
       dailyQuiz: false,
-      id: 1,
+      id: 2,
       private: false,
       subject: "Mocking",
       time: null,
@@ -35,14 +35,14 @@ export function getDeckListStub() {
     {
       Tags: [
         {
-          deckId: 2,
-          id: 2,
+          deckId: 3,
+          id: 3,
           tags: "react",
         },
       ],
       alertInterval: null,
       dailyQuiz: false,
-      id: 1,
+      id: 3,
       private: false,
       subject: "React",
       time: null,
