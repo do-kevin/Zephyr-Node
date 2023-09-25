@@ -1,4 +1,7 @@
-import React, { lazy } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.min.css";
+
+import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "src/app/App.tsx";
 import "./main.css";
