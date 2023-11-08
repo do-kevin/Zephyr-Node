@@ -1,5 +1,7 @@
+import { faker } from "@faker-js/faker";
+
 export function getDeckListStub() {
-  return [
+  const originalStub = [
     {
       Tags: [
         {
@@ -49,4 +51,28 @@ export function getDeckListStub() {
       userId: 1,
     },
   ];
+
+  const newStub = originalStub.slice();
+
+  for (let i = 4; i <= 100; i++) {
+    const myString = faker.word.words();
+    newStub.push({
+      Tags: [
+        {
+          deckId: i,
+          id: i,
+          tags: myString,
+        },
+      ],
+      alertInterval: null,
+      dailyQuiz: false,
+      id: i,
+      private: false,
+      subject: myString,
+      time: null,
+      userId: 1,
+    });
+  }
+
+  return newStub;
 }

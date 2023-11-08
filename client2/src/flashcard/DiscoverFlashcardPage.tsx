@@ -14,11 +14,28 @@ export const DiscoverFlashcardPage = () => {
   const decksVM = useAppSelector(presenter.selectDecks);
 
   const [searchValue, setSearchValue] = useState<string | null | undefined>("");
-  const [results, setResults] = useState<any[]>([]);
+  const [resultViewModel, setResultViewModel] = useState<any[]>([]);
 
-  const onSubmit = (values: any) => {
-    // console.log("Values:::", values);
-    // console.log("Values:::", JSON.stringify(values));
+  const [showResults, setShowResults] = useState(false);
+
+  const [showMatches, setShowMatches] = useState(false);
+
+  useEffect(() => {
+    const watchQuery = () => {
+      if (searchValue && searchValue.length && resultViewModel.length >= 1) {
+        setShowMatches(true);
+
+        return null;
+      }
+
+      setShowMatches(false);
+    };
+
+    watchQuery();
+  }, [searchValue, resultViewModel.length]);
+
+  const onSubmit = (_values: any) => {
+    resultsOnPress();
   };
 
   const onError = (error: any) => {
@@ -28,7 +45,7 @@ export const DiscoverFlashcardPage = () => {
   const {
     register,
     handleSubmit,
-    getValues,
+    // getValues,
     watch,
     formState: { errors },
   } = useForm({
@@ -37,16 +54,23 @@ export const DiscoverFlashcardPage = () => {
     },
   });
 
+  const resultsOnPress = () => {
+    setShowResults(true);
+    setShowMatches(false);
+  };
+
   useEffect(() => {
     dispatch<any>(presenter.loadPublicDecks());
   }, [dispatch]);
 
   useEffect(() => {
-    const subscription = watch((value, { name, type }) => {
+    const subscription = watch((value) => {
       setSearchValue(value.searchValue);
-      console.log(value);
-      const result = matchSorter(decksVM, searchValue, { keys: ["subject"] });
-      setResults(result);
+
+      if (searchValue) {
+        const result = matchSorter(decksVM, searchValue, { keys: ["subject"] });
+        setResultViewModel(result);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -74,7 +98,7 @@ export const DiscoverFlashcardPage = () => {
           </div>
         </nav>
       </header>
-      <main className="px-3 px-sm-5">
+      <main className="px-3 px-sm-5 pb-4">
         <article>
           <h1 className="fw-bold mb-3">Discover</h1>
           <>
@@ -110,18 +134,18 @@ export const DiscoverFlashcardPage = () => {
                   placeholder="Find a deck"
                   {...register("searchValue", { required: true })}
                 />
-
-                {searchValue && searchValue.length && results.length >= 1 && (
+                {showMatches && (
                   <div
                     className="position-absolute top-100 bg-white container py-3 px-2 mt-2 shadow"
                     style={{ border: "1px solid #FA963A", borderRadius: 4 }}
                   >
                     <ul className="list-group mb-0">
-                      {results.map((r) => {
+                      {resultViewModel.map((r) => {
                         return (
                           <li
                             className="list-group-item border-0 mb-2 rounded"
                             style={{ background: "#FEF7F1", color: "#F97D0B" }}
+                            onClick={() => resultsOnPress()}
                           >
                             {r.subject}
                           </li>
@@ -133,7 +157,23 @@ export const DiscoverFlashcardPage = () => {
               </InputGroup>
             </Form>
           </>
-          <DeckList viewModel={decksVM} />
+          {showResults && (
+            <Button
+              className="text-decoration-none py-0 ps-0 pe-1 mb-1"
+              variant="link"
+              onClick={() => {
+                setShowResults(false);
+                setShowMatches(false);
+              }}
+            >
+              <span>
+                <i className="bi bi-arrow-left"></i> Go back
+              </span>
+            </Button>
+          )}
+
+          {!showResults && <DeckList viewModel={decksVM} />}
+          {showResults && <DeckList viewModel={resultViewModel} />}
         </article>
       </main>
     </div>
