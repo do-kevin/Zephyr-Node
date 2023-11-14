@@ -11,8 +11,8 @@ export const DeckList = (props: Props) => {
       {props.viewModel?.map((d) => {
         // console.log("d: ", d);
         return (
-          <article key={d.id} className="w-100 mx-50">
-            <div className="bg-white d-inline-block p-5 shadow-sm rounded w-100">
+          <article key={d.id} className="mx-50 w-100">
+            <div className="bg-white d-inline-block p-5 shadow-sm rounded w-100 h-100">
               <p className="text-center">{d.subject}</p>
             </div>
           </article>

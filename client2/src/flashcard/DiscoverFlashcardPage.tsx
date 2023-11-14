@@ -4,6 +4,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useForm } from "react-hook-form";
+import Pagination from "react-bootstrap/Pagination";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 import { DeckList } from "./DeckList";
 import * as presenter from "./DeckPresenter";
@@ -75,6 +78,37 @@ export const DiscoverFlashcardPage = () => {
 
     return () => subscription.unsubscribe();
   }, [watch, decksVM, searchValue]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(20);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentItems = showResults
+    ? resultViewModel.slice(indexOfFirstItem, indexOfLastItem)
+    : decksVM.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = showResults
+    ? Math.ceil(resultViewModel.length / itemsPerPage)
+    : Math.ceil(decksVM.length / itemsPerPage);
+
+  const renderPageNumbers = () => {
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(
+        <Pagination.Item
+          key={i}
+          active={i === currentPage}
+          onClick={() => setCurrentPage(i)}
+        >
+          {i}
+        </Pagination.Item>
+      );
+    }
+    return pages;
+  };
 
   return (
     <div style={{ backgroundColor: "#fffaf5" }}>
@@ -171,9 +205,48 @@ export const DiscoverFlashcardPage = () => {
               </span>
             </Button>
           )}
+          <div className="d-grid">
+            <DeckList viewModel={currentItems} />
+            <div className="d-flex justify-content-center mt-4 pb-4 gap-2">
+              <Pagination className="d-flex flex-wrap">
+                <Pagination.First onClick={() => setCurrentPage(1)} />
+                <Pagination.Prev
+                  onClick={() => {
+                    let previousPageNumber = currentPage - 1;
+                    if (previousPageNumber <= 0) {
+                      previousPageNumber = 1;
+                    }
 
-          {!showResults && <DeckList viewModel={decksVM} />}
-          {showResults && <DeckList viewModel={resultViewModel} />}
+                    setCurrentPage(previousPageNumber);
+                  }}
+                />
+                {renderPageNumbers()}
+                <Pagination.Next
+                  onClick={() => {
+                    let nextPageNumber = currentPage + 1;
+                    if (nextPageNumber > totalPages) {
+                      nextPageNumber = totalPages;
+                    }
+
+                    setCurrentPage(nextPageNumber);
+                  }}
+                />
+                <Pagination.Last onClick={() => setCurrentPage(totalPages)} />
+              </Pagination>
+
+              <DropdownButton title={itemsPerPage}>
+                {[5, 10, 15, 20].map((cardsPerPage) => {
+                  return (
+                    <Dropdown.Item
+                      onClick={() => setItemsPerPage(cardsPerPage)}
+                    >
+                      {cardsPerPage}
+                    </Dropdown.Item>
+                  );
+                })}
+              </DropdownButton>
+            </div>
+          </div>
         </article>
       </main>
     </div>
