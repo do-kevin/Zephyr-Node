@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import moment from "moment-timezone";
 import axios from "axios";
 
@@ -16,10 +16,10 @@ import {
   CardTitle,
   CardText,
   Col,
-  Row
+  Row,
 } from "reactstrap";
 import DateTimePicker from "react-datetime-picker";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 import "../css/Reminder.scss";
 
@@ -76,14 +76,15 @@ const Calendar = styled.section`
     border-radius: 5px;
     margin-left: 7px;
   }
-  .react-datetime-picker__clear-button:hover, .react-datetime-picker__clear-button:active {
+  .react-datetime-picker__clear-button:hover,
+  .react-datetime-picker__clear-button:active {
     outline: none !important;
     border-radius: 5px;
     transition: box-shadow 150ms;
     box-shadow: 0 7px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
     position: relative;
     top: -1px;
-  } 
+  }
   .react-datetime-picker__calendar-button {
     box-shadow: 0 2px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
     border: 1px solid dodgerblue;
@@ -92,14 +93,15 @@ const Calendar = styled.section`
     border-radius: 5px;
     margin-left: 7px;
   }
-  .react-datetime-picker__calendar-button:hover, .react-datetime-picker__calendar-button:active {
+  .react-datetime-picker__calendar-button:hover,
+  .react-datetime-picker__calendar-button:active {
     outline: none !important;
     border-radius: 5px;
     transition: box-shadow 150ms;
     position: relative;
     top: -1px;
     box-shadow: 0 7px 8px rgb(124, 124, 124), 0 2px 2px rgb(187, 187, 187);
-  } 
+  }
   .react-datetime-picker--open .react-datetime-picker__calendar-button {
     outline: none !important;
     border-top: 1px solid dodgerblue;
@@ -121,78 +123,78 @@ const Calendar = styled.section`
       margin: auto;
       width: 300px;
     }
-  .react-calendar__navigation {
+    .react-calendar__navigation {
       border-top: 5px solid dodgerblue;
     }
   }
 `;
 
 class Reminder extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            item: "",
-            note: "",
-            date: new Date(),
-            modal: false,
-            phoneNumberSaved: false,
-            phone: "",
-            sendReminder: false,
-            alertTime: 0,
-            saveClicked: false,
-            events: [],
-            currentModal: "", 
-            editingObj: {}, 
-            userId: null
-        };
-      }
-    
-    componentDidMount() {
-        console.log("start")
-        try {
-          const userId = JSON.parse(localStorage.getItem("user")).id,
-            redirect = !userId;
-          if (userId) {
-            this.setState(() => ({userId, redirect}), 
-            () => {
-              this.getReminders();
-              this.getUserInfo();
-            });
-          }
-        } catch (err) {
-          console.log(err);
-        }
-    }
-    
-    getReminders = () => {
-      console.log(this.state.userId)
-        axios.get("/reminders/users/" + this.state.userId)
-            .then (data => {
-                console.log(data);
-                this.setState({
-                    events: data.data
-                })
-            }
-        )
-    }
-
-    getUserInfo = () => {
-      axios.get("/user/" + this.state.userId).then(data => {
-        console.log(data)
-        if (data.data[0].phoneNumber !== null) {
-          this.setState({
-            phoneNumberSaved: true
-          });
-        }
-      });
+  constructor(props) {
+    super(props);
+    this.state = {
+      item: "",
+      note: "",
+      date: new Date(),
+      modal: false,
+      phoneNumberSaved: false,
+      phone: "",
+      sendReminder: false,
+      alertTime: 0,
+      saveClicked: false,
+      events: [],
+      currentModal: "",
+      editingObj: {},
+      userId: null,
     };
+  }
 
-    toggle = () => {
-        this.setState({
-            modal: !this.state.modal
-        });
-        this.clearModal();
+  componentDidMount() {
+    console.log("start");
+    try {
+      const userId = JSON.parse(localStorage.getItem("user")).id,
+        redirect = !userId;
+      if (userId) {
+        this.setState(
+          () => ({ userId, redirect }),
+          () => {
+            this.getReminders();
+            this.getUserInfo();
+          }
+        );
+      }
+    } catch (err) {
+      console.log(err);
     }
+  }
+
+  getReminders = () => {
+    console.log(this.state.userId);
+    axios.get("/reminders/users/" + this.state.userId).then((data) => {
+      console.log(data);
+      this.setState({
+        events: data.data,
+      });
+    });
+  };
+
+  getUserInfo = () => {
+    axios.get("/user/" + this.state.userId).then((data) => {
+      console.log(data);
+      if (data.data[0].phoneNumber !== null) {
+        this.setState({
+          phoneNumberSaved: true,
+        });
+      }
+    });
+  };
+
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+    this.clearModal();
+  };
 
   createEvent = () => {
     this.setState({ currentModal: "create" });
@@ -212,36 +214,36 @@ class Reminder extends Component {
       date: convertDate,
       // moment(obj.date.replace(":00.000Z", "").replace("T", " ")).format("YYYY-MM-DD HH:mm"),
       sendReminder: obj.sendAlert,
-      editingObj: obj
+      editingObj: obj,
     });
     if (obj.sendAlert) {
       this.setState({ alertTime: obj.alertTime });
     }
   };
 
-  handleSubjectChange = event => {
+  handleSubjectChange = (event) => {
     // console.log(event.target.value)
     this.setState({
-      item: event.target.value
+      item: event.target.value,
     });
   };
 
-  handleDateChange = date => {
+  handleDateChange = (date) => {
     console.log(date);
     this.setState({ date });
   };
 
-  handleNoteChange = event => {
+  handleNoteChange = (event) => {
     // console.log(event.target.value)
     this.setState({
-      note: event.target.value
+      note: event.target.value,
     });
   };
 
   handleAlertChange = () => {
     // console.log(!this.state.privacy);
     this.setState({
-      sendReminder: !this.state.sendReminder
+      sendReminder: !this.state.sendReminder,
     });
   };
 
@@ -252,17 +254,17 @@ class Reminder extends Component {
   //   console.log(event.target.checked);
   // };
 
-  handleSelectChange = event => {
+  handleSelectChange = (event) => {
     this.setState({
-      alertTime: event.target.value
+      alertTime: event.target.value,
     });
     // console.log(event.target.value)
   };
 
-  handlePhoneChange = event => {
-    console.log(event.target.value.replace(/\D/g, ''))
+  handlePhoneChange = (event) => {
+    console.log(event.target.value.replace(/\D/g, ""));
     this.setState({
-      phone: event.target.value
+      phone: event.target.value,
     });
   };
 
@@ -274,7 +276,7 @@ class Reminder extends Component {
       note: this.state.note,
       date: moment(this.state.date).format("YYYY-MM-DD HH:mm"),
       sendAlert: this.state.sendReminder,
-      userId: this.state.userId
+      userId: this.state.userId,
     };
     if (this.state.sendReminder) {
       eventObj.alertTime = this.state.alertTime;
@@ -283,35 +285,37 @@ class Reminder extends Component {
     }
 
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
 
     if (!this.state.phoneNumberSaved && this.state.phone !== "") {
-
       let phoneObj = {
-        phoneNumber: this.state.phone.replace(/\D/g, "")
+        phoneNumber: this.state.phone.replace(/\D/g, ""),
       };
-      axios.put("/users/" + this.state.userId, phoneObj).then(data => {
+      axios.put("/users/" + this.state.userId, phoneObj).then((data) => {
         // console.log(data);
         this.setState({
-          phoneNumberSaved: true
+          phoneNumberSaved: true,
         });
 
-        let eventDate = moment(Date.now()).add(1, "minutes").format("YYYY-MM-DD HH:mm");
+        let eventDate = moment(Date.now())
+          .add(1, "minutes")
+          .format("YYYY-MM-DD HH:mm");
         let newObj = {
           date: eventDate,
           notification: 0,
-          message: "You will be receiving event reminders to this number. Text STOP to unsubscribe.",
+          message:
+            "You will be receiving event reminders to this number. Text STOP to unsubscribe.",
           type: "initial text",
-          userId: this.state.userId
+          userId: this.state.userId,
         };
-        axios.post("/appointment", newObj).then(data => {
+        axios.post("/appointment", newObj).then((data) => {
           console.log("phone number set - " + data);
         });
       });
     }
 
-    axios.put("/reminders", eventObj).then(data => {
+    axios.put("/reminders", eventObj).then((data) => {
       console.log(data);
       let eventDate = moment(eventObj.date).format("YYYY-MM-DD HH:mm");
       let obj = {
@@ -322,7 +326,7 @@ class Reminder extends Component {
         ).format("MMMM D")} at ${moment(eventDate).format("hh:mm A")}`,
         userId: this.state.userId,
         type: "reminder",
-        reminderId: eventObj.id
+        reminderId: eventObj.id,
       };
 
       //if event was changed to send to an alert, create a new appointment
@@ -332,7 +336,7 @@ class Reminder extends Component {
       ) {
         console.log("create appt");
 
-        axios.post("/appointment", obj).then(function(data) {
+        axios.post("/appointment", obj).then(function (data) {
           console.log(data);
         });
       }
@@ -344,8 +348,8 @@ class Reminder extends Component {
           this.state.editingObj.date !== eventObj.date)
       ) {
         console.log("update appt");
-        console.log(obj)
-        axios.put("/appointments/reminders", obj).then(function(data) {
+        console.log(obj);
+        axios.put("/appointments/reminders", obj).then(function (data) {
           console.log(data);
         });
       }
@@ -358,7 +362,7 @@ class Reminder extends Component {
         console.log(obj.reminderId);
         axios
           .delete("/appointments/reminders/" + obj.reminderId)
-          .then(function(data) {
+          .then(function (data) {
             console.log(data);
           });
       }
@@ -374,18 +378,18 @@ class Reminder extends Component {
         note: this.state.note,
         date: moment(this.state.date).format("YYYY-MM-DD HH:mm"),
         sendAlert: this.state.sendReminder,
-        userId: this.state.userId
+        userId: this.state.userId,
       };
       if (this.state.sendReminder) {
         eventObj.alertTime = this.state.alertTime;
       }
 
       this.setState({
-        modal: !this.state.modal
+        modal: !this.state.modal,
       });
       console.log(eventObj);
 
-      axios.post("/reminder", eventObj).then(data => {
+      axios.post("/reminder", eventObj).then((data) => {
         //updates array of events in state to update the page display
         // this.setState({events: [...this.state.events, data.data]})
 
@@ -394,37 +398,41 @@ class Reminder extends Component {
           let obj = {
             date: eventDate,
             notification: this.state.alertTime,
-            message: `You have an upcoming event: ${this.state.item} on ${moment(
+            message: `You have an upcoming event: ${
+              this.state.item
+            } on ${moment(eventDate).format("MMMM D")} at ${moment(
               eventDate
-            ).format("MMMM D")} at ${moment(eventDate).format("HH:mm")}`,
+            ).format("HH:mm")}`,
             userId: this.state.userId,
             type: "reminder",
-            reminderId: data.data.id
+            reminderId: data.data.id,
           };
-          axios.post("/appointment", obj).then(function(data) {
+          axios.post("/appointment", obj).then(function (data) {
             console.log(data);
           });
 
           if (!this.state.phoneNumberSaved && this.state.phone !== "") {
-
             let phoneObj = {
-              phoneNumber: this.state.phone.replace(/\D/g, "")
+              phoneNumber: this.state.phone.replace(/\D/g, ""),
             };
-            axios.put("/users/" + this.state.userId, phoneObj).then(data => {
+            axios.put("/users/" + this.state.userId, phoneObj).then((data) => {
               // console.log(data);
               this.setState({
-                phoneNumberSaved: true
+                phoneNumberSaved: true,
               });
-      
-              let eventDate = moment(Date.now()).add(1, "minutes").format("YYYY-MM-DD HH:mm");
+
+              let eventDate = moment(Date.now())
+                .add(1, "minutes")
+                .format("YYYY-MM-DD HH:mm");
               let newObj = {
                 date: eventDate,
                 notification: 0,
-                message: "You will be receiving event reminders to this number. Text STOP to unsubscribe.",
+                message:
+                  "You will be receiving event reminders to this number. Text STOP to unsubscribe.",
                 type: "initial text",
-                userId: this.state.userId
+                userId: this.state.userId,
               };
-              axios.post("/appointment", newObj).then(data => {
+              axios.post("/appointment", newObj).then((data) => {
                 // console.log("phone number set - " + data);
               });
             });
@@ -438,15 +446,14 @@ class Reminder extends Component {
     }
   };
 
-  deleteEvent = id => {
-    axios.delete("/appointments/reminders/" + id)
-      .then((data) => {
-        // console.log(data);
-        axios.delete("/reminders/" + id).then(data => {
-          console.log(data);
-          this.getReminders();
-        });
+  deleteEvent = (id) => {
+    axios.delete("/appointments/reminders/" + id).then((data) => {
+      // console.log(data);
+      axios.delete("/reminders/" + id).then((data) => {
+        console.log(data);
+        this.getReminders();
       });
+    });
   };
 
   //resets all states settings on the modal whenever it's opened or closed
@@ -459,7 +466,7 @@ class Reminder extends Component {
       alert: 0,
       saveClicked: false,
       sendReminder: false,
-      alertTime: 0
+      alertTime: 0,
     });
   };
 
@@ -469,15 +476,23 @@ class Reminder extends Component {
     if (this.state.modal && this.state.currentModal === "create") {
       modalDisplay = (
         <ModalFooter>
-          <button className="reminders-btn reminders-btn--primary" color="primary" onClick={this.saveEvent}>
+          <button
+            className="reminders-btn reminders-btn--primary"
+            color="primary"
+            onClick={this.saveEvent}
+          >
             Save reminder
           </button>
         </ModalFooter>
       );
     } else if (this.state.modal && this.state.currentModal === "edit") {
       modalDisplay = (
-        <ModalFooter style={{justifyContent: "center"}}>
-          <button className="reminders-btn reminders-btn--primary" color="primary" onClick={this.saveEventChanges}>
+        <ModalFooter style={{ justifyContent: "center" }}>
+          <button
+            className="reminders-btn reminders-btn--primary"
+            color="primary"
+            onClick={this.saveEventChanges}
+          >
             Save changes
           </button>
         </ModalFooter>
@@ -548,7 +563,14 @@ class Reminder extends Component {
     let phoneRequest;
     if (!this.state.phoneNumberSaved && this.state.sendReminder) {
       phoneRequest = (
-      <Row style={{ margin: "auto", maxWidth: "421px", position: "relative", left: "9px" }}>
+        <Row
+          style={{
+            margin: "auto",
+            maxWidth: "421px",
+            position: "relative",
+            left: "9px",
+          }}
+        >
           <Col>
             <label>Enter phone number</label>
             <input
@@ -556,7 +578,7 @@ class Reminder extends Component {
               className="phone-input"
               value={this.state.phone}
               onChange={this.handlePhoneChange}
-              style={{background: "hsla(220, 17%, 95%, 1)"}}
+              style={{ background: "hsla(220, 17%, 95%, 1)" }}
             />
           </Col>
         </Row>
@@ -570,71 +592,79 @@ class Reminder extends Component {
         {/* Logout Redirection */}
         {this.props.handleUserRedirect()}
 
-        <Menu><Sidebar handleUserLogout={this.props.handleUserLogout} /></Menu>
+        <Menu>
+          <Sidebar handleUserLogout={this.props.handleUserLogout} />
+        </Menu>
 
-        <main 
-            className="container">
+        <main className="container">
           <div className="row">
             <Card className="event-btn-container">
-            <button className="reminders-btn reminders-btn--dark" onClick={this.createEvent}>
-            <i className="fas fa-plus"></i>{" "}Add Event
-            </button>
+              <button
+                className="reminders-btn reminders-btn--dark"
+                onClick={this.createEvent}
+              >
+                <i className="fas fa-plus"></i> Add Event
+              </button>
             </Card>
           </div>
           <br />
-            <div id="wrapper">
-              {/**************Display of existing events****************/}
-              {this.state.events.map((item, index) => {
-                return (
-                  <Row>
-                    <Col>
-                      <Card 
-                      body
-                      className="event-item animated lightSpeedIn">
-                        <Title>
-                          <CardTitle>
-                            {item.item}
-                          </CardTitle>
-                        </Title>
-                        <hr style={{marginBottom: "-2px"}}/>
-                        <CardText>
-                          <p style={{color: 'hsla(180, 85%, 35%, 1)', fontWeight: 500}}>
-                            {moment(item.date).format("ddd, MMMM D")} at{" "}
-                            {moment(item.date.replace(":00.000Z", "").replace("T", " ")).format("hh:mma")}
-                          </p>
-                          <p>{item.note}</p>
-                        </CardText>
-                        <div>
-                          <button
-                            style={{marginRight: "10px"}}
-                            className="reminders-btn reminders-btn--primary"
-                            onClick={() => this.editEvent(item.id, index)}
-                          >
-                            <i className="fas fa-edit"/> EDIT
-                          </button>
-                          <button
-                            className="delete-reminder-btn"
-                            onClick={() => this.deleteEvent(item.id)}
-                          >
-                            <i className="fas fa-trash-alt"/> DELETE
-                          </button>
-                        </div>
-                      </Card>
-                    </Col>
-                  </Row>
-                );
-              })}
-            </div>
+          <div id="wrapper">
+            {/**************Display of existing events****************/}
+            {this.state.events.map((item, index) => {
+              return (
+                <Row key={item.id}>
+                  <Col>
+                    <Card body className="event-item animated lightSpeedIn">
+                      <Title>
+                        <CardTitle>{item.item}</CardTitle>
+                      </Title>
+                      <hr style={{ marginBottom: "-2px" }} />
+                      <CardText>
+                        <span
+                          className="d-block"
+                          style={{
+                            color: "hsla(180, 85%, 35%, 1)",
+                            fontWeight: 500,
+                          }}
+                        >
+                          {moment(item.date).format("ddd, MMMM D")} at{" "}
+                          {moment(
+                            item.date.replace(":00.000Z", "").replace("T", " ")
+                          ).format("hh:mma")}
+                        </span>
+                        <span className="d-block">{item.note}</span>
+                      </CardText>
+                      <div>
+                        <button
+                          style={{ marginRight: "10px" }}
+                          className="reminders-btn reminders-btn--primary"
+                          onClick={() => this.editEvent(item.id, index)}
+                        >
+                          <i className="fas fa-edit" /> EDIT
+                        </button>
+                        <button
+                          className="delete-reminder-btn"
+                          onClick={() => this.deleteEvent(item.id)}
+                        >
+                          <i className="fas fa-trash-alt" /> DELETE
+                        </button>
+                      </div>
+                    </Card>
+                  </Col>
+                </Row>
+              );
+            })}
+          </div>
         </main>
 
-        <Modal 
-            isOpen={this.state.modal} 
-            toggle={this.toggle}
-            id="modal-position">
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          id="modal-position"
+        >
           <ModalHeader toggle={this.toggle}>Create Event</ModalHeader>
           <ModalBody className="modal-body">
-            <Form
-                className="modal-form">
+            <Form className="modal-form">
               <FormGroup>
                 <Label for="item">Title</Label>
                 <input
@@ -654,8 +684,8 @@ class Reminder extends Component {
                   onChange={this.handleNoteChange}
                 />
               </FormGroup>
-              <hr/>
-              <p style={{marginBottom: 0}}>Date & Time (PST)</p>
+              <hr />
+              <p style={{ marginBottom: 0 }}>Date & Time (PST)</p>
               <Calendar>
                 <DateTimePicker
                   className="date-format"
@@ -666,10 +696,14 @@ class Reminder extends Component {
               </Calendar>
               <Row className="alert-format">
                 <Col>
-                  <span style={{
-                    position: "relative",
-                    top: "5px"
-                  }}>Send Alert</span>
+                  <span
+                    style={{
+                      position: "relative",
+                      top: "5px",
+                    }}
+                  >
+                    Send Alert
+                  </span>
                 </Col>
                 <Col className="toggle-format">
                   <Label className="switch">

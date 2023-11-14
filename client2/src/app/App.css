@@ -1,0 +1,48 @@
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#discoverInput:focus {
+  box-shadow: none;
+}
+
+.custom-search {
+  transform: translateY(-1rem);
+}
+
+.custom-search::before {
+  visibility: hidden;
+  content: "";
+  opacity: 0;
+  margin-right: auto;
+  height: 1.5rem;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.custom-search:focus-within::before {
+  content: "Search flashcard decks";
+  opacity: 100;
+  visibility: visible;
+}
+
+.custom-search:focus-within {
+  .input-group {
+    border-radius: 2rem;
+    box-shadow: 0 0 0 0.25rem rgb(253 216 13 / 25%);
+  }
+
+  #discoverInput {
+    transition: border 0.15s ease-in-out;
+    border-top-color: #fa963a !important;
+    border-right-color: #fa963a !important;
+    border-bottom-color: #fa963a !important;
+  }
+
+  #search-btn-container {
+    transition: border 0.15s ease-in-out;
+    border-top-color: #fa963a !important;
+    border-left-color: #fa963a !important;
+    border-bottom-color: #fa963a !important;
+  }
+}
