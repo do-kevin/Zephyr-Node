@@ -1,0 +1,24 @@
+// @import "../../../node_modules/bootstrap/scss/functions";
+// @import "../../../node_modules/bootstrap/scss/variables";
+// @import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
+// @import "../../../node_modules/bootstrap/scss/utilities";
+// @import "../../../node_modules/bootstrap/scss/utilities/api";
+
+$primary: #fa963a;
+$secondary: #fbe5d0;
+$light: #fffaf5;
+
+// $utilities: map-merge(
+//   $utilities,
+//   (
+//     "border":
+//       map-merge(
+//         map-get($utilities, "border"),
+//         (
+//           responsive: true,
+//         )
+//       ),
+//   )
+// );
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
