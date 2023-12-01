@@ -136,7 +136,7 @@ export const DiscoverFlashcardPage = () => {
         <article className="mx-auto" style={{ maxWidth: 1200 }}>
           <div className="d-flex align-items-end gap-4">
             <h1
-              className="fw-bold mb-3 col position-relative"
+              className="fw-bold mb-3 col position-relative border-top border-sm-danger border-md-primary"
               style={{ fontSize: 128, right: "0.5rem" }}
             >
               Discover
