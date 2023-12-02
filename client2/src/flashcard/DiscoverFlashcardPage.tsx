@@ -1,12 +1,12 @@
 import { matchSorter } from "match-sorter";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import { useForm } from "react-hook-form";
-import Pagination from "react-bootstrap/Pagination";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Pagination from "react-bootstrap/Pagination";
+import { useForm } from "react-hook-form";
 
 import { DeckList } from "./DeckList";
 import * as presenter from "./DeckPresenter";
@@ -126,17 +126,20 @@ export const DiscoverFlashcardPage = () => {
                 <li>Pricing</li>
               </ul>
               <p className="d-inline text-end my-auto" style={{ fontSize: 12 }}>
-                Sign in
+                <Button>Sign in</Button>
               </p>
             </div>
           </nav>
         </div>
       </header>
+      <div className="border border-primary-md">
+        This should have a primary border on medium screens.
+      </div>
       <main className="px-3 px-sm-5 pb-4">
         <article className="mx-auto" style={{ maxWidth: 1200 }}>
-          <div className="d-flex align-items-end gap-4">
+          <div className="d-flex align-items-end gap-4 border border-primary border-primary-md">
             <h1
-              className="fw-bold mb-3 col position-relative border-top border-sm-danger border-md-primary"
+              className="fw-bold mb-3 col position-relative border-top border-sm-danger border-top-md-0"
               style={{ fontSize: 128, right: "0.5rem" }}
             >
               Discover
