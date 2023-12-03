@@ -9,6 +9,18 @@ $light: #fffaf5;
 
 @import "../../../node_modules/bootstrap/scss/utilities";
 
+$width-values: ();
+
+@for $i from 1 through 100 {
+  $value: $i * 1%;
+  $width-values: map-merge(
+    $width-values,
+    (
+      $i: $value,
+    )
+  );
+}
+
 $utilities: map-merge(
   $utilities,
   (
@@ -40,6 +52,14 @@ $utilities: map-merge(
           responsive: true,
         )
       ),
+    "width":
+      map-merge(
+        map-get($utilities, "width"),
+        (
+          responsive: true,
+          values: $width-values,
+        )
+      ),
     "border-start":
       map-merge(
         map-get($utilities, "border-start"),
@@ -47,18 +67,6 @@ $utilities: map-merge(
           responsive: true,
         )
       ),
-    "border-color": (
-      responsive: true,
-      property: border-color,
-      values:
-        map-merge(
-          $theme-colors,
-          (
-            "primary": $primary,
-            "secondary": $secondary,
-          )
-        ),
-    ),
   )
 );
 

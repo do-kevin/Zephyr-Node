@@ -132,14 +132,11 @@ export const DiscoverFlashcardPage = () => {
           </nav>
         </div>
       </header>
-      <div className="border border-primary-md">
-        This should have a primary border on medium screens.
-      </div>
       <main className="px-3 px-sm-5 pb-4">
         <article className="mx-auto" style={{ maxWidth: 1200 }}>
-          <div className="d-flex align-items-end gap-4 border border-primary border-primary-md">
+          <div className="d-flex flex-column flex-lg-row align-items-start align-items-lg-end gap-4">
             <h1
-              className="fw-bold mb-3 col position-relative border-top border-sm-danger border-top-md-0"
+              className="fw-bold mb-0 mb-lg-3 col position-relative"
               style={{ fontSize: 128, right: "0.5rem" }}
             >
               Discover
@@ -153,7 +150,7 @@ export const DiscoverFlashcardPage = () => {
               `}
               </style>
               <Form
-                className="custom-search d-flex align-items-center flex-column col"
+                className="custom-search d-flex align-items-center flex-column col w-100 w-md-auto"
                 onSubmit={handleSubmit(onSubmit, onError)}
               >
                 <InputGroup className="mb-3">
@@ -163,7 +160,7 @@ export const DiscoverFlashcardPage = () => {
                   >
                     <Button
                       type="submit"
-                      variant="warning"
+                      variant="secondary"
                       id="button-addon1"
                       className="rounded-5"
                     >
@@ -179,21 +176,23 @@ export const DiscoverFlashcardPage = () => {
                   />
                   {showMatches && (
                     <div
-                      className="position-absolute top-100 bg-white container py-3 px-2 mt-2 shadow"
-                      style={{ border: "1px solid #FA963A", borderRadius: 4 }}
+                      className="position-absolute top-100 bg-white container py-3 px-0 mt-2 shadow"
+                      style={{
+                        border: "1px solid #FA963A",
+                        borderRadius: 4,
+                      }}
                     >
                       <ul className="list-group mb-0">
                         {resultViewModel.map((r) => {
                           return (
-                            <li
-                              className="list-group-item border-0 mb-2 rounded"
-                              style={{
-                                background: "#FEF7F1",
-                                color: "#F97D0B",
-                              }}
-                              onClick={() => resultsOnPress()}
-                            >
-                              {r.subject}
+                            <li className="list-group-item border-0 mb-0 rounded">
+                              <Button
+                                className="result-btn border-0 mb-0 text-start w-100"
+                                variant="secondary"
+                                onClick={() => resultsOnPress()}
+                              >
+                                {r.subject}
+                              </Button>
                             </li>
                           );
                         })}
