@@ -138,3 +138,28 @@ button:focus-visible {
     background: darken($result-color, 10%);
   }
 }
+
+.test-shadow-on-hover {
+  &:focus {
+    box-shadow: 0rem 0.25rem 1.5rem red !important;
+  }
+}
+
+.test-card-shadow {
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ffffff;
+
+  &:hover,
+  &:active {
+    border-color: var(--bs-primary);
+  }
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0.0625em 0.1875em 0px,
+    rgba(255, 255, 255, 0.95) 0px 0.5em 0px -0.25em,
+    rgba(0, 0, 0, 0.1) 0px 0.5em 0.1875em -0.25em,
+    rgba(255, 255, 255, 0.8) 0px 1em 0px -0.5em,
+    rgba(251, 229, 208, 0.1) 0px 1em 0.1875em -0.5em,
+    hsl(29, 84%, 85%) 0px 9px 16px, rgb(251, 229, 208) 0px 10px 16px;
+}
