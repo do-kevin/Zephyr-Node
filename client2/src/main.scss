@@ -141,11 +141,12 @@ button:focus-visible {
 
 .test-shadow-on-hover {
   &:focus {
-    box-shadow: 0rem 0.25rem 1.5rem red !important;
+    box-shadow: 0rem 0.25rem 1.5rem #fa963a !important;
+    outline: none;
   }
 }
 
-.test-card-shadow {
+.flashcard-shadows {
   cursor: pointer;
   border-width: 2px;
   border-style: solid;

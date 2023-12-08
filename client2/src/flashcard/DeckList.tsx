@@ -11,16 +11,14 @@ export const DeckList = (props: Props) => {
       {props.viewModel?.map((d) => {
         return (
           <article
+            tabIndex={0}
             key={d.id}
-            className="mx-50 col-12 col-md-6 col-lg-4 w-100 w-md-45 w-lg-30 test-card-shadow"
+            className="test-shadow-on-hover mx-50 col-12 col-md-6 col-lg-4 w-100 w-md-45 w-lg-30 flashcard-shadows"
             style={{
               borderRadius: 4,
             }}
           >
-            <div
-              tabindex="0"
-              className="test-shadow-on-hover bg-white d-inline-block p-5 shadow-sm rounded w-100 h-100"
-            >
+            <div className=" bg-white d-inline-block p-5 shadow-sm rounded w-100 h-100">
               <p className="text-center mb-0 py-5">{d.subject}</p>
             </div>
           </article>

@@ -114,9 +114,17 @@ export const DiscoverFlashcardPage = () => {
     <div className="bg-light">
       <header className="py-3 px-3 px-sm-5 border-bottom border-dark mb-4">
         <div className="mx-auto" style={{ maxWidth: 1200 }}>
-          <nav className="d-flex flex-row flex-wrap align-items-center">
-            <h1 className="fs-5 fw-bold mb-0 col-2 text-primary">NoteCram</h1>
-            <div className="d-flex justify-content-between align-items-center col-8">
+          <nav
+            className="d-flex flex-row flex-wrap align-items-center"
+            style={{ gap: "1rem" }}
+          >
+            <h1 className="fs-10 fs-md-5 fw-bold mb-0 col-4 col-md text-primary">
+              NoteCram
+            </h1>
+            <div
+              className="d-flex justify-content-between align-items-center col-6 col-md-4 col-lg-3"
+              style={{ gap: "1rem" }}
+            >
               <ul
                 className="list-group list-group-horizontal list-unstyled"
                 style={{ fontSize: 12 }}
@@ -126,7 +134,13 @@ export const DiscoverFlashcardPage = () => {
                 <li>Pricing</li>
               </ul>
               <p className="d-inline text-end my-auto" style={{ fontSize: 12 }}>
-                <Button>Sign in</Button>
+                <Button>
+                  <span className="d-none d-md-inline">Sign in</span>
+                  <i
+                    className="d-inline d-md-none bi bi-box-arrow-in-right text-white"
+                    style={{ position: "relative", right: "2px" }}
+                  ></i>
+                </Button>
               </p>
             </div>
           </nav>
