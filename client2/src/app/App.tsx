@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./App.css";
 import { DiscoverFlashcardPage } from "src/flashcard/DiscoverFlashcardPage";
 import { Provider } from "react-redux";
 import { HttpGateway } from "src/core/http-gateway";
