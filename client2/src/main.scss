@@ -89,18 +89,15 @@ button:focus-visible {
 }
 
 .custom-search::before {
-  visibility: hidden;
   content: "";
-  opacity: 0;
   margin-right: auto;
-  height: 1.5rem;
-  transition: opacity 0.15s ease-in-out;
+  height: 0;
+  transition: height 0.15s ease-in-out, opacity 0.15s ease-in-out;
 }
 
 .custom-search:focus-within::before {
   content: "Search flashcard decks";
-  opacity: 100;
-  visibility: visible;
+  height: 1.5rem;
 }
 
 .custom-search:focus-within {
@@ -124,9 +121,9 @@ button:focus-visible {
   }
 }
 
-#button-addon1:hover {
-  background: #fbbb80 !important;
-}
+// #button-addon1:hover {
+//   background: #fbbb80 !important;
+// }
 
 .result-btn {
   $result-color: #fef7f1;

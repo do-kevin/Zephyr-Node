@@ -1,5 +1,6 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/custom.css";
+import "./assets/css/my-utilities.css";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import "./main.scss";
 

@@ -150,10 +150,13 @@ export const DiscoverFlashcardPage = () => {
         <article className="mx-auto" style={{ maxWidth: 1200 }}>
           <div className="d-flex flex-column flex-lg-row align-items-start align-items-lg-end gap-4">
             <h1
-              className="fw-bold mb-0 mb-lg-3 col position-relative fs-1"
+              className="fw-bold mb-0 mb-lg-3 col position-relative text-size-3 text-size-sm-1"
               style={{ right: "0.5rem" }}
             >
-              Discover
+              Discover{" "}
+              <button className="button-secondary hover:button-primary">
+                test
+              </button>
             </h1>
             <>
               <style type="text/css">
@@ -176,7 +179,7 @@ export const DiscoverFlashcardPage = () => {
                       type="submit"
                       variant="secondary"
                       id="button-addon1"
-                      className="rounded-5"
+                      className="rounded-5 button-secondary hover:button-primary active:button-primary"
                     >
                       <i className="bi bi-search"></i>
                     </Button>
@@ -186,6 +189,7 @@ export const DiscoverFlashcardPage = () => {
                     id="discoverInput"
                     className="border-dark border-start-0 py-2 rounded-end-5"
                     placeholder="Find a deck"
+                    autoComplete="off"
                     {...register("searchValue", { required: true })}
                   />
                   {showMatches && (

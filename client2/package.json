@@ -30,7 +30,8 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "compile:sass": "sass -w src/assets/sass/custom.scss src/assets/css/custom.css"
+    "compile:sass": "sass -w src/assets/sass/custom.scss src/assets/css/custom.css",
+    "compile:sass:utils": "sass -w src/assets/sass/my-utilities.scss src/assets/css/my-utilities.css"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
