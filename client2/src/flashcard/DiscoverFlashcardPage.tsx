@@ -153,10 +153,7 @@ export const DiscoverFlashcardPage = () => {
               className="fw-bold mb-0 mb-lg-3 col position-relative text-size-3 text-size-sm-1"
               style={{ right: "0.5rem" }}
             >
-              Discover{" "}
-              <button className="button-secondary hover:button-primary">
-                test
-              </button>
+              Discover
             </h1>
             <>
               <style type="text/css">

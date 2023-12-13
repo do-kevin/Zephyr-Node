@@ -1,3 +1,5 @@
+@use "./theme" as theme;
+
 $text-sizes: (
   16: 0.75rem,
   // 12px
@@ -58,12 +60,7 @@ $breakpoints: (
   }
 }
 
-$colors: (
-  "primary": red,
-  "secondary": blue,
-);
-
-@each $color-name, $color-value in $colors {
+@each $color-name, $color-value in theme.$colors {
   .button-#{$color-name} {
     background-color: $color-value !important;
   }
@@ -75,38 +72,33 @@ $colors: (
           background-color: $color-value !important;
         }
 
-        // For devices with fine-pointing capabilities (like a mouse)
         @media (hover: hover) and (pointer: fine) {
-          .hover\:button-#{$bp}-#{$color-name} {
+          .hover\:button-#{$bp}-#{$color-name}:hover {
             background-color: $color-value !important;
           }
-          .active\:button-#{$bp}-#{$color-name} {
+          .active\:button-#{$bp}-#{$color-name}:active {
             background-color: $color-value !important;
           }
         }
 
-        // For touch-based devices
         @media (hover: none) and (pointer: coarse) {
-          .active\:button-#{$bp}-#{$color-name} {
+          .active\:button-#{$bp}-#{$color-name}:active {
             background-color: $color-value !important;
           }
         }
       }
-    }
-    else {
-      // For devices with fine-pointing capabilities (like a mouse)
+    } @else {
       @media (hover: hover) and (pointer: fine) {
-        .hover\:button-#{$color-name} {
+        .hover\:button-#{$color-name}:hover {
           background-color: $color-value !important;
         }
-        .active\:button-#{$color-name} {
+        .active\:button-#{$color-name}:active {
           background-color: $color-value !important;
         }
       }
 
-      // For touch-based devices
       @media (hover: none) and (pointer: coarse) {
-        .active\:button-#{$color-name} {
+        .active\:button-#{$color-name}:active {
           background-color: $color-value !important;
         }
       }

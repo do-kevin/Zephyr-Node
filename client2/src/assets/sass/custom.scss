@@ -1,8 +1,6 @@
 @use "sass:math";
 
-$primary: #fa963a;
-$secondary: #fbe5d0;
-$light: #fffaf5;
+@use "./theme";
 
 @import "../../../node_modules/bootstrap/scss/functions";
 @import "../../../node_modules/bootstrap/scss/variables";
