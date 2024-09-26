@@ -717,12 +717,11 @@ class PlayCards extends React.Component {
         <Carousel className="carousel">
           {this.state.flashcards.map((item) => {
             return (
-              <main className="carousel__items">
+              <main className="carousel__items" key={item.id}>
                 <div
                 // style={{border: "5px dotted limeGreen", cursor: "none !important"}}
                 />
                 <Flippy
-                  key={item.id}
                   flipOnHover={false}
                   flipOnClick={true}
                   flipDirection="horizontal"

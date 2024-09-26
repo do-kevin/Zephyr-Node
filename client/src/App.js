@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import axios from "axios";
+import GithubIcon from "./img/github.png";
 
 // Pages
 import Home from "./pages/Home";
@@ -190,7 +191,7 @@ class App extends Component {
           >
             <img
               className="github-btn__logo"
-              src={require("./img/github.png")}
+              src={GithubIcon}
               alt="github logo"
             />
           </a>{" "}
